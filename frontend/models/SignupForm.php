@@ -14,7 +14,10 @@ class SignupForm extends Model
     public $user_email;
     public $user_pass;
     public $user_passhash;
+    public $created_at;
     public $captcha;
+    
+    const STATUS_ACTIVE = 10;
 
     /**
      * @inheritdoc
@@ -35,7 +38,7 @@ class SignupForm extends Model
             ['user_pass', 'required'],
             ['user_pass', 'string', 'min' => 6],
 
-            ['captcha', 'captcha']
+//             ['captcha', 'captcha']
         ];
     }
 
@@ -50,9 +53,10 @@ class SignupForm extends Model
             $user = new User();
             $user->user_name = $this->user_name;
             $user->user_email = $this->user_email;
-            $user->user_create = time();
+            $user->user_create =time();
+            $user->user_logintime =time();
             $user->user_ip = $_SERVER['REMOTE_ADDR'];
-            $user->user_status = 0;
+            $user->user_status = self::STATUS_ACTIVE;
             $user->user_deld = 0;
             $user->setPassword($this->user_pass);
             $user->generateAuthKey();

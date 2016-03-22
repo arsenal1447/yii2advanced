@@ -50,8 +50,8 @@ class User extends ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            ['status', 'default', 'value' => self::STATUS_ACTIVE],
-            ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
+            ['user_status', 'default', 'value' => self::STATUS_ACTIVE],
+            ['user_status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
         ];
     }
 
@@ -60,7 +60,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public static function findIdentity($id)
     {
-        return static::findOne(['user_id' => $id, 'user_status' => self::STATUS_ACTIVE]);
+        return static::findOne(['id' => $id, 'user_status' => self::STATUS_ACTIVE]);
     }
 
     /**
@@ -78,7 +78,7 @@ class User extends ActiveRecord implements IdentityInterface
      * @return static|null
      */
     public static function findByUsername($username)
-    {  
+    { 
         return static::findOne(['user_name' => $username, 'user_status' => self::STATUS_ACTIVE]);
     }
 
@@ -130,7 +130,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function getAuthKey()
     {
-        return $this->auth_key;
+        return $this->user_authkey;
     }
 
     /**
@@ -149,7 +149,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function validatePassword($password)
     {
-        return Yii::$app->security->validatePassword($password, $this->password_hash);
+        return Yii::$app->security->validatePassword($password, $this->user_passhash);
     }
 
     /**
@@ -167,7 +167,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function generateAuthKey()
     {
-        $this->auth_key = Yii::$app->security->generateRandomString();
+        $this->user_authkey = Yii::$app->security->generateRandomString();
     }
 
     /**

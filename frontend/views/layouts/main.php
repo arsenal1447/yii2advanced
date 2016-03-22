@@ -38,11 +38,11 @@ AppAsset::register($this);
                 ['label' => '通讯', 'url' => ['/site/contact']],
             ];
             if (Yii::$app->user->isGuest) {
-                $menuItems[] = ['label' => '注册', 'url' => ['/site/signup']];
-                $menuItems[] = ['label' => '加入', 'url' => ['/site/login']];
+                $menuItems[] = ['label' => '加入', 'url' => ['/site/signup']];
+                $menuItems[] = ['label' => '登陆', 'url' => ['/site/login']];
             } else {
                 $menuItems[] = [
-                    'label' => '离开 (' . Yii::$app->user->identity->username . ')',
+                    'label' => '离开 (' . Yii::$app->user->identity->user_name . ')',
                     'url' => ['/site/logout'],
                     'linkOptions' => ['data-method' => 'post']
                 ];
