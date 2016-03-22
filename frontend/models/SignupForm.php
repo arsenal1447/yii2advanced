@@ -10,9 +10,10 @@ use Yii;
  */
 class SignupForm extends Model
 {
-    public $username;
-    public $email;
-    public $password;
+    public $user_name;
+    public $user_email;
+    public $user_pass;
+    public $user_passhash;
     public $captcha;
 
     /**
@@ -21,18 +22,18 @@ class SignupForm extends Model
     public function rules()
     {
         return [
-            ['username', 'filter', 'filter' => 'trim'],
-            ['username', 'required'],
-            ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This username has already been taken.'],
-            ['username', 'string', 'min' => 2, 'max' => 255],
+            ['user_name', 'filter', 'filter' => 'trim'],
+            ['user_name', 'required'],
+            ['user_name', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This user_name has already been taken.'],
+            ['user_name', 'string', 'min' => 2, 'max' => 255],
 
-            ['email', 'filter', 'filter' => 'trim'],
-            ['email', 'required'],
-            ['email', 'email'],
-            ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This email address has already been taken.'],
+            ['user_email', 'filter', 'filter' => 'trim'],
+            ['user_email', 'required'],
+            ['user_email', 'email'],
+            ['user_email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This email address has already been taken.'],
 
-            ['password', 'required'],
-            ['password', 'string', 'min' => 6],
+            ['user_pass', 'required'],
+            ['user_pass', 'string', 'min' => 6],
 
             ['captcha', 'captcha']
         ];
@@ -47,9 +48,13 @@ class SignupForm extends Model
     {
         if ($this->validate()) {
             $user = new User();
-            $user->user_name = $this->username;
-            $user->user_email = $this->email;
-            $user->setPassword($this->password);
+            $user->user_name = $this->user_name;
+            $user->user_email = $this->user_email;
+            $user->user_create = time();
+            $user->user_ip = $_SERVER['REMOTE_ADDR'];
+            $user->user_status = 0;
+            $user->user_deld = 0;
+            $user->setPassword($this->user_pass);
             $user->generateAuthKey();
             if ($user->save()) {
                 return $user;
@@ -58,8 +63,8 @@ class SignupForm extends Model
 
         return null;
     }
-    
-    
-    
-    
+
+
+
+
 }

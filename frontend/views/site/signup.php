@@ -7,7 +7,7 @@ use yii\captcha\Captcha;
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model \frontend\models\SignupForm */
 
-$this->title = 'Signup';
+$this->title = '加入';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-signup">
@@ -18,9 +18,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="row">
         <div class="col-lg-5">
             <?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
-                <?= $form->field($model, 'username') ?>
-                <?= $form->field($model, 'email') ?>
-                <?= $form->field($model, 'password')->passwordInput() ?>
+                <?= $form->field($model, 'user_name') ?>
+                <?= $form->field($model, 'user_email') ?>
+                <?= $form->field($model, 'user_pass')->passwordInput() ?>
                 <?= $form->field($model, 'captcha')->widget(Captcha::classname(), [
                     // configure additional widget properties here
                 ]) ?>

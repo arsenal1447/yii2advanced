@@ -78,7 +78,7 @@ class User extends ActiveRecord implements IdentityInterface
      * @return static|null
      */
     public static function findByUsername($username)
-    {
+    {  
         return static::findOne(['user_name' => $username, 'user_status' => self::STATUS_ACTIVE]);
     }
 
@@ -159,7 +159,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function setPassword($password)
     {
-        $this->password_hash = Yii::$app->security->generatePasswordHash($password);
+        $this->user_passhash = Yii::$app->security->generatePasswordHash($password);
     }
 
     /**
