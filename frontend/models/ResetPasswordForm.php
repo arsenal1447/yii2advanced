@@ -11,7 +11,7 @@ use Yii;
  */
 class ResetPasswordForm extends Model
 {
-    public $password;
+    public $user_passhash;
 
     /**
      * @var \common\models\User
@@ -44,8 +44,8 @@ class ResetPasswordForm extends Model
     public function rules()
     {
         return [
-            ['password', 'required'],
-            ['password', 'string', 'min' => 6],
+            ['user_passhash', 'required'],
+            ['user_passhash', 'string', 'min' => 6],
         ];
     }
 
@@ -57,7 +57,7 @@ class ResetPasswordForm extends Model
     public function resetPassword()
     {
         $user = $this->_user;
-        $user->setPassword($this->password);
+        $user->setPassword($this->user_passhash);
         $user->removePasswordResetToken();
 
         return $user->save(false);
