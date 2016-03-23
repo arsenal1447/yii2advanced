@@ -44,7 +44,7 @@ class User extends ActiveRecord implements IdentityInterface
             'class' => TimestampBehavior::className(),
             'createdAtAttribute' => 'user_create',
             'updatedAtAttribute' => 'user_logintime',
-//             'value' => new Expression('NOW()'),
+//             'value' => new Expression('NOW()'),//如果是timestamp类型 ,需要这样操作
             ],
         ];
     }
@@ -180,7 +180,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function generatePasswordResetToken()
     {
-        $this->password_reset_token = Yii::$app->security->generateRandomString() . '_' . time();
+        $this->user_password_reset_token = Yii::$app->security->generateRandomString() . '_' . time();
     }
 
     /**
@@ -188,6 +188,6 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function removePasswordResetToken()
     {
-        $this->password_reset_token = null;
+        $this->user_password_reset_token = null;
     }
 }

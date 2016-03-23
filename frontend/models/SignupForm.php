@@ -53,8 +53,8 @@ class SignupForm extends Model
             $user = new User();
             $user->user_name = $this->user_name;
             $user->user_email = $this->user_email;
-            $user->user_create =time();
-            $user->user_logintime =time();
+//             $user->user_create =time();
+//             $user->user_logintime =time();
             $user->user_ip = $_SERVER['REMOTE_ADDR'];
             $user->user_status = self::STATUS_ACTIVE;
             $user->user_deld = 0;

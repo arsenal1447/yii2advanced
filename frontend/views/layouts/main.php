@@ -26,7 +26,7 @@ AppAsset::register($this);
     <div class="wrap">
         <?php
             NavBar::begin([
-                'brandLabel' => 'My Company',
+                'brandLabel' => '我的地盘',
                 'brandUrl' => Yii::$app->homeUrl,
                 'options' => [
                     'class' => 'navbar-inverse navbar-fixed-top',
@@ -40,6 +40,7 @@ AppAsset::register($this);
             if (Yii::$app->user->isGuest) {
                 $menuItems[] = ['label' => '加入', 'url' => ['/site/signup']];
                 $menuItems[] = ['label' => '登陆', 'url' => ['/site/login']];
+                $menuItems[] = ['label' => '测试', 'url' => ['/test/send-mail']];
             } else {
                 $menuItems[] = [
                     'label' => '离开 (' . Yii::$app->user->identity->user_name . ')',
