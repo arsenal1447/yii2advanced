@@ -34,7 +34,7 @@ AppAsset::register($this);
             ]);
             $menuItems = [
                 ['label' => '主页', 'url' => ['/site/index']],
-                ['label' => '关于', 'url' => ['/site/about']],
+                ['label' => '关于', 'url' => ['/site/about']],//测试 dev2的命令行提交
                 ['label' => '通讯录', 'url' => ['/site/contact']],//测试命令行提交
             ];
             if (Yii::$app->user->isGuest) {
