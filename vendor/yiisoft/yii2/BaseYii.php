@@ -533,4 +533,18 @@ class BaseYii
     {
         return get_object_vars($object);
     }
+    
+    /**
+     * @desc 自定义打印函数
+     * @param unknown $param
+     * @return 打印数组或者die字符串
+     */
+    public static function myPrint($param){
+        if(is_array($param)){
+            echo "<pre>";
+            return print_R($param);
+        }elseif(is_string($param)){
+            return die($param);
+        }
+    }
 }
