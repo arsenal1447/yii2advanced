@@ -37,6 +37,7 @@ AppAsset::register($this);
                 ['label' => '关于', 'url' => ['/site/about']],
                 ['label' => '通讯录', 'url' => ['/site/contact']],//测试命令行提交
                 ['label' => '权限', 'url' => ['/ad-auth-rule/index']],//测试命令行提交
+                ['label' => '帖子', 'url' => ['/ad-post/index']],//测试命令行提交
             ];
             if (Yii::$app->user->isGuest) {
                 $menuItems[] = ['label' => '加入', 'url' => ['/site/signup']];

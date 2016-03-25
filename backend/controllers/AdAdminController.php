@@ -14,7 +14,7 @@ class AdAdminController extends \yii\web\Controller
     {
         return $this->render('index');
     }
-    
+
     /**
      * @desc 展示管理员信息
      * @param integer $id
@@ -26,7 +26,7 @@ class AdAdminController extends \yii\web\Controller
                 'model' => $this->findModel($id),
                 ]);
     }
-    
+
     /**
      * @desc 添加管理员
      * @param 添加管理员
@@ -35,7 +35,6 @@ class AdAdminController extends \yii\web\Controller
     public function actionCreate()
     {
         $model = new AdAdmin();
-        Yii::myPrint(Yii::$app->request->post()); 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
@@ -44,7 +43,7 @@ class AdAdminController extends \yii\web\Controller
             ]);
         }
     }
-    
+
     /**
      * @desc 更新用户信息Updates an existing User model.
      * If update is successful, the browser will be redirected to the 'view' page.
@@ -78,7 +77,7 @@ class AdAdminController extends \yii\web\Controller
 
         return $this->redirect(['index']);
     }
-    
+
     /**
      * @desc Finds the User model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
@@ -94,7 +93,7 @@ class AdAdminController extends \yii\web\Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
-    
-    
+
+
 
 }

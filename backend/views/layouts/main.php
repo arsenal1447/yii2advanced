@@ -35,7 +35,6 @@ AppAsset::register($this);
                 ['label' => '首页', 'url' => ['/site/index']],
                 ['label' => '添加', 'url' => ['/ad-admin/create']],
             ];
-            var_dump(Yii::$app->user->isGuest);
             if (Yii::$app->user->isGuest) {
                 $menuItems[] = ['label' => '登录', 'url' => ['/site/login']];
             } else {

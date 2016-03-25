@@ -28,6 +28,10 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+        //rbac权限
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager',
+        ],
     ],
     'params' => $params,
 ];

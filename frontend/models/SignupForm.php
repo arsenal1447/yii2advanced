@@ -60,6 +60,12 @@ class SignupForm extends Model
             $user->user_deld = 0;
             $user->setPassword($this->user_pass);
             $user->generateAuthKey();
+            
+            // 要添加以下三行代码：
+            $auth = Yii::$app->authManager;
+            $authorRole = $auth->getRole('author');
+            $auth->assign($authorRole, $user->getId());
+            
             if ($user->save()) {
                 return $user;
             }
