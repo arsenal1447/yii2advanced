@@ -31,10 +31,19 @@ $this->params['breadcrumbs'][] = $this->title;
             'post_id',
             'post_title',
             'post_cateid',
-            'post_user',
+            [
+                'label'=>'post_user',
+                'value'=>$model->getAuthName($model->post_user),
+            ],
             'post_content:ntext',
-            'post_create',
-            'post_update',
+            [
+                'label'=>'post_create',
+                'value'=>$model->convertDate($model->post_create),
+            ],
+            [
+                'label'=>'post_update',
+                'value'=>$model->convertDate($model->post_update),
+            ],
             'post_viewcount',
             'post_status',
             'post_deld',
