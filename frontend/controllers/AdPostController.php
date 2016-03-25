@@ -35,7 +35,7 @@ class AdPostController extends Controller
         $dataProvider = new ActiveDataProvider([
             'query' => AdPost::find(),
         ]);
-
+                
         return $this->render('index', [
             'dataProvider' => $dataProvider,
         ]);
@@ -98,19 +98,10 @@ class AdPostController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
-        
-        
-        $model = $this->findModel($id);
-        
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        $model = \Yii::$app->db->createCommand('Update ad_post set post_deld=1 WHERE post_id=:postid');
+        $model->bindParam(':postid', $id);
+        if($model->execute()){
             return $this->redirect(['index']);
-        } else {
-            return $this->render('update', [
-                    'model' => $model,
-                    ]);
         }
     }
 
