@@ -37,11 +37,8 @@ AppAsset::register($this);
             ];
             var_dump(Yii::$app->user->isGuest);
             if (Yii::$app->user->isGuest) {
-                print_R($_SESSION);
-                echo '1111';
                 $menuItems[] = ['label' => '登录', 'url' => ['/site/login']];
             } else {
-                echo "2222";
                 $menuItems[] = [
                     'label' => '退出 (' . Yii::$app->user->identity->admin_name . ')',
                     'url' => ['/site/logout'],

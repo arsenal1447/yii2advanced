@@ -14,7 +14,8 @@ return [
     'modules' => [],
     'components' => [
         'user' => [
-            'identityClass' => 'common\models\User',
+//             'identityClass' => 'common\models\User',
+            'identityClass' => 'common\models\AdAdmin',
             'enableAutoLogin' => true,
         ],
         'log' => [

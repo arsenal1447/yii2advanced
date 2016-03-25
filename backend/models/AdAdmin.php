@@ -83,7 +83,7 @@ class AdAdmin extends \yii\db\ActiveRecord
                 $this->admin_authkey = Yii::$app->security->generateRandomString();
                 $this->admin_create = time();
                 $this->admin_logintime = time();
-                $this->admin_status = 1;
+                $this->admin_status = 10;
                 $this->admin_deld = 0;
 //                 $this->admin_role = 10;
                 $this->admin_ip = $_SERVER['REMOTE_ADDR'];
@@ -113,29 +113,5 @@ class AdAdmin extends \yii\db\ActiveRecord
     public function convertDate($datetime){
         return date('Y-m-d H:i:s',$datetime);
     }
-    
-    
-//     /**
-//      * Finds user by username
-//      *
-//      * @param string $username
-//      * @return static|null
-//      */
-//     public static function findByUsername($username)
-//     { 
-//         return static::findOne(['admin_name' => $username, 'admin_status' => self::STATUS_ACTIVE]);
-//     }
-    
-    
-//     /**
-//      * Validates password
-//      *
-//      * @param string $password password to validate
-//      * @return boolean if password provided is valid for current user
-//      */
-//     public function validatePassword($password)
-//     {
-//         return Yii::$app->security->validatePassword($password, $this->user_passhash);
-//     }
     
 }
