@@ -6,7 +6,7 @@ use yii\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Ad Posts';
+$this->title = Yii::t('app', 'Ad Posts');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="ad-post-index">
@@ -14,7 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Ad Post', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Create Ad Post'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -23,11 +23,15 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'post_id',
+            'post_title',
+            'post_cateid',
             'post_user',
             'post_content:ntext',
-            'post_create',
-            'post_update',
+            // 'post_create',
+            // 'post_update',
             // 'post_viewcount',
+            // 'post_status',
+            // 'post_deld',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

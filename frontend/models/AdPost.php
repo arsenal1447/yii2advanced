@@ -8,11 +8,15 @@ use Yii;
  * This is the model class for table "{{%ad_post}}".
  *
  * @property string $post_id
+ * @property string $post_title
+ * @property integer $post_cateid
  * @property integer $post_user
  * @property string $post_content
  * @property integer $post_create
  * @property integer $post_update
  * @property integer $post_viewcount
+ * @property integer $post_status
+ * @property integer $post_deld
  */
 class AdPost extends \yii\db\ActiveRecord
 {
@@ -30,9 +34,10 @@ class AdPost extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['post_user', 'post_content', 'post_create', 'post_update', 'post_viewcount'], 'required'],
-            [['post_user', 'post_create', 'post_update', 'post_viewcount'], 'integer'],
-            [['post_content'], 'string']
+            [['post_title', 'post_content'], 'required'],
+            [['post_cateid', 'post_user', 'post_create', 'post_update', 'post_viewcount', 'post_status', 'post_deld'], 'integer'],
+            [['post_content'], 'string'],
+            [['post_title'], 'string', 'max' => 100]
         ];
     }
 
@@ -42,12 +47,40 @@ class AdPost extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'post_id' => 'Post ID',
-            'post_user' => 'Post User',
-            'post_content' => 'Post Content',
-            'post_create' => 'Post Create',
-            'post_update' => 'Post Update',
-            'post_viewcount' => 'Post Viewcount',
+            'post_id' => Yii::t('app', 'Post ID'),
+            'post_title' => Yii::t('app', 'Post Title'),
+            'post_cateid' => Yii::t('app', 'Post Cateid'),
+            'post_user' => Yii::t('app', 'Post User'),
+            'post_content' => Yii::t('app', 'Post Content'),
+            'post_create' => Yii::t('app', 'Post Create'),
+            'post_update' => Yii::t('app', 'Post Update'),
+            'post_viewcount' => Yii::t('app', 'Post Viewcount'),
+            'post_status' => Yii::t('app', 'Post Status'),
+            'post_deld' => Yii::t('app', 'Post Deld'),
         ];
+    }
+
+    /**
+     * @desc  发帖的预处理
+     * @return boolean whether the record should be saved.
+     */
+    public function beforeSave($insert) {
+        $userid =  Yii::$app->user->identity->id;
+        if (parent::beforeSave($insert)) {
+            if ($this->isNewRecord) {
+//                 $this->post_title = $this->post_title;
+                $this->post_cateid = 0;
+//                 $this->post_content = $this->post_content;
+                $this->post_user = $userid;
+                $this->post_create = time();
+                $this->post_update = time();
+                $this->post_status = 10;
+                $this->post_viewcount = 10;
+                $this->post_deld = 0;
+            }
+            return true;
+        } else {
+            return false;
+        }
     }
 }

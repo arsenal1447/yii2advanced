@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50624
 File Encoding         : 65001
 
-Date: 2016-03-25 15:33:51
+Date: 2016-03-25 09:15:28
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -115,28 +115,6 @@ CREATE TABLE `ad_auth_rule` (
 
 -- ----------------------------
 -- Records of ad_auth_rule
--- ----------------------------
-
--- ----------------------------
--- Table structure for `ad_post`
--- ----------------------------
-DROP TABLE IF EXISTS `ad_post`;
-CREATE TABLE `ad_post` (
-  `post_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `post_title` varchar(100) CHARACTER SET utf8 NOT NULL,
-  `post_cateid` int(11) NOT NULL,
-  `post_user` int(11) NOT NULL,
-  `post_content` text CHARACTER SET utf8 NOT NULL,
-  `post_create` int(11) NOT NULL,
-  `post_update` int(11) NOT NULL,
-  `post_viewcount` int(11) DEFAULT '0',
-  `post_status` tinyint(4) DEFAULT '0',
-  `post_deld` tinyint(2) DEFAULT '0',
-  PRIMARY KEY (`post_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- ----------------------------
--- Records of ad_post
 -- ----------------------------
 
 -- ----------------------------

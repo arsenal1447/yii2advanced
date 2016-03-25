@@ -12,18 +12,12 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'post_user')->textInput() ?>
+    <?= $form->field($model, 'post_title')->textInput(['style'=>'width:550px']) ?>
 
-    <?= $form->field($model, 'post_content')->textarea(['rows' => 6]) ?>
-
-    <?= $form->field($model, 'post_create')->textInput() ?>
-
-    <?= $form->field($model, 'post_update')->textInput() ?>
-
-    <?= $form->field($model, 'post_viewcount')->textInput() ?>
+    <?= $form->field($model, 'post_content')->textarea(['rows' => 6,'style'=>'width:550px']) ?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

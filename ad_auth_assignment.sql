@@ -10,41 +10,10 @@ Target Server Type    : MYSQL
 Target Server Version : 50624
 File Encoding         : 65001
 
-Date: 2016-03-25 15:33:51
+Date: 2016-03-23 17:15:48
 */
 
 SET FOREIGN_KEY_CHECKS=0;
-
--- ----------------------------
--- Table structure for `ad_admin`
--- ----------------------------
-DROP TABLE IF EXISTS `ad_admin`;
-CREATE TABLE `ad_admin` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `admin_name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `admin_passhash` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `admin_role` tinyint(4) DEFAULT NULL,
-  `admin_email` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `admin_create` int(11) NOT NULL,
-  `admin_logintime` int(11) NOT NULL,
-  `admin_ip` varchar(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
-  `admin_nickname` varchar(100) CHARACTER SET utf8 DEFAULT '0',
-  `admin_status` tinyint(8) NOT NULL DEFAULT '0',
-  `admin_deld` tinyint(2) NOT NULL DEFAULT '0',
-  `admin_authkey` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `admin_password_reset_token` varchar(100) COLLATE utf8_unicode_ci DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- ----------------------------
--- Records of ad_admin
--- ----------------------------
-INSERT INTO `ad_admin` VALUES ('5', 'player', '123456', '1', '1@qq.com', '1458791319', '1458791319', '127.0.0.1', '0', '1', '0', 'yzVYsNCe9saBlZdTuC9EZELzSdwj3gJo', '0');
-INSERT INTO `ad_admin` VALUES ('6', 'mananger', '123456', '1', '2@qq.com', '1458791433', '1458791433', '127.0.0.1', '0', '1', '0', 'ZEy3D_ZgJAVFqQNpf_wwvn9QdoEIR3el', '0');
-INSERT INTO `ad_admin` VALUES ('7', 'player1', '123456', '1', '3@qq.com', '1458799532', '1458799532', '127.0.0.1', '0', '1', '0', 'zRl_eEYxtZ6bzlWhMm1i9epUD1YAfkCB', '0');
-INSERT INTO `ad_admin` VALUES ('8', 'player2', '123456', '1', '3@qq.com4', '1458799591', '1458799591', '127.0.0.1', '0', '1', '0', 'F085uu31BpBFZF3SapUFppSLd46SJ8U0', '0');
-INSERT INTO `ad_admin` VALUES ('9', 'player3', '123456', '1', '5@qq.com', '1458799940', '1458799940', '127.0.0.1', '0', '1', '0', 'oaUy3xpAalztRhFzGfaPbQ8QXOeecYN9', '0');
-INSERT INTO `ad_admin` VALUES ('10', 'aaa', '$2y$13$UT8SwIdZLOxqJ7GkWDx1l.QaDxOYXNkF.72n.Zw0EuJFZ41vP.usS', '1', 'a@qq.com', '1458804356', '1458804356', '127.0.0.1', '0', '10', '0', 'QQXwvNvb-wW8mfffTFym6vQ9ZnzbH-3p', '0');
 
 -- ----------------------------
 -- Table structure for `ad_auth_assignment`
@@ -115,28 +84,6 @@ CREATE TABLE `ad_auth_rule` (
 
 -- ----------------------------
 -- Records of ad_auth_rule
--- ----------------------------
-
--- ----------------------------
--- Table structure for `ad_post`
--- ----------------------------
-DROP TABLE IF EXISTS `ad_post`;
-CREATE TABLE `ad_post` (
-  `post_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `post_title` varchar(100) CHARACTER SET utf8 NOT NULL,
-  `post_cateid` int(11) NOT NULL,
-  `post_user` int(11) NOT NULL,
-  `post_content` text CHARACTER SET utf8 NOT NULL,
-  `post_create` int(11) NOT NULL,
-  `post_update` int(11) NOT NULL,
-  `post_viewcount` int(11) DEFAULT '0',
-  `post_status` tinyint(4) DEFAULT '0',
-  `post_deld` tinyint(2) DEFAULT '0',
-  PRIMARY KEY (`post_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- ----------------------------
--- Records of ad_post
 -- ----------------------------
 
 -- ----------------------------
