@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50624
 File Encoding         : 65001
 
-Date: 2016-03-25 09:15:28
+Date: 2016-03-25 17:59:50
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -34,7 +34,7 @@ CREATE TABLE `ad_admin` (
   `admin_authkey` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `admin_password_reset_token` varchar(100) COLLATE utf8_unicode_ci DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of ad_admin
@@ -45,6 +45,7 @@ INSERT INTO `ad_admin` VALUES ('7', 'player1', '123456', '1', '3@qq.com', '14587
 INSERT INTO `ad_admin` VALUES ('8', 'player2', '123456', '1', '3@qq.com4', '1458799591', '1458799591', '127.0.0.1', '0', '1', '0', 'F085uu31BpBFZF3SapUFppSLd46SJ8U0', '0');
 INSERT INTO `ad_admin` VALUES ('9', 'player3', '123456', '1', '5@qq.com', '1458799940', '1458799940', '127.0.0.1', '0', '1', '0', 'oaUy3xpAalztRhFzGfaPbQ8QXOeecYN9', '0');
 INSERT INTO `ad_admin` VALUES ('10', 'aaa', '$2y$13$UT8SwIdZLOxqJ7GkWDx1l.QaDxOYXNkF.72n.Zw0EuJFZ41vP.usS', '1', 'a@qq.com', '1458804356', '1458804356', '127.0.0.1', '0', '10', '0', 'QQXwvNvb-wW8mfffTFym6vQ9ZnzbH-3p', '0');
+INSERT INTO `ad_admin` VALUES ('11', 'qqq', '$2y$13$OpeLwLZVlKiWmZtNxe9fcORuh7fwUlkNlOhe03psv8Sfpu.cEWDra', '1', 'q@qq.com', '1458893811', '1458893811', '127.0.0.1', '0', '10', '0', 'whiFA3UlZIoNHE_wUjpc579wsJgOTCOR', '0');
 
 -- ----------------------------
 -- Table structure for `ad_auth_assignment`
@@ -116,6 +117,30 @@ CREATE TABLE `ad_auth_rule` (
 -- ----------------------------
 -- Records of ad_auth_rule
 -- ----------------------------
+
+-- ----------------------------
+-- Table structure for `ad_post`
+-- ----------------------------
+DROP TABLE IF EXISTS `ad_post`;
+CREATE TABLE `ad_post` (
+  `post_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `post_title` varchar(100) CHARACTER SET utf8 NOT NULL,
+  `post_cateid` int(11) NOT NULL,
+  `post_user` int(11) NOT NULL,
+  `post_content` text CHARACTER SET utf8 NOT NULL,
+  `post_create` int(11) NOT NULL,
+  `post_update` int(11) NOT NULL,
+  `post_viewcount` int(11) DEFAULT '0',
+  `post_status` tinyint(4) DEFAULT '0',
+  `post_deld` tinyint(2) DEFAULT '0',
+  PRIMARY KEY (`post_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- ----------------------------
+-- Records of ad_post
+-- ----------------------------
+INSERT INTO `ad_post` VALUES ('1', 'aaaaeeeeeeeeggg', '0', '1', '2222eeeeekkkkkkk', '1458894631', '1458895193', '10', '10', '1');
+INSERT INTO `ad_post` VALUES ('2', 'wwww', '0', '1', 'dddddd', '1458894837', '1458894837', '10', '10', '0');
 
 -- ----------------------------
 -- Table structure for `ad_user`
