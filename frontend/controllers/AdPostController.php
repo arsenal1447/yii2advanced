@@ -31,9 +31,12 @@ class AdPostController extends Controller
      * @return mixed
      */
     public function actionIndex()
-    {
+    {   
+        $query = AdPost::find();
+        $query->where(['post_deld'=>0]);//只显示未删除的帖子
         $dataProvider = new ActiveDataProvider([
-            'query' => AdPost::find(),
+//             'query' => AdPost::find(),
+            'query' => $query,
         ]);
                 
         return $this->render('index', [
@@ -48,6 +51,12 @@ class AdPostController extends Controller
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+        if($model->post_deld==1){
+//             echo ('该帖子已经被删除');
+            return $this->redirect(['index']);
+        }
+        
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -97,10 +106,10 @@ class AdPostController extends Controller
      * @return mixed
      */
     public function actionDelete($id)
-    {
-        $model = \Yii::$app->db->createCommand('Update ad_post set post_deld=1 WHERE post_id=:postid');
-        $model->bindParam(':postid', $id);
-        if($model->execute()){
+    {    
+        $model = $this->findModel($id);
+        $model->post_deld = 1;
+        if($model->save()){
             return $this->redirect(['index']);
         }
     }
