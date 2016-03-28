@@ -2,15 +2,15 @@
 Navicat MySQL Data Transfer
 
 Source Server         : local
-Source Server Version : 50624
-Source Host           : localhost:3306
+Source Server Version : 50617
+Source Host           : 127.0.0.1:3306
 Source Database       : yii2advanced
 
 Target Server Type    : MYSQL
-Target Server Version : 50624
+Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2016-03-28 18:06:21
+Date: 2016-03-28 22:04:47
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -159,7 +159,7 @@ CREATE TABLE `ad_post` (
   `post_status` tinyint(4) DEFAULT '0',
   `post_deld` tinyint(2) DEFAULT '0',
   PRIMARY KEY (`post_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of ad_post
@@ -174,6 +174,10 @@ INSERT INTO `ad_post` VALUES ('7', '阿森纳', '0', '1', '<p>sss</p>', '1459158
 INSERT INTO `ad_post` VALUES ('8', '555', '5', '1', '<p>ddddd</p>', '1459158652', '1459158652', '10', '10', '0');
 INSERT INTO `ad_post` VALUES ('9', 'jjjj', '6', '1', '<p>ggggg</p>', '1459159275', '1459159275', '10', '10', '0');
 INSERT INTO `ad_post` VALUES ('10', 'yyy', '5', '1', '<p>yyyyy</p>', '1459159426', '1459159524', '10', '10', '0');
+INSERT INTO `ad_post` VALUES ('11', 'hhhh', '4', '1', '<p>dddddd&nbsp;<img src=\"/uploads/ueditor/php/upload/image/20160328/1459173535219978.jpg\" title=\"1459173535219978.jpg\" alt=\"081850014334.jpg\"/></p>', '1459172712', '1459173538', '10', '10', '0');
+INSERT INTO `ad_post` VALUES ('12', '哎呦 不错哦', '5', '1', '<p>是的是的撒 &nbsp;<img width=\"100px\" src=\"/uploads/ueditor/php/upload/image/20160328/1459173178140498.jpg\" title=\"1459173178140498.jpg\" alt=\"414_1309235_3b90f87867b75a9.jpg\"/></p>', '1459173181', '1459173619', '10', '10', '0');
+INSERT INTO `ad_post` VALUES ('13', 'sdadasd', '3', '1', '<p>dasdas</p>', '1459173743', '1459173743', '10', '10', '0');
+INSERT INTO `ad_post` VALUES ('14', 'sadasdsa', '4', '1', '<p>dasdasdasdas</p>', '1459173773', '1459173773', '10', '10', '0');
 
 -- ----------------------------
 -- Table structure for `ad_user`

@@ -26,14 +26,20 @@ $this->params['breadcrumbs'][] = $this->title;
             'post_title',
             'post_cateid',
             'post_user',
-            'post_content:ntext',
+            'post_content:html',
             // 'post_create',
             // 'post_update',
             // 'post_viewcount',
             // 'post_status',
             // 'post_deld',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+                'header'=>'actions',
+                'buttons'=>['update' => function ($url, $model, $key) {
+                                 return Html::a('Update',$url);
+                }],
+                
+            ],
         ],
     ]); ?>
 
