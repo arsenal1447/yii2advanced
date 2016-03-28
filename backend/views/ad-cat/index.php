@@ -30,7 +30,15 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'cat_create',
             // 'cat_update',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn','header'=>'actions'],
+//             [
+//                 'label'=>'更多操作',
+//                 'format'=>'raw',
+//                 'value' => function($data){
+//                     $url = "http://www.baidu.com";
+//                     return Html::a('添加权限组', $url, ['title' => '审核']);
+//                 }
+//             ]
         ],
     ]); ?>
 
