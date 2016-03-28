@@ -23,6 +23,13 @@ class AdPostController extends Controller
                     'delete' => ['post'],
                 ],
             ],
+//             'upload' => [
+//                 'class' => 'public\ueditor\UEditorAction',
+//                 'config' => [
+//                     "imageUrlPrefix"  => "http://www.ad.com",//图片访问路径前缀
+//                     "imagePathFormat" => "/uploads/image/{yyyy}{mm}{dd}/{time}{rand:6}" //上传保存路径
+//                 ],
+//             ]
         ];
     }
 
@@ -68,7 +75,10 @@ class AdPostController extends Controller
      * @return mixed
      */
     public function actionCreate()
-    {
+    {   
+        if (Yii::$app->user->isGuest) {
+            return $this->redirect(['site/login']);
+        }
         $model = new AdPost();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -87,7 +97,8 @@ class AdPostController extends Controller
      * @return mixed
      */
     public function actionUpdate($id)
-    {
+    {   
+        //需要添加权限判断,判断是否是发表帖子的用户,发布者才可以编辑
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -107,6 +118,7 @@ class AdPostController extends Controller
      */
     public function actionDelete($id)
     {    
+        //需要添加权限判断,判断是否是发表帖子的用户,发布者才可以编辑
         $model = $this->findModel($id);
         $model->post_deld = 1;
         if($model->save()){

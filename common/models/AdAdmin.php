@@ -190,4 +190,13 @@ class AdAdmin extends ActiveRecord implements IdentityInterface
     {
         $this->admin_password_reset_token = null;
     }
+    
+    /**
+     * @desc 转化时间格式
+     * @param 时间戳格式  $datetime
+     * @return 返回 2016-03-02 03:07:49 这种格式
+     */
+    public static function convertDate($datetime){
+        return date('Y-m-d H:i:s',$datetime);
+    }
 }

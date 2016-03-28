@@ -38,6 +38,7 @@ AppAsset::register($this);
             if (Yii::$app->user->isGuest) {
                 $menuItems[] = ['label' => '登录', 'url' => ['/site/login']];
             } else {
+                $menuItems[] = ['label' => '分类', 'url' => ['/ad-cat/index']];
                 $menuItems[] = [
                     'label' => '退出 (' . Yii::$app->user->identity->admin_name . ')',
                     'url' => ['/site/logout'],

@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use common\models\User;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\AdPost */
@@ -38,11 +39,11 @@ $this->params['breadcrumbs'][] = $this->title;
             'post_content:ntext',
             [
                 'label'=>'post_create',
-                'value'=>$model->convertDate($model->post_create),
+                'value'=>User::convertDate($model->post_create),
             ],
             [
                 'label'=>'post_update',
-                'value'=>$model->convertDate($model->post_update),
+                'value'=>User::convertDate($model->post_update),
             ],
             'post_viewcount',
             'post_status',
