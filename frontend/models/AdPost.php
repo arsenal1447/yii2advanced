@@ -124,7 +124,20 @@ class AdPost extends \yii\db\ActiveRecord
         return $post['cat_name'];
     }
     
+    /**
+     * @desc 获取帖子的分类
+     * @return boject
+     */
+    public function getCate(){
+        $command = \Yii::$app->db->createCommand("select cat_id,cat_name from ad_cat where cat_deld=0 and cat_status=0");
+        $catmodel = $command->queryAll();
+        $catarr = [];
+        foreach ($catmodel as $key=>$val){
+            $catarr[$val['cat_id']] = $val['cat_name'];
+        }
     
+        return $catarr;
+    }
     
     
     
