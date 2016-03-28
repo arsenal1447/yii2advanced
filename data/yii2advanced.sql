@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50624
 File Encoding         : 65001
 
-Date: 2016-03-25 17:59:50
+Date: 2016-03-28 15:42:42
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -119,6 +119,27 @@ CREATE TABLE `ad_auth_rule` (
 -- ----------------------------
 
 -- ----------------------------
+-- Table structure for `ad_cat`
+-- ----------------------------
+DROP TABLE IF EXISTS `ad_cat`;
+CREATE TABLE `ad_cat` (
+  `cat_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `cat_name` varchar(20) CHARACTER SET utf8 NOT NULL,
+  `cat_parent` tinyint(4) DEFAULT '0',
+  `cat_deld` tinyint(2) DEFAULT '0',
+  `cat_status` tinyint(4) DEFAULT '0',
+  `cat_create` int(11) DEFAULT NULL,
+  `cat_update` int(11) DEFAULT NULL,
+  PRIMARY KEY (`cat_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- ----------------------------
+-- Records of ad_cat
+-- ----------------------------
+INSERT INTO `ad_cat` VALUES ('1', '英超', '0', '0', '0', null, null);
+INSERT INTO `ad_cat` VALUES ('2', '意甲', '0', '0', '0', '1459149917', '1459149917');
+
+-- ----------------------------
 -- Table structure for `ad_post`
 -- ----------------------------
 DROP TABLE IF EXISTS `ad_post`;
@@ -134,13 +155,17 @@ CREATE TABLE `ad_post` (
   `post_status` tinyint(4) DEFAULT '0',
   `post_deld` tinyint(2) DEFAULT '0',
   PRIMARY KEY (`post_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of ad_post
 -- ----------------------------
 INSERT INTO `ad_post` VALUES ('1', 'aaaaeeeeeeeeggg', '0', '1', '2222eeeeekkkkkkk', '1458894631', '1458895193', '10', '10', '1');
-INSERT INTO `ad_post` VALUES ('2', 'wwww', '0', '1', 'dddddd', '1458894837', '1458894837', '10', '10', '0');
+INSERT INTO `ad_post` VALUES ('2', 'wwww', '0', '1', 'dddddd', '1458894837', '1459136526', '10', '10', '1');
+INSERT INTO `ad_post` VALUES ('3', 'bbb', '0', '1', 'vvvvv', '1459136552', '1459136552', '10', '10', '0');
+INSERT INTO `ad_post` VALUES ('4', 'ddddddd', '0', '1', '<p><strong>asdfasfasdasdasdasd</strong></p><p><strong><img src=\"/uploads/ueditor/php/upload/image/20160328/1459144074872426.jpg\" title=\"1459144074872426.jpg\" alt=\"TB2cseGbFXXXXbxXpXXXXXXXXXX_!!887197785.jpg_160x160(2).jpg\"/></strong></p>', '1459144018', '1459144077', '10', '10', '0');
+INSERT INTO `ad_post` VALUES ('5', 'eeee', '0', '1', '<p><img src=\"/uploads/ueditor/php/upload/image/20160328/1459144089771301.jpg\" title=\"1459144089771301.jpg\" alt=\"TB230xCbFXXXXcQXXXXXXXXXXXX-887197785.jpg_160x160.jpg\"/></p>', '1459144091', '1459144091', '10', '10', '0');
+INSERT INTO `ad_post` VALUES ('6', 'PDO防注入原理分析以及使用PDO的注意事项', '0', '1', '<p style=\"margin-bottom: 0pt; margin-top: 0pt;\" class=\"p0\"><span style=\"font-size: 10.5000pt; font-family: &#39;宋体&#39;;\">为了彻底搞清楚php与mysql&nbsp;server通讯的细节，我特别使用了wireshark抓包进行研究之,安装wireshak之后，我们设置过滤条件为tcp.port==3306,&nbsp;如下图：<br/><img src=\"http://dl.iteye.com/upload/attachment/0082/1266/cfa06567-b3c0-3976-a33f-83273f7a6622.jpg\" alt=\"\"/><br/>&nbsp;</span></p><p style=\"margin-bottom: 0pt; margin-top: 0pt;\" class=\"p0\">&nbsp;</p><p style=\"margin-bottom: 0pt; margin-top: 0pt;\" class=\"p0\">&nbsp;</p><p style=\"margin-bottom: 0pt; margin-top: 0pt;\" class=\"p0\">&nbsp;</p><p style=\"margin-bottom: 0pt; margin-top: 0pt;\" class=\"p0\"><span style=\"font-size: 10.5000pt; font-family: &#39;宋体&#39;;\">如此只显示与mysql&nbsp;3306端口的通信数据，避免不必要的干扰。</span></p><p style=\"margin-bottom: 0pt; margin-top: 0pt;\" class=\"p0\"><span style=\"font-size: 10.5000pt; font-family: &#39;宋体&#39;;\">特别要注意的是wireshak基于wincap驱动，不支持本地环回接口的侦听（即使用php连接本地mysql的方法是无法侦听的），请连接其它机器（桥接网络的虚拟机也可）的MySQL进行测试。</span></p><p style=\"margin-bottom: 0pt; margin-top: 0pt;\" class=\"p0\">&nbsp;</p><p style=\"margin-bottom: 0pt; margin-top: 0pt;\" class=\"p0\"><span style=\"font-size: 10.5000pt; font-family: &#39;宋体&#39;;\">然后运行我们的PHP程序，侦听结果如下，我们发现，PHP只是简单地将SQL直接发送给MySQL&nbsp;Server&nbsp;:</span></p><p><br/></p>', '1459146259', '1459146259', '10', '10', '0');
 
 -- ----------------------------
 -- Table structure for `ad_user`
