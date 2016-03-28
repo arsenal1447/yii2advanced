@@ -103,12 +103,13 @@ class AdPostController extends Controller
     {   
         //需要添加权限判断,判断是否是发表帖子的用户,发布者才可以编辑
         $model = $this->findModel($id);
-
+        $catmodel = $model->getCate();
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->post_id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'catmodel' => $catmodel,
             ]);
         }
     }
