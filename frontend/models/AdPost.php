@@ -67,9 +67,12 @@ class AdPost extends \yii\db\ActiveRecord
      */
     public function beforeSave($insert) {
         $userid =  Yii::$app->user->identity->id;
+        $postdata = Yii::$app->request->post();
+        $cateid = $postdata['AdPost']['post_cateid'];
+//         die($cateid);
         if (parent::beforeSave($insert)) {
             if ($this->isNewRecord) {
-                $this->post_cateid = 0;
+                $this->post_cateid = $cateid;
                 $this->post_user = $userid;
                 $this->post_create = time();
                 $this->post_update = time();
@@ -107,6 +110,18 @@ class AdPost extends \yii\db\ActiveRecord
          }else{
              return '';
          }
+    }
+    
+    /**
+     * @desc 获取帖子的分类名称
+     * @return boject
+     */
+    public function getCateName($id){
+        $command = \Yii::$app->db->createCommand("select cat_name from ad_cat where cat_id=:id and cat_deld=0 and cat_status=0");
+        $command->bindValue(':id', $id);
+        $post = $command->queryOne();
+        
+        return $post['cat_name'];
     }
     
     

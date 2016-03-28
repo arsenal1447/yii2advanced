@@ -31,7 +31,11 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'post_id',
             'post_title',
-            'post_cateid',
+//             'post_cateid',
+            [
+                'label'=>'post_cateid',
+                'value'=>$model->getCateName($model->post_cateid),
+            ],
             [
                 'label'=>'post_user',
                 'value'=>$model->getAuthName($model->post_user),
