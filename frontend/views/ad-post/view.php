@@ -40,7 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label'=>'post_user',
                 'value'=>$model->getAuthName($model->post_user),
             ],
-            'post_content:ntext',
+            'post_content:html',
             [
                 'label'=>'post_create',
                 'value'=>User::convertDate($model->post_create),

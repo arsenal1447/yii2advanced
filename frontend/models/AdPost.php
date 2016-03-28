@@ -4,6 +4,7 @@ namespace app\models;
 
 use Yii;
 use common\models\User;
+use common\models\AdCat;
 
 /**
  * This is the model class for table "{{%ad_post}}".
@@ -129,10 +130,12 @@ class AdPost extends \yii\db\ActiveRecord
      * @return boject
      */
     public function getCate(){
-        $command = \Yii::$app->db->createCommand("select cat_id,cat_name from ad_cat where cat_deld=0 and cat_status=0");
-        $catmodel = $command->queryAll();
+        $models = AdCat::find()->select(['cat_id','cat_name'])->where(['cat_deld'=>0,'cat_status'=>0])->asArray()->all();
+//         $command = \Yii::$app->db->createCommand("select cat_id,cat_name from ad_cat where cat_deld=0 and cat_status=0");
+//         $catmodel = $command->queryAll();
+//         yii::myPrint($models);die('136');
         $catarr = [];
-        foreach ($catmodel as $key=>$val){
+        foreach ($models as $key=>$val){
             $catarr[$val['cat_id']] = $val['cat_name'];
         }
     
