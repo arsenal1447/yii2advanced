@@ -207,10 +207,10 @@ class User extends ActiveRecord implements IdentityInterface
      * @return string 发帖者的用户名
      */
     public static function getAuthName($userid){
-        $userinfo = User::find()->where(['id' => $userid])->one();
+        $userinfo = User::find()->where(['id' => $userid])->asArray()->one();
          
         if($userinfo){
-            return $userinfo->user_name;
+            return $userinfo['user_name'];
         }else{
             return '';
         }

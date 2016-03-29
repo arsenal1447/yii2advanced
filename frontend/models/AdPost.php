@@ -97,10 +97,28 @@ class AdPost extends \yii\db\ActiveRecord
      */
     public static function UpViewCount($id)
     {
-        $catinfo = AdPost::find()->select(['post_id','post_viewcount'])->where(['post_id' => $id,'post_deld'=>0,'post_status'=>0])->asArray()->one();
-        $catinfo['post_viewcount'] += 1;
-
-//         $catinfo->save();
+        $catinfo = AdPost::find()->select(['post_id','post_viewcount'])->where(['post_id' => $id,'post_deld'=>0,'post_status'=>0])->one();
+//         $catinfo['post_viewcount'] = $catinfo['post_viewcount'] + 1;
+        $catinfo->post_viewcount = $catinfo->post_viewcount + 1;
+        
+        echo "<br>view==".$catinfo->post_viewcount."<br>";
+        
+//         $customer = Customer::findOne($id);
+//         $customer->name = $name;
+//         $customer->email = $email;
+//         $customer->update();
+               
+        var_dump($catinfo->update());
+        die('110');
+//         echo "<pre>";
+//         print_R($catinfo);
+// //         die('110');
+        if ($catinfo->update() !== false) {
+            die('yes');
+        } else {
+//             $catinfo->getRawSql();
+            echo ('no');
+        }
     }
     
    

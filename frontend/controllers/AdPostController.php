@@ -34,7 +34,7 @@ class AdPostController extends Controller
     public function actionIndex()
     {   
         $query = AdPost::find();
-        $query->where(['post_deld'=>0,'post_status'=>10]);//只显示未删除的帖子
+        $query->where(['post_deld'=>0,'post_status'=>0]);//只显示未删除的帖子
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
