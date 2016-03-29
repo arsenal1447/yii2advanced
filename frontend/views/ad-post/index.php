@@ -24,26 +24,26 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
 //             'post_id',
-            'post_title',
-//             [
-//                 'label'=>Html::a(Yii::t('app','Post Title'), ['view'], ['class' => 'btn btn-success']),
-//                 'value' => function ($data,$url) {
-//                     return Html::a($data->post_title,$url);
-//                 },
-//             ],
+//             'post_title',
             [
-//                 'label'=>'post_cateid',
-                'label'=>Yii::t('app','Post Cateid'),
+                'attribute'=>'post_title',
+                'format'=>'html',
                 'value' => function ($data,$url) {
-//                     return Html::a(\common\models\AdCat::getCateName($data->post_cateid),$url);
-                    return \common\models\AdCat::getCateName($data->post_cateid);
+                    return Html::a($data->post_title,['view','id'=>$data->post_id]);
                 },
             ],
             [
-                'label'=>Html::a(Yii::t('app','Post User')),
+                'attribute'=>'post_cateid',
+                'format'=>'html',
                 'value' => function ($data,$url) {
-                    //return Html::a(\common\models\AdCat::getCateName($data->post_cateid),$url);
-                    return \common\models\User::getAuthName($data->post_user);
+                    return Html::a(\common\models\AdCat::getCateName($data->post_cateid),$url);
+                },
+            ],
+            [
+                'attribute'=>'post_user',
+                'format'=>'html',
+                'value' => function ($data,$url) {
+                    return Html::a(\common\models\User::getAuthName($data->post_user),$url);
                 },
             ],
             'post_content:html',
