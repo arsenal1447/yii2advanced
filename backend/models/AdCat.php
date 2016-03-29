@@ -3,7 +3,7 @@
 namespace app\models;
 
 use Yii;
-use common\models\AdAdmin;
+// use common\models\AdCat;
 
 /**
  * This is the model class for table "{{%ad_cat}}".
@@ -74,7 +74,4 @@ class AdCat extends \yii\db\ActiveRecord
         }
     }
     
-    function getTime($datetime){
-        return AdAdmin::convertDate($datetime);
-    }
 }

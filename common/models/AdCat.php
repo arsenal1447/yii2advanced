@@ -1,11 +1,11 @@
 <?php
 namespace common\models;
 
-use Yii;
-use yii\base\NotSupportedException;
-use yii\behaviors\TimestampBehavior;
+// use Yii;
+// use yii\base\NotSupportedException;
+// use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
-use yii\web\IdentityInterface;
+// use yii\web\IdentityInterface;
 
 /**
  * User model
@@ -38,5 +38,29 @@ class AdCat extends ActiveRecord
      */
     public static function convertDate($datetime){
         return date('Y-m-d H:i:s',$datetime);
+    }
+    
+    /**
+     * @desc 获取帖子的分类名称
+     * @return boject
+     */
+    public static function getCateName($cateid){
+        $catinfo = AdCat::find()->where(['cat_id' => $cateid,'cat_deld'=>0,'cat_status'=>0])->asArray()->one();
+    
+        return $catinfo['cat_name'];
+    }
+    
+    /**
+     * @desc 获取帖子的分类
+     * @return boject
+     */
+    public static function getCate(){
+        $models = AdCat::find()->select(['cat_id','cat_name'])->where(['cat_deld'=>0,'cat_status'=>0])->asArray()->all();
+        $catarr = [];
+        foreach ($models as $key=>$val){
+            $catarr[$val['cat_id']] = $val['cat_name'];
+        }
+
+        return $catarr;
     }
 }

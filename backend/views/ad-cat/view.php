@@ -2,7 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
-use common\models\AdAdmin;
+use common\models\AdCat;
+// use app\models\AdCat;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\AdCat */
@@ -37,12 +38,12 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'label'=>'cat_create',
 //                 'value'=>$model->getTime($model->cat_create),
-                'value'=>AdAdmin::convertDate($model->cat_create),
+                'value'=>AdCat::convertDate($model->cat_create),
             ],
             [
                 'label'=>'cat_update',
 //                 'value'=>$model->getTime($model->cat_update),
-                'value'=>AdAdmin::convertDate($model->cat_update),
+                'value'=>AdCat::convertDate($model->cat_update),
             ],
         ],
     ]) ?>

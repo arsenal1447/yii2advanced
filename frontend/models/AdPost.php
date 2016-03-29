@@ -3,8 +3,8 @@
 namespace app\models;
 
 use Yii;
-use common\models\User;
-use common\models\AdCat;
+// use common\models\User;
+// use common\models\AdCat;
 
 /**
  * This is the model class for table "{{%ad_post}}".
@@ -70,14 +70,13 @@ class AdPost extends \yii\db\ActiveRecord
         $userid =  Yii::$app->user->identity->id;
         $postdata = Yii::$app->request->post();
         $cateid = $postdata['AdPost']['post_cateid'];
-//         die($cateid);
         if (parent::beforeSave($insert)) {
             if ($this->isNewRecord) {
                 $this->post_cateid = $cateid;
                 $this->post_user = $userid;
                 $this->post_create = time();
                 $this->post_update = time();
-                $this->post_status = 10;
+                $this->post_status = 0;
                 $this->post_viewcount = 10;
                 $this->post_deld = 0;
             }else{//更新修改时间
@@ -89,61 +88,22 @@ class AdPost extends \yii\db\ActiveRecord
         }
     }
     
-//     /**
-//      * @desc 转化时间格式
-//      * @param int  $datetime 时间戳格式 
-//      * @return string  返回 2016-03-02 03:07:49 这种格式
-//      */
-//     public function convertDate($datetime){
-//         return date('Y-m-d H:i:s',$datetime);
-//     }
     
     /**
-     * @desc 根据用户id获取发帖者姓名
-     * @param $userid 发帖作者的用户id
-     * @return string 发帖者的用户名
+     * Deletes an existing AdPost model.
+     * If deletion is successful, the browser will be redirected to the 'index' page.
+     * @param string $id
+     * @return mixed
      */
-    public function getAuthName($userid){
-         $userinfo = User::find()->where(['id' => $userid])->one();
-         
-         if($userinfo){
-             return $userinfo->user_name;
-         }else{
-             return '';
-         }
+    public static function UpViewCount($id)
+    {
+        $catinfo = AdPost::find()->select(['post_id','post_viewcount'])->where(['post_id' => $id,'post_deld'=>0,'post_status'=>0])->asArray()->one();
+        $catinfo['post_viewcount'] += 1;
+
+//         $catinfo->save();
     }
     
-    /**
-     * @desc 获取帖子的分类名称
-     * @return boject
-     */
-    public function getCateName($id){
-        $command = \Yii::$app->db->createCommand("select cat_name from ad_cat where cat_id=:id and cat_deld=0 and cat_status=0");
-        $command->bindValue(':id', $id);
-        $post = $command->queryOne();
-        
-        return $post['cat_name'];
-    }
-    
-    /**
-     * @desc 获取帖子的分类
-     * @return boject
-     */
-    public function getCate(){
-        $models = AdCat::find()->select(['cat_id','cat_name'])->where(['cat_deld'=>0,'cat_status'=>0])->asArray()->all();
-//         $command = \Yii::$app->db->createCommand("select cat_id,cat_name from ad_cat where cat_deld=0 and cat_status=0");
-//         $catmodel = $command->queryAll();
-//         yii::myPrint($models);die('136');
-        $catarr = [];
-        foreach ($models as $key=>$val){
-            $catarr[$val['cat_id']] = $val['cat_name'];
-        }
-    
-        return $catarr;
-    }
-    
-    
-    
+   
     
     
     

@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use common\models\AdCat;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -22,12 +23,36 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'post_id',
+//             'post_id',
             'post_title',
-            'post_cateid',
-            'post_user',
+//             [
+//                 'label'=>Html::a(Yii::t('app','Post Title'), ['view'], ['class' => 'btn btn-success']),
+//                 'value' => function ($data,$url) {
+//                     return Html::a($data->post_title,$url);
+//                 },
+//             ],
+            [
+//                 'label'=>'post_cateid',
+                'label'=>Yii::t('app','Post Cateid'),
+                'value' => function ($data,$url) {
+//                     return Html::a(\common\models\AdCat::getCateName($data->post_cateid),$url);
+                    return \common\models\AdCat::getCateName($data->post_cateid);
+                },
+            ],
+            [
+                'label'=>Html::a(Yii::t('app','Post User')),
+                'value' => function ($data,$url) {
+                    //return Html::a(\common\models\AdCat::getCateName($data->post_cateid),$url);
+                    return \common\models\User::getAuthName($data->post_user);
+                },
+            ],
             'post_content:html',
-            // 'post_create',
+            [
+                'label'=>'post_create',
+                'value'=>function ($data) {
+                    return \common\models\AdCat::convertDate($data->post_create);
+                 }
+            ],
             // 'post_update',
             // 'post_viewcount',
             // 'post_status',
@@ -35,9 +60,17 @@ $this->params['breadcrumbs'][] = $this->title;
 
             ['class' => 'yii\grid\ActionColumn',
                 'header'=>'actions',
-                'buttons'=>['update' => function ($url, $model, $key) {
-                                 return Html::a('Update',$url);
-                }],
+                'buttons'=>[
+                    'update' => function ($url, $model, $key) {
+                                 return Html::a('编辑',$url);
+                     },
+                    'delete' => function ($url, $model, $key) {
+                                 return Html::a('删除',$url);
+                     },
+                    'view' => function ($url, $model, $key) {
+                                 return Html::a('查看',$url);
+                     },
+                ],
                 
             ],
         ],

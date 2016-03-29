@@ -8,6 +8,7 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use common\models\AdCat;
 
 /**
  * AdPostController implements the CRUD actions for AdPost model.
@@ -23,13 +24,6 @@ class AdPostController extends Controller
                     'delete' => ['post'],
                 ],
             ],
-//             'upload' => [
-//                 'class' => 'public\ueditor\UEditorAction',
-//                 'config' => [
-//                     "imageUrlPrefix"  => "http://www.ad.com",//图片访问路径前缀
-//                     "imagePathFormat" => "/uploads/image/{yyyy}{mm}{dd}/{time}{rand:6}" //上传保存路径
-//                 ],
-//             ]
         ];
     }
 
@@ -40,12 +34,11 @@ class AdPostController extends Controller
     public function actionIndex()
     {   
         $query = AdPost::find();
-        $query->where(['post_deld'=>0]);//只显示未删除的帖子
+        $query->where(['post_deld'=>0,'post_status'=>10]);//只显示未删除的帖子
         $dataProvider = new ActiveDataProvider([
-//             'query' => AdPost::find(),
             'query' => $query,
         ]);
-                
+        
         return $this->render('index', [
             'dataProvider' => $dataProvider,
         ]);
@@ -63,6 +56,7 @@ class AdPostController extends Controller
 //             echo ('该帖子已经被删除');
             return $this->redirect(['index']);
         }
+        AdPost::UpViewCount($id);
         
         return $this->render('view', [
             'model' => $this->findModel($id),
@@ -81,7 +75,7 @@ class AdPostController extends Controller
         }
         $model = new AdPost();
         //获取分类列表
-        $catmodel = $model->getCate();
+        $catmodel = AdCat::getCate();
         
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->post_id]);
@@ -102,8 +96,11 @@ class AdPostController extends Controller
     public function actionUpdate($id)
     {   
         //需要添加权限判断,判断是否是发表帖子的用户,发布者才可以编辑
+        if (Yii::$app->user->isGuest) {
+            return $this->redirect(['site/login']);
+        }
         $model = $this->findModel($id);
-        $catmodel = $model->getCate();
+        $catmodel = AdCat::getCate();
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->post_id]);
         } else {
@@ -122,6 +119,9 @@ class AdPostController extends Controller
      */
     public function actionDelete($id)
     {    
+        if (Yii::$app->user->isGuest) {
+            return $this->redirect(['site/login']);
+        }
         //需要添加权限判断,判断是否是发表帖子的用户,发布者才可以编辑
         $model = $this->findModel($id);
         $model->post_deld = 1;
@@ -146,20 +146,7 @@ class AdPostController extends Controller
         }
     }
     
-//     /**
-//      * @desc 获取帖子的分类
-//      * @return boject 
-//      */
-//     public function getCate(){
-//         $command = \Yii::$app->db->createCommand("select cat_id,cat_name from ad_cat where cat_deld=0 and cat_status=0");
-//         $catmodel = $command->queryAll();
-//         $catarr = [];
-//         foreach ($catmodel as $key=>$val){
-//             $catarr[$val['cat_id']] = $val['cat_name'];
-//         }
-        
-//         return $catarr;
-//     }
+    
     
     
     

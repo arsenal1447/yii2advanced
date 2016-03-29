@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 use common\models\User;
+use common\models\AdCat;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\AdPost */
@@ -33,25 +34,25 @@ $this->params['breadcrumbs'][] = $this->title;
             'post_title',
 //             'post_cateid',
             [
-                'label'=>'post_cateid',
-                'value'=>$model->getCateName($model->post_cateid),
+                'label'=>Yii::t('app','Post Cateid'),
+                'value'=>AdCat::getCateName($model->post_cateid),
             ],
             [
-                'label'=>'post_user',
-                'value'=>$model->getAuthName($model->post_user),
+                'label'=>Yii::t('app','Post User'),
+                'value'=>User::getAuthName($model->post_user),
             ],
             'post_content:html',
             [
-                'label'=>'post_create',
+                'label'=>Yii::t('app','Post Create'),
                 'value'=>User::convertDate($model->post_create),
             ],
             [
-                'label'=>'post_update',
+                'label'=>Yii::t('app','Post Update'),
                 'value'=>User::convertDate($model->post_update),
             ],
             'post_viewcount',
-            'post_status',
-            'post_deld',
+//             'post_status',
+//             'post_deld',
         ],
     ]) ?>
 

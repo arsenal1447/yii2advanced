@@ -199,4 +199,20 @@ class User extends ActiveRecord implements IdentityInterface
     public static function convertDate($datetime){
         return date('Y-m-d H:i:s',$datetime);
     }
+    
+    
+    /**
+     * @desc 根据用户id获取发帖者姓名
+     * @param $userid 发帖作者的用户id
+     * @return string 发帖者的用户名
+     */
+    public static function getAuthName($userid){
+        $userinfo = User::find()->where(['id' => $userid])->one();
+         
+        if($userinfo){
+            return $userinfo->user_name;
+        }else{
+            return '';
+        }
+    }
 }
