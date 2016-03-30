@@ -2,7 +2,6 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
-use common\models\AdCat;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -36,14 +35,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute'=>'post_cateid',
                 'format'=>'html',
                 'value' => function ($data,$url) {
-                    return Html::a(\common\models\AdCat::getCateName($data->post_cateid),['cat','cate_id'=>$data->post_cateid]);
+                    return Html::a(\common\models\AdCat::getCateName($data->post_cateid),['index','cate_id'=>$data->post_cateid]);
                 },
             ],
             [
                 'attribute'=>'post_user',
                 'format'=>'html',
                 'value' => function ($data,$url) {
-                    return Html::a(\common\models\User::getAuthName($data->post_user),['user/index','user_id'=>$data->post_user]);
+                    return Html::a(\common\models\User::getAuthName($data->post_user),$url);
                 },
             ],
             'post_content:html',

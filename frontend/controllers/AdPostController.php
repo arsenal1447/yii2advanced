@@ -146,6 +146,26 @@ class AdPostController extends Controller
         }
     }
     
+    /**
+     * @desc 显示分类下的帖子
+     * @return mixed
+     */
+    public function actionCat($cate_id)
+    {    
+        $getparam = Yii::$app->request->get();
+//         $get = Yii::$app()->request->getParam();;
+        $cate_id = $getparam['cate_id'];
+        $query = AdPost::find();
+        $query->where(['post_deld'=>0,'post_status'=>0,'post_cateid'=>$cate_id]);//只显示未删除的帖子
+        $dataProvider = new ActiveDataProvider([
+                'query' => $query,
+                ]);
+    
+        return $this->render('cat', [
+                'dataProvider' => $dataProvider,
+                ]);
+    }
+    
     
     
     

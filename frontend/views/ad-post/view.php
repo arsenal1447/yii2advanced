@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 use common\models\User;
 use common\models\AdCat;
+use app\models\AdPost;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\AdPost */
@@ -50,7 +51,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label'=>Yii::t('app','Post Update'),
                 'value'=>User::convertDate($model->post_update),
             ],
-            'post_viewcount',
+//             'post_viewcount',
+            [
+                'label'=>Yii::t('app','Post Viewcount'),
+                'value'=>AdPost::getViewCount($model->post_id),
+            ],
 //             'post_status',
 //             'post_deld',
         ],

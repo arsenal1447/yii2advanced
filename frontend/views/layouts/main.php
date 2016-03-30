@@ -33,20 +33,22 @@ AppAsset::register($this);
                 ],
             ]);
             $menuItems = [
-                ['label' => '首页', 'url' => ['/site/index']],
-                ['label' => '关于', 'url' => ['/site/about']],
-                ['label' => '通讯录', 'url' => ['/site/contact']],//测试命令行提交
+//                 ['label' => '首页', 'url' => ['/site/index']],
+//                 ['label' => '关于', 'url' => ['/site/about']],
+//                 ['label' => '通讯录', 'url' => ['/site/contact']],//测试命令行提交
 //                 ['label' => '权限', 'url' => ['/ad-auth-rule/index']],//测试命令行提交
-                ['label' => '帖子', 'url' => ['/ad-post/index']],//测试命令行提交
+                ['label' => Yii::t('app','Post List'), 'url' => ['/ad-post/index']],//测试命令行提交
+                ['label' => Yii::t('app','User Info'), 'url' => ['/user/info']],//测试命令行提交
             ];
             if (Yii::$app->user->isGuest) {
-                $menuItems[] = ['label' => '加入', 'url' => ['/site/signup']];
-                $menuItems[] = ['label' => '登陆', 'url' => ['/site/login']];
+                $menuItems[] = ['label' => Yii::t('app','Sign Up'), 'url' => ['/site/signup']];
+                $menuItems[] = ['label' => Yii::t('app','Login In'), 'url' => ['/site/login']];
 //                 $menuItems[] = ['label' => '测试', 'url' => ['/test/send-mail']];
 //                 $menuItems[] = ['label' => '权限', 'url' => ['/ad-auth-rule/index']];
             } else {
                 $menuItems[] = [
-                    'label' => '离开 (' . Yii::$app->user->identity->user_name . ')',
+//                     'label' => '离开 (' . Yii::$app->user->identity->user_name . ')',
+                    'label' => Yii::t('app','Login Out').'(' . Yii::$app->user->identity->user_name . ')',
                     'url' => ['/site/logout'],
                     'linkOptions' => ['data-method' => 'post']
                 ];

@@ -13,6 +13,10 @@ return [
     'Update' => '修改',
     'Post Content' => '帖子内容',
     'Ad Posts' => '列表',
+    'Sign Up' => '加入',
+    'Login In' => '登录',
+    'Login Out' => '离开',
+    'Post List' => '看帖',
     'Create Ad Post' => '发帖',
 	'Save' => '保存',
     'Edit' => '修改',
@@ -30,9 +34,15 @@ return [
     'Username does not exist.' => '用户名不存在',
     'Incorrect password.' => '密码不正确',
     'Service Data Table' => '服务器数据',
+    
+    
 
     'User' => '用户',
+    'User Info' => '个人中心',
+    'User Create' => '加入时间',
+    'User Logintime' => '上次登录时间',
     'Username' => '用户名',
+    'User Name' => '用户名',
     'Email' => '邮箱',
     'Avatar' => '头像',
     'Status' => '状态',

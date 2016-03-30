@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+// use yii\redis\Connection;
 // use common\models\User;
 // use common\models\AdCat;
 
@@ -87,19 +88,41 @@ class AdPost extends \yii\db\ActiveRecord
     
     
     /**
-     * Deletes an existing AdPost model.
+     * @desc 更新每个帖子的阅读量,每次查看更新一次
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param string $id
      * @return mixed
      */
     public static function UpViewCount($id)
     {
-        AdPost::updateAllCounters(['post_viewcount'=>1],['post_id' => $id,'post_deld'=>0,'post_status'=>0]);
-      
+        $model = AdPost::find()->select(['post_id','post_viewcount'])->where(['post_id' => $id,'post_deld'=>0,'post_status'=>0])->one();
+ 
+        $redis = Yii::$app->redis;
+        
+        $currentcount = AdPost::getViewCount($id);
+        $count = 0;
+        if($currentcount>0){
+            $count = $currentcount;
+        }else{
+            $count = $model->post_viewcount;
+        }
+        
+        $redis->hset("counthash","pid_".$id,$count);
+        $result = $redis->hincrby('counthash', "pid_".$id, '1');
     }
     
-   
     
+    /**
+     * @desc 更新每个帖子的阅读量,每次查看更新一次
+     * If deletion is successful, the browser will be redirected to the 'index' page.
+     * @param string $id
+     * @return mixed
+     */
+    public static function getViewCount($id)
+    {
+        $redis = Yii::$app->redis;
+        return $redis->hget('counthash', "pid_".$id);
+    }
     
     
 }
