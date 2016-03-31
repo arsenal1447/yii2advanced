@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50624
 File Encoding         : 65001
 
-Date: 2016-03-29 17:14:03
+Date: 2016-03-31 16:42:20
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -160,7 +160,7 @@ CREATE TABLE `ad_post` (
   `post_status` tinyint(4) DEFAULT '0',
   `post_deld` tinyint(2) DEFAULT '0',
   PRIMARY KEY (`post_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of ad_post
@@ -170,17 +170,20 @@ INSERT INTO `ad_post` VALUES ('2', 'wwww', '2', '1', 'dddddd', '1458894837', '14
 INSERT INTO `ad_post` VALUES ('3', 'bbb', '6', '1', '<p>vvvvvffff</p>', '1459136552', '1459220514', '10', '0', '0');
 INSERT INTO `ad_post` VALUES ('4', 'ddddddd', '3', '1', '<p><strong>asdfasfasdasdasdasd</strong></p><p><strong><img src=\"/uploads/ueditor/php/upload/image/20160328/1459144074872426.jpg\" title=\"1459144074872426.jpg\" alt=\"TB2cseGbFXXXXbxXpXXXXXXXXXX_!!887197785.jpg_160x160(2).jpg\"/></strong></p>', '1459144018', '1459144077', '10', '0', '0');
 INSERT INTO `ad_post` VALUES ('5', 'eeee', '4', '1', '<p><img src=\"/uploads/ueditor/php/upload/image/20160328/1459144089771301.jpg\" title=\"1459144089771301.jpg\" alt=\"TB230xCbFXXXXcQXXXXXXXXXXXX-887197785.jpg_160x160.jpg\"/></p>', '1459144091', '1459144091', '10', '0', '0');
-INSERT INTO `ad_post` VALUES ('6', 'PDO防注入原理分析以及使用PDO的注意事项', '5', '1', '<p style=\"margin-bottom: 0pt; margin-top: 0pt;\" class=\"p0\"><span style=\"font-size: 10.5000pt; font-family: &#39;宋体&#39;;\">为了彻底搞清楚php与mysql&nbsp;server通讯的细节，我特别使用了wireshark抓包进行研究之,安装wireshak之后，我们设置过滤条件为tcp.port==3306,&nbsp;如下图：<br/><img src=\"http://dl.iteye.com/upload/attachment/0082/1266/cfa06567-b3c0-3976-a33f-83273f7a6622.jpg\" alt=\"\"/><br/>&nbsp;</span></p><p style=\"margin-bottom: 0pt; margin-top: 0pt;\" class=\"p0\">&nbsp;</p><p style=\"margin-bottom: 0pt; margin-top: 0pt;\" class=\"p0\">&nbsp;</p><p style=\"margin-bottom: 0pt; margin-top: 0pt;\" class=\"p0\">&nbsp;</p><p style=\"margin-bottom: 0pt; margin-top: 0pt;\" class=\"p0\"><span style=\"font-size: 10.5000pt; font-family: &#39;宋体&#39;;\">如此只显示与mysql&nbsp;3306端口的通信数据，避免不必要的干扰。</span></p><p style=\"margin-bottom: 0pt; margin-top: 0pt;\" class=\"p0\"><span style=\"font-size: 10.5000pt; font-family: &#39;宋体&#39;;\">特别要注意的是wireshak基于wincap驱动，不支持本地环回接口的侦听（即使用php连接本地mysql的方法是无法侦听的），请连接其它机器（桥接网络的虚拟机也可）的MySQL进行测试。</span></p><p style=\"margin-bottom: 0pt; margin-top: 0pt;\" class=\"p0\">&nbsp;</p><p style=\"margin-bottom: 0pt; margin-top: 0pt;\" class=\"p0\"><span style=\"font-size: 10.5000pt; font-family: &#39;宋体&#39;;\">然后运行我们的PHP程序，侦听结果如下，我们发现，PHP只是简单地将SQL直接发送给MySQL&nbsp;Server&nbsp;:</span></p><p><br/></p>', '1459146259', '1459146259', '10', '0', '0');
+INSERT INTO `ad_post` VALUES ('6', 'PDO防注入原理分析以及使用PDO的注意事项', '5', '1', '<p style=\"margin-bottom: 0pt; margin-top: 0pt;\" class=\"p0\"><span style=\"font-size: 10.5000pt; font-family: &#39;宋体&#39;;\">为了彻底搞清楚php与mysql&nbsp;server通讯的细节，我特别使用了wireshark抓包进行研究之,安装wireshak之后，我们设置过滤条件为tcp.port==3306,&nbsp;如下图：<br/><img width=\"200px\" src=\"http://dl.iteye.com/upload/attachment/0082/1266/cfa06567-b3c0-3976-a33f-83273f7a6622.jpg\" alt=\"\"/><br/>&nbsp;</span></p><p style=\"margin-bottom: 0pt; margin-top: 0pt;\" class=\"p0\">&nbsp;</p><p style=\"margin-bottom: 0pt; margin-top: 0pt;\" class=\"p0\">&nbsp;</p><p style=\"margin-bottom: 0pt; margin-top: 0pt;\" class=\"p0\">&nbsp;</p><p style=\"margin-bottom: 0pt; margin-top: 0pt;\" class=\"p0\"><span style=\"font-size: 10.5000pt; font-family: &#39;宋体&#39;;\">如此只显示与mysql&nbsp;3306端口的通信数据，避免不必要的干扰。</span></p><p style=\"margin-bottom: 0pt; margin-top: 0pt;\" class=\"p0\"><span style=\"font-size: 10.5000pt; font-family: &#39;宋体&#39;;\">特别要注意的是wireshak基于wincap驱动，不支持本地环回接口的侦听（即使用php连接本地mysql的方法是无法侦听的），请连接其它机器（桥接网络的虚拟机也可）的MySQL进行测试。</span></p><p style=\"margin-bottom: 0pt; margin-top: 0pt;\" class=\"p0\">&nbsp;</p><p style=\"margin-bottom: 0pt; margin-top: 0pt;\" class=\"p0\"><span style=\"font-size: 10.5000pt; font-family: &#39;宋体&#39;;\">然后运行我们的PHP程序，侦听结果如下，我们发现，PHP只是简单地将SQL直接发送给MySQL&nbsp;Server&nbsp;:</span></p><p><br/></p>', '1459146259', '1459406866', '10', '0', '0');
 INSERT INTO `ad_post` VALUES ('7', '阿森纳', '2', '1', '<p>sss</p>', '1459158237', '1459158237', '10', '0', '0');
 INSERT INTO `ad_post` VALUES ('8', '555委屈委屈我', '5', '1', '<p>ddddd</p>', '1459158652', '1459235079', '10', '0', '0');
 INSERT INTO `ad_post` VALUES ('9', 'jjjj', '6', '1', '<p>ggggg</p>', '1459159275', '1459159275', '10', '0', '0');
 INSERT INTO `ad_post` VALUES ('10', 'yyy', '5', '1', '<p>yyyyy</p>', '1459159426', '1459159524', '10', '0', '0');
-INSERT INTO `ad_post` VALUES ('11', 'hhhh', '4', '1', '<p>dddddd&nbsp;<img src=\"/uploads/ueditor/php/upload/image/20160328/1459173535219978.jpg\" title=\"1459173535219978.jpg\" alt=\"081850014334.jpg\"/></p>', '1459172712', '1459173538', '10', '0', '0');
+INSERT INTO `ad_post` VALUES ('11', 'hhhh', '4', '1', '<p>dddddd&nbsp;<img width=\"200px\" src=\"/uploads/ueditor/php/upload/image/20160328/1459173535219978.jpg\" title=\"1459173535219978.jpg\" alt=\"081850014334.jpg\"/></p>', '1459172712', '1459406823', '10', '0', '0');
 INSERT INTO `ad_post` VALUES ('12', '哎呦 不错哦', '5', '1', '<p>是的是的撒 &nbsp;<img width=\"100px\" src=\"/uploads/ueditor/php/upload/image/20160328/1459173178140498.jpg\" title=\"1459173178140498.jpg\" alt=\"414_1309235_3b90f87867b75a9.jpg\"/></p>', '1459173181', '1459173619', '10', '0', '0');
 INSERT INTO `ad_post` VALUES ('13', 'sdadasd', '3', '1', '<p>dasdas</p>', '1459173743', '1459173743', '10', '0', '0');
 INSERT INTO `ad_post` VALUES ('14', 'sadasdsa', '4', '1', '<p>dasdasdasdas</p>', '1459173773', '1459173773', '10', '0', '0');
 INSERT INTO `ad_post` VALUES ('15', 'ggg', '7', '1', '<p>gfgdfg</p>', '1459222189', '1459222189', '10', '0', '0');
 INSERT INTO `ad_post` VALUES ('16', '我是123456', '6', '2', '<p>大三大四</p>', '1459232099', '1459232099', '10', '0', '0');
+INSERT INTO `ad_post` VALUES ('17', 'dadasd', '3', '2', '<p>sadasdasd</p>', '1459316768', '1459316768', '10', '0', '0');
+INSERT INTO `ad_post` VALUES ('18', '今日头条', '4', '1', '<p>大三大四 &nbsp;<img src=\"/uploads/ueditor/php/upload/image/20160331/1459406910841185.jpg\" title=\"1459406910841185.jpg\" alt=\"1459406910841185.jpg\" width=\"57\" height=\"70\" border=\"0\" vspace=\"0\" style=\"width: 57px; height: 70px;\"/></p>', '1459406935', '1459406960', '10', '0', '0');
+INSERT INTO `ad_post` VALUES ('19', '周杰伦', '2', '5', '<p>阿诗丹顿</p>', '1459413374', '1459413374', '10', '0', '0');
 
 -- ----------------------------
 -- Table structure for `ad_user`
@@ -200,12 +203,13 @@ CREATE TABLE `ad_user` (
   `user_authkey` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `user_password_reset_token` varchar(100) COLLATE utf8_unicode_ci DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of ad_user
 -- ----------------------------
-INSERT INTO `ad_user` VALUES ('1', 'zxx123', '$2y$13$JtAiks0lmsBeLL1qA3YNBeNk/fkQp6Ql3g9WvuACwIwzHMQLHPbae', '297208251@qq.com', '1458637332', '1458719589', '127.0.0.1', '0', '10', '0', 'aYOOl2ZOT95Y2YlZ5ZwTON_y8jwgvdoc', null);
+INSERT INTO `ad_user` VALUES ('1', 'zxx123', '$2y$13$JtAiks0lmsBeLL1qA3YNBeNk/fkQp6Ql3g9WvuACwIwzHMQLHPbae', '297208251@qq.com', '1458637332', '1458719589', '127.0.0.1', '哎呦不错哦', '10', '0', 'aYOOl2ZOT95Y2YlZ5ZwTON_y8jwgvdoc', '');
 INSERT INTO `ad_user` VALUES ('2', 'zxx123456', '$2y$13$Hz8.xi2c3K21ETvzxndFU.Et4J6aHL4xmH4Scc0ZUXhxhYF0XvA9K', '89203299@qq.com', '1458702633', '1458719856', '127.0.0.1', '0', '10', '0', '74HSYguDlqW7VlgngIJoHkvq0a8HATQj', null);
 INSERT INTO `ad_user` VALUES ('3', 'zxx123456789', '$2y$13$lzRDSnYGTb4prlzuwNYAzugWt91Nrk.PclFFZsXFAUYF1rdHmJohi', '297208251@qq.com', '1458702664', '1458702664', '127.0.0.1', '0', '10', '0', 'jVtryq7r0L3EIEMLM-b-xKt9ZySzNaLB', '0');
 INSERT INTO `ad_user` VALUES ('4', 'zhou123', '$2y$13$U7M8MXazZ08GWGf1En6VreFkZjUi1VGEiNkXI4yDFmdvhgZQhtmNq', '89203299@qq.com', '1458704684', '1458704684', '127.0.0.1', '0', '10', '0', 'ZGJo0sUaGeb6TZZUGN-NcG7sIcAFCrH0', '0');
+INSERT INTO `ad_user` VALUES ('5', 'zhou', '$2y$13$jHA3r7gt7VAQH9KC2fC7Q.8u7QCnboCFr0Ljz3BC3rxoppUUEe.iG', 'zhou@qq.com', '1459413352', '1459413352', '127.0.0.1', '周杰伦 哎呦 不错哦 ', '10', '0', 'DjGz9-xIyEShxvnuWpcNgRcB3mo3ysSS', '0');
