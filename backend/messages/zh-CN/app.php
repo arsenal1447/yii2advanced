@@ -46,5 +46,18 @@ return [
 	'Site Title' => '站点标题',
 	'Site Description' => '站点描述',
 	'Site Keyword' => '站点关键字',
-	'Statistics Code' => '统计代码'
+	'Statistics Code' => '统计代码',
+	
+	
+	'Ad Cats' => '添加分类',
+	'Create Ad Cat' => '添加',
+	'Cat Name' => '分类名称',
+	'Cat Parent' => '分类父级',
+	'Cat Deld' => '删除状态',
+	'Cat Status' => '状态',
+	
+	
+	        
+	        
+	        
 ];

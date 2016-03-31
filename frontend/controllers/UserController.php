@@ -41,30 +41,30 @@ class UserController extends Controller
     {
         $getparam = Yii::$app->request->get();
         $userid = $getparam['user_id'];
-        
+
         $model = User::find()->select(['id','user_name','user_create','user_status','user_email','user_logintime'])
         ->where(['id'=>$userid,'user_deld'=>0,'user_status'=>10])->one();
-    
+
         return $this->render('index', [
                 'model' => $model,
                 ]);
-        
+
     }
-    
-    
+
+
     public function actionInfo()
     {
         if (Yii::$app->user->isGuest) {
             return $this->redirect(['site/login']);
         }
-        
+
         $model = User::find()->select(['id','user_name','user_create','user_status','user_email','user_logintime'])
         ->where(['id'=> Yii::$app->user->id,'user_deld'=>0,'user_status'=>10])->one();
-    
+
         return $this->render('info', [
                 'model' => $model,
                 ]);
-    
+
     }
 
     public function actionFavorite()
