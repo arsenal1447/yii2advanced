@@ -4,6 +4,7 @@ namespace backend\controllers;
 
 use Yii;
 use backend\models\AdAdmin;
+use yii\data\ActiveDataProvider;
 use yii\web\NotFoundHttpException;
 
 
@@ -12,7 +13,13 @@ class AdAdminController extends \yii\web\Controller
 {
     public function actionIndex()
     {
-        return $this->render('index');
+        $dataProvider = new ActiveDataProvider([
+            'query' => AdAdmin::find(),
+        ]);
+        
+        return $this->render('index', [
+            'dataProvider' => $dataProvider,
+        ]);
     }
 
     /**
@@ -23,8 +30,8 @@ class AdAdminController extends \yii\web\Controller
     public function actionView($id)
     {
         return $this->render('view', [
-                'model' => $this->findModel($id),
-                ]);
+            'model' => $this->findModel($id),
+        ]);
     }
 
     /**

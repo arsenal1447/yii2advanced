@@ -33,12 +33,14 @@ AppAsset::register($this);
             ]);
             $menuItems = [
                 ['label' => '首页', 'url' => ['/site/index']],
-                ['label' => '添加', 'url' => ['/ad-admin/create']],
+//                 ['label' => '添加', 'url' => ['/ad-admin/create']],
             ];
             if (Yii::$app->user->isGuest) {
                 $menuItems[] = ['label' => '登录', 'url' => ['/site/login']];
             } else {
                 $menuItems[] = ['label' => '分类', 'url' => ['/ad-cat/index']];
+                $menuItems[] = ['label' => '权限', 'url' => ['/ad-auth-item/index']];
+                $menuItems[] = ['label' => '添加管理员', 'url' => ['/ad-admin/create']];
                 $menuItems[] = [
                     'label' => '退出 (' . Yii::$app->user->identity->admin_name . ')',
                     'url' => ['/site/logout'],

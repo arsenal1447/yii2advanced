@@ -27,6 +27,7 @@ return [
     'Updated At' => '更新时间',
     'User Id' => '用户 ID',
     'User ID' => '用户 ID',
+    'ID' => '用户 ID',
 
     'Forum' => '论坛',
     'Forum ID' => '论坛 ID',
@@ -55,6 +56,11 @@ return [
 	'Cat Parent' => '分类父级',
 	'Cat Deld' => '删除状态',
 	'Cat Status' => '状态',
+	
+
+	'Name'=>'管理员名字',
+	'Admin List'=>'管理员列表',
+	'Create Ad Admin'=>'添加管理员',
 	
 	
 	
