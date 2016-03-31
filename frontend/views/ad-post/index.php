@@ -48,7 +48,8 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'post_content:html',
             [
-                'label'=>'post_create',
+                'attribute'=>'post_create',
+                'format'=>'html',
                 'value'=>function ($data) {
                     return \common\models\AdCat::convertDate($data->post_create);
                  }
