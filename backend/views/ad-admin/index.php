@@ -22,10 +22,9 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',    
-//             'admin_name',
+            'id',  
             [
-                'attribute'=>'Name',
+                'attribute'=>'admin_name',
                 'format'=>'html',
                 'value' => function ($data,$url) {
                     return Html::a($data->admin_name,['ad-admin/view','id'=>$data->id]);

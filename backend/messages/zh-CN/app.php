@@ -59,7 +59,16 @@ return [
 	
 
 	'Name'=>'管理员名字',
+	'Admin Name'=>'管理员名字',
 	'Admin List'=>'管理员列表',
+	'Admin Role'=>'角色',
+	'Admin Email'=>'邮件地址',
+	'Admin Create'=>'注册时间',
+	'Admin Logintime'=>'上次登录时间',
+	'Admin Ip'=>'上次登录Ip',
+	'Admin Nickname'=>'昵称',
+	'Admin Deld'=>'删除状态',
+	'Admin Status'=>'状态',
 	'Create Ad Admin'=>'添加管理员',
 	
 	

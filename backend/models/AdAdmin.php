@@ -10,6 +10,7 @@ use Yii;
  * @property string $id
  * @property string $admin_name
  * @property string $admin_passhash
+ * @property integer $admin_role
  * @property string $admin_email
  * @property integer $admin_create
  * @property integer $admin_logintime
@@ -21,7 +22,7 @@ use Yii;
  * @property string $admin_password_reset_token
  */
 class AdAdmin extends \yii\db\ActiveRecord
-{
+{    
     public $new_password;
     
     const STATUS_ACTIVE = 10;
@@ -39,11 +40,10 @@ class AdAdmin extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['admin_name', 'new_password', 'admin_email','admin_role'], 'required'],
-            [['admin_create', 'admin_logintime', 'admin_status', 'admin_deld','admin_role'], 'integer'],
+            [['admin_name', 'admin_passhash', 'admin_email', 'admin_create', 'admin_logintime', 'admin_authkey'], 'required'],
+            [['admin_role', 'admin_create', 'admin_logintime', 'admin_status', 'admin_deld'], 'integer'],
             [['admin_name', 'admin_passhash', 'admin_nickname', 'admin_authkey', 'admin_password_reset_token'], 'string', 'max' => 100],
-            [['admin_email', 'admin_ip'], 'string', 'max' => 50],
-            [['admin_role', 'admin_role'], 'string', 'max' => 10]
+            [['admin_email', 'admin_ip'], 'string', 'max' => 50]
         ];
     }
 
@@ -53,22 +53,21 @@ class AdAdmin extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'admin_name' => 'Name',
-            'admin_passhash' => 'Password',
-            'admin_role' => 'Role',
-            'admin_email' => 'Email',
-            'admin_create' => Yii::t('app', 'Created At'),
-            'admin_logintime' =>Yii::t('app', 'Updated At'),
-            'admin_ip' => 'Admin Ip',
-            'admin_nickname' => 'Admin Nickname',
-            'admin_status' => 'Admin Status',
-            'admin_deld' => 'Admin Deld',
-            'admin_authkey' => 'Admin Authkey',
-            'admin_password_reset_token' => 'Admin Password Reset Token',
+            'id' => Yii::t('app', 'ID'),
+            'admin_name' => Yii::t('app', 'Admin Name'),
+            'admin_passhash' => Yii::t('app', 'Admin Passhash'),
+            'admin_role' => Yii::t('app', 'Admin Role'),
+            'admin_email' => Yii::t('app', 'Admin Email'),
+            'admin_create' => Yii::t('app', 'Admin Create'),
+            'admin_logintime' => Yii::t('app', 'Admin Logintime'),
+            'admin_ip' => Yii::t('app', 'Admin Ip'),
+            'admin_nickname' => Yii::t('app', 'Admin Nickname'),
+            'admin_status' => Yii::t('app', 'Admin Status'),
+            'admin_deld' => Yii::t('app', 'Admin Deld'),
+            'admin_authkey' => Yii::t('app', 'Admin Authkey'),
+            'admin_password_reset_token' => Yii::t('app', 'Admin Password Reset Token'),
         ];
     }
-    
     
     /**
      * This is invoked before the record is saved.
@@ -85,7 +84,7 @@ class AdAdmin extends \yii\db\ActiveRecord
                 $this->admin_logintime = time();
                 $this->admin_status = 10;
                 $this->admin_deld = 0;
-//                 $this->admin_role = 10;
+                //                 $this->admin_role = 10;
                 $this->admin_ip = $_SERVER['REMOTE_ADDR'];
             }
             return true;
@@ -104,7 +103,5 @@ class AdAdmin extends \yii\db\ActiveRecord
     {
         $this->user_passhash = Yii::$app->security->generatePasswordHash($password);
     }
-    
-   
     
 }
