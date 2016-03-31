@@ -42,7 +42,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute'=>'post_user',
                 'format'=>'html',
                 'value' => function ($data,$url) {
-                    return Html::a(\common\models\User::getAuthName($data->post_user),$url);
+//                     return Html::a(\common\models\User::getAuthName($data->post_user),$url);
+                    return Html::a(\common\models\User::getAuthName($data->post_user),['ad-user/view','id'=>$data->post_user]);
                 },
             ],
             'post_content:html',

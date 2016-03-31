@@ -3,35 +3,31 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 use common\models\User;
-use common\models\AdCat;
-use app\models\AdPost;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\AdPost */
 $this->title = $model->user_name;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'User Info'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'User Info'), 'url' => ['info']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="ad-post-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
-
+    
+    <?php if($model->id==yii::$app->user->id){?>
     <p>
         <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
-                'method' => 'post',
-            ],
-        ]) ?>
     </p>
-
+    <?php }?>
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
             'id',
-            'user_name',
+            [
+                'attribute'=>Yii::t('app','User Name'),
+                'format'=>'html',
+                'value'=>$model->user_name,
+            ],
 //             'user_content:html',
             [
                 'label'=>Yii::t('app','User Create'),
@@ -41,7 +37,16 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label'=>Yii::t('app','User Logintime'),
                 'value'=>User::convertDate($model->user_logintime),
             ],
-//             'user_viewcount',
+            [
+                'attribute'=>Yii::t('app','User Ip'),
+                'format'=>'html',
+                'value'=>$model->user_ip,
+            ],
+            [
+                'attribute'=>Yii::t('app','User Nickname'),
+                'format'=>'html',
+                'value'=>$model->user_nickname,
+            ],
 //             [
 //                 'label'=>Yii::t('app','Post Viewcount'),
 //                 'value'=>AdPost::getViewCount($model->user_id),
