@@ -89,6 +89,8 @@ class AdAdmin extends \yii\db\ActiveRecord
                 $this->admin_deld = 0;
                 //                 $this->admin_role = 10;
                 $this->admin_ip = $_SERVER['REMOTE_ADDR'];
+            }else{
+                $this->admin_logintime = time();
             }
             return true;
         } else {
