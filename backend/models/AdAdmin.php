@@ -82,7 +82,6 @@ class AdAdmin extends \yii\db\ActiveRecord
                     $this->admin_passhash = Yii::$app->security->generatePasswordHash($this->ad_password);
                 }
                 var_dump($this->admin_passhash);
-//                 die('83');
                 $this->admin_authkey = Yii::$app->security->generateRandomString();
                 $this->admin_create = time();
                 $this->admin_logintime = time();

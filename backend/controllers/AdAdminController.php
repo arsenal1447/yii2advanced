@@ -66,10 +66,6 @@ class AdAdminController extends Controller
 //             throw new UnauthorizedHttpException('对不起，您现在还没获此操作的权限。');
 //         }
         
-        echo "<pre>";
-        print_R(Yii::$app->request->post());
-        echo "</pre>";
-//         die('71');
         $model = new AdAdmin();
 
         if ($model->load(Yii::$app->request->post()) && $model->save(false)) {
