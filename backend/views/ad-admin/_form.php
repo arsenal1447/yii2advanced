@@ -15,7 +15,7 @@ use common\models\AdAdmin;
 
     <?= $form->field($model, 'admin_name')->textInput(['maxlength' => true,'style'=>'width:255px;']) ?>
 
-    <?= $form->field($model, 'admin_passhash')->textInput(['maxlength' => true,'style'=>'width:255px;']) ?>
+    <?= $form->field($model, 'ad_password')->passwordInput(['maxlength' => true,'style'=>'width:255px;']) ?>
 
     <?= $form->field($model, 'admin_role')->textInput(['maxlength' => true,'style'=>'width:255px;']) ?>
 

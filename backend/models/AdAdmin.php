@@ -23,7 +23,7 @@ use Yii;
  */
 class AdAdmin extends \yii\db\ActiveRecord
 {    
-    public $admin_passhash;
+    public $ad_password;
     
     const STATUS_ACTIVE = 10;
     /**
@@ -40,9 +40,9 @@ class AdAdmin extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['admin_name', 'admin_email','admin_passhash', 'admin_authkey'], 'required'],
+            [['admin_name', 'admin_email','ad_password', 'admin_authkey'], 'required'],
             [['admin_role', 'admin_create', 'admin_logintime', 'admin_status', 'admin_deld'], 'integer'],
-            [['admin_name', 'admin_passhash', 'admin_nickname', 'admin_authkey', 'admin_password_reset_token'], 'string', 'max' => 100],
+            [['admin_name', 'ad_password', 'admin_nickname', 'admin_authkey', 'admin_password_reset_token'], 'string', 'max' => 100],
             [['admin_email', 'admin_ip'], 'string', 'max' => 50]
         ];
     }
@@ -56,6 +56,7 @@ class AdAdmin extends \yii\db\ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'admin_name' => Yii::t('app', 'Admin Name'),
             'admin_passhash' => Yii::t('app', 'Admin Passhash'),
+            'ad_password' => Yii::t('app', 'Admin Passhash'),
             'admin_role' => Yii::t('app', 'Admin Role'),
             'admin_email' => Yii::t('app', 'Admin Email'),
             'admin_create' => Yii::t('app', 'Admin Create'),
@@ -76,13 +77,12 @@ class AdAdmin extends \yii\db\ActiveRecord
     public function beforeSave($insert) {
         if (parent::beforeSave($insert)) {
             if ($this->isNewRecord) {
-//                 yii::myPrint(yii::$app->request->post());
-//                 admin_name`, `admin_role`, `admin_email`, `admin_authkey`, 
-//                 `admin_create`, `admin_logintime`, `admin_status`, `admin_deld`, `admin_ip
-//                 if(isset($this->admin_passhash)){
-                    $this->admin_passhash = Yii::$app->security->generatePasswordHash($this->admin_passhash);
-//                 }
-//                 var_dump($this->admin_passhash);
+                var_dump($this->ad_password);
+                if(isset($this->ad_password)){
+                    $this->admin_passhash = Yii::$app->security->generatePasswordHash($this->ad_password);
+                }
+                var_dump($this->admin_passhash);
+//                 die('83');
                 $this->admin_authkey = Yii::$app->security->generateRandomString();
                 $this->admin_create = time();
                 $this->admin_logintime = time();
