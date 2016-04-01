@@ -5,26 +5,45 @@ namespace backend\controllers;
 use Yii;
 use backend\models\AdAdmin;
 use yii\data\ActiveDataProvider;
+use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\filters\VerbFilter;
 
-
-
-class AdAdminController extends \yii\web\Controller
+/**
+ * AdAdminController implements the CRUD actions for AdAdmin model.
+ */
+class AdAdminController extends Controller
 {
+    public function behaviors()
+    {
+        return [
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'delete' => ['post'],
+                ],
+            ],
+        ];
+    }
+
+    /**
+     * Lists all AdAdmin models.
+     * @return mixed
+     */
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
             'query' => AdAdmin::find(),
         ]);
-        
+
         return $this->render('index', [
             'dataProvider' => $dataProvider,
         ]);
     }
 
     /**
-     * @desc 展示管理员信息
-     * @param integer $id
+     * Displays a single AdAdmin model.
+     * @param string $id
      * @return mixed
      */
     public function actionView($id)
@@ -35,14 +54,25 @@ class AdAdminController extends \yii\web\Controller
     }
 
     /**
-     * @desc 添加管理员
-     * @param 添加管理员
-     * @return \app\models\User|NULL
+     * Creates a new AdAdmin model.
+     * If creation is successful, the browser will be redirected to the 'view' page.
+     * @return mixed
      */
     public function actionCreate()
-    {
+    {    
+//         if (Yii::$app->user->can('CreatePost')) {
+//             return '可以的';
+//         } else {
+//             throw new UnauthorizedHttpException('对不起，您现在还没获此操作的权限。');
+//         }
+        
+        echo "<pre>";
+        print_R(Yii::$app->request->post());
+        echo "</pre>";
+//         die('71');
         $model = new AdAdmin();
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
+        if ($model->load(Yii::$app->request->post()) && $model->save(false)) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
@@ -52,30 +82,28 @@ class AdAdminController extends \yii\web\Controller
     }
 
     /**
-     * @desc 更新用户信息Updates an existing User model.
+     * Updates an existing AdAdmin model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
+     * @param string $id
      * @return mixed
      */
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post())) {
-            $model->setPassword($model->new_password);
-            if ($model->save()) {
-                Yii::$app->getSession()->setFlash('success', 'Save successfully');
-            }
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
+        } else {
+            return $this->render('update', [
+                'model' => $model,
+            ]);
         }
-        return $this->render('update', [
-            'model' => $model,
-        ]);
     }
 
     /**
-     * @desc 删除用户 Deletes an existing User model.
+     * Deletes an existing AdAdmin model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
+     * @param string $id
      * @return mixed
      */
     public function actionDelete($id)
@@ -86,10 +114,10 @@ class AdAdminController extends \yii\web\Controller
     }
 
     /**
-     * @desc Finds the User model based on its primary key value.
+     * Finds the AdAdmin model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return User the loaded model
+     * @param string $id
+     * @return AdAdmin the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
@@ -100,7 +128,4 @@ class AdAdminController extends \yii\web\Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
-
-
-
 }

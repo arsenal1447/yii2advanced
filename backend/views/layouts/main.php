@@ -25,24 +25,24 @@ AppAsset::register($this);
     <div class="wrap">
         <?php
             NavBar::begin([
-                'brandLabel' => '我的后院',
+                'brandLabel' => Yii::t('app','My Place'),
                 'brandUrl' => Yii::$app->homeUrl,
                 'options' => [
                     'class' => 'navbar-inverse navbar-fixed-top',
                 ],
             ]);
             $menuItems = [
-                ['label' => '首页', 'url' => ['/site/index']],
+                ['label' => Yii::t('app','Home'), 'url' => ['/site/index']],
 //                 ['label' => '添加', 'url' => ['/ad-admin/create']],
             ];
             if (Yii::$app->user->isGuest) {
-                $menuItems[] = ['label' => '登录', 'url' => ['/site/login']];
+                $menuItems[] = ['label' =>Yii::t('app','Login'), 'url' => ['/site/login']];
             } else {
-                $menuItems[] = ['label' => '分类', 'url' => ['/ad-cat/index']];
-                $menuItems[] = ['label' => '权限', 'url' => ['/ad-auth-item/index']];
-                $menuItems[] = ['label' => '添加管理员', 'url' => ['/ad-admin/create']];
+                $menuItems[] = ['label' =>Yii::t('app','Catelist'), 'url' => ['/ad-cat/index']];
+                $menuItems[] = ['label' =>Yii::t('app','Permission'), 'url' => ['/rbac/itemindex']];
+                $menuItems[] = ['label' =>Yii::t('app','Add Admin'), 'url' => ['/ad-admin/create']];
                 $menuItems[] = [
-                    'label' => '退出 (' . Yii::$app->user->identity->admin_name . ')',
+                    'label' => Yii::t('app','Login Out').'(' . Yii::$app->user->identity->admin_name . ')',
                     'url' => ['/site/logout'],
                     'linkOptions' => ['data-method' => 'post']
                 ];

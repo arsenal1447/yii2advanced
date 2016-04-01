@@ -199,4 +199,18 @@ class AdAdmin extends ActiveRecord implements IdentityInterface
     public static function convertDate($datetime){
         return date('Y-m-d H:i:s',$datetime);
     }
+    
+    /**
+     * @desc 转化删除状态
+     * @param 时间戳格式  $datetime
+     * @return 返回 2016-03-02 03:07:49 这种格式
+     */
+    public static function getDelstatus($deld){
+//         var_dump($deld);die('209');
+        if($deld=='0'){
+            return '正常';
+        }else{
+            return '被删除';
+        }
+    }
 }

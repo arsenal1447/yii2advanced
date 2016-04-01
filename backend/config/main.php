@@ -30,6 +30,17 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+        //rbac权限
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager',
+            'defaultRoles'=>array('guest'),//默认角色
+            
+            'itemTable' => 'ad_auth_item',//认证项表名称
+            
+            'itemChildTable' => 'ad_auth_item_child',//认证项父子关系
+            
+            'assignmentTable' => 'ad_auth_assignment',//认证项赋权关系
+        ],
     ],
     'params' => $params,
 ];

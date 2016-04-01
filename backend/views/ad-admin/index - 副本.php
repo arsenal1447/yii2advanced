@@ -9,7 +9,7 @@ use yii\grid\GridView;
 $this->title = Yii::t('app', 'Admin List');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="ad-admin-index">
+<div class="ad-auth-assignment-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -22,6 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
+            'id',  
             [
                 'attribute'=>'admin_name',
                 'format'=>'html',
@@ -29,17 +30,20 @@ $this->params['breadcrumbs'][] = $this->title;
                     return Html::a($data->admin_name,['ad-admin/view','id'=>$data->id]);
                 },
             ],
-            'admin_passhash',
-            'admin_role',
-            'admin_email:email',
-            // 'admin_create',
-            // 'admin_logintime:datetime',
-            // 'admin_ip',
-            // 'admin_nickname',
-            // 'admin_status',
-            // 'admin_deld',
-            // 'admin_authkey',
-            // 'admin_password_reset_token',
+            [
+                'attribute'=>'admin_role',
+                'format'=>'html',
+                'value' => function ($data,$url) {
+                    return Html::a($data->admin_role,['ad-admin/view','role_id'=>$data->admin_role]);
+                },
+            ],
+            'admin_email',
+            'admin_create',
+            'admin_logintime',
+            'admin_ip',
+            'admin_nickname',
+            'admin_deld',
+            'admin_status',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

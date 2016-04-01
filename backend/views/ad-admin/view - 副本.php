@@ -2,13 +2,12 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
-use common\models\AdAdmin;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\AdAdmin */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Ad Admins'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Ad Admins', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="ad-admin-view">
@@ -16,11 +15,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
+        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
+                'confirm' => 'Are you sure you want to delete this item?',
                 'method' => 'post',
             ],
         ]) ?>
@@ -34,19 +33,20 @@ $this->params['breadcrumbs'][] = $this->title;
             'admin_passhash',
             'admin_role',
             'admin_email:email',
-            'admin_create',
-            'admin_logintime:datetime',
+            [
+                'label'=>'admin_create',
+                'value'=>$model->convertDate($model->admin_create),
+            ],
+            [
+                'label'=>'admin_logintime',
+                'value'=>$model->convertDate($model->admin_logintime),
+            ],
             'admin_ip',
             'admin_nickname',
             'admin_status',
-//             'admin_deld',
-            [
-                'attribute'=>'admin_deld',
-                'format'=>'html',
-                'value'=>AdAdmin::getDelstatus($model->admin_deld),
-            ],
-//             'admin_authkey',
-//             'admin_password_reset_token',
+            'admin_deld',
+            'admin_authkey',
+            'admin_password_reset_token',
         ],
     ]) ?>
 

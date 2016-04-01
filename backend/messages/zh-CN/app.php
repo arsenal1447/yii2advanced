@@ -1,6 +1,7 @@
 <?php
 return [
     'Dashboard' => '仪表盘',
+    'Home' => '首页',
     'Setting' => '系统',
     'Settings' => '系统',
     'Cache' => '缓存',
@@ -12,6 +13,7 @@ return [
     'Delete' => '删除',
 	'Save' => '保存',
     'Edit' => '修改',
+    'Update' => '修改',
     'Add' => '添加',
 	'Saved successfully' => '保存成功',
     'Username does not exist.' => '用户名不存在',
@@ -56,9 +58,11 @@ return [
 	'Cat Parent' => '分类父级',
 	'Cat Deld' => '删除状态',
 	'Cat Status' => '状态',
+	'Catelist' => '分类列表',
 	
 
 	'Name'=>'管理员名字',
+	'Add Admin'=>'添加管理员',
 	'Admin Name'=>'管理员名字',
 	'Admin List'=>'管理员列表',
 	'Admin Role'=>'角色',
@@ -69,7 +73,19 @@ return [
 	'Admin Nickname'=>'昵称',
 	'Admin Deld'=>'删除状态',
 	'Admin Status'=>'状态',
+	'Admin Passhash'=>'密码',
 	'Create Ad Admin'=>'添加管理员',
+	'Permission'=>'权限',
+	'Description'=>'描述',
+	
+	
+	'Login Out'=>'退出',
+	'My Place'=>'我的后院',
+	
+	'Role Name'=>'角色名称',
+	'Data'=>'规则data',
+	'Create Time'=>'创建时间',
+	'Update Time'=>'修改时间',
 	
 	
 	
