@@ -53,6 +53,7 @@ return [
 	
 	
 	'Ad Cats' => '添加分类',
+	'Cat ID' => '分类ID',
 	'Create Ad Cat' => '添加',
 	'Cat Name' => '分类名称',
 	'Cat Parent' => '分类父级',
