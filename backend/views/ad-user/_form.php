@@ -19,11 +19,11 @@ use common\models\User;
 
     <?= $form->field($model, 'user_email')->textInput(['maxlength' => true,'style'=>'width:255px;']) ?>
 
-    <?= $form->field($model, 'user_create')->textInput(['style'=>'width:255px;','disabled'=>'true','value'=>User::convertDate($model->user_create)]) ?>
+    <?php //echo  $form->field($model, 'user_create')->textInput(['style'=>'width:255px;','disabled'=>'true','value'=>User::convertDate($model->user_create)]) ?>
 
-    <?= $form->field($model, 'user_logintime')->textInput(['style'=>'width:255px;','disabled'=>'true','value'=>User::convertDate($model->user_create)]) ?>
+    <?php //echo$form->field($model, 'user_logintime')->textInput(['style'=>'width:255px;','disabled'=>'true','value'=>User::convertDate($model->user_create)]) ?>
 
-    <?= $form->field($model, 'user_ip')->textInput(['maxlength' => true,'style'=>'width:255px;','disabled'=>'true',]) ?>
+    <?php //echo$form->field($model, 'user_ip')->textInput(['maxlength' => true,'style'=>'width:255px;','disabled'=>'true',]) ?>
 
     <?= $form->field($model, 'user_nickname')->textInput(['maxlength' => true,'style'=>'width:255px;']) ?>
 

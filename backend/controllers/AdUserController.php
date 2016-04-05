@@ -32,9 +32,15 @@ class AdUserController extends Controller
      * @return mixed
      */
     public function actionIndex()
-    {
+    {    
+        if(Yii::$app->user->isGuest){
+            return $this->redirect(['site/login']);
+        }
+        $query = AdUser::find()->select(['id','user_name','user_email','user_create'])->where(['user_deld'=>0]) ;
+        
         $dataProvider = new ActiveDataProvider([
-            'query' => AdUser::find(),
+//             'query' => AdUser::find(),
+            'query' => $query,
         ]);
 
         return $this->render('index', [
@@ -48,7 +54,10 @@ class AdUserController extends Controller
      * @return mixed
      */
     public function actionView($id)
-    {
+    {    
+        if(Yii::$app->user->isGuest){
+            return $this->redirect(['site/login']);
+        }
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -60,10 +69,13 @@ class AdUserController extends Controller
      * @return mixed
      */
     public function actionCreate()
-    {
+    {    
+        if(Yii::$app->user->isGuest){
+            return $this->redirect(['site/login']);
+        }
         $model = new AdUser();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) && $model->save(false)) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
@@ -79,10 +91,12 @@ class AdUserController extends Controller
      * @return mixed
      */
     public function actionUpdate($id)
-    {
+    {    
+        if(Yii::$app->user->isGuest){
+            return $this->redirect(['site/login']);
+        }
         $model = $this->findModel($id);
-        yii::myPrint(Yii::$app->request->post());
-//         die('85');
+        
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
@@ -99,10 +113,16 @@ class AdUserController extends Controller
      * @return mixed
      */
     public function actionDelete($id)
-    {
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
+    {    
+        if(Yii::$app->user->isGuest){
+            return $this->redirect(['site/login']);
+        }
+        $model = $this->findModel($id);
+        $model->user_deld = 1;
+        
+        if($model->save()){
+            return $this->redirect(['index']);
+        }        
     }
 
     /**

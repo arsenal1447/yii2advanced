@@ -38,7 +38,7 @@ class AdUser extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_name', 'user_passhash', 'user_email', 'user_create', 'user_logintime', 'user_authkey','password'], 'required'],
+            [['user_name', 'user_passhash', 'user_email', 'user_create', 'user_logintime', 'user_authkey'], 'required'],
             [['user_status', 'user_deld'], 'integer'],
             [['user_name', 'user_passhash', 'user_nickname', 'user_authkey', 'user_password_reset_token'], 'string', 'max' => 100],
             [['user_email', 'user_ip'], 'string', 'max' => 50]
@@ -76,16 +76,26 @@ class AdUser extends \yii\db\ActiveRecord
         $this->user_passhash = Yii::$app->getSecurity()->generatePasswordHash($password);
     }
     
-    
+    /**
+     * Generates "remember me" authentication key
+     */
+    public function generateAuthKey()
+    {
+        $this->user_authkey = Yii::$app->getSecurity()->generateRandomString();
+    }
     
     public function beforeSave($insert)
     {
         if($this->isNewRecord){
             $this->generateAuthKey();
             $this->generatePasswordHash();
+            $this->user_create = time();
+            $this->user_logintime = time();
+            $this->user_ip = $_SERVER['REMOTE_ADDR'];
             //$this->generatePasswordResetToken();
         }else{
-            var_dump($this->password);
+            $this->user_logintime = time();
+            $this->user_ip = $_SERVER['REMOTE_ADDR'];
             if(!empty($this->password)){
                 $this->generatePasswordHash();
             }
