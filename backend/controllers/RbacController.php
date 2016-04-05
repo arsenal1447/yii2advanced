@@ -34,7 +34,7 @@ class RbacController extends Controller{
         echo "<pre>";
         print_R(\Yii::$app->request->post());
          echo "</pre>";
-         die('37');
+//          die('37');
         if($item->name === null  && ($data = \Yii::$app->request->post())){
             $item->name = $data['name'];
             $item->description = $data['description'];
@@ -45,11 +45,11 @@ class RbacController extends Controller{
             $rbac = \Yii::$container->get('\app\models\Rbac');
             if($rbac->createItem($item)){
 //                 die('44');
-                return $this->render(['index-item','name'=>$item->name]);
+                return $this->render('index-item',['name'=>$item->name]);
             }else{
 //                 die('47');
-//                 return $this->error('数据插入失败！');
-                return $this->myError('数据插入失败！');
+                return $this->error('数据插入失败！');
+//                 return $this->myError('数据插入失败！');
             }
 
         }

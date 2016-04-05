@@ -41,6 +41,7 @@ AppAsset::register($this);
                 $menuItems[] = ['label' =>Yii::t('app','Catelist'), 'url' => ['/ad-cat/index']];
                 $menuItems[] = ['label' =>Yii::t('app','Permission'), 'url' => ['/rbac/itemindex']];
                 $menuItems[] = ['label' =>Yii::t('app','Add Admin'), 'url' => ['/ad-admin/create']];
+                $menuItems[] = ['label' =>Yii::t('app','User List'), 'url' => ['/ad-user/index']];
                 $menuItems[] = [
                     'label' => Yii::t('app','Login Out').'(' . Yii::$app->user->identity->admin_name . ')',
                     'url' => ['/site/logout'],
