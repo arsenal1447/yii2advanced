@@ -6,7 +6,7 @@
         <div class="list-group col-md-6">
         <?php echo empty($model->name) ? Html::beginForm([ 'create-item','type'=>$type],'post') :
             Html::beginForm(['update-item','name'=>$model->name],'post');?>
-            <div class="list-group-item"><?php echo empty($model->name) ? '添加':'修改';?><?php echo $type==1?'角色':'权限';?></div>
+            <div class="list-group-item"><?php echo empty($model->name) ? '添加':'修改';?><?php echo $type==1?'<b>角色</b>':'<b>权限</b>';?></div>
             <div class="list-group-item"><?php echo Html::label('名称：',null,['class'=>'col-md-3']).Html::textInput('description',$model->description);?></div>
             <div class="list-group-item">
                 <?php echo Html::label('标 识：',null,['class'=>'col-md-3']).Html::textInput('name',$model->name,['id'=>'itemName']);?>

@@ -2,12 +2,14 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use app\models\Rbac;
+// use Rbac
 
 /* @var $this yii\web\View */
 /* @var $model app\models\AdPost */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Ad Posts'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Ad Role'), 'url' => ['itemindex']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="ad-post-view">
@@ -28,11 +30,28 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'name',
-            'type',
-            'description',
+            [
+                'attribute'=>Yii::t('app','Role Name'),
+                'format'=>'html',
+                'value'=>$model->name,
+            ],
+            [
+                'attribute'=>Yii::t('app','Type'),
+                'format'=>'html',
+                'value'=>Rbac::getTypeOfRole($model->type),
+            ],
+            [
+                'attribute'=>Yii::t('app','Description'),
+                'format'=>'html',
+                'value' => $model->description,
+            ],
             //'role_name',
-            'data',
+            
+            [
+                'attribute'=>Yii::t('app','Data'),
+                'format'=>'html',
+                'value' =>$model->data,
+            ],
             //'created_at:datetime',
             //'updated_at:datetime',
         ],

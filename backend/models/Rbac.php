@@ -12,8 +12,8 @@ class Rbac extends DbManager{
         if(empty($item->name) || $this->getOneItem($item->name) !== null)
             return false;
 //         return $this->addItem($item) ? true : false;
-        echo "<pre>";
-        print_R($item);
+//         echo "<pre>";
+//         print_R($item);
 //         die('16');
         $this->addRule($item);
         $this->addItem($item);
@@ -58,6 +58,19 @@ class Rbac extends DbManager{
      */
     public static function convertDate($datetime){
         return date('Y-m-d H:i:s',$datetime);
+    }
+    
+    /**
+     * @desc 转化时间格式
+     * @param 时间戳格式  $datetime
+     * @return 返回 2016-03-02 03:07:49 这种格式
+     */
+    public static function getTypeOfRole($type){
+        if($type==1){
+            return '角色';
+        }elseif($type==2){
+            return '权限';
+        }
     }
 
 }

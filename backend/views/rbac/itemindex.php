@@ -3,10 +3,13 @@ use yii\grid\GridView;
 use yii\helpers\Html;
 use app\models\Rbac;
 
-echo  Html::a($type == 1 ?'添加角色':'添加权限',['create-item','type'=>$type],['class'=>'btn btn-success']);
 
-echo "<br>";
-echo "<br>";
+// $type = $_GET['type']?$_GET['tppe']:''; 
+echo  Html::a('添加角色',['create-item','type'=>1],['class'=>'btn btn-success']);
+
+echo  Html::a('添加权限',['create-item','type'=>2],['class'=>'btn btn-success','style'=>'margin:20px;']);
+
+echo  Html::a('查看权限',['itemindex','type'=>2],['class'=>'btn btn-success',]);
 
 echo GridView::widget([
         'dataProvider' => $dataProvider,
@@ -69,10 +72,10 @@ echo GridView::widget([
                         },
                         'update' => function ($url, $model, $key) {
                             return  Html::a('更新',['update-item','name'=>$model['name']]);
-                         },
+                        },
                         'delete' => function ($url, $model, $key) {
-                            return  Html::a('删除',['delete-item','name'=>$model['name']]);
-                         }
+                            return  Html::a('删除',['delete-item','name'=>$model['name'],'type'=>$model['type']]);
+                        }
                     ]
             ]
         ],

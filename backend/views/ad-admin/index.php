@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use common\models\AdAdmin;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -32,7 +33,13 @@ $this->params['breadcrumbs'][] = $this->title;
             'admin_passhash',
             'admin_role',
             'admin_email:email',
-            // 'admin_create',
+            [
+                'attribute'=>'admin_create',
+                'format'=>'html',
+                'value' => function ($data,$url) {
+                    return AdAdmin::convertDate($data->admin_create);
+                },
+            ],
             // 'admin_logintime:datetime',
             // 'admin_ip',
             // 'admin_nickname',
