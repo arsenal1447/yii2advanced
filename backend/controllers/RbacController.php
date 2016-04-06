@@ -1,12 +1,86 @@
 <?php
 namespace backend\controllers;
 
+use Yii;
 use yii\db\Query;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
-
+use app\models\AuthorRule;
 
 class RbacController extends Controller{
+
+    public function actionInit()
+    {
+//         $auth = Yii::$app->authManager;
+
+//         // 添加 "createPost" 权限
+//         $createPost = $auth->createPermission('createPost');
+//         $createPost->description = 'Create a post';
+//         $auth->add($createPost);
+
+//         // 添加 "updatePost" 权限
+//         $updatePost = $auth->createPermission('updatePost');
+//         $updatePost->description = 'Update post';
+//         $auth->add($updatePost);
+
+//         // 添加 "author" 角色并赋予 "createPost" 权限
+//         $author = $auth->createRole('author');
+//         $auth->add($author);
+//         $auth->addChild($author, $createPost);
+
+//         // 添加 "admin" 角色并赋予 "updatePost"
+//         // 和 "author" 权限
+//         $admin = $auth->createRole('admin');
+//         $auth->add($admin);
+//         $auth->addChild($admin, $updatePost);
+//         $auth->addChild($admin, $author);
+
+//         // 为用户指派角色。其中 1 和 2 是由 IdentityInterface::getId() 返回的id （译者注：user表的id）
+//         // 通常在你的 User 模型中实现这个函数。
+//         $auth->assign($author, 2);
+//         $auth->assign($admin, 1);
+
+
+        $auth = Yii::$app->authManager;
+
+        // 添加规则
+        $rule = new AuthorRule();
+        $auth->add($rule);
+
+        // 添加 "updateOwnPost" 权限并与规则关联
+        $updateOwnPost = $auth->createPermission('updateOwnPost');
+        $updateOwnPost->description = 'Update own post';
+        $updateOwnPost->ruleName = $rule->name;
+        $auth->add($updateOwnPost);
+
+        // "updateOwnPost" 权限将由 "updatePost" 权限使用
+        $auth->addChild($updateOwnPost, $updatePost);
+
+        // 允许 "author" 更新自己的帖子
+        $auth->addChild($author, $updateOwnPost);
+    }
+
+
+//     public function addOrder(){
+//         $auth = Yii::$app->authManager;
+
+//         // 添加规则
+//         $rule = new \app\rbac\AuthorRule;
+//         $auth->add($rule);
+
+//         // 添加 "updateOwnPost" 权限并与规则关联
+//         $updateOwnPost = $auth->createPermission('updateOwnPost');
+//         $updateOwnPost->description = 'Update own post';
+//         $updateOwnPost->ruleName = $rule->name;
+//         $auth->add($updateOwnPost);
+
+//         // "updateOwnPost" 权限将由 "updatePost" 权限使用
+//         $auth->addChild($updateOwnPost, $updatePost);
+
+//         // 允许 "author" 更新自己的帖子
+//         $auth->addChild($author, $updateOwnPost);
+//     }
+
     /**
      * 角色/权限列表
      * @param number $type
@@ -18,7 +92,7 @@ class RbacController extends Controller{
                 'query' => (new Query())->from($auth->itemTable)
                     ->where(['type'=>$type])
                     ->orderBy(['created_at'=>SORT_DESC]),
-                'pagination' => ['pageSize' => 8],
+                'pagination' => ['pageSize' =>20],
         ]);
         return $this->render('itemIndex',['dataProvider'=>$dataProvider,'type'=>$type]);
     }
@@ -31,10 +105,6 @@ class RbacController extends Controller{
     public function actionCreateItem($type){
 
         $item = new \yii\rbac\Item();
-        echo "<pre>";
-        print_R(\Yii::$app->request->post());
-         echo "</pre>";
-//          die('37');
         if($item->name === null  && ($data = \Yii::$app->request->post())){
             $item->name = $data['name'];
             $item->description = $data['description'];
@@ -44,12 +114,9 @@ class RbacController extends Controller{
 
             $rbac = \Yii::$container->get('\app\models\Rbac');
             if($rbac->createItem($item)){
-//                 die('44');
-                return $this->render('index-item',['name'=>$item->name]);
+                return $this->render('itemindex',['name'=>$item->name,'type'=>$type]);
             }else{
-//                 die('47');
                 return $this->error('数据插入失败！');
-//                 return $this->myError('数据插入失败！');
             }
 
         }
@@ -68,6 +135,9 @@ class RbacController extends Controller{
         if(empty($item)){
             return $this->error('不存在的项目');
         }
+
+//         var_dump(\Yii::$app->request->post());
+//         die('66');
         if($data = \Yii::$app->request->post()){
             $name = $item->name;
             $item->name = $data['name'];
@@ -75,10 +145,16 @@ class RbacController extends Controller{
             $item->ruleName = $data['ruleName'];
             $item->data = $data['data'];
 
-            if($rbac->updateOneItem($name,$item))
-                    return $this->success(['view-item','name'=>$item->name]);
-            else
-                    return $this->error('数据修改失败！');
+            echo "<pre>";
+            var_dump($data);
+//             print_R($item);
+            echo "</pre>";
+//             die('74');
+            if($rbac->updateOneItem($name,$item)){
+                return $this->render('itemview',['name'=>$item->name,'model'=>$item]);
+            }else{
+                return $this->error('数据修改失败！');
+            }
 
         }
         return $this->render('_itemform',['model'=>$item,'type'=>$item->type]);
@@ -95,10 +171,12 @@ class RbacController extends Controller{
         if((new Query())->from($rbac->itemChildTable)->andWhere(['parent'=>$name])->orWhere(['child'=>$name])->count()>0)
             return $this->error('该项目下还有子节点，请先删除子节点再删除该节点');
         if($rbac->deleteOneItem($name))
-            return $this->success(['itemindex']);
+            return $this->render('itemindex');
         else
             return $this->error('删除失败！');
     }
+
+
     /**
      * 查看信息 角色  权限
      * @param unknown $name
@@ -107,10 +185,11 @@ class RbacController extends Controller{
     public function actionViewItem($name){
         $rbac = \Yii::$container->get('\app\models\Rbac');
         $item = $rbac->getOneItem($name);
-        if($item !== null)
+        if($item !== null){
             return $this->render('itemView',['model'=>$item]);
-        else
+        }else{
             $this->goBack();
+        }
     }
 
     /**
@@ -122,10 +201,11 @@ class RbacController extends Controller{
         $rbac = \Yii::$container->get('\app\models\Rbac');
 
         $result = $rbac->getOneItem($data['name']);
-        if($data['name'] == $data['newRecord'])
+        if($data['name'] == $data['newRecord']){
             return json_encode($result === null ? false:true);
-        else
+        }else{
             return json_encode($result === null ? true:false);
+        }
     }
 
     /**
@@ -150,22 +230,24 @@ class RbacController extends Controller{
         if($data = \Yii::$app->request->post()){
             $rbac = \Yii::$container->get('\app\models\Rbac');
             if(empty($data['parent']) || empty($data['childs']) || !($parent = $rbac->getOneItem($data['parent'])))
-                    return $this->error('父节点或子节点信息错误！');
+                return $this->error('父节点或子节点信息错误！');
+            }
             $errors = 0;
             foreach ($data['childs'] as $v){
-                    if(!($child = $rbac->getOneItem($v)))
-                            return $this->error('不存在的子节点！');
-                    try {
-                            $rbac->addChild($parent,$child);
-                    }catch (\Exception $e){
-                            $errors++;
-                    }
+                if(!($child = $rbac->getOneItem($v)))
+                        return $this->error('不存在的子节点！');
+                try {
+                        $rbac->addChild($parent,$child);
+                }catch (\Exception $e){
+                        $errors++;
+                }
             }
 
-            if($errors)
-                    return $this->success(['item-childindex'],$errors.'条信息没有插入成功');
-            else
-                    return $this->success(['item-childindex']);
+            if($errors){
+                return $this->success(['item-childindex'],$errors.'条信息没有插入成功');
+            }else{
+                return $this->success(['item-childindex']);
+            }
 
         }
 
@@ -183,8 +265,9 @@ class RbacController extends Controller{
         if(empty($parent) || empty($child) || !($parent = $rbac->getOneItem($parent)) || !($child = $rbac->getOneItem($child)))
             return $this->error('错误的参数');
         return $rbac->removeChild($parent, $child) ?  $this->success(['item-childindex']) : $this->error('删除失败');
-
     }
+
+
     /**
      * Ajax请求所有的项目
      */
@@ -218,10 +301,11 @@ class RbacController extends Controller{
                     return $this->error('错误的传入参数');
             $role->name = $item->name;
 
-            if($rbac->assign($role,$data['user_id']))
-                    return $this->success(['assignment-index']);
-            else
-                    return $this->error('分配权限失败');
+            if($rbac->assign($role,$data['user_id'])){
+                return $this->success(['assignment-index']);
+            }else{
+                return $this->error('分配权限失败');
+            }
 
         }
         $arr = array_combine((new Query())->select(['name'])->from($rbac->itemTable)->where(['type'=>1])->orderBy(['name'=>SORT_DESC])->column(), (new Query())->select(['description'])->from($rbac->itemTable)->where(['type'=>1])->orderBy(['name'=>SORT_DESC])->column());
@@ -238,10 +322,11 @@ class RbacController extends Controller{
         $rbac = \Yii::$container->get('\app\models\Rbac');
         $item = $rbac->getOneItem($item_name);
 
-        if($rbac->revoke($item, $user_id))
+        if($rbac->revoke($item, $user_id)){
             return $this->success(['assignment-index']);
-        else
+        }else{
             return $this->error('删除失败');
+        }
     }
 
 }

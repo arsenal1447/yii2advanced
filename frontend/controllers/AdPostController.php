@@ -73,18 +73,21 @@ class AdPostController extends Controller
         if (Yii::$app->user->isGuest) {
             return $this->redirect(['site/login']);
         }
-        $model = new AdPost();
-        //获取分类列表
-        $catmodel = AdCat::getCate();
-        
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->post_id]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-                'catmodel' => $catmodel,
-            ]);
+        if (\Yii::$app->user->can('createPost')) {
+             $model = new AdPost();
+            //获取分类列表
+            $catmodel = AdCat::getCate();
+            
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->post_id]);
+            } else {
+                return $this->render('create', [
+                    'model' => $model,
+                    'catmodel' => $catmodel,
+                ]);
+            }
         }
+       
     }
 
     /**
@@ -99,15 +102,18 @@ class AdPostController extends Controller
         if (Yii::$app->user->isGuest) {
             return $this->redirect(['site/login']);
         }
-        $model = $this->findModel($id);
-        $catmodel = AdCat::getCate();
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->post_id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-                'catmodel' => $catmodel,
-            ]);
+        
+        if (\Yii::$app->user->can('updatePost', ['post' => $post])) {
+            $model = $this->findModel($id);
+            $catmodel = AdCat::getCate();
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->post_id]);
+            } else {
+                return $this->render('update', [
+                    'model' => $model,
+                    'catmodel' => $catmodel,
+                ]);
+            }
         }
     }
 

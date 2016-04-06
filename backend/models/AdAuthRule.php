@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\rbac\DbManager;
 
 /**
  * This is the model class for table "{{%ad_auth_rule}}".
@@ -14,7 +15,7 @@ use Yii;
  *
  * @property AdAuthItem[] $adAuthItems
  */
-class AdAuthRule extends \yii\db\ActiveRecord
+class AdAuthRule extends DbManager
 {
     /**
      * @inheritdoc
@@ -56,5 +57,22 @@ class AdAuthRule extends \yii\db\ActiveRecord
     public function getAdAuthItems()
     {
         return $this->hasMany(AdAuthItem::className(), ['rule_name' => 'name']);
+    }
+    
+    public function createItem($item){
+    
+        if(empty($item->name) || $this->getOneItem($item->name) !== null){
+            return false;
+        }
+        
+        $this->addRule($item);
+        $this->addItem($item);
+    
+        return true;
+    
+    }
+    
+    public function getOneItem($name){
+        return $this->getItem($name);
     }
 }

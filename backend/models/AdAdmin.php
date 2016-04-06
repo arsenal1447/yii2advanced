@@ -76,18 +76,18 @@ class AdAdmin extends \yii\db\ActiveRecord
      */
     public function beforeSave($insert) {
         if (parent::beforeSave($insert)) {
+            if(isset($this->ad_password)){
+                $this->admin_passhash = Yii::$app->security->generatePasswordHash($this->ad_password);
+            }
             if ($this->isNewRecord) {
-                var_dump($this->ad_password);
-                if(isset($this->ad_password)){
-                    $this->admin_passhash = Yii::$app->security->generatePasswordHash($this->ad_password);
-                }
-                var_dump($this->admin_passhash);
+//                 if(isset($this->ad_password)){
+//                     $this->admin_passhash = Yii::$app->security->generatePasswordHash($this->ad_password);
+//                 }
                 $this->admin_authkey = Yii::$app->security->generateRandomString();
                 $this->admin_create = time();
                 $this->admin_logintime = time();
                 $this->admin_status = 10;
                 $this->admin_deld = 0;
-                //                 $this->admin_role = 10;
                 $this->admin_ip = $_SERVER['REMOTE_ADDR'];
             }else{
                 $this->admin_logintime = time();
