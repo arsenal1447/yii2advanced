@@ -2,11 +2,26 @@
 
 namespace app\models;
 
-// use Yii;
+use Yii;
 use yii\rbac\DbManager;
+use yii\helpers\ArrayHelper;
 
 class Rbac extends DbManager{
-
+    
+    const Category_Member='member';
+    const Category_Admin='admin';
+    const Category_System='system';
+    public static function getCategoryItems($key=null)
+    {
+        $items = [
+        self::Category_Member=>'会员角色',
+        self::Category_Admin=>'管理员角色',
+        self::Category_System=>'系统角色',
+        ];
+        return DbManager::getItems($items,$key);
+    }
+    
+    
     public function createItem($item){
 
         if(empty($item->name) || $this->getOneItem($item->name) !== null)
@@ -133,5 +148,26 @@ class Rbac extends DbManager{
             throw new \yii\web\UnauthorizedHttpException('对不起，您现在还没获此操作的权限');
         }
     }
+    
+    
+    
+    public function getAllRoles()
+    {
+        return Rbac::buildOptions();
+    }
+    
+    public static function buildOptions()
+    {
+        $ret=[];
+        $rows = self::findAll();
+//         $rows = Rbac::find()->select();
+        
+        foreach ($rows as $row)
+        {
+            $ret[]=['type'=>$row['type'],'name'=>$row['name']];
+        }
+        return $ret;
+    }
+    
 
 }

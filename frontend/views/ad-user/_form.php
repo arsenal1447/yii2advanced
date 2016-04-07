@@ -29,7 +29,7 @@ use common\models\User;
 
     <?= $form->field($model, 'user_status')->textInput(['readonly'=>'true','disabled'=>'true','style'=>'width:255px;']) ?>
 
-    <?= $form->field($model, 'user_role')->textInput(['readonly'=>'true','disabled'=>'true','style'=>'width:255px;']) ?>
+    <?= $form->field($model, 'user_role')->textInput(['style'=>'width:255px;']) ?>
 
     
 

@@ -87,7 +87,7 @@ class RbacController extends Controller{
      * @return Ambigous <string, string>
      */
     public function actionItemindex($type = 1){
-        $auth = \Yii::$app->getAuthManager();
+        $auth = Yii::$app->getAuthManager();
         $dataProvider = new ActiveDataProvider([
                 'query' => (new Query())->from($auth->itemTable)
                     ->where(['type'=>$type])
@@ -105,7 +105,7 @@ class RbacController extends Controller{
     public function actionCreateItem($type){
 
         $item = new \yii\rbac\Item();
-        if($item->name === null  && ($data = \Yii::$app->request->post())){
+        if($item->name === null  && ($data = Yii::$app->request->post())){
             $item->name = $data['name'];
             $item->description = $data['description'];
             $item->ruleName = $data['ruleName'];
@@ -248,10 +248,9 @@ class RbacController extends Controller{
             }else{
                 return $this->success(['item-childindex']);
             }
-
         }
 
-        return $this->render('_itemChildForm',['model'=>['parent'=>'','child'=>'']]);
+//         return $this->render('_itemChildForm',['model'=>['parent'=>'','child'=>'']]);
     }
 
     /**

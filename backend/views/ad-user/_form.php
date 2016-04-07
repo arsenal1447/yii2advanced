@@ -1,8 +1,10 @@
 <?php
 
 use yii\helpers\Html;
+use app\models\Rbac;
 use yii\widgets\ActiveForm;
-use common\models\User;
+use yii\helpers\ArrayHelper;
+// use common\models\User;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\AdUser */
@@ -32,6 +34,8 @@ use common\models\User;
     <?= $form->field($model, 'user_deld')->dropDownList(['0' => '正常','1' => '已删除'],['style'=>'width:255px;']) ?>
 
     <?= $form->field($model, 'user_role')->textInput(['style'=>'width:255px;']) ?>
+    
+     <?= $form->field($model, 'user_role')->dropDownList(ArrayHelper::map(Rbac::getAllRoles(), 'name', 'type')) ?>
 
   
 

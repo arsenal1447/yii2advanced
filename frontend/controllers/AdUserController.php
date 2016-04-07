@@ -91,8 +91,8 @@ class AdUserController extends Controller
             return $this->redirect(['site/login']);
         }
 
-        $model = AdUser::find()->select(['id','user_name','user_create','user_status','user_email','user_logintime','user_ip','user_nickname'])
-        ->where(['id'=> Yii::$app->user->id,'user_deld'=>0,'user_status'=>10])->one();
+        $model = AdUser::find()->select(['user_id','user_name','user_create','user_status','user_email','user_logintime','user_ip','user_nickname'])
+        ->where(['user_id'=> Yii::$app->user->id,'user_deld'=>0,'user_status'=>10])->one();
 
         return $this->render('info',['model' => $model,]);
 

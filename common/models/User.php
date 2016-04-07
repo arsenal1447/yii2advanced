@@ -10,7 +10,7 @@ use yii\web\IdentityInterface;
 /**
  * User model
  *
- * @property integer $id
+ * @property integer $user_id
  * @property string $username
  * @property string $password_hash
  * @property string $password_reset_token
@@ -65,7 +65,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public static function findIdentity($id)
     {
-        return static::findOne(['id' => $id, 'user_status' => self::STATUS_ACTIVE]);
+        return static::findOne(['user_id' => $id, 'user_status' => self::STATUS_ACTIVE]);
     }
 
     /**
@@ -207,7 +207,7 @@ class User extends ActiveRecord implements IdentityInterface
      * @return string 发帖者的用户名
      */
     public static function getAuthName($userid){
-        $userinfo = User::find()->where(['id' => $userid])->asArray()->one();
+        $userinfo = User::find()->where(['user_id' => $userid])->asArray()->one();
          
         if($userinfo){
             return $userinfo['user_name'];

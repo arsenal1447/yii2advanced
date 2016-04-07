@@ -36,7 +36,7 @@ class AdUserController extends Controller
         if(Yii::$app->user->isGuest){
             return $this->redirect(['site/login']);
         }
-        $query = AdUser::find()->select(['id','user_name','user_email','user_create'])->where(['user_deld'=>0]) ;
+        $query = AdUser::find()->select(['user_id','user_name','user_email','user_create'])->where(['user_deld'=>0]) ;
 
         $dataProvider = new ActiveDataProvider([
 //             'query' => AdUser::find(),
@@ -75,7 +75,7 @@ class AdUserController extends Controller
         }
         $model = new AdUser();
         if ($model->load(Yii::$app->request->post()) && $model->save(false)) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['view', 'id' => $model->user_id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -102,7 +102,7 @@ class AdUserController extends Controller
         }
 
         if ($model->load(Yii::$app->request->post()) && $model->save(false)) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['view', 'id' => $model->user_id]);
         } else {
             return $this->render('update', [
                 'model' => $model,

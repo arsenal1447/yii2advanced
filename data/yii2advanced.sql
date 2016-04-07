@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50624
 File Encoding         : 65001
 
-Date: 2016-04-06 16:48:41
+Date: 2016-04-07 16:42:54
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -34,17 +34,17 @@ CREATE TABLE `ad_admin` (
   `admin_authkey` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `admin_password_reset_token` varchar(100) COLLATE utf8_unicode_ci DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of ad_admin
 -- ----------------------------
-INSERT INTO `ad_admin` VALUES ('5', 'player', '$2y$13$8pdg.FWWyqTwJlnbToRcgO6pY1D4zHwUjbmU07uKlfUBWlW77.SA2', '1', '1@qq.com', '1458791319', '1459908005', '127.0.0.1', '0', '1', '0', 'yzVYsNCe9saBlZdTuC9EZELzSdwj3gJo', '0');
+INSERT INTO `ad_admin` VALUES ('5', 'a5', '$2y$13$1VmZ7zBewkySUicNgELbBu9GdctLDEBRqNr9zv4HR3Z5B6Er1E4f2', '1', '1@qq.com', '1458791319', '1460006972', '127.0.0.1', '0', '10', '0', 'yzVYsNCe9saBlZdTuC9EZELzSdwj3gJo', '0');
 INSERT INTO `ad_admin` VALUES ('6', 'mananger', '$2y$13$ilguCyjlR6Ltmi4ZLydo5e1iFg9/w0omVD1bybWjx.F9KSlrn8Vhy', '1', '2@qq.com', '1458791433', '1459908246', '127.0.0.1', '0', '1', '0', 'ZEy3D_ZgJAVFqQNpf_wwvn9QdoEIR3el', '0');
 INSERT INTO `ad_admin` VALUES ('7', 'player1', '$2y$13$rtoXLYaR26RtSXOqqcEjpO2QTnqpqmloFrSLmpzidGetDgxUo8Mre', '1', '3@qq.com', '1458799532', '1459908240', '127.0.0.1', '0', '1', '0', 'zRl_eEYxtZ6bzlWhMm1i9epUD1YAfkCB', '0');
 INSERT INTO `ad_admin` VALUES ('8', 'player2', '$2y$13$XUr/kp8TLPCSTKlexZg5cucB7NsiYu9KMJUddkWHPZ0.R7GmHkGOe', '1', '3@qq.com4', '1458799591', '1459908234', '127.0.0.1', '0', '1', '0', 'F085uu31BpBFZF3SapUFppSLd46SJ8U0', '0');
 INSERT INTO `ad_admin` VALUES ('9', 'player3', '$2y$13$TVdMOwbUhbKhq7tkfhtyA.4/sRIdVAk9VOcNxmGSOLkN7JnTgpa0e', '1', '5@qq.com', '1458799940', '1459908226', '127.0.0.1', '0', '1', '0', 'oaUy3xpAalztRhFzGfaPbQ8QXOeecYN9', '0');
-INSERT INTO `ad_admin` VALUES ('10', 'aaa', '$2y$13$UT8SwIdZLOxqJ7GkWDx1l.QaDxOYXNkF.72n.Zw0EuJFZ41vP.usS', '1', 'a@qq.com', '1458804356', '1458804356', '127.0.0.1', '0', '10', '0', 'QQXwvNvb-wW8mfffTFym6vQ9ZnzbH-3p', '0');
+INSERT INTO `ad_admin` VALUES ('10', 'aaa', '$2y$13$p8OcsQzP.HCVwDZ7ActvN.FITkx7s.Jji9DzU.F4/UHe8mv4YWLwq', '1', 'a@qq.com', '1458804356', '1459994702', '127.0.0.1', '0', '10', '0', 'QQXwvNvb-wW8mfffTFym6vQ9ZnzbH-3p', '0');
 INSERT INTO `ad_admin` VALUES ('11', 'qqq', '$2y$13$OpeLwLZVlKiWmZtNxe9fcORuh7fwUlkNlOhe03psv8Sfpu.cEWDra', '1', 'q@qq.com', '1458893811', '1458893811', '127.0.0.1', '0', '10', '0', 'whiFA3UlZIoNHE_wUjpc579wsJgOTCOR', '0');
 INSERT INTO `ad_admin` VALUES ('12', 'bbb', '$2y$13$sg5E4cd.WXWRc4myL0VY2u53MYuluyd1g7Y7s9Ur3DWeqwBwzehwO', '1', 'bbb@qq.com', '1459502977', '1459908217', '127.0.0.1', '0', '10', '0', 'u1mJnAqAS-E2qs-Z6ruJgeW9yeYZaAtr', '0');
 INSERT INTO `ad_admin` VALUES ('13', 'dddd', '$2y$13$Gsumm.YdXIjsl7nFXzgLm.MDYxHVGr2fG/D9l.RTJVSP5OGa3T6s6', '1', 'ddd@qq.com', '1459503536', '1459503536', '127.0.0.1', '0', '10', '0', 'eWW_9Eob_bXwDVAjqiNcODTSDGmk70yh', '0');
@@ -53,6 +53,9 @@ INSERT INTO `ad_admin` VALUES ('15', 'fff', '$2y$13$92gT93Xup0tkISSoDIMtcuL0EeNw
 INSERT INTO `ad_admin` VALUES ('16', 'hhh', '$2y$13$8VncsqPjvIo/GcazFn2RGO7BhEs7Hp6lrtvCU94gom0a/wsMMc2ai', '1', 'bbb@qq.com', '1459504464', '1459504464', '127.0.0.1', '0', '10', '0', 'JoXQF5PeBHUeVBgiwYtzpZJtCoxuRNPQ', '0');
 INSERT INTO `ad_admin` VALUES ('17', 'ccc', '$2y$13$yTDpOrDjcQO2MYxNHQGDUOfCdjSFaKPoL2JsVcrSDEOUJlHQw6UEe', '1', 'ccc@qq.com', '1459505298', '1459505298', '127.0.0.1', '0', '10', '0', 'A6cWQIwrNS-ojwK9IKxwBlRMkDD82Fd-', '0');
 INSERT INTO `ad_admin` VALUES ('18', 'admin', '$2y$13$hljt/JSAQQCa3XKZqysdYuVqH02wMGkiMFeMHlLMWjLJY1VQws4Y.', '1', 'admin@qq.com', '1459907288', '1459907288', '127.0.0.1', '0', '10', '0', '4ysvmHCtAf0AXdZ0fu0CFjZZlfmOJlIP', '0');
+INSERT INTO `ad_admin` VALUES ('19', 'a6', '$2y$13$n03q16btEKFugRTj3NRY6effUavDnXbaqMQ2kixSB9cVEN98XwFG2', '1', 'a6@qq.com', '1459998976', '1459998976', '127.0.0.1', '0', '10', '0', 'QqgvpGktVsJN0WIGyLCQcjQMH8v5Oq9A', '0');
+INSERT INTO `ad_admin` VALUES ('20', 'a7', '$2y$13$ZSlXKqIhCga5SvOhYq2UdOGotqMs41Qgbl7T.jhHQITxqxJ9.skXq', '2', 'a7@qq.com', '1460000031', '1460000048', '127.0.0.1', '0', '10', '0', '25hD5d37-U9WSFo3Yq9koh7-_8RnNucq', '0');
+INSERT INTO `ad_admin` VALUES ('21', 'a1', '$2y$13$1Y3Y3uqXb9mDiZzgtRmm4eYDE0PtP0HXeBn1gkrzYdBgYF9nVW1mO', '1', 'a1@Qq.com', '1460000890', '1460000890', '127.0.0.1', '0', '10', '0', 'IIOZtfPCVVqZu0kNrbPyhChdzos0Rhrr', '0');
 
 -- ----------------------------
 -- Table structure for `ad_auth_assignment`
@@ -69,6 +72,9 @@ CREATE TABLE `ad_auth_assignment` (
 -- ----------------------------
 -- Records of ad_auth_assignment
 -- ----------------------------
+INSERT INTO `ad_auth_assignment` VALUES ('admin', '1', '1459934467');
+INSERT INTO `ad_auth_assignment` VALUES ('author', '2', '1459934467');
+INSERT INTO `ad_auth_assignment` VALUES ('author', '7', '1460018291');
 
 -- ----------------------------
 -- Table structure for `ad_auth_item`
@@ -84,23 +90,18 @@ CREATE TABLE `ad_auth_item` (
   `updated_at` int(11) DEFAULT NULL,
   PRIMARY KEY (`name`),
   KEY `rule_name` (`rule_name`),
-  KEY `type` (`type`),
+  KEY `idx-auth_item-type` (`type`),
   CONSTRAINT `ad_auth_item_ibfk_1` FOREIGN KEY (`rule_name`) REFERENCES `ad_auth_rule` (`name`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of ad_auth_item
 -- ----------------------------
-INSERT INTO `ad_auth_item` VALUES ('2', '1', '添加', '1', 's:1:\"1\";', '1459489294', '1459489294');
-INSERT INTO `ad_auth_item` VALUES ('4', '2', 'add', '1', 's:1:\"1\";', '1459492626', '1459492626');
-INSERT INTO `ad_auth_item` VALUES ('add_user', '2', '2', '2', 's:1:\"2\";', '1459923567', '1459930642');
-INSERT INTO `ad_auth_item` VALUES ('create_post', '2', '2wwww', '1', 's:1:\"1\";', '1459921986', '1459921986');
-INSERT INTO `ad_auth_item` VALUES ('delete_post', '2', '这个权限可以删除帖子', '1', 's:1:\"1\";', '1459922087', '1459922087');
-INSERT INTO `ad_auth_item` VALUES ('edit_post', '2', '222', '2', 's:1:\"2\";', '1459923080', '1459923080');
-INSERT INTO `ad_auth_item` VALUES ('high_user', '1', 'dddd', '1', 's:1:\"1\";', '1459921763', '1459928750');
-INSERT INTO `ad_auth_item` VALUES ('low_user', '1', '一级成员', '1', 's:18:\"就是低级成员\";', '1459498681', '1459498681');
-INSERT INTO `ad_auth_item` VALUES ('low_user2', '1', 'eweqwe', '1', 's:1:\"1\";', '1459821802', '1459821802');
-INSERT INTO `ad_auth_item` VALUES ('组员', '1', '周杰伦', '1', 's:1:\"1\";', '1459498441', '1459498441');
+INSERT INTO `ad_auth_item` VALUES ('admin', '1', null, null, null, '1459934467', '1459934467');
+INSERT INTO `ad_auth_item` VALUES ('author', '1', null, null, null, '1459934466', '1459934466');
+INSERT INTO `ad_auth_item` VALUES ('createPost', '2', 'Create a post', null, null, '1459934466', '1459934466');
+INSERT INTO `ad_auth_item` VALUES ('updateOwnPost', '2', 'Update own post', 'isAuthor', null, '1459935163', '1459935163');
+INSERT INTO `ad_auth_item` VALUES ('updatePost', '2', 'Update post', null, null, '1459934466', '1459934466');
 
 -- ----------------------------
 -- Table structure for `ad_auth_item_child`
@@ -118,6 +119,9 @@ CREATE TABLE `ad_auth_item_child` (
 -- ----------------------------
 -- Records of ad_auth_item_child
 -- ----------------------------
+INSERT INTO `ad_auth_item_child` VALUES ('admin', 'author');
+INSERT INTO `ad_auth_item_child` VALUES ('author', 'createPost');
+INSERT INTO `ad_auth_item_child` VALUES ('admin', 'updatePost');
 
 -- ----------------------------
 -- Table structure for `ad_auth_rule`
@@ -134,20 +138,7 @@ CREATE TABLE `ad_auth_rule` (
 -- ----------------------------
 -- Records of ad_auth_rule
 -- ----------------------------
-INSERT INTO `ad_auth_rule` VALUES ('1', 'O:13:\"yii\\rbac\\Item\":7:{s:4:\"type\";s:1:\"1\";s:4:\"name\";s:1:\"1\";s:11:\"description\";s:6:\"组员\";s:8:\"ruleName\";s:1:\"1\";s:4:\"data\";s:1:\"1\";s:9:\"createdAt\";i:1459481757;s:9:\"updatedAt\";i:1459481757;}', '1459481757', '1459481757');
-INSERT INTO `ad_auth_rule` VALUES ('2', 'O:13:\"yii\\rbac\\Item\":7:{s:4:\"type\";s:1:\"1\";s:4:\"name\";s:1:\"2\";s:11:\"description\";s:6:\"添加\";s:8:\"ruleName\";s:1:\"1\";s:4:\"data\";s:1:\"1\";s:9:\"createdAt\";i:1459489294;s:9:\"updatedAt\";i:1459489294;}', '1459489294', '1459489294');
-INSERT INTO `ad_auth_rule` VALUES ('3', 'O:13:\"yii\\rbac\\Item\":7:{s:4:\"type\";s:1:\"1\";s:4:\"name\";s:1:\"3\";s:11:\"description\";s:7:\"测试A\";s:8:\"ruleName\";s:1:\"2\";s:4:\"data\";s:1:\"2\";s:9:\"createdAt\";i:1459492086;s:9:\"updatedAt\";i:1459492086;}', '1459492086', '1459492086');
-INSERT INTO `ad_auth_rule` VALUES ('4', 'O:13:\"yii\\rbac\\Item\":7:{s:4:\"type\";s:1:\"2\";s:4:\"name\";s:1:\"4\";s:11:\"description\";s:3:\"add\";s:8:\"ruleName\";s:1:\"1\";s:4:\"data\";s:1:\"1\";s:9:\"createdAt\";i:1459492626;s:9:\"updatedAt\";i:1459492626;}', '1459492626', '1459492626');
-INSERT INTO `ad_auth_rule` VALUES ('add_user', 'O:13:\"yii\\rbac\\Item\":7:{s:4:\"type\";s:1:\"2\";s:4:\"name\";s:8:\"add_user\";s:11:\"description\";s:1:\"2\";s:8:\"ruleName\";s:1:\"2\";s:4:\"data\";s:1:\"2\";s:9:\"createdAt\";i:1459923567;s:9:\"updatedAt\";i:1459923567;}', '1459923567', '1459923567');
-INSERT INTO `ad_auth_rule` VALUES ('create_post', 'O:13:\"yii\\rbac\\Item\":7:{s:4:\"type\";s:1:\"2\";s:4:\"name\";s:11:\"create_post\";s:11:\"description\";s:5:\"2wwww\";s:8:\"ruleName\";s:1:\"1\";s:4:\"data\";s:1:\"1\";s:9:\"createdAt\";i:1459921986;s:9:\"updatedAt\";i:1459921986;}', '1459921986', '1459921986');
-INSERT INTO `ad_auth_rule` VALUES ('delete_post', 'O:13:\"yii\\rbac\\Item\":7:{s:4:\"type\";s:1:\"2\";s:4:\"name\";s:11:\"delete_post\";s:11:\"description\";s:30:\"这个权限可以删除帖子\";s:8:\"ruleName\";s:1:\"1\";s:4:\"data\";s:1:\"1\";s:9:\"createdAt\";i:1459922087;s:9:\"updatedAt\";i:1459922087;}', '1459922087', '1459922087');
-INSERT INTO `ad_auth_rule` VALUES ('edit_post', 'O:13:\"yii\\rbac\\Item\":7:{s:4:\"type\";s:1:\"2\";s:4:\"name\";s:9:\"edit_post\";s:11:\"description\";s:3:\"222\";s:8:\"ruleName\";s:1:\"2\";s:4:\"data\";s:1:\"2\";s:9:\"createdAt\";i:1459923080;s:9:\"updatedAt\";i:1459923080;}', '1459923080', '1459923080');
-INSERT INTO `ad_auth_rule` VALUES ('high_user', 'O:13:\"yii\\rbac\\Item\":7:{s:4:\"type\";s:1:\"1\";s:4:\"name\";s:9:\"high_user\";s:11:\"description\";s:4:\"dddd\";s:8:\"ruleName\";s:1:\"1\";s:4:\"data\";s:1:\"1\";s:9:\"createdAt\";i:1459921763;s:9:\"updatedAt\";i:1459921763;}', '1459921763', '1459921763');
-INSERT INTO `ad_auth_rule` VALUES ('high_user2', 'O:13:\"yii\\rbac\\Item\":7:{s:4:\"type\";s:1:\"1\";s:4:\"name\";s:10:\"high_user2\";s:11:\"description\";s:3:\"222\";s:8:\"ruleName\";s:1:\"1\";s:4:\"data\";s:1:\"1\";s:9:\"createdAt\";i:1459921845;s:9:\"updatedAt\";i:1459921845;}', '1459921845', '1459921845');
-INSERT INTO `ad_auth_rule` VALUES ('low_user', 'O:13:\"yii\\rbac\\Item\":7:{s:4:\"type\";s:1:\"1\";s:4:\"name\";s:8:\"low_user\";s:11:\"description\";s:12:\"一级成员\";s:8:\"ruleName\";s:1:\"1\";s:4:\"data\";s:18:\"就是低级成员\";s:9:\"createdAt\";i:1459498681;s:9:\"updatedAt\";i:1459498681;}', '1459498681', '1459498681');
-INSERT INTO `ad_auth_rule` VALUES ('low_user2', 'O:13:\"yii\\rbac\\Item\":7:{s:4:\"type\";s:1:\"1\";s:4:\"name\";s:9:\"low_user2\";s:11:\"description\";s:6:\"eweqwe\";s:8:\"ruleName\";s:1:\"1\";s:4:\"data\";s:1:\"1\";s:9:\"createdAt\";i:1459821802;s:9:\"updatedAt\";i:1459821802;}', '1459821802', '1459821802');
-INSERT INTO `ad_auth_rule` VALUES ('view_post', 'O:13:\"yii\\rbac\\Item\":7:{s:4:\"type\";s:1:\"1\";s:4:\"name\";s:9:\"view_post\";s:11:\"description\";s:1:\"2\";s:8:\"ruleName\";s:1:\"2\";s:4:\"data\";s:1:\"2\";s:9:\"createdAt\";i:1459923142;s:9:\"updatedAt\";i:1459923142;}', '1459923142', '1459923142');
-INSERT INTO `ad_auth_rule` VALUES ('组员', 'O:13:\"yii\\rbac\\Item\":7:{s:4:\"type\";s:1:\"1\";s:4:\"name\";s:6:\"组员\";s:11:\"description\";s:9:\"周杰伦\";s:8:\"ruleName\";s:1:\"1\";s:4:\"data\";s:1:\"1\";s:9:\"createdAt\";i:1459498441;s:9:\"updatedAt\";i:1459498441;}', '1459498441', '1459498441');
+INSERT INTO `ad_auth_rule` VALUES ('isAuthor', 'O:21:\"app\\models\\AuthorRule\":3:{s:4:\"name\";s:8:\"isAuthor\";s:9:\"createdAt\";i:1459935162;s:9:\"updatedAt\";i:1459935162;}', '1459935162', '1459935162');
 
 -- ----------------------------
 -- Table structure for `ad_cat`
@@ -191,7 +182,7 @@ CREATE TABLE `ad_post` (
   `post_status` tinyint(4) DEFAULT '0',
   `post_deld` tinyint(2) DEFAULT '0',
   PRIMARY KEY (`post_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of ad_post
@@ -215,13 +206,14 @@ INSERT INTO `ad_post` VALUES ('16', '我是123456', '6', '2', '<p>大三大四</
 INSERT INTO `ad_post` VALUES ('17', 'dadasd', '3', '2', '<p>sadasdasd</p>', '1459316768', '1459316768', '10', '0', '0');
 INSERT INTO `ad_post` VALUES ('18', '今日头条', '4', '1', '<p>大三大四 &nbsp;<img src=\"/uploads/ueditor/php/upload/image/20160331/1459406910841185.jpg\" title=\"1459406910841185.jpg\" alt=\"1459406910841185.jpg\" width=\"57\" height=\"70\" border=\"0\" vspace=\"0\" style=\"width: 57px; height: 70px;\"/></p>', '1459406935', '1459406960', '10', '0', '0');
 INSERT INTO `ad_post` VALUES ('19', '周杰伦', '2', '5', '<p>阿诗丹顿</p>', '1459413374', '1459413374', '10', '0', '0');
+INSERT INTO `ad_post` VALUES ('20', 'fffffff', '4', '1', '<p>fffff</p>', '1459937111', '1459937111', '10', '0', '0');
 
 -- ----------------------------
 -- Table structure for `ad_user`
 -- ----------------------------
 DROP TABLE IF EXISTS `ad_user`;
 CREATE TABLE `ad_user` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `user_name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `user_passhash` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `user_email` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
@@ -233,15 +225,33 @@ CREATE TABLE `ad_user` (
   `user_deld` tinyint(2) NOT NULL DEFAULT '0',
   `user_authkey` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `user_password_reset_token` varchar(100) COLLATE utf8_unicode_ci DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `user_role` tinyint(4) DEFAULT '1',
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of ad_user
 -- ----------------------------
-INSERT INTO `ad_user` VALUES ('1', 'zxx123', '$2y$13$3kVyxAHRlrtQ.UDT4z7Oe.euGlKrBMGPUgcfHVolwOHxT.ibxmj3W', '297208251@qq.com', '1458637332', '1458719589', '127.0.0.1', '哎呦不错哦', '10', '0', 'aYOOl2ZOT95Y2YlZ5ZwTON_y8jwgvdoc', '');
-INSERT INTO `ad_user` VALUES ('2', 'zxx123456', '$2y$13$Hz8.xi2c3K21ETvzxndFU.Et4J6aHL4xmH4Scc0ZUXhxhYF0XvA9K', '89203299@qq.com', '1458702633', '1458719856', '127.0.0.1', '0', '10', '0', '74HSYguDlqW7VlgngIJoHkvq0a8HATQj', null);
-INSERT INTO `ad_user` VALUES ('3', 'zxx123456789', '$2y$13$lzRDSnYGTb4prlzuwNYAzugWt91Nrk.PclFFZsXFAUYF1rdHmJohi', '297208251@qq.com', '1458702664', '1459848986', '127.0.0.1', '0', '10', '1', 'jVtryq7r0L3EIEMLM-b-xKt9ZySzNaLB', '0');
-INSERT INTO `ad_user` VALUES ('4', 'zhou123', '$2y$13$U7M8MXazZ08GWGf1En6VreFkZjUi1VGEiNkXI4yDFmdvhgZQhtmNq', '89203299@qq.com', '1458704684', '1458704684', '127.0.0.1', '0', '10', '0', 'ZGJo0sUaGeb6TZZUGN-NcG7sIcAFCrH0', '0');
-INSERT INTO `ad_user` VALUES ('5', 'zhou', '$2y$13$jHA3r7gt7VAQH9KC2fC7Q.8u7QCnboCFr0Ljz3BC3rxoppUUEe.iG', 'zhou@qq.com', '1459413352', '1459413352', '127.0.0.1', '周杰伦 哎呦 不错哦 ', '10', '0', 'DjGz9-xIyEShxvnuWpcNgRcB3mo3ysSS', '0');
-INSERT INTO `ad_user` VALUES ('6', 'admin', '$2y$13$EhOsRRMZ/M4ExlW5MU1Ot.IgdU6hH51ZsaQjbHcn9R8KYyb5juwme', 'admin@qq.com', '1459848774', '1459848870', '127.0.0.1', '系统管理员', '10', '0', 'RPIFqqC8qO5WNyyZnubtS5aPagfEGfXE', '0');
+INSERT INTO `ad_user` VALUES ('1', 'zxx123', '$2y$13$3kVyxAHRlrtQ.UDT4z7Oe.euGlKrBMGPUgcfHVolwOHxT.ibxmj3W', '297208251@qq.com', '1458637332', '1459999331', '127.0.0.1', '哎呦不错哦', '10', '0', 'aYOOl2ZOT95Y2YlZ5ZwTON_y8jwgvdoc', '', '1');
+INSERT INTO `ad_user` VALUES ('2', 'zxx123456', '$2y$13$Hz8.xi2c3K21ETvzxndFU.Et4J6aHL4xmH4Scc0ZUXhxhYF0XvA9K', '89203299@qq.com', '1458702633', '1458719856', '127.0.0.1', '0', '10', '0', '74HSYguDlqW7VlgngIJoHkvq0a8HATQj', null, '1');
+INSERT INTO `ad_user` VALUES ('3', 'zxx123456789', '$2y$13$lzRDSnYGTb4prlzuwNYAzugWt91Nrk.PclFFZsXFAUYF1rdHmJohi', '297208251@qq.com', '1458702664', '1459848986', '127.0.0.1', '0', '10', '1', 'jVtryq7r0L3EIEMLM-b-xKt9ZySzNaLB', '0', '1');
+INSERT INTO `ad_user` VALUES ('4', 'zhou123', '$2y$13$U7M8MXazZ08GWGf1En6VreFkZjUi1VGEiNkXI4yDFmdvhgZQhtmNq', '89203299@qq.com', '1458704684', '1458704684', '127.0.0.1', '0', '10', '0', 'ZGJo0sUaGeb6TZZUGN-NcG7sIcAFCrH0', '0', '1');
+INSERT INTO `ad_user` VALUES ('5', 'zhou', '$2y$13$3QtCxoSrbBKlXrr5QsRxf.EPzvmMXbT46Zs./tASC7.eU5ORXruRq', 'zhou@qq.com', '1459413352', '1460015211', '127.0.0.1', '周杰伦 哎呦 不错哦 fffff', '10', '0', 'DjGz9-xIyEShxvnuWpcNgRcB3mo3ysSS', '0', '2');
+INSERT INTO `ad_user` VALUES ('6', 'admin', '$2y$13$EhOsRRMZ/M4ExlW5MU1Ot.IgdU6hH51ZsaQjbHcn9R8KYyb5juwme', 'admin@qq.com', '1459848774', '1459848870', '127.0.0.1', '系统管理员', '10', '0', 'RPIFqqC8qO5WNyyZnubtS5aPagfEGfXE', '0', '1');
+INSERT INTO `ad_user` VALUES ('7', 'b1', '$2y$13$A3/8.w5R9BXDKHKn0bg4dORnxHziyZItFau.MdBDX4bNdiWE1NQku', 'b1@qq.com', '1460018291', '1460018291', '127.0.0.1', '0', '10', '0', 'RGmrOErhwFTsp3oZjm1igsZPt-pOHSO4', '0', '1');
+
+-- ----------------------------
+-- Table structure for `migration`
+-- ----------------------------
+DROP TABLE IF EXISTS `migration`;
+CREATE TABLE `migration` (
+  `version` varchar(180) COLLATE utf8_unicode_ci NOT NULL,
+  `apply_time` int(11) DEFAULT NULL,
+  PRIMARY KEY (`version`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- ----------------------------
+-- Records of migration
+-- ----------------------------
+INSERT INTO `migration` VALUES ('m000000_000000_base', '1459933607');
+INSERT INTO `migration` VALUES ('m140506_102106_rbac_init', '1459933612');

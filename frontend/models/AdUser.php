@@ -8,7 +8,7 @@ use Yii;
 /**
  * This is the model class for table "{{%ad_user}}".
  *
- * @property string $id
+ * @property string $user_id
  * @property string $user_name
  * @property string $user_passhash
  * @property string $user_email
@@ -40,8 +40,8 @@ class AdUser extends \yii\db\ActiveRecord
     {
         return [
             [['user_name', 'user_passhash', 'user_email', 'user_create', 'user_logintime', 'user_authkey','user_role'], 'required'],
-            [['user_status', 'user_deld','user_role'], 'integer'],
-            [['user_name', 'user_passhash', 'user_nickname', 'user_authkey', 'user_password_reset_token'], 'string', 'max' => 100],
+            [['user_status', 'user_deld'], 'integer'],
+            [['user_name', 'user_passhash', 'user_nickname', 'user_authkey', 'user_password_reset_token','user_role'], 'string', 'max' => 100],
             [['user_email', 'user_ip'], 'string', 'max' => 50]
         ];
     }
@@ -52,7 +52,7 @@ class AdUser extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
+            'user_id' => Yii::t('app', 'ID'),
             'user_name' => Yii::t('app', 'User Name'),
             'user_password' => Yii::t('app', 'Password'),
             'user_passhash' => Yii::t('app', 'User Passhash'),
@@ -69,13 +69,13 @@ class AdUser extends \yii\db\ActiveRecord
         ];
     }
 
-    
+
     public function beforeSave($insert) {
         if (parent::beforeSave($insert)) {
             if(!empty($this->user_password)){
                 $this->user_passhash = Yii::$app->security->generatePasswordHash($this->user_password);
             }
-    
+
             if ($this->isNewRecord) {
                 $this->user_authkey = Yii::$app->security->generateRandomString();
                 $this->user_create = time();
