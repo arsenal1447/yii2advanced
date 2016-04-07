@@ -38,6 +38,7 @@ return [
     
 
     'User' => '用户',
+    'User Role' => '用户角色/权限',
     'User Info' => '个人中心',
     'User Create' => '加入时间',
     'User Logintime' => '上次登录时间',

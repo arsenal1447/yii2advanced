@@ -27,7 +27,7 @@ class AdUserController extends Controller
         ];
     }
 
-   
+
 
     /**
      * Displays a single AdUser model.
@@ -54,16 +54,18 @@ class AdUserController extends Controller
         }
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        $newpass= Yii::$app->request->post('AdUser')['user_password'];
+        if(!empty($newpass)){
+            $model->user_passhash = Yii::$app->security->generatePasswordHash($newpass);
+        }
+        if ($model->load(Yii::$app->request->post()) && $model->save(false)) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
+            return $this->render('update', ['model' => $model,]);
         }
     }
 
-   
+
     /**
      * Finds the AdUser model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
@@ -79,7 +81,7 @@ class AdUserController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
-    
+
     /**
      * @desc 用户个人中心
      */
@@ -88,13 +90,11 @@ class AdUserController extends Controller
         if (Yii::$app->user->isGuest) {
             return $this->redirect(['site/login']);
         }
-    
+
         $model = AdUser::find()->select(['id','user_name','user_create','user_status','user_email','user_logintime','user_ip','user_nickname'])
         ->where(['id'=> Yii::$app->user->id,'user_deld'=>0,'user_status'=>10])->one();
-    
-        return $this->render('info', [
-                'model' => $model,
-                ]);
-    
+
+        return $this->render('info',['model' => $model,]);
+
     }
 }

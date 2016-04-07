@@ -7,7 +7,7 @@ use common\models\User;
 /* @var $this yii\web\View */
 /* @var $model app\models\AdUser */
 
-$this->title = $model->id;
+$this->title = $model->user_name;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Ad Users'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -52,6 +52,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format'=>'html',
                 'value' => User::getDelstatus($model->user_deld),
             ],
+            'user_role',
 //             'user_authkey',
 //             'user_password_reset_token',
         ],

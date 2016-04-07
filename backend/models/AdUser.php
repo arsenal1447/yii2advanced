@@ -19,11 +19,12 @@ use Yii;
  * @property integer $user_deld
  * @property string $user_authkey
  * @property string $user_password_reset_token
+ * @property string $user_role
  */
 class AdUser extends \yii\db\ActiveRecord
-{    
-    
-    public $password;
+{
+
+    public $user_password;
     /**
      * @inheritdoc
      */
@@ -38,8 +39,8 @@ class AdUser extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_name', 'user_passhash', 'user_email', 'user_create', 'user_logintime', 'user_authkey'], 'required'],
-            [['user_status', 'user_deld'], 'integer'],
+            [['user_name', 'user_passhash', 'user_email', 'user_create', 'user_logintime', 'user_authkey','user_role'], 'required'],
+            [['user_status', 'user_deld','user_role'], 'integer'],
             [['user_name', 'user_passhash', 'user_nickname', 'user_authkey', 'user_password_reset_token'], 'string', 'max' => 100],
             [['user_email', 'user_ip'], 'string', 'max' => 50]
         ];
@@ -54,7 +55,7 @@ class AdUser extends \yii\db\ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'user_name' => Yii::t('app', 'User Name'),
             'user_passhash' => Yii::t('app', 'User Passhash'),
-            'password' => Yii::t('app', 'Password'),
+            'user_password' => Yii::t('app', 'Password'),
             'user_email' => Yii::t('app', 'User Email'),
             'user_create' => Yii::t('app', 'User Create'),
             'user_logintime' => Yii::t('app', 'User Logintime'),
@@ -64,31 +65,19 @@ class AdUser extends \yii\db\ActiveRecord
             'user_deld' => Yii::t('app', 'User Deld'),
             'user_authkey' => Yii::t('app', 'User Authkey'),
             'user_password_reset_token' => Yii::t('app', 'User Password Reset Token'),
+            'user_role' => Yii::t('app', 'User Role'),
         ];
     }
-    
-    public function generatePasswordHash($password=null)
-    {
-        if(empty($password))
-        {
-            $password=$this->password;
-        }
-        $this->user_passhash = Yii::$app->getSecurity()->generatePasswordHash($password);
-    }
-    
-    /**
-     * Generates "remember me" authentication key
-     */
-    public function generateAuthKey()
-    {
-        $this->user_authkey = Yii::$app->getSecurity()->generateRandomString();
-    }
-    
+
+
     public function beforeSave($insert)
     {
+        if(!empty($this->user_password)){
+//             die('101');
+            $this->user_passhash = Yii::$app->security->generatePasswordHash($this->user_password);
+        }
         if($this->isNewRecord){
-            $this->generateAuthKey();
-            $this->generatePasswordHash();
+            $this->user_authkey = Yii::$app->security->generateRandomString();
             $this->user_create = time();
             $this->user_logintime = time();
             $this->user_ip = $_SERVER['REMOTE_ADDR'];
@@ -96,11 +85,9 @@ class AdUser extends \yii\db\ActiveRecord
         }else{
             $this->user_logintime = time();
             $this->user_ip = $_SERVER['REMOTE_ADDR'];
-            if(!empty($this->password)){
-                $this->generatePasswordHash();
-            }
+
         }
-        
+
         return parent::beforeSave($insert);
     }
 }

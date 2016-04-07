@@ -225,7 +225,7 @@ class User extends ActiveRecord implements IdentityInterface
         if($deld=='0'){
             return '正常';
         }else{
-            return '被删除';
+            return '已删除';
         }
     }
 }

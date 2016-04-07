@@ -22,10 +22,12 @@ use Yii;
  * @property string $admin_password_reset_token
  */
 class AdAdmin extends \yii\db\ActiveRecord
-{    
+{
     public $ad_password;
-    
+
     const STATUS_ACTIVE = 10;
+
+    const DELD_ACTIVE = 0;
     /**
      * @inheritdoc
      */
@@ -40,7 +42,7 @@ class AdAdmin extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['admin_name', 'admin_email','ad_password', 'admin_authkey'], 'required'],
+            [['admin_name', 'admin_email', 'admin_authkey'], 'required'],
             [['admin_role', 'admin_create', 'admin_logintime', 'admin_status', 'admin_deld'], 'integer'],
             [['admin_name', 'ad_password', 'admin_nickname', 'admin_authkey', 'admin_password_reset_token'], 'string', 'max' => 100],
             [['admin_email', 'admin_ip'], 'string', 'max' => 50]
@@ -69,25 +71,23 @@ class AdAdmin extends \yii\db\ActiveRecord
             'admin_password_reset_token' => Yii::t('app', 'Admin Password Reset Token'),
         ];
     }
-    
+
     /**
      * This is invoked before the record is saved.
      * @return boolean whether the record should be saved.
      */
     public function beforeSave($insert) {
         if (parent::beforeSave($insert)) {
-            if(isset($this->ad_password)){
+            if(!empty($this->ad_password)){
                 $this->admin_passhash = Yii::$app->security->generatePasswordHash($this->ad_password);
             }
+
             if ($this->isNewRecord) {
-//                 if(isset($this->ad_password)){
-//                     $this->admin_passhash = Yii::$app->security->generatePasswordHash($this->ad_password);
-//                 }
                 $this->admin_authkey = Yii::$app->security->generateRandomString();
                 $this->admin_create = time();
                 $this->admin_logintime = time();
-                $this->admin_status = 10;
-                $this->admin_deld = 0;
+                $this->admin_status = self::STATUS_ACTIVE;
+                $this->admin_deld = self::DELD_ACTIVE;
                 $this->admin_ip = $_SERVER['REMOTE_ADDR'];
             }else{
                 $this->admin_logintime = time();
@@ -97,16 +97,7 @@ class AdAdmin extends \yii\db\ActiveRecord
             return false;
         }
     }
-    
-    
-    /**
-     * Generates password hash from password and sets it to the model
-     *
-     * @param string $password
-     */
-    public function setPassword($password)
-    {
-        $this->user_passhash = Yii::$app->security->generatePasswordHash($password);
-    }
-    
+
+
+
 }

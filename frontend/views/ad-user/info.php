@@ -47,6 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format'=>'html',
                 'value'=>$model->user_nickname,
             ],
+            'user_role',
 //             [
 //                 'label'=>Yii::t('app','Post Viewcount'),
 //                 'value'=>AdPost::getViewCount($model->user_id),

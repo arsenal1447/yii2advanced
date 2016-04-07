@@ -536,13 +536,17 @@ class BaseYii
     
     /**
      * @desc 自定义打印函数
-     * @param unknown $param
+     * @param $param 被打印的参数 
+     * @param $line 被打印的参数所在行 
      * @return 打印数组或者die字符串
      */
-    public static function myPrint($param){
+    public static function myPrint($param,$flag=true,$line='***'){        
         if(is_array($param)){
-            echo "<pre>";
-            return print_R($param);
+            $template = php_sapi_name() !== 'cli' ? '<pre>%s</pre>' : "\n%s\n";
+            printf($template, print_r($param, true));
+            if($flag==true){
+                die($line);
+            }
         }elseif(is_string($param)){
             return die($param);
         }

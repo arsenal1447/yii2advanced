@@ -32,12 +32,12 @@ class AdUserController extends Controller
      * @return mixed
      */
     public function actionIndex()
-    {    
+    {
         if(Yii::$app->user->isGuest){
             return $this->redirect(['site/login']);
         }
         $query = AdUser::find()->select(['id','user_name','user_email','user_create'])->where(['user_deld'=>0]) ;
-        
+
         $dataProvider = new ActiveDataProvider([
 //             'query' => AdUser::find(),
             'query' => $query,
@@ -54,7 +54,7 @@ class AdUserController extends Controller
      * @return mixed
      */
     public function actionView($id)
-    {    
+    {
         if(Yii::$app->user->isGuest){
             return $this->redirect(['site/login']);
         }
@@ -69,12 +69,11 @@ class AdUserController extends Controller
      * @return mixed
      */
     public function actionCreate()
-    {    
+    {
         if(Yii::$app->user->isGuest){
             return $this->redirect(['site/login']);
         }
         $model = new AdUser();
-
         if ($model->load(Yii::$app->request->post()) && $model->save(false)) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
@@ -91,13 +90,18 @@ class AdUserController extends Controller
      * @return mixed
      */
     public function actionUpdate($id)
-    {    
+    {
         if(Yii::$app->user->isGuest){
             return $this->redirect(['site/login']);
         }
         $model = $this->findModel($id);
+        $newpass= Yii::$app->request->post('AdUser')['user_password'];
         
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if(!empty($newpass)){
+            $model->user_passhash = Yii::$app->security->generatePasswordHash($newpass);
+        }
+
+        if ($model->load(Yii::$app->request->post()) && $model->save(false)) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
@@ -113,16 +117,16 @@ class AdUserController extends Controller
      * @return mixed
      */
     public function actionDelete($id)
-    {    
+    {
         if(Yii::$app->user->isGuest){
             return $this->redirect(['site/login']);
         }
         $model = $this->findModel($id);
         $model->user_deld = 1;
-        
+
         if($model->save()){
             return $this->redirect(['index']);
-        }        
+        }
     }
 
     /**

@@ -20,6 +20,10 @@ use common\models\AdAdmin;
     <?= $form->field($model, 'admin_role')->textInput(['maxlength' => true,'style'=>'width:255px;']) ?>
 
     <?= $form->field($model, 'admin_email')->textInput(['maxlength' => true,'style'=>'width:255px;']) ?>
+    
+    <?= $form->field($model, 'admin_status')->textInput(['maxlength' => true,'style'=>'width:255px;']) ?>    
+    
+    <?= $form->field($model, 'admin_deld')->dropDownList(['0' => '正常','1' => '已删除'],['maxlength' => true,'style'=>'width:255px;']) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

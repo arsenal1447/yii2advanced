@@ -42,6 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'user_deld',
             // 'user_authkey',
             // 'user_password_reset_token',
+            'user_role',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

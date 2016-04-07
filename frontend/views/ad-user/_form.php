@@ -15,6 +15,8 @@ use common\models\User;
 
     <?= $form->field($model, 'user_name')->textInput(['maxlength' => true,'style'=>'width:255px;']) ?>  
 
+    <?= $form->field($model, 'user_password')->passwordInput(['maxlength' => true,'style'=>'width:255px;']) ?>  
+
     <?= $form->field($model, 'user_email')->textInput(['maxlength' => true,'style'=>'width:255px;']) ?>
 
     <?= $form->field($model, 'user_create')->textInput(['readonly'=>'true','disabled'=>'true','value'=>User::convertDate($model->user_create),'style' => 'width:255px;']) ?>
@@ -26,6 +28,8 @@ use common\models\User;
     <?= $form->field($model, 'user_nickname')->textInput(['maxlength' => true,'style'=>'width:255px;']) ?>
 
     <?= $form->field($model, 'user_status')->textInput(['readonly'=>'true','disabled'=>'true','style'=>'width:255px;']) ?>
+
+    <?= $form->field($model, 'user_role')->textInput(['readonly'=>'true','disabled'=>'true','style'=>'width:255px;']) ?>
 
     
 
