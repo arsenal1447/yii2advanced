@@ -59,13 +59,13 @@ class AdAdminController extends Controller
      * @return mixed
      */
     public function actionCreate()
-    {    
+    {
 //         if (Yii::$app->user->can('CreatePost')) {
 //             return '可以的';
 //         } else {
 //             throw new UnauthorizedHttpException('对不起，您现在还没获此操作的权限。');
 //         }
-        
+
         $model = new AdAdmin();
 
         if ($model->load(Yii::$app->request->post()) && $model->save(false)) {

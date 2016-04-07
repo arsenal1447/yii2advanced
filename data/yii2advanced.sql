@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50624
 File Encoding         : 65001
 
-Date: 2016-04-07 16:42:54
+Date: 2016-04-07 17:37:49
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -72,9 +72,8 @@ CREATE TABLE `ad_auth_assignment` (
 -- ----------------------------
 -- Records of ad_auth_assignment
 -- ----------------------------
-INSERT INTO `ad_auth_assignment` VALUES ('admin', '1', '1459934467');
-INSERT INTO `ad_auth_assignment` VALUES ('author', '2', '1459934467');
-INSERT INTO `ad_auth_assignment` VALUES ('author', '7', '1460018291');
+INSERT INTO `ad_auth_assignment` VALUES ('admin', '1', '1460021751');
+INSERT INTO `ad_auth_assignment` VALUES ('author', '2', '1460021751');
 
 -- ----------------------------
 -- Table structure for `ad_auth_item`
@@ -97,11 +96,11 @@ CREATE TABLE `ad_auth_item` (
 -- ----------------------------
 -- Records of ad_auth_item
 -- ----------------------------
-INSERT INTO `ad_auth_item` VALUES ('admin', '1', null, null, null, '1459934467', '1459934467');
-INSERT INTO `ad_auth_item` VALUES ('author', '1', null, null, null, '1459934466', '1459934466');
-INSERT INTO `ad_auth_item` VALUES ('createPost', '2', 'Create a post', null, null, '1459934466', '1459934466');
-INSERT INTO `ad_auth_item` VALUES ('updateOwnPost', '2', 'Update own post', 'isAuthor', null, '1459935163', '1459935163');
-INSERT INTO `ad_auth_item` VALUES ('updatePost', '2', 'Update post', null, null, '1459934466', '1459934466');
+INSERT INTO `ad_auth_item` VALUES ('admin', '1', null, null, null, '1460021750', '1460021750');
+INSERT INTO `ad_auth_item` VALUES ('author', '1', null, null, null, '1460021750', '1460021750');
+INSERT INTO `ad_auth_item` VALUES ('createPost', '2', 'Create a post', null, null, '1460021750', '1460021750');
+INSERT INTO `ad_auth_item` VALUES ('updateOwnPost', '2', 'Update own post', 'isAuthor', null, '1460021751', '1460021751');
+INSERT INTO `ad_auth_item` VALUES ('updatePost', '2', 'Update post', null, null, '1460021750', '1460021750');
 
 -- ----------------------------
 -- Table structure for `ad_auth_item_child`
@@ -121,7 +120,9 @@ CREATE TABLE `ad_auth_item_child` (
 -- ----------------------------
 INSERT INTO `ad_auth_item_child` VALUES ('admin', 'author');
 INSERT INTO `ad_auth_item_child` VALUES ('author', 'createPost');
+INSERT INTO `ad_auth_item_child` VALUES ('author', 'updateOwnPost');
 INSERT INTO `ad_auth_item_child` VALUES ('admin', 'updatePost');
+INSERT INTO `ad_auth_item_child` VALUES ('updateOwnPost', 'updatePost');
 
 -- ----------------------------
 -- Table structure for `ad_auth_rule`
@@ -138,7 +139,7 @@ CREATE TABLE `ad_auth_rule` (
 -- ----------------------------
 -- Records of ad_auth_rule
 -- ----------------------------
-INSERT INTO `ad_auth_rule` VALUES ('isAuthor', 'O:21:\"app\\models\\AuthorRule\":3:{s:4:\"name\";s:8:\"isAuthor\";s:9:\"createdAt\";i:1459935162;s:9:\"updatedAt\";i:1459935162;}', '1459935162', '1459935162');
+INSERT INTO `ad_auth_rule` VALUES ('isAuthor', 'O:21:\"app\\models\\AuthorRule\":3:{s:4:\"name\";s:8:\"isAuthor\";s:9:\"createdAt\";i:1460021751;s:9:\"updatedAt\";i:1460021751;}', '1460021751', '1460021751');
 
 -- ----------------------------
 -- Table structure for `ad_cat`

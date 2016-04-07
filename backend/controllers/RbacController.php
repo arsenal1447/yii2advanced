@@ -4,6 +4,7 @@ namespace backend\controllers;
 use Yii;
 use yii\db\Query;
 use yii\data\ActiveDataProvider;
+// use yii\filters\VerbFilter;
 use yii\web\Controller;
 use app\models\AuthorRule;
 
@@ -11,37 +12,37 @@ class RbacController extends Controller{
 
     public function actionInit()
     {
-//         $auth = Yii::$app->authManager;
-
-//         // 添加 "createPost" 权限
-//         $createPost = $auth->createPermission('createPost');
-//         $createPost->description = 'Create a post';
-//         $auth->add($createPost);
-
-//         // 添加 "updatePost" 权限
-//         $updatePost = $auth->createPermission('updatePost');
-//         $updatePost->description = 'Update post';
-//         $auth->add($updatePost);
-
-//         // 添加 "author" 角色并赋予 "createPost" 权限
-//         $author = $auth->createRole('author');
-//         $auth->add($author);
-//         $auth->addChild($author, $createPost);
-
-//         // 添加 "admin" 角色并赋予 "updatePost"
-//         // 和 "author" 权限
-//         $admin = $auth->createRole('admin');
-//         $auth->add($admin);
-//         $auth->addChild($admin, $updatePost);
-//         $auth->addChild($admin, $author);
-
-//         // 为用户指派角色。其中 1 和 2 是由 IdentityInterface::getId() 返回的id （译者注：user表的id）
-//         // 通常在你的 User 模型中实现这个函数。
-//         $auth->assign($author, 2);
-//         $auth->assign($admin, 1);
-
-
         $auth = Yii::$app->authManager;
+
+        // 添加 "createPost" 权限
+        $createPost = $auth->createPermission('createPost');
+        $createPost->description = 'Create a post';
+        $auth->add($createPost);
+
+        // 添加 "updatePost" 权限
+        $updatePost = $auth->createPermission('updatePost');
+        $updatePost->description = 'Update post';
+        $auth->add($updatePost);
+
+        // 添加 "author" 角色并赋予 "createPost" 权限
+        $author = $auth->createRole('author');
+        $auth->add($author);
+        $auth->addChild($author, $createPost);
+
+        // 添加 "admin" 角色并赋予 "updatePost"
+        // 和 "author" 权限
+        $admin = $auth->createRole('admin');
+        $auth->add($admin);
+        $auth->addChild($admin, $updatePost);
+        $auth->addChild($admin, $author);
+
+        // 为用户指派角色。其中 1 和 2 是由 IdentityInterface::getId() 返回的id （译者注：user表的id）
+        // 通常在你的 User 模型中实现这个函数。
+        $auth->assign($author, 2);
+        $auth->assign($admin, 1);
+
+
+//         $auth = Yii::$app->authManager;
 
         // 添加规则
         $rule = new AuthorRule();
@@ -225,33 +226,34 @@ class RbacController extends Controller{
     /**
      * 添加子节点  可以为角色 权限添加子节点  （不能将一个权限作为角色的子节点 ）
      */
-    public function actionCreateItemChild(){
+//     public function actionCreateItemChild(){
 
-        if($data = \Yii::$app->request->post()){
-            $rbac = \Yii::$container->get('\app\models\Rbac');
-            if(empty($data['parent']) || empty($data['childs']) || !($parent = $rbac->getOneItem($data['parent'])))
-                return $this->error('父节点或子节点信息错误！');
-            }
-            $errors = 0;
-            foreach ($data['childs'] as $v){
-                if(!($child = $rbac->getOneItem($v)))
-                        return $this->error('不存在的子节点！');
-                try {
-                        $rbac->addChild($parent,$child);
-                }catch (\Exception $e){
-                        $errors++;
-                }
-            }
+//         if($data = Yii::$app->request->post()){
+//             $rbac = Yii::$container->get('\app\models\Rbac');
+//             if(empty($data['parent']) || empty($data['childs']) || !($parent = $rbac->getOneItem($data['parent'])))
+//                 return $this->error('父节点或子节点信息错误！');
+//             }
+//             $errors = 0;
+//             foreach ($data['childs'] as $v){
+//                 if(!($child = $rbac->getOneItem($v))){
+//                     return $this->error('不存在的子节点！');
+//                 }
+//                 try {
+//                     $rbac->addChild($parent,$child);
+//                 }catch (\Exception $e){
+//                     $errors++;
+//                 }
+//             }
 
-            if($errors){
-                return $this->success(['item-childindex'],$errors.'条信息没有插入成功');
-            }else{
-                return $this->success(['item-childindex']);
-            }
-        }
+// //             if($errors){
+// //                 return $this->success(['item-childindex'],$errors.'条信息没有插入成功');
+// //             }else{
+// //                 return $this->success(['item-childindex']);
+// //             }
+//         }
 
-//         return $this->render('_itemChildForm',['model'=>['parent'=>'','child'=>'']]);
-    }
+//         return $this->render('_itemChildForm');
+//     }
 
     /**
      * 删除子节点
@@ -260,7 +262,7 @@ class RbacController extends Controller{
      * @return Ambigous <\backend\controllers\Ambigous, string, string>
      */
     public function actionDeleteItemChild($parent,$child){
-        $rbac = \Yii::$container->get('\app\models\Rbac');
+        $rbac = Yii::$container->get('\app\models\Rbac');
         if(empty($parent) || empty($child) || !($parent = $rbac->getOneItem($parent)) || !($child = $rbac->getOneItem($child)))
             return $this->error('错误的参数');
         return $rbac->removeChild($parent, $child) ?  $this->success(['item-childindex']) : $this->error('删除失败');
