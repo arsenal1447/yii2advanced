@@ -21,7 +21,8 @@ return [
     'Service Data Table' => '服务器数据',
 
     'User' => '用户',
-    'User Role' => '用户角色/权限',
+    'User Role' => '用户角色',
+    'Set Role' => '设置角色',
     'Password' => '密码',
     'Add User' => '添加用户',
     'Create Ad User' => '添加用户',

@@ -8,12 +8,15 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use common\models\User;
+use backend\base\BaseBackController;
+use base\Ad;
+use yii\rbac\Role;
+// use common\models\User;
 
 /**
  * AdUserController implements the CRUD actions for AdUser model.
  */
-class AdUserController extends Controller
+class AdUserController extends BaseBackController
 {
     public function behaviors()
     {
@@ -96,7 +99,7 @@ class AdUserController extends Controller
         }
         $model = $this->findModel($id);
         $newpass= Yii::$app->request->post('AdUser')['user_password'];
-        
+
         if(!empty($newpass)){
             $model->user_passhash = Yii::$app->security->generatePasswordHash($newpass);
         }
@@ -127,6 +130,99 @@ class AdUserController extends Controller
         if($model->save()){
             return $this->redirect(['index']);
         }
+    }
+
+
+
+    public function updateAssignments($allItems, $selectedItems, $existedItems, $id)
+    {
+        $auth = \Yii::$app->authManager;
+
+        if ($selectedItems == null)
+        {
+            $selectedItems = [];
+        }
+
+        $role = new Role();
+        foreach ( $allItems as $item )
+        {
+            $itemName = $item['name'];
+
+            $role->name = $itemName;
+
+            // the selected role
+            if (in_array($itemName, $selectedItems))
+            {
+                // check if exists in db
+                if (isset($existedItems[$itemName]))
+                {
+                    Ad::info('exist:' . $itemName);
+                    continue;
+                }
+                else
+                {
+                    // add new role
+                    Ad::info('add:' . $itemName);
+                    $auth->assign($role, $id);
+                }
+            }
+            else // unselected role
+            {
+                // check if exists in db
+                if (isset($existedItems[$itemName]))
+                {
+                    // need to be deleted
+                    Ad::info('delete:' . $itemName);
+                    $auth->revoke($role, $id);
+                }
+            }
+        }
+    }
+
+    public function actionRole($id)
+    {
+        if(Yii::$app->user->isGuest){
+            return $this->redirect(['site/login']);
+        }
+
+        $auth = \Yii::$app->authManager;
+        $existItems = $auth->getAssignments($id);
+
+        $model = [];
+
+        if (Ad::hasPostValue('submit'))
+        {
+            $allRoles = $this->getCachedRoles();
+            $selectedRoles = Ad::getPostValue('selectedRoles');
+            $this->updateAssignments($allRoles, $selectedRoles, $existItems, $id);
+
+            return $this->redirect([
+                    'index'
+                    ]);
+        }else{
+            $allRoles = [];
+            $groups = $this->getCachedRoleGroups();
+
+//             echo "<pre>";
+//             print_R($groups);
+//             echo "</pre>";
+//             die('160');
+
+            foreach ( $groups as $group )
+            {
+                $allRoles[$group['description']] = $this->getCachedRolesByGroup($group['name']);
+            }
+
+            $locals = [];
+            $locals['model'] = $model;
+            $locals['allRoles'] = $allRoles;
+            $locals['existRoles'] = $existItems;
+
+            return $this->render('role', $locals);
+        }
+//         return $this->render('role', [
+//                 'model' => $this->findModel($id),
+//                 ]);
     }
 
     /**
