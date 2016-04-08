@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50624
 File Encoding         : 65001
 
-Date: 2016-04-07 17:37:49
+Date: 2016-04-08 11:50:47
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -65,15 +65,21 @@ CREATE TABLE `ad_auth_assignment` (
   `item_name` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `user_id` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` int(11) DEFAULT NULL,
-  PRIMARY KEY (`item_name`,`user_id`),
-  CONSTRAINT `ad_auth_assignment_ibfk_1` FOREIGN KEY (`item_name`) REFERENCES `ad_auth_item` (`name`) ON DELETE CASCADE ON UPDATE CASCADE
+  PRIMARY KEY (`item_name`,`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of ad_auth_assignment
 -- ----------------------------
 INSERT INTO `ad_auth_assignment` VALUES ('admin', '1', '1460021751');
+INSERT INTO `ad_auth_assignment` VALUES ('admin_level_0', '1', '1460087257');
+INSERT INTO `ad_auth_assignment` VALUES ('admin_level_1', '1', '1460087269');
+INSERT INTO `ad_auth_assignment` VALUES ('admin_level_2', '1', '1460087269');
 INSERT INTO `ad_auth_assignment` VALUES ('author', '2', '1460021751');
+INSERT INTO `ad_auth_assignment` VALUES ('custom_level_0', '1', '1460087269');
+INSERT INTO `ad_auth_assignment` VALUES ('custom_level_1', '1', '1460087269');
+INSERT INTO `ad_auth_assignment` VALUES ('special_level_0', '1', '1460087276');
+INSERT INTO `ad_auth_assignment` VALUES ('special_levle_1', '1', '1460087277');
 
 -- ----------------------------
 -- Table structure for `ad_auth_item`
@@ -110,9 +116,7 @@ CREATE TABLE `ad_auth_item_child` (
   `parent` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `child` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`parent`,`child`),
-  KEY `child` (`child`),
-  CONSTRAINT `ad_auth_item_child_ibfk_1` FOREIGN KEY (`parent`) REFERENCES `ad_auth_item` (`name`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `ad_auth_item_child_ibfk_2` FOREIGN KEY (`child`) REFERENCES `ad_auth_item` (`name`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `child` (`child`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
