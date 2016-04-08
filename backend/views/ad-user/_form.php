@@ -34,10 +34,10 @@ use yii\helpers\ArrayHelper;
     <?= $form->field($model, 'user_deld')->dropDownList(['0' => '正常','1' => '已删除'],['style'=>'width:255px;']) ?>
 
     <?= $form->field($model, 'user_role')->textInput(['style'=>'width:255px;']) ?>
-    
-     <?= $form->field($model, 'user_role')->dropDownList(ArrayHelper::map(Rbac::getAllRoles(), 'name', 'type')) ?>
 
-  
+     <?php //echo $form->field($model, 'user_role')->dropDownList(ArrayHelper::map(Rbac::getAllRoles(), 'name', 'type')) ?>
+
+
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
