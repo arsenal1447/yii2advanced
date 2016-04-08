@@ -40,8 +40,8 @@ AppAsset::register($this);
             } else {
                 $menuItems[] = ['label' =>Yii::t('app','Catelist'), 'url' => ['/ad-cat/index']];
                 $menuItems[] = ['label' =>Yii::t('app','Permission'), 'url' => ['/rbac/itemindex']];
-//                 $menuItems[] = ['label' =>Yii::t('app','Add Role'), 'url' => ['/rbac/create-item&type=1']];
-//                 $menuItems[] = ['label' =>Yii::t('app','Add Permission'), 'url' => ['/rbac/create-item&type=2']];
+                $menuItems[] = ['label' =>Yii::t('app','Role'), 'url' => ['/role/index']];
+                $menuItems[] = ['label' =>Yii::t('app','Permission'), 'url' => ['/permission/index']];
                 $menuItems[] = ['label' =>Yii::t('app','Add Test Role'), 'url' => ['/ad-auth-item/create']];
                 $menuItems[] = ['label' =>Yii::t('app','Add Admin'), 'url' => ['/ad-admin/create']];
                 $menuItems[] = ['label' =>Yii::t('app','User List'), 'url' => ['/ad-user/index']];

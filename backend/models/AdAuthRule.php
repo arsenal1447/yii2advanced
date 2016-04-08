@@ -75,4 +75,7 @@ class AdAuthRule extends DbManager
     public function getOneItem($name){
         return $this->getItem($name);
     }
+    
+    
+   
 }

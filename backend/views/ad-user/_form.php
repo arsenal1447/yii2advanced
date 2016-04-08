@@ -35,7 +35,9 @@ use yii\helpers\ArrayHelper;
 
     <?= $form->field($model, 'user_role')->textInput(['style'=>'width:255px;']) ?>
 
-     <?php //echo $form->field($model, 'user_role')->dropDownList(ArrayHelper::map(Rbac::getAllRoles(), 'name', 'type')) ?>
+    <?//echo $form->field($model, 'user_role')->dropDownList(ArrayHelper::map(Rbac::getAllRoles(), 'name', 'type')) ?>
+
+    <?= $form->field($model, 'user_role')->dropDownList(['0' => 'author','1' => 'admin'],['style'=>'width:255px;']) ?>
 
 
 

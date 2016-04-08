@@ -2,6 +2,13 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use common\models\AuthItem;
+
+$ob = AuthItem::zxx();
+
+yii::myPrint($ob);
+die('10');
+// $new = new AdAuthItem();
 
 /* @var $this yii\web\View */
 /* @var $model app\models\AdAuthItem */
@@ -20,7 +27,10 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'rule_name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'data')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'data')->textarea(['rows' => 6]) ?>    
+
+    <?= $form->field($model, 'itemchild')->checkboxList(AuthItem::zxx(),['rows' => 6]) ?>
+    
 
     <?= $form->field($model, 'created_at')->textInput() ?>
 

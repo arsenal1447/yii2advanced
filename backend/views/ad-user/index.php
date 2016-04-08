@@ -42,7 +42,13 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'user_deld',
             // 'user_authkey',
             // 'user_password_reset_token',
-            'user_role',
+            [
+                'attribute'=>'user_role',
+                'format'=>'html',
+                'value' => function ($data,$url) {
+                    return $data->user_role?$data->user_role:Html::a(Yii::t('app','Set Role'),['role','id'=>$data->user_id]);
+                },
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

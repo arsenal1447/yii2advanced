@@ -22,6 +22,7 @@ return [
 
     'User' => '用户',
     'User Role' => '用户角色',
+    'Role' => '角色',
     'Set Role' => '设置角色',
     'Password' => '密码',
     'Add User' => '添加用户',

@@ -22,6 +22,8 @@ use Yii;
  */
 class AdAuthItem extends \yii\db\ActiveRecord
 {
+    public $itemchild;
+    
     /**
      * @inheritdoc
      */
@@ -51,6 +53,7 @@ class AdAuthItem extends \yii\db\ActiveRecord
         return [
             'name' => Yii::t('app', 'Role Name'),
             'type' => Yii::t('app', 'Type'),
+            'itemchild' => Yii::t('app', 'Itemchild'),
             'description' => Yii::t('app', 'Description'),
             'rule_name' => Yii::t('app', 'Rule Name'),
             'data' => Yii::t('app', 'Data'),
@@ -90,4 +93,7 @@ class AdAuthItem extends \yii\db\ActiveRecord
     {
         return $this->hasMany(AdAuthItemChild::className(), ['child' => 'name']);
     }
+    
+    
+
 }

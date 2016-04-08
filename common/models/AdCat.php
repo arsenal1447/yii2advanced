@@ -30,7 +30,7 @@ class AdCat extends ActiveRecord
         return '{{%ad_cat}}';
     }
 
-    
+
     /**
      * @desc 转化时间格式
      * @param 时间戳格式  $datetime
@@ -39,17 +39,17 @@ class AdCat extends ActiveRecord
     public static function convertDate($datetime){
         return date('Y-m-d H:i:s',$datetime);
     }
-    
+
     /**
      * @desc 获取帖子的分类名称
      * @return boject
      */
     public static function getCateName($cateid){
         $catinfo = AdCat::find()->where(['cat_id' => $cateid,'cat_deld'=>0,'cat_status'=>0])->asArray()->one();
-    
+
         return $catinfo['cat_name'];
     }
-    
+
     /**
      * @desc 获取帖子的分类
      * @return boject
