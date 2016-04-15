@@ -59,7 +59,7 @@ class AdUserController extends Controller
             $model->user_passhash = Yii::$app->security->generatePasswordHash($newpass);
         }
         if ($model->load(Yii::$app->request->post()) && $model->save(false)) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['view', 'id' => $model->user_id]);
         } else {
             return $this->render('update', ['model' => $model,]);
         }
@@ -90,11 +90,15 @@ class AdUserController extends Controller
         if (Yii::$app->user->isGuest) {
             return $this->redirect(['site/login']);
         }
-
+        
         $model = AdUser::find()->select(['user_id','user_name','user_create','user_status','user_email','user_logintime','user_ip','user_nickname'])
-        ->where(['user_id'=> Yii::$app->user->id,'user_deld'=>0,'user_status'=>10])->one();
-
-        return $this->render('info',['model' => $model,]);
+        ->where(['user_id'=> 1,'user_deld'=>0,'user_status'=>10])->one();
+        
+        if($model){
+            return $this->render('info',['model' => $model,]);
+        }else{
+            throw new NotFoundHttpException('The requested user does not exist.');
+        }
 
     }
 }

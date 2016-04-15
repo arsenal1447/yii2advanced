@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     
     <?php if($model->user_id==yii::$app->user->id){?>
     <p>
-        <?= Html::a(Yii::t('app', 'Update'), ['update', 'user_id' => $model->user_id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->user_id], ['class' => 'btn btn-primary']) ?>
     </p>
     <?php }?>
     <?= DetailView::widget([
