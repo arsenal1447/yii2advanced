@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50624
 File Encoding         : 65001
 
-Date: 2016-04-08 11:50:47
+Date: 2016-04-15 17:45:51
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -73,13 +73,26 @@ CREATE TABLE `ad_auth_assignment` (
 -- ----------------------------
 INSERT INTO `ad_auth_assignment` VALUES ('admin', '1', '1460021751');
 INSERT INTO `ad_auth_assignment` VALUES ('admin_level_0', '1', '1460087257');
+INSERT INTO `ad_auth_assignment` VALUES ('admin_level_0', '7', '1460108945');
 INSERT INTO `ad_auth_assignment` VALUES ('admin_level_1', '1', '1460087269');
+INSERT INTO `ad_auth_assignment` VALUES ('admin_level_1', '7', '1460108945');
 INSERT INTO `ad_auth_assignment` VALUES ('admin_level_2', '1', '1460087269');
 INSERT INTO `ad_auth_assignment` VALUES ('author', '2', '1460021751');
 INSERT INTO `ad_auth_assignment` VALUES ('custom_level_0', '1', '1460087269');
+INSERT INTO `ad_auth_assignment` VALUES ('custom_level_0', '7', '1460108945');
 INSERT INTO `ad_auth_assignment` VALUES ('custom_level_1', '1', '1460087269');
+INSERT INTO `ad_auth_assignment` VALUES ('custom_level_1', '7', '1460108945');
+INSERT INTO `ad_auth_assignment` VALUES ('member_level_0', '7', '1460108945');
+INSERT INTO `ad_auth_assignment` VALUES ('member_level_1', '7', '1460108945');
+INSERT INTO `ad_auth_assignment` VALUES ('member_level_2', '7', '1460108945');
+INSERT INTO `ad_auth_assignment` VALUES ('member_level_3', '7', '1460108945');
+INSERT INTO `ad_auth_assignment` VALUES ('member_level_4', '7', '1460108945');
+INSERT INTO `ad_auth_assignment` VALUES ('member_level_5', '7', '1460108945');
+INSERT INTO `ad_auth_assignment` VALUES ('member_level_6', '7', '1460108946');
 INSERT INTO `ad_auth_assignment` VALUES ('special_level_0', '1', '1460087276');
+INSERT INTO `ad_auth_assignment` VALUES ('special_level_0', '7', '1460108946');
 INSERT INTO `ad_auth_assignment` VALUES ('special_levle_1', '1', '1460087277');
+INSERT INTO `ad_auth_assignment` VALUES ('special_levle_1', '7', '1460108946');
 
 -- ----------------------------
 -- Table structure for `ad_auth_item`
@@ -102,11 +115,18 @@ CREATE TABLE `ad_auth_item` (
 -- ----------------------------
 -- Records of ad_auth_item
 -- ----------------------------
-INSERT INTO `ad_auth_item` VALUES ('admin', '1', null, null, null, '1460021750', '1460021750');
-INSERT INTO `ad_auth_item` VALUES ('author', '1', null, null, null, '1460021750', '1460021750');
+INSERT INTO `ad_auth_item` VALUES ('admin', '1', 'dd1', null, null, '1460021750', '1460021750');
+INSERT INTO `ad_auth_item` VALUES ('author', '1', 'dd2', null, null, '1460021750', '1460021750');
 INSERT INTO `ad_auth_item` VALUES ('createPost', '2', 'Create a post', null, null, '1460021750', '1460021750');
+INSERT INTO `ad_auth_item` VALUES ('fsdf', '1', 'sdfsdf', null, 's:11:\"s:4:\"ssss\";\";', '1460098416', '1460098416');
+INSERT INTO `ad_auth_item` VALUES ('sss', '1', 'sss', null, 's:4:\"ssss\";', '1460098372', '1460098372');
+INSERT INTO `ad_auth_item` VALUES ('ssss', '1', 'sss', null, 's:0:\"\";', '1460098349', '1460098349');
 INSERT INTO `ad_auth_item` VALUES ('updateOwnPost', '2', 'Update own post', 'isAuthor', null, '1460021751', '1460021751');
 INSERT INTO `ad_auth_item` VALUES ('updatePost', '2', 'Update post', null, null, '1460021750', '1460021750');
+INSERT INTO `ad_auth_item` VALUES ('角色1', '1', '11', null, 's:1:\"1\";', '1460699264', '1460699264');
+INSERT INTO `ad_auth_item` VALUES ('角色2', '1', 'ss', null, 's:2:\"ss\";', '1460701080', '1460701080');
+INSERT INTO `ad_auth_item` VALUES ('角色3', '1', 'ss', null, 's:2:\"ss\";', '1460702163', '1460702163');
+INSERT INTO `ad_auth_item` VALUES ('黄金会员', '1', '就是叼的很', null, 's:0:\"\";', '1460100936', '1460100936');
 
 -- ----------------------------
 -- Table structure for `ad_auth_item_child`
@@ -124,9 +144,16 @@ CREATE TABLE `ad_auth_item_child` (
 -- ----------------------------
 INSERT INTO `ad_auth_item_child` VALUES ('admin', 'author');
 INSERT INTO `ad_auth_item_child` VALUES ('author', 'createPost');
+INSERT INTO `ad_auth_item_child` VALUES ('group_admin', 'fsdf');
+INSERT INTO `ad_auth_item_child` VALUES ('group_admin', 'sss');
+INSERT INTO `ad_auth_item_child` VALUES ('group_admin', 'ssss');
 INSERT INTO `ad_auth_item_child` VALUES ('author', 'updateOwnPost');
 INSERT INTO `ad_auth_item_child` VALUES ('admin', 'updatePost');
 INSERT INTO `ad_auth_item_child` VALUES ('updateOwnPost', 'updatePost');
+INSERT INTO `ad_auth_item_child` VALUES ('group_member', '角色1');
+INSERT INTO `ad_auth_item_child` VALUES ('group_member', '角色2');
+INSERT INTO `ad_auth_item_child` VALUES ('group_admin', '角色3');
+INSERT INTO `ad_auth_item_child` VALUES ('group_member', '黄金会员');
 
 -- ----------------------------
 -- Table structure for `ad_auth_rule`
@@ -214,6 +241,33 @@ INSERT INTO `ad_post` VALUES ('19', '周杰伦', '2', '5', '<p>阿诗丹顿</p>'
 INSERT INTO `ad_post` VALUES ('20', 'fffffff', '4', '1', '<p>fffff</p>', '1459937111', '1459937111', '10', '0', '0');
 
 -- ----------------------------
+-- Table structure for `ad_reply`
+-- ----------------------------
+DROP TABLE IF EXISTS `ad_reply`;
+CREATE TABLE `ad_reply` (
+  `reply_id` int(11) NOT NULL,
+  `reply_post` int(11) NOT NULL,
+  `reply_content` text CHARACTER SET utf8 NOT NULL,
+  `reply_create` int(11) DEFAULT NULL,
+  `reply_user` int(11) NOT NULL,
+  `reply_ip` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `reply_username` varchar(50) CHARACTER SET utf8 NOT NULL,
+  `reply_title` varchar(100) CHARACTER SET utf8 DEFAULT '0',
+  `reply_edittime` int(11) NOT NULL,
+  `reply_support` int(11) DEFAULT '0',
+  `reply_against` int(11) DEFAULT '0',
+  `reply_floor` int(11) DEFAULT '0',
+  `reply_note` varchar(50) CHARACTER SET utf8 DEFAULT '0',
+  `reply_deld` tinyint(4) DEFAULT '0',
+  `reply_status` tinyint(4) DEFAULT '0',
+  PRIMARY KEY (`reply_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- ----------------------------
+-- Records of ad_reply
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for `ad_user`
 -- ----------------------------
 DROP TABLE IF EXISTS `ad_user`;
@@ -237,7 +291,7 @@ CREATE TABLE `ad_user` (
 -- ----------------------------
 -- Records of ad_user
 -- ----------------------------
-INSERT INTO `ad_user` VALUES ('1', 'zxx123', '$2y$13$3kVyxAHRlrtQ.UDT4z7Oe.euGlKrBMGPUgcfHVolwOHxT.ibxmj3W', '297208251@qq.com', '1458637332', '1459999331', '127.0.0.1', '哎呦不错哦', '10', '0', 'aYOOl2ZOT95Y2YlZ5ZwTON_y8jwgvdoc', '', '1');
+INSERT INTO `ad_user` VALUES ('1', 'zxx123', '$2y$13$PEm7VNw5ApXrUbdT1OE/l..BbF.2zFxWJLBuC9ChYnsZ8zpFLL8ya', '297208251@qq.com', '1458637332', '1460703637', '127.0.0.1', '哎呦不错哦', '10', '0', 'aYOOl2ZOT95Y2YlZ5ZwTON_y8jwgvdoc', '', '0');
 INSERT INTO `ad_user` VALUES ('2', 'zxx123456', '$2y$13$Hz8.xi2c3K21ETvzxndFU.Et4J6aHL4xmH4Scc0ZUXhxhYF0XvA9K', '89203299@qq.com', '1458702633', '1458719856', '127.0.0.1', '0', '10', '0', '74HSYguDlqW7VlgngIJoHkvq0a8HATQj', null, '1');
 INSERT INTO `ad_user` VALUES ('3', 'zxx123456789', '$2y$13$lzRDSnYGTb4prlzuwNYAzugWt91Nrk.PclFFZsXFAUYF1rdHmJohi', '297208251@qq.com', '1458702664', '1459848986', '127.0.0.1', '0', '10', '1', 'jVtryq7r0L3EIEMLM-b-xKt9ZySzNaLB', '0', '1');
 INSERT INTO `ad_user` VALUES ('4', 'zhou123', '$2y$13$U7M8MXazZ08GWGf1En6VreFkZjUi1VGEiNkXI4yDFmdvhgZQhtmNq', '89203299@qq.com', '1458704684', '1458704684', '127.0.0.1', '0', '10', '0', 'ZGJo0sUaGeb6TZZUGN-NcG7sIcAFCrH0', '0', '1');

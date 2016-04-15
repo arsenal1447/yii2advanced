@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 use common\models\User;
 use common\models\AdCat;
+use common\models\Reply;
 use app\models\AdPost;
 use yii\widgets\ActiveForm;
 
