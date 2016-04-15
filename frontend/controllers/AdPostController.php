@@ -54,7 +54,7 @@ class AdPostController extends Controller
     public function actionView($id)
     {
         $model = $this->findModel($id);
-        if($model->post_deld==1){
+        if($model->post_deld == 1){
 //             echo ('该帖子已经被删除');
             return $this->redirect(['index']);
         }
@@ -63,14 +63,15 @@ class AdPostController extends Controller
 //         return $this->render('view', [
 //             'model' => $this->findModel($id),
 //         ]);
-        
-        $query=Reply::find()->where(['post_id'=>$model['post_id']]);
+
+        $query = Reply::find()->where(['post_id'=>$model['post_id']]);
+
+//         die('68');
+        $locals=Ad::getPagedRows($query,['order'=>'post_create asc','pageSize'=>10]);
          
-        $locals=Ad::getPagedRows($query,['order'=>'post_createtime asc','pageSize'=>10]);
-         
-        $locals['currentBoard']=$this->getBoard($thread['board_id']);
-        $locals['thread']=$thread;
-        $locals['newPost']=new Post;
+        $locals['currentBoard'] = $this->getBoard($model['post_cateid']);
+        $locals['thread'] = $model;
+        $locals['newPost'] = new Reply;
          
         return $this->render('view', $locals);
         
