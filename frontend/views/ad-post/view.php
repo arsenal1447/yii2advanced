@@ -5,11 +5,12 @@ use yii\widgets\DetailView;
 use common\models\User;
 use common\models\AdCat;
 use app\models\AdPost;
+use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\AdPost */
 
-$this->title = $model->post_id;
+$this->title = $model->post_title;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Ad Posts'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -60,5 +61,20 @@ $this->params['breadcrumbs'][] = $this->title;
 //             'post_deld',
         ],
     ]) ?>
+    
+    <?php $form = ActiveForm::begin([
+//             'id'=>'newPost',
+//             'action' => $this->homeUrl.'?r=thread/new-post&thread='.$model['post_id'],
+	]); ?>
+
+        <input type="hidden" id="post-post_id" name="Post[post_id]" value="<?php echo $model['post_id']?>"/>
+        
+        <?= $form->field($newPost, 'body',['template'=>"回帖\n{input}\n{hint}\n{error}"])->textarea(['rows' => 6]) ?>
+    	
+        <div class="form-group">
+            <?= Html::submitButton('Create', ['class' => 'btn btn-success']) ?>
+        </div>
+
+    <?php ActiveForm::end(); ?>
 
 </div>

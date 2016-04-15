@@ -9,6 +9,8 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use common\models\AdCat;
+use base\Ad;
+use common\models\Reply;
 
 /**
  * AdPostController implements the CRUD actions for AdPost model.
@@ -56,11 +58,22 @@ class AdPostController extends Controller
 //             echo ('该帖子已经被删除');
             return $this->redirect(['index']);
         }
-        AdPost::UpViewCount($id);
+//         AdPost::UpViewCount($id);
         
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
+//         return $this->render('view', [
+//             'model' => $this->findModel($id),
+//         ]);
+        
+        $query=Reply::find()->where(['post_id'=>$model['post_id']]);
+         
+        $locals=Ad::getPagedRows($query,['order'=>'post_createtime asc','pageSize'=>10]);
+         
+        $locals['currentBoard']=$this->getBoard($thread['board_id']);
+        $locals['thread']=$thread;
+        $locals['newPost']=new Post;
+         
+        return $this->render('view', $locals);
+        
     }
 
     /**
