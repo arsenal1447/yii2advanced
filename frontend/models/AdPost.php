@@ -72,6 +72,7 @@ class AdPost extends \yii\db\ActiveRecord
         if (parent::beforeSave($insert)) {
             if ($this->isNewRecord) {
                 $this->post_user = $userid;
+                $this->post_user_name = Yii::$app->user->identity->user_name;
                 $this->post_create = time();
                 $this->post_update = time();
                 $this->post_status = 0;

@@ -13,9 +13,9 @@ use Yii;
  * @property integer $reply_create
  * @property integer $reply_user
  * @property string $reply_ip
- * @property string $reply_username
+ * @property string $reply_user_name
  * @property string $reply_title
- * @property integer $reply_edittime
+ * @property integer $reply_update
  * @property integer $reply_support
  * @property integer $reply_against
  * @property integer $reply_floor
@@ -39,10 +39,10 @@ class AdReply extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['reply_id', 'reply_post', 'reply_content', 'reply_user', 'reply_username', 'reply_edittime'], 'required'],
-            [['reply_id', 'reply_post', 'reply_create', 'reply_user', 'reply_edittime', 'reply_support', 'reply_against', 'reply_floor', 'reply_deld', 'reply_status'], 'integer'],
+            [['reply_id', 'reply_post', 'reply_content', 'reply_user', 'reply_user_name', 'reply_update'], 'required'],
+            [['reply_id', 'reply_post', 'reply_create', 'reply_user', 'reply_update', 'reply_support', 'reply_against', 'reply_floor', 'reply_deld', 'reply_status'], 'integer'],
             [['reply_content'], 'string'],
-            [['reply_ip', 'reply_username', 'reply_note'], 'string', 'max' => 50],
+            [['reply_ip', 'reply_user_name', 'reply_note'], 'string', 'max' => 50],
             [['reply_title'], 'string', 'max' => 100]
         ];
     }
@@ -59,9 +59,9 @@ class AdReply extends \yii\db\ActiveRecord
             'reply_create' => Yii::t('app', 'Reply Create'),
             'reply_user' => Yii::t('app', 'Reply User'),
             'reply_ip' => Yii::t('app', 'Reply Ip'),
-            'reply_username' => Yii::t('app', 'Reply Username'),
+            'reply_user_name' => Yii::t('app', 'Reply Username'),
             'reply_title' => Yii::t('app', 'Reply Title'),
-            'reply_edittime' => Yii::t('app', 'Reply Edittime'),
+            'reply_update' => Yii::t('app', 'Reply Edittime'),
             'reply_support' => Yii::t('app', 'Reply Support'),
             'reply_against' => Yii::t('app', 'Reply Against'),
             'reply_floor' => Yii::t('app', 'Reply Floor'),

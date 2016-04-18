@@ -24,11 +24,11 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'reply_ip')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'reply_username')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'reply_user_name')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'reply_title')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'reply_edittime')->textInput() ?>
+    <?= $form->field($model, 'reply_update')->textInput() ?>
 
     <?= $form->field($model, 'reply_support')->textInput() ?>
 

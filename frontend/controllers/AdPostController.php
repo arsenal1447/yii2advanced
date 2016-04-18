@@ -8,6 +8,7 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use frontend\base\BaseFrontController;
 use common\models\AdCat;
 use base\Ad;
 use common\models\Reply;
@@ -15,8 +16,9 @@ use common\models\Reply;
 /**
  * AdPostController implements the CRUD actions for AdPost model.
  */
-class AdPostController extends Controller
+class AdPostController extends BaseFrontController
 {
+
     public function behaviors()
     {
         return [
@@ -34,13 +36,13 @@ class AdPostController extends Controller
      * @return mixed
      */
     public function actionIndex()
-    {   
+    {
         $query = AdPost::find();
         $query->where(['post_deld'=>0,'post_status'=>0]);//只显示未删除的帖子
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
-        
+
         return $this->render('index', [
             'dataProvider' => $dataProvider,
         ]);
@@ -53,28 +55,33 @@ class AdPostController extends Controller
      */
     public function actionView($id)
     {
-        $model = $this->findModel($id);
-        if($model->post_deld == 1){
-//             echo ('该帖子已经被删除');
+        $postmodel = $this->findModel($id);
+        if($postmodel->post_deld == 1){
             return $this->redirect(['index']);
         }
 //         AdPost::UpViewCount($id);
-        
+
 //         return $this->render('view', [
 //             'model' => $this->findModel($id),
 //         ]);
 
-        $query = Reply::find()->where(['post_id'=>$model['post_id']]);
+        //帖子的回复情况
+        $query = Reply::find()->where(['reply_post'=>$postmodel['post_id']]);
 
-//         die('68');
-        $locals=Ad::getPagedRows($query,['order'=>'post_create asc','pageSize'=>10]);
-         
-        $locals['currentBoard'] = $this->getBoard($model['post_cateid']);
-        $locals['thread'] = $model;
+        $locals = Ad::getPagedRows($query,['order'=>'reply_create asc','pageSize'=>10]);
+
+        $locals['currentBoard'] = $this->getBoard($postmodel['post_cateid']);
+        $locals['post'] = $postmodel;
         $locals['newPost'] = new Reply;
-         
-        return $this->render('view', $locals);
         
+        return $this->render('view',  [
+                    'postmodel' => $postmodel,
+                    'pages' => $locals['pages'],
+                    'rows' => $locals['rows'],
+                    'currentBoard' => $locals['currentBoard'],
+                    'newPost' => $locals['newPost'],
+                ]);
+
     }
 
     /**
@@ -83,7 +90,7 @@ class AdPostController extends Controller
      * @return mixed
      */
     public function actionCreate()
-    {   
+    {
         if (Yii::$app->user->isGuest) {
             return $this->redirect(['site/login']);
         }
@@ -91,8 +98,14 @@ class AdPostController extends Controller
              $model = new AdPost();
             //获取分类列表
             $catmodel = AdCat::getCate();
-            
-            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
+            if ($model->load(Yii::$app->request->post())) {
+
+                if($model->save())
+                {
+                    $this->saveReplyForPost($model);
+                }
+
                 return $this->redirect(['view', 'id' => $model->post_id]);
             } else {
                 return $this->render('create', [
@@ -101,7 +114,46 @@ class AdPostController extends Controller
                 ]);
             }
         }
-       
+
+    }
+
+
+    private function saveReplyForPost($post,$reply=null)
+    {
+        $data = Ad::getPostValue('AdPost');
+
+        if($reply==null)
+        {
+            $reply = new Reply;
+            $reply->reply_post = $post['post_id'];
+            $reply->reply_user = $post['post_user'];
+            $reply->reply_user_name = $post['post_user_name'];
+            $reply->reply_title = $post['post_title'];
+            $reply->reply_content = $data['post_content'];
+            $reply->reply_create = $post['post_create'];
+            $reply->reply_update = $post['post_update'];
+            $reply->reply_support = 0;
+            $reply->reply_against = 0;
+            $reply->reply_floor = 0;
+//             $reply->note ='';
+        }
+        else
+        {
+            //$post->thread_id=$thread['id'];
+            //$post->user_id=0;
+            //$post->user_name='admin';
+            $reply->reply_title = $post['post_title'];;
+            $reply->reply_content = $data['post_content'];
+            //$post->create_time=$thread['create_time'];
+            $reply->reply_update = $post['post_update'];
+            //$post->supports=0;
+            //$post->againsts=0;
+            //$post->floor=0;
+            //$post->note='';
+        }
+
+        $reply->save(false);
+
     }
 
     /**
@@ -111,12 +163,12 @@ class AdPostController extends Controller
      * @return mixed
      */
     public function actionUpdate($id)
-    {   
+    {
         //需要添加权限判断,判断是否是发表帖子的用户,发布者才可以编辑
         if (Yii::$app->user->isGuest) {
             return $this->redirect(['site/login']);
         }
-        
+
         if (\Yii::$app->user->can('updatePost', ['post' => $post])) {
             $model = $this->findModel($id);
             $catmodel = AdCat::getCate();
@@ -138,7 +190,7 @@ class AdPostController extends Controller
      * @return mixed
      */
     public function actionDelete($id)
-    {    
+    {
         if (Yii::$app->user->isGuest) {
             return $this->redirect(['site/login']);
         }
@@ -165,13 +217,13 @@ class AdPostController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
-    
+
     /**
      * @desc 显示分类下的帖子
      * @return mixed
      */
     public function actionCat($cate_id)
-    {    
+    {
         $getparam = Yii::$app->request->get();
 //         $get = Yii::$app()->request->getParam();;
         $cate_id = $getparam['cate_id'];
@@ -180,14 +232,14 @@ class AdPostController extends Controller
         $dataProvider = new ActiveDataProvider([
                 'query' => $query,
                 ]);
-    
+
         return $this->render('cat', [
                 'dataProvider' => $dataProvider,
                 ]);
     }
-    
-    
-    
-    
-    
+
+
+
+
+
 }
