@@ -24,7 +24,8 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="post-view">
     <div class="tbox">
         <div class="floatl">
-            <?= Html::a('发帖', ['new-post','boardid'=>$currentBoard['id']], ['class' => 'btn btn-success']) ?>
+            <?php //echo Html::a('发帖', ['new-post','boardid'=>$currentBoard['id']], ['class' => 'btn btn-success']) ?>
+			<?= Html::a(Yii::t('app', 'Create Ad Post'), ['create'], ['class' => 'btn btn-success']) ?>
         </div>
         <div class="floatr">
             <?php echo LinkPager::widget(['pagination' => $pages,]);?>
@@ -48,11 +49,7 @@ $this->params['breadcrumbs'][] = $this->title;
         </table>
 
         <?php
-            $floor=0;
-//             echo "<pre>";
-//             print_R($rows);
-//             echo "</pre>";
-//             die('56');
+            $floor = 0;
             foreach ($rows as $row){
                 $floor+=1;
         ?>
@@ -66,7 +63,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     </td>
                     <td class="post-right-column header">
                         <div class="dashed-border-b padding-b8">
-                            发表于：<span><?php echo $row['reply_create'];?></span> <span class="floatr"><?php echo $floor;?>楼</span>
+                            发表于：<span><?php echo AdPost::convertDate($row['reply_create']);?></span> <span class="floatr"><?php echo $floor;?>楼</span>
                         </div>
                     </td>
                 </tr>
@@ -100,7 +97,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                         ],
                                     ]);
                                 }else{
-                                    echo Html::a('编辑', ['edit-post','id'=>$row['post_id'],'boardid'=>$currentBoard['id']]);
+                                    echo Html::a('编辑', ['edit-post','id'=>$row['reply_post'],'boardid'=>$currentBoard['id']]);
                                 }
                             ?>
                             </span><span>支持</span><span>反对</span>
@@ -125,12 +122,12 @@ $this->params['breadcrumbs'][] = $this->title;
    <div class="tbox">
        <?php $form = ActiveForm::begin([
                 'id'=>'newPost',
-                'action' => Ad::getHomeUrl().'?r=post/new-post&postid='.$postmodel->post_id,
+                'action' => Ad::getHomeUrl().'?r=ad-post/new-reply&id='.$postmodel->post_id,
         ]); ?>
 
-            <input type="hidden" id="post-board_id" name="Post[board_id]" value="<?php echo $currentBoard['id']?>"/>
-            <input type="hidden" id="post-post_id" name="Post[post_id]" value="<?php echo $postmodel->post_id?>"/>
-            <input type="hidden" id="post-post_title" name="Post[post_title]" value="<?php echo $postmodel->post_title?>"/>
+            <input type="hidden" id="post-board_id" name="Reply[board_id]" value="<?php echo $currentBoard['id']?>"/>
+            <input type="hidden" id="post-post_id" name="Reply[post_id]" value="<?php echo $postmodel->post_id?>"/>
+            <input type="hidden" id="post-post_title" name="Reply[post_title]" value="<?php echo $postmodel->post_title?>"/>
 
             <?php
                 $label= "回帖".Html::a("(高级)", ['new-post','postid'=>$postmodel->post_id,'boardid'=>$currentBoard['id']]);

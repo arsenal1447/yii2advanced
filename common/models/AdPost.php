@@ -71,7 +71,7 @@ class Thread extends BaseActiveRecord
                 'post_status' => '状态',
 //                 'note1' => 'Note1',
 //                 'note2' => 'Note2',
-                'post_last_userid' => 'Last User ID',
+                'post_last_user_id' => 'Last User ID',
                 'post_last_user_name' => 'Last User Name',
                 'post_last_update' => 'Last Modify Time'
         ];
@@ -101,7 +101,7 @@ class Thread extends BaseActiveRecord
                 ":bp0" => 1
         ]);
 
-        $attributes['post_last_userid'] = Ad::getIdentity()->id;
+        $attributes['post_last_user_id'] = Ad::getIdentity()->id;
         $attributes['post_last_user_name'] = Ad::getIdentity()->username;
         $attributes['post_last_update'] = TTimeHelper::getCurrentTime();
 

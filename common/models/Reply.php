@@ -13,7 +13,7 @@ use yii\web\IdentityInterface;
  * @property integer $reply_id
  * @property integer $reply_post
  * @property integer $reply_user
- * @property string $reply_username
+ * @property string $reply_user_name
  * @property string $reply_title
  * @property string $reply_content
  * @property string $reply_create
@@ -40,11 +40,11 @@ class Reply extends ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-                [['reply_post','reply_user','reply_username','reply_content','reply_create'],'required'],
+                [['reply_post','reply_user','reply_user_name','reply_content','reply_create'],'required'],
                 [['reply_post','reply_user','reply_support','reply_against','reply_floor'],'integer'],
                 [['reply_content'],'string'],
                 [['reply_create','reply_update'],'safe'],
-                [['reply_username'],'string','max' => 32],
+                [['reply_user_name'],'string','max' => 32],
                 [['reply_title'],'string','max' => 128],
                 [['reply_note'],'string','max' => 64],
         ];
@@ -59,7 +59,7 @@ class Reply extends ActiveRecord implements IdentityInterface
                 'reply_id' => 'ID',
                 'reply_post' => 'Post ID',
                 'reply_user' => 'User ID',
-                'reply_username' => 'User Name',
+                'reply_user_name' => 'User Name',
                 'reply_title' => '标题',
                 'reply_content' => '内容',
                 'reply_create' => 'Create Time',

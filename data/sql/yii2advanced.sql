@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50624
 File Encoding         : 65001
 
-Date: 2016-04-18 16:24:56
+Date: 2016-04-18 17:26:21
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -214,7 +214,7 @@ CREATE TABLE `ad_post` (
   `post_status` tinyint(4) DEFAULT '0',
   `post_deld` tinyint(2) DEFAULT '0',
   `post_replycount` int(11) DEFAULT '0',
-  `post_last_userid` int(11) DEFAULT '0',
+  `post_last_user_id` int(11) DEFAULT '0',
   `post_last_user_name` varchar(32) CHARACTER SET utf8 DEFAULT '0',
   `post_last_update` int(11) DEFAULT '0',
   `post_user_name` varchar(255) CHARACTER SET utf8 DEFAULT '0',
@@ -256,7 +256,7 @@ INSERT INTO `ad_post` VALUES ('29', 'gggg', '3', '1', '<p>cccc</p>', '1460966949
 INSERT INTO `ad_post` VALUES ('30', 'gggg', '3', '1', '<p>cccc</p>', '1460967047', '1460967047', '10', '0', '0', '0', '0', '0', '0', '0');
 INSERT INTO `ad_post` VALUES ('31', 'ttt', '4', '1', '<p>ttttt</p>', '1460967085', '1460967085', '10', '0', '0', '0', '0', '0', '0', '0');
 INSERT INTO `ad_post` VALUES ('32', 'ttt', '4', '1', '<p>ttttt</p>', '1460967128', '1460967128', '10', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `ad_post` VALUES ('33', 'ttt', '4', '1', '<p>ttttt</p>', '1460967467', '1460967467', '10', '0', '0', '0', '0', '0', '0', 'zxx123');
+INSERT INTO `ad_post` VALUES ('33', 'ttt', '4', '1', '<p>ttttt</p>', '1460967467', '1460967467', '10', '0', '0', '3', '1', 'zxx123', '2016', 'zxx123');
 
 -- ----------------------------
 -- Table structure for `ad_reply`
@@ -279,12 +279,21 @@ CREATE TABLE `ad_reply` (
   `reply_deld` tinyint(4) DEFAULT '0',
   `reply_status` tinyint(4) DEFAULT '0',
   PRIMARY KEY (`reply_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of ad_reply
 -- ----------------------------
 INSERT INTO `ad_reply` VALUES ('1', '33', '<p>ttttt</p>', '1460967467', '1', null, 'zxx123', 'ttt', '1460967467', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('2', '33', '擦擦擦擦', '2016', '1', null, 'zxx123', 'ttt', '2016', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('3', '33', '擦擦擦擦', '2016', '1', null, 'zxx123', 'ttt', '2016', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('4', '33', '擦擦擦擦', '1460971156', '1', null, 'zxx123', 'ttt', '1460971156', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('5', '33', '擦擦擦擦', '1460971234', '1', null, 'zxx123', 'ttt', '1460971234', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('6', '33', '擦擦擦擦', '1460971250', '1', null, 'zxx123', 'ttt', '1460971250', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('7', '33', '擦擦擦擦', '1460971275', '1', null, 'zxx123', 'ttt', '1460971275', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('8', '33', '擦擦擦擦', '1460971301', '1', null, 'zxx123', 'ttt', '1460971301', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('9', '33', '积极', '1460971337', '1', null, 'zxx123', 'ttt', '1460971337', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('10', '33', '有意愿', '1460971568', '1', null, 'zxx123', 'ttt', '1460971568', '0', '0', '0', '0', '0', '0');
 
 -- ----------------------------
 -- Table structure for `ad_user`

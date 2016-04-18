@@ -3,6 +3,10 @@
 namespace app\models;
 
 use Yii;
+use base\BaseActiveRecord;
+use base\Ad;
+use common\helpers\TTimeHelper;
+use yii\db\Expression;
 // use yii\redis\Connection;
 // use common\models\User;
 // use common\models\AdCat;
@@ -86,8 +90,8 @@ class AdPost extends \yii\db\ActiveRecord
             return false;
         }
     }
-    
-    
+
+
     /**
      * @desc 更新每个帖子的阅读量,每次查看更新一次
      * If deletion is successful, the browser will be redirected to the 'index' page.
@@ -97,9 +101,9 @@ class AdPost extends \yii\db\ActiveRecord
     public static function UpViewCount($id)
     {
         $model = AdPost::find()->select(['post_id','post_viewcount'])->where(['post_id' => $id,'post_deld'=>0,'post_status'=>0])->one();
- 
+
         $redis = Yii::$app->redis;
-        
+
         $currentcount = AdPost::getViewCount($id);
         $count = 0;
         if($currentcount>0){
@@ -107,12 +111,12 @@ class AdPost extends \yii\db\ActiveRecord
         }else{
             $count = $model->post_viewcount;
         }
-        
+
         $redis->hset("counthash","pid_".$id,$count);
         $result = $redis->hincrby('counthash', "pid_".$id, '1');
     }
-    
-    
+
+
     /**
      * @desc 更新每个帖子的阅读量,每次查看更新一次
      * If deletion is successful, the browser will be redirected to the 'index' page.
@@ -124,6 +128,33 @@ class AdPost extends \yii\db\ActiveRecord
         $redis = Yii::$app->redis;
         return $redis->hget('counthash', "pid_".$id);
     }
+
+
+    public static function updateLastData($postId)
+    {
+        $attributes = [];
+
+        $attributes['post_replycount'] = new Expression("[[post_replycount]]+:bp0", [
+                ":bp0" => 1
+        ]);
+
+        $attributes['post_last_user_id'] = Ad::getIdentity()->id;
+        $attributes['post_last_user_name'] = Ad::getIdentity()->user_name;
+        $attributes['post_last_update'] = TTimeHelper::getCurrentTime();
+
+        AdPost::updateAll($attributes, [
+            'post_id' => intval($postId)
+        ]);
+    }
     
-    
+    /**
+     * @desc 转化时间格式
+     * @param 时间戳格式  $datetime
+     * @return 返回 2016-03-02 03:07:49 这种格式
+     */
+    public static function convertDate($datetime){
+        return date('Y-m-d H:i:s',$datetime);
+    }
+
+
 }

@@ -12,6 +12,7 @@ use frontend\base\BaseFrontController;
 use common\models\AdCat;
 use base\Ad;
 use common\models\Reply;
+use common\helpers\TTimeHelper;
 
 /**
  * AdPostController implements the CRUD actions for AdPost model.
@@ -118,8 +119,7 @@ class AdPostController extends BaseFrontController
     }
 
 
-    private function saveReplyForPost($post,$reply=null)
-    {
+    private function saveReplyForPost($post,$reply=null){
         $data = Ad::getPostValue('AdPost');
 
         if($reply==null)
@@ -154,6 +154,64 @@ class AdPostController extends BaseFrontController
 
         $reply->save(false);
 
+    }
+    
+    
+    public function actionNewReply()
+    {
+//         if(!YiiForum::checkAuth('reply_add'))
+//         {
+//             return $this->noPermission();
+//         }
+         
+        Ad::checkIsGuest();
+    
+        $reply = new Reply;
+         
+        $postId = Ad::getGetValue('postid');
+         
+        $data = Ad::getPostValue('Reply');
+        
+        echo "<pre>";
+        print_R($data);
+        echo "</pre>";
+//         die('177');
+    
+        if($data==null)
+        {
+            $post = Thread::findOne(['post_id' => $postId]);
+    
+            $locals=[];
+            $locals['post'] = $post;
+//             $locals['currentBoard']=$this->getBoard($post['board_id']);
+            $locals['model'] = $reply;
+            
+            return $this->render('new-reply',$locals);
+        }
+         
+//         $boardId = $data['board_id'];
+        $postId = $data['post_id'];
+        $postTitle = $data['post_title'];
+    
+         
+        $reply->reply_post = $postId;
+        $reply->reply_user = Ad::getIdentity()->id;
+        $reply->reply_user_name = Ad::getIdentity()->user_name;
+        $reply->reply_title = isset($data['post_title'])?$data['post_title']:'';
+        $reply->reply_content = $data['reply_content'];
+        $reply->reply_create = time();
+        $reply->reply_update = time();
+        $reply->reply_support = 0;
+        $reply->reply_against = 0;
+        $reply->reply_floor = 0;
+//         $reply->note = '';
+        if($reply->save())
+        {
+            AdPost::updateLastData($postId);
+//             Board::updateLastData($boardId, $threadId, $threadTitle,false);
+        }
+    
+        return $this->redirect(['view', 'id' => $postId]);
     }
 
     /**
