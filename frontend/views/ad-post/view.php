@@ -36,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <tr>
                 <td class="post-left-column header">
                     <div>
-                        查看：<span><?php echo $postmodel->post_viewcount;?></span>回复：<span><?php echo $postmodel->post_replycount;?></span>
+                                                            查看：<span><?php echo $postmodel->post_viewcount;?></span>回复：<span><?php echo $postmodel->post_replycount;?></span>
                     </div>
                 </td>
                 <td class="post-right-column header">
@@ -48,7 +48,7 @@ $this->params['breadcrumbs'][] = $this->title;
         </table>
 
         <?php
-            $floor = 0;
+            $floor = 0;//楼层
             foreach ($rows as $row){
                 $floor+=1;
         ?>
