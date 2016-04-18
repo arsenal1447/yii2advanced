@@ -24,8 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="post-view">
     <div class="tbox">
         <div class="floatl">
-            <?php //echo Html::a('发帖', ['new-post','boardid'=>$currentBoard['id']], ['class' => 'btn btn-success']) ?>
-			<?= Html::a(Yii::t('app', 'Create Ad Post'), ['create'], ['class' => 'btn btn-success']) ?>
+            <?= Html::a(Yii::t('app', 'Create Ad Post'), ['create','cateid'=>$postmodel->post_cateid], ['class' => 'btn btn-success']) ?>
         </div>
         <div class="floatr">
             <?php echo LinkPager::widget(['pagination' => $pages,]);?>

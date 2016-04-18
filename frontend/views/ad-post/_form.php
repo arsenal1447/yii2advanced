@@ -29,8 +29,7 @@ echo Html::jsFile('@web/public/jquery-1.10.2.js');
 
     <?= $form->field($model, 'post_title')->textInput(['style'=>'width:550px']) ?>
     
-    <?= $form->field($model, 'post_cateid')->dropDownList($cate,
-                                              ['prompt'=>'请选择','style'=>'width:120px'])?>
+    <?= $form->field($model, 'post_cateid')->dropDownList($cate,['prompt'=>'请选择','style'=>'width:120px'])?>
    
     <?= $form->field($model,'post_content')->textarea(['rows'=>6,'id'=>'editor','class'=>'col-sm-1 col-md-12']);?>
 
