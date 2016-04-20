@@ -18,6 +18,10 @@ return [
         'session'=>[
             'class'=>'yii\redis\Session'
         ],
+        'urlManager' => [
+            'enablePrettyUrl' => true,
+            'showScriptName'=>false
+        ],
     ],
     'timeZone'=>'Asia/Chongqing',//设置时区
 ];
