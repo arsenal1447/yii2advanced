@@ -36,7 +36,8 @@ $this->params['breadcrumbs'][] = $this->title;
             <tr>
                 <td class="post-left-column header">
                     <div>
-                                                            查看：<span><?php echo $postmodel->post_viewcount;?></span>回复：<span><?php echo $postmodel->post_replycount;?></span>
+                    <!-- 查看：<span><?php //echo $postmodel->post_viewcount;?></span>回复：<span><?php //echo $postmodel->post_replycount;?></span> -->
+                                                            查看：<span><?php echo AdPost::getViewCount($postmodel->post_id);?></span>回复：<span><?php echo $postmodel->post_replycount;?></span>
                     </div>
                 </td>
                 <td class="post-right-column header">
@@ -74,6 +75,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     </td>
                     <td class="post-right-column body content">
                         <div>
+                            <?php //echo html_entity_decode(trim($row['reply_content']), ENT_QUOTES, 'UTF-8');?>
                             <?php echo $row['reply_content'];?>
                         </div>
                     </td>
@@ -88,7 +90,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             <span>
                             <?php
                                 if($floor==1){
-                                    echo Html::a('编辑', ['edit-post', 'id' =>$postmodel->post_id,'boardid'=>$currentBoard['id']]).'</span><span>';
+                                    echo Html::a('编辑', ['update', 'id' =>$postmodel->post_id]).'</span><span>';
                                     echo Html::a('删除', ['delete', 'id' =>$postmodel->post_id,'boardid'=>$currentBoard['id']], [
                                         'data' => [
                                             'confirm' => 'Are you sure you want to delete this item?',

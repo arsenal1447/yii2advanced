@@ -94,7 +94,6 @@ class AdPost extends \yii\db\ActiveRecord
 
     /**
      * @desc 更新每个帖子的阅读量,每次查看更新一次
-     * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param string $id
      * @return mixed
      */
@@ -119,7 +118,6 @@ class AdPost extends \yii\db\ActiveRecord
 
     /**
      * @desc 更新每个帖子的阅读量,每次查看更新一次
-     * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param string $id
      * @return mixed
      */

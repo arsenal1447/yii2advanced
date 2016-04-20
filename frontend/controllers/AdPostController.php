@@ -39,7 +39,7 @@ class AdPostController extends BaseFrontController
     public function actionIndex()
     {
         $query = AdPost::find();
-        $query->where(['post_deld'=>0,'post_status'=>0]);//只显示未删除的帖子
+        $query->where(['post_deld'=>0,'post_status'=>0])->orderBy('post_create DESC');//只显示未删除的帖子
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
@@ -60,12 +60,8 @@ class AdPostController extends BaseFrontController
         if($postmodel->post_deld == 1){
             return $this->redirect(['index']);
         }
-//         AdPost::UpViewCount($id);
-
-//         return $this->render('view', [
-//             'model' => $this->findModel($id),
-//         ]);
-
+        
+        AdPost::UpViewCount($id);
         //帖子的回复情况
         $query = Reply::find()->where(['reply_post'=>$postmodel['post_id']]);
 
@@ -227,7 +223,7 @@ class AdPostController extends BaseFrontController
             return $this->redirect(['site/login']);
         }
 
-        if (\Yii::$app->user->can('updatePost', ['post' => $post])) {
+//         if (\Yii::$app->user->can('updatePost', ['post' => $post])) {
             $model = $this->findModel($id);
             $catmodel = AdCat::getCate();
             if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -238,7 +234,7 @@ class AdPostController extends BaseFrontController
                     'catmodel' => $catmodel,
                 ]);
             }
-        }
+//         }
     }
 
     /**

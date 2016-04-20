@@ -9,7 +9,7 @@ return [
             'class' => 'yii\redis\Connection',
             'hostname' => 'localhost',
             'port' => 6379,
-            'password' => 'foobared',
+            'password' => 'zxx123456',
             'database' => 0,
         ],
         'cache'=>[
