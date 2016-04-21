@@ -39,6 +39,7 @@ AppAsset::register($this);
 //                 ['label' => '权限', 'url' => ['/ad-auth-rule/index']],//测试命令行提交
                 ['label' => Yii::t('app','Post List'), 'url' => ['/ad-post/index']],//测试命令行提交
                 ['label' => Yii::t('app','User Info'), 'url' => ['/ad-user/info']],//测试命令行提交
+                ['label' => Yii::t('app','User Notice'), 'url' => ['/ad-notice/index']],//测试命令行提交
             ];
             if (Yii::$app->user->isGuest) {
                 $menuItems[] = ['label' => Yii::t('app','Sign Up'), 'url' => ['/site/signup']];

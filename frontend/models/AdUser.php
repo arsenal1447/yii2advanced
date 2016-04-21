@@ -82,7 +82,7 @@ class AdUser extends \yii\db\ActiveRecord
                 $this->user_logintime = time();
                 $this->user_status = 10;
                 $this->user_deld = 0;
-                $this->user_ip = $_SERVER['REMOTE_ADDR'];
+                $this->user_ip = Yii::$app->getRequest()->getUserIP();//获取ip
 //                 $this->user_role = $_SERVER['REMOTE_ADDR'];
             }else{
                 $this->user_logintime = time();

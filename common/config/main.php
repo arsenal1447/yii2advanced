@@ -18,10 +18,20 @@ return [
         'session'=>[
             'class'=>'yii\redis\Session'
         ],
-        'urlManager' => [
-            'enablePrettyUrl' => true,
-            'showScriptName'=>false
-        ],
+            
+        //需要去除indx.php  打开此注释
+//         'urlManager' => [
+//             'enablePrettyUrl' => true,
+//             'showScriptName'=>false
+//         ],
     ],
     'timeZone'=>'Asia/Chongqing',//设置时区
+    'modules' => [
+            'topic' => [
+                    'class' => 'frontend\modules\topic\Module',
+            ],
+            'nav' => [
+                    'class' => 'frontend\modules\nav\Module',
+            ],
+    ],
 ];

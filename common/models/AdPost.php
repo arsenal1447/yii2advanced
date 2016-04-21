@@ -25,9 +25,19 @@ use yii\db\Expression;
  * @property string $last_user_name
  * @property string $last_post_update
  */
-class Thread extends BaseActiveRecord
+class AdPost extends BaseActiveRecord
 {
-
+    /**
+     * 发布
+     */
+    const STATUS_ACTIVE = 0;
+    
+    /**
+     * 删除
+     */
+    const STATUS_DELETED = 0;
+    
+    
     /**
      * @inheritdoc
      */

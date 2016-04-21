@@ -4,6 +4,10 @@ namespace frontend\controllers;
 
 use Yii;
 use app\models\AdPost;
+use common\services\NoticeService;
+use common\services\TopicService;
+use frontend\models\AdNotice;
+use frontend\modules\topic\models\Topic;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -60,7 +64,7 @@ class AdPostController extends BaseFrontController
         if($postmodel->post_deld == 1){
             return $this->redirect(['index']);
         }
-        
+
         AdPost::UpViewCount($id);
         //帖子的回复情况
         $query = Reply::find()->where(['reply_post'=>$postmodel['post_id']]);
@@ -70,7 +74,7 @@ class AdPostController extends BaseFrontController
         $locals['currentBoard'] = $this->getBoard($postmodel['post_cateid']);
         $locals['post'] = $postmodel;
         $locals['newPost'] = new Reply;
-        
+
         return $this->render('view',  [
                     'postmodel' => $postmodel,
                     'pages' => $locals['pages'],
@@ -151,63 +155,83 @@ class AdPostController extends BaseFrontController
         $reply->save(false);
 
     }
-    
-    
+
+
     public function actionNewReply()
     {
 //         if(!YiiForum::checkAuth('reply_add'))
 //         {
 //             return $this->noPermission();
 //         }
-         
+
+
+//         $post = Topic::findTopic($id);
+//         $model = new PostComment();
+//         if ($model->load(Yii::$app->request->post())) {
+//             $model->user_id = Yii::$app->user->id;
+//             $model->post_id = $id;
+//             $model->ip = Yii::$app->getRequest()->getUserIP();
+//             $rawComment = $model->comment;
+//             $model->comment = $model->replace($rawComment);
+//             if ($model->save()) {
+//                 (new UserMeta())->saveNewMeta('topic', $id, 'follow');
+//                 (new NotificationService())->newReplyNotify(Yii::$app->user->identity, $post, $model, $rawComment);
+//
+//                 $this->flash("评论成功", 'success');
+//             } else {
+//                 $this->flash(array_values($model->getFirstErrors())[0], 'warning');
+//             }
+//             return $this->redirect(['/topic/default/view', 'id' => $post->id]);
+//         }
+//         return $model;
+
+
+
+
         Ad::checkIsGuest();
-    
-        $reply = new Reply;
-         
-        $postId = Ad::getGetValue('postid');
-         
+
+        $model = new Reply;
+        $postId = Yii::$app->request->get('id');
+        $post = Topic::findTopic($postId);
         $data = Ad::getPostValue('Reply');
-        
-        echo "<pre>";
-        print_R($data);
-        echo "</pre>";
-//         die('177');
-    
-        if($data==null)
-        {
+        if($data == null){
             $post = Thread::findOne(['post_id' => $postId]);
-    
+
             $locals=[];
             $locals['post'] = $post;
 //             $locals['currentBoard']=$this->getBoard($post['board_id']);
-            $locals['model'] = $reply;
-            
+            $locals['model'] = $model;
+
             return $this->render('new-reply',$locals);
         }
-         
-//         $boardId = $data['board_id'];
+
         $postId = $data['post_id'];
         $postTitle = $data['post_title'];
-    
-         
-        $reply->reply_post = $postId;
-        $reply->reply_user = Ad::getIdentity()->id;
-        $reply->reply_user_name = Ad::getIdentity()->user_name;
-        $reply->reply_title = isset($data['post_title'])?$data['post_title']:'';
-        $reply->reply_content = $data['reply_content'];
-        $reply->reply_create = time();
-        $reply->reply_update = time();
-        $reply->reply_support = 0;
-        $reply->reply_against = 0;
-        $reply->reply_floor = 0;
-//         $reply->note = '';
-        if($reply->save())
-        {
-            AdPost::updateLastData($postId);
-//             Board::updateLastData($boardId, $threadId, $threadTitle,false);
+        if ($model->load(Yii::$app->request->post())) {
+            $model->reply_post = $postId;
+//             $model->reply_user = Ad::getIdentity()->id;
+            $model->reply_user = Yii::$app->user->id;
+            $model->reply_user_name = Ad::getIdentity()->user_name;
+            $model->reply_title = isset($data['post_title'])?$data['post_title']:'';
+            $rawComment = $reply->reply_content = $data['reply_content'];
+
+//         die($data['reply_content']);
+
+//         $rawComment = $reply->reply_content;
+            $model->reply_content = $model->replace($data['reply_content']);
+
+            $model->reply_create = time();
+            $model->reply_update = time();
+            if($model->save())
+            {
+                AdPost::updateLastData($postId);
+                $noticeservice = new NoticeService();
+                $noticeservice->newReplyNotify(Yii::$app->user->identity, $post, $model, $rawComment);
+            }
         }
-    
-        return $this->redirect(['view', 'id' => $postId]);
+        return $model;
+
+//         return $this->redirect(['view', 'id' => $postId]);
     }
 
     /**
