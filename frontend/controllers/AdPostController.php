@@ -163,39 +163,16 @@ class AdPostController extends BaseFrontController
 //         {
 //             return $this->noPermission();
 //         }
-
-
-//         $post = Topic::findTopic($id);
-//         $model = new PostComment();
-//         if ($model->load(Yii::$app->request->post())) {
-//             $model->user_id = Yii::$app->user->id;
-//             $model->post_id = $id;
-//             $model->ip = Yii::$app->getRequest()->getUserIP();
-//             $rawComment = $model->comment;
-//             $model->comment = $model->replace($rawComment);
-//             if ($model->save()) {
-//                 (new UserMeta())->saveNewMeta('topic', $id, 'follow');
-//                 (new NotificationService())->newReplyNotify(Yii::$app->user->identity, $post, $model, $rawComment);
-//
-//                 $this->flash("评论成功", 'success');
-//             } else {
-//                 $this->flash(array_values($model->getFirstErrors())[0], 'warning');
-//             }
-//             return $this->redirect(['/topic/default/view', 'id' => $post->id]);
-//         }
-//         return $model;
-
-
-
-
         Ad::checkIsGuest();
 
         $model = new Reply;
+//         $data = array();
+        
         $postId = Yii::$app->request->get('id');
         $post = Topic::findTopic($postId);
         $data = Ad::getPostValue('Reply');
         if($data == null){
-            $post = Thread::findOne(['post_id' => $postId]);
+            $post = AdPost::findOne(['post_id' => $postId]);
 
             $locals=[];
             $locals['post'] = $post;
@@ -207,26 +184,23 @@ class AdPostController extends BaseFrontController
 
         $postId = $data['post_id'];
         $postTitle = $data['post_title'];
+//         yii::myPrint($data);
         if ($model->load(Yii::$app->request->post())) {
             $model->reply_post = $postId;
 //             $model->reply_user = Ad::getIdentity()->id;
             $model->reply_user = Yii::$app->user->id;
-            $model->reply_user_name = Ad::getIdentity()->user_name;
+            $model->reply_user_name = Yii::$app->user->getIdentity()->user_name;
             $model->reply_title = isset($data['post_title'])?$data['post_title']:'';
-            $rawComment = $reply->reply_content = $data['reply_content'];
-
-//         die($data['reply_content']);
-
-//         $rawComment = $reply->reply_content;
-            $model->reply_content = $model->replace($data['reply_content']);
+            $model->reply_content = $data['reply_content'];
+//             $model->reply_content = $model->replace($data['reply_content']);
 
             $model->reply_create = time();
             $model->reply_update = time();
             if($model->save())
             {
                 AdPost::updateLastData($postId);
-                $noticeservice = new NoticeService();
-                $noticeservice->newReplyNotify(Yii::$app->user->identity, $post, $model, $rawComment);
+//                 $noticeservice = new NoticeService();
+//                 $noticeservice->newReplyNotify(Yii::$app->user->identity, $post, $model, $rawComment);
             }
         }
         return $model;

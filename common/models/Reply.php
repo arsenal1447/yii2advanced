@@ -180,12 +180,12 @@ class Reply extends ActiveRecord
 //         return Yii::$app->security->validatePassword($password, $this->admin_passhash);
 //     }
 
-    public function afterSave($insert, $changedAttributes)
-    {
-        parent::afterSave($insert, $changedAttributes);
+//     public function afterSave($insert, $changedAttributes)
+//     {
+//         parent::afterSave($insert, $changedAttributes);
     
-        Yii::$app->cache->set('comment' . $this->id, $this, 0);
-    }
+//         Yii::$app->cache->set('comment' . $this->id, $this, 0);
+//     }
     
     /**
      * 通过ID获取指定评论
