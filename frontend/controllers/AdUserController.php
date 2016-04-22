@@ -92,7 +92,7 @@ class AdUserController extends Controller
         }
         
         $model = AdUser::find()->select(['user_id','user_name','user_create','user_status','user_email','user_logintime','user_ip','user_nickname'])
-        ->where(['user_id'=> 1,'user_deld'=>0,'user_status'=>10])->one();
+        ->where(['user_id'=>Yii::$app->user->identity->id,'user_deld'=>0,'user_status'=>10])->one();
         
         if($model){
             return $this->render('info',['model' => $model,]);

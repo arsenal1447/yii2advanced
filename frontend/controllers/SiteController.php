@@ -78,9 +78,9 @@ class SiteController extends Controller
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-//             return $this->goBack(); 
+            return $this->goBack(); 
             //登陆成功跳转到帖子首页
-            return $this->redirect('../ad-post/index', ['model' => $model,]);
+//             return $this->redirect('../ad-post/index', ['model' => $model,]);
         } else {
             return $this->render('login', ['model' => $model,]);
         }

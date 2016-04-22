@@ -8,6 +8,7 @@ use common\services\NoticeService;
 use common\services\TopicService;
 use frontend\models\AdNotice;
 use frontend\modules\topic\models\Topic;
+use frontend\modules\user\models\UserMeta;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -193,19 +194,22 @@ class AdPostController extends BaseFrontController
             $model->reply_title = isset($data['post_title'])?$data['post_title']:'';
             $model->reply_content = $data['reply_content'];
 //             $model->reply_content = $model->replace($data['reply_content']);
-
+            $rawComment = $model->reply_content;
             $model->reply_create = time();
             $model->reply_update = time();
             if($model->save())
-            {
+            {  
                 AdPost::updateLastData($postId);
-//                 $noticeservice = new NoticeService();
-//                 $noticeservice->newReplyNotify(Yii::$app->user->identity, $post, $model, $rawComment);
+                $userMeta = new UserMeta();
+                $userMeta->saveNewMeta('topic', $postId, 'follow');
+                $noticeservice = new NoticeService();
+                $noticeservice->newReplyNotify(Yii::$app->user->identity, $post, $model, $rawComment);
             }
         }
-        return $model;
+        
+//         return $model;
 
-//         return $this->redirect(['view', 'id' => $postId]);
+        return $this->redirect(['view', 'id' => $postId]);
     }
 
     /**

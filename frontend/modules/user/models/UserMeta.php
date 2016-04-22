@@ -145,7 +145,7 @@ class UserMeta extends ActiveRecord
     public function beforeSave($insert)
     {
         if ($insert) {
-            $userActionNotify = (new NotificationService)->findUserActionNotify($this);
+            $userActionNotify = (new NoticeService)->findUserActionNotify($this);
             if ($userActionNotify) {
                 $userActionNotify->delete();
             }

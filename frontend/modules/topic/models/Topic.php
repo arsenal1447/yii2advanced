@@ -1,6 +1,7 @@
 <?php
 namespace frontend\modules\topic\models;
 
+
 use common\models\AdPost;
 // use common\models\PostTag;
 use common\models\Search;

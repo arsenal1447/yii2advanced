@@ -15,11 +15,11 @@ class PostService
      * 删除帖子
      * @param Post $post
      */
-    public static function delete(Post $post)
+    public static function delete(AdPost $post)
     {
-        $post->setAttributes(['status' => Post::STATUS_DELETED]);
+        $post->setAttributes(['post_status' => AdPost::STATUS_DELETED]);
         $post->save();
-        Notification::updateAll(['status' => Post::STATUS_DELETED], ['post_id' => $post->id]);
+        Notification::updateAll(['post_status' => AdPost::STATUS_DELETED], ['post_id' => $post->id]);
     }
 
     /**
@@ -78,6 +78,6 @@ class PostService
             }
             $users[] = $value;
         }
-        return ArrayHelper::map(\common\models\User::find()->where(['username' => $users])->all(), 'id', 'username');
+        return ArrayHelper::map(\common\models\User::find()->where(['user_name' => $users])->all(), 'user_id', 'user_name');
     }
 }

@@ -294,7 +294,7 @@ class Reply extends ActiveRecord
             }
             $users[] = $value;
         }
-        return ArrayHelper::map(User::find()->where(['username' => $users])->all(), 'id', 'username');
+        return ArrayHelper::map(User::find()->where(['user_name' => $users])->all(), 'user_id', 'user_name');
     }
     
     

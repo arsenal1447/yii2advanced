@@ -1,9 +1,8 @@
 <?php
 
-namespace app\models;
+namespace frontend\models;
 
 use Yii;
-
 /**
  * This is the model class for table "{{%ad_notice}}".
  *
@@ -34,7 +33,7 @@ class AdNotice extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['notice_from_user_id', 'notice_user_id', 'notice_post_id', 'notice_type', 'notice_status', 'notice_create', 'notice_update'], 'required'],
+            [['notice_from_user_id', 'notice_user_id', 'notice_post_id', 'notice_type', 'notice_status', 'notice_create',], 'required'],
             [['notice_from_user_id', 'notice_user_id', 'notice_post_id', 'notice_comment_id', 'notice_status', 'notice_create', 'notice_update'], 'integer'],
             [['notice_data'], 'string'],
             [['notice_type'], 'string', 'max' => 100]

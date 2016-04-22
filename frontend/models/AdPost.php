@@ -82,8 +82,12 @@ class AdPost extends \yii\db\ActiveRecord
                 $this->post_status = 0;
                 $this->post_viewcount = 10;
                 $this->post_deld = 0;
+                $this->post_type = 'topic';
             }else{//更新修改时间
                 $this->post_update = time();
+                $this->post_last_update = time();
+                $this->post_last_user_name = Yii::$app->user->identity->user_name;
+                $this->post_last_user_id = Yii::$app->user->identity->id;
             }
             return true;
         } else {

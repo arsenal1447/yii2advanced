@@ -103,20 +103,20 @@ class AdPost extends BaseActiveRecord
         $this->_post_content = $value;
     }
 
-    public static function updateLastData($threadId)
-    {
-        $attributes = [];
+//     public static function updateLastData($threadId)
+//     {
+//         $attributes = [];
 
-        $attributes['post_replycount'] = new Expression("[[post_replycount]]+:bp0", [
-                ":bp0" => 1
-        ]);
+//         $attributes['post_replycount'] = new Expression("[[post_replycount]]+:bp0", [
+//                 ":bp0" => 1
+//         ]);
 
-        $attributes['post_last_user_id'] = Ad::getIdentity()->id;
-        $attributes['post_last_user_name'] = Ad::getIdentity()->username;
-        $attributes['post_last_update'] = TTimeHelper::getCurrentTime();
+//         $attributes['post_last_user_id'] = Ad::getIdentity()->id;
+//         $attributes['post_last_user_name'] = Ad::getIdentity()->username;
+//         $attributes['post_last_update'] = TTimeHelper::getCurrentTime();
 
-        Thread::updateAll($attributes, [
-                'id' => intval($threadId)
-        ]);
-    }
+//         Thread::updateAll($attributes, [
+//                 'id' => intval($threadId)
+//         ]);
+//     }
 }
