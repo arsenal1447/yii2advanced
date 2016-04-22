@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50624
 File Encoding         : 65001
 
-Date: 2016-04-21 17:18:59
+Date: 2016-04-22 17:21:56
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -212,14 +212,19 @@ CREATE TABLE `ad_notice` (
   `notice_type` varchar(100) CHARACTER SET utf8 NOT NULL,
   `notice_data` text COLLATE utf8_unicode_ci,
   `notice_status` tinyint(1) NOT NULL,
-  `notice_create` int(11) NOT NULL,
-  `notice_update` int(11) NOT NULL,
+  `notice_create` int(11) DEFAULT NULL,
+  `notice_update` int(11) DEFAULT NULL,
   PRIMARY KEY (`notice_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of ad_notice
 -- ----------------------------
+INSERT INTO `ad_notice` VALUES ('1', '1', '5', '37', '141', 'new_comment', 'ddddd', '0', '1461316014', null);
+INSERT INTO `ad_notice` VALUES ('2', '1', '5', '37', '142', 'new_comment', 'ddddd', '0', '1461316054', null);
+INSERT INTO `ad_notice` VALUES ('3', '5', '1', '38', '145', 'new_comment', 'hhhhhh', '0', '1461316222', null);
+INSERT INTO `ad_notice` VALUES ('4', '5', '1', '38', '146', 'new_comment', 'yyyyyy', '0', '1461316477', null);
+INSERT INTO `ad_notice` VALUES ('5', '1', '5', '38', '147', 'new_comment', '顶顶顶顶顶', '0', '1461316522', null);
 
 -- ----------------------------
 -- Table structure for `ad_post`
@@ -243,7 +248,7 @@ CREATE TABLE `ad_post` (
   `post_last_update` int(11) DEFAULT '0',
   `post_user_name` varchar(255) CHARACTER SET utf8 DEFAULT '0',
   PRIMARY KEY (`post_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of ad_post
@@ -276,13 +281,16 @@ INSERT INTO `ad_post` VALUES ('25', 'topic', 'gggg', '3', '1', '<p>cccc</p>', '1
 INSERT INTO `ad_post` VALUES ('26', 'topic', 'gggg', '3', '1', '<p>cccc</p>', '1460966785', '1460966785', '10', '0', '0', '0', '0', '0', '0', '0');
 INSERT INTO `ad_post` VALUES ('27', 'topic', 'gggg', '3', '1', '<p>cccc</p>', '1460966894', '1460966894', '10', '0', '0', '0', '0', '0', '0', '0');
 INSERT INTO `ad_post` VALUES ('28', 'topic', 'gggg', '3', '1', '<p>cccc</p>', '1460966920', '1460966920', '10', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `ad_post` VALUES ('29', 'topic', 'gggg', '3', '1', '<p>cccc</p>', '1460966949', '1460966949', '10', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `ad_post` VALUES ('30', 'topic', 'gggg', '3', '1', '<p>cccc</p>', '1460967047', '1460967047', '10', '0', '0', '27', '1', 'zxx123', '2016', '0');
+INSERT INTO `ad_post` VALUES ('29', 'topic', 'gggg', '3', '1', '<p>cccc</p>', '1460966949', '1460966949', '10', '0', '0', '18', '1', 'zxx123', '2016', '0');
+INSERT INTO `ad_post` VALUES ('30', 'topic', 'gggg', '3', '1', '<p>cccc</p>', '1460967047', '1460967047', '10', '0', '0', '38', '1', 'zxx123', '2016', '0');
 INSERT INTO `ad_post` VALUES ('31', 'topic', 'ttt', '4', '1', '<p>ttttt</p>', '1460967085', '1460967085', '10', '1', '0', '0', '0', '0', '0', '0');
 INSERT INTO `ad_post` VALUES ('32', 'topic', 'ttt', '4', '1', '<p>ttttt</p>', '1460967128', '1460967128', '10', '1', '0', '0', '0', '0', '0', '0');
 INSERT INTO `ad_post` VALUES ('33', 'topic', 'ttt', '4', '1', '<p>ttttt</p>', '1460967467', '1460967467', '10', '1', '0', '3', '1', 'zxx123', '2016', 'zxx123');
 INSERT INTO `ad_post` VALUES ('34', 'topic', '喔喔dddd', '6', '1', '<p><img width=\"200px\" height=\"200px\" src=\"/uploads/ueditor/php/upload/image/20160419/1461036191970710.png\" title=\"1461036191970710.png\" alt=\"QQ截图20140721124138.png\"/>ddddd</p><p><br/></p><p>sssssss</p>', '1461036221', '1461036349', '10', '1', '0', '1', '1', 'zxx123', '2016', 'zxx123');
 INSERT INTO `ad_post` VALUES ('35', 'topic', '我是百度首页的截图', '4', '1', '<p>cccccc<br/></p><p><br/></p><p><img width=\"200px\" height=\"200px;\" src=\"/uploads/ueditor/php/upload/image/20160419/1461047957927334.png\" title=\"1461047957927334.png\" alt=\"QQ图片20160419143753.png\"/></p><p><br/></p><p><br/></p><p>dddddd</p><p><br/></p><p><br/></p><p>哈哈哈哈</p>', '1461047999', '1461048080', '10', '1', '0', '5', '8', 'abc', '2016', 'zxx123');
+INSERT INTO `ad_post` VALUES ('36', 'topic', '正式第一帖,编辑标题2', '4', '1', '<p><span id=\"content_all\">本书是分布式系统领域的经典著作，由阿里巴巴高级技术专家“阿里日照”（OceanBase核心开发人\r\n员）撰写，阳振坤、章文嵩、杨卫华、汪源、余锋（褚霸）、赖春波等来自阿里、新浪、网易和百度的资深技术专家联袂推荐。理论方面，不仅讲解了大规模分布式\r\n存储系统的核心技术和基本原理，而且对谷歌、亚马逊、微软和阿里巴巴等国际型大互联网公司的大规模分布式存储系统进行了分析；实战方面，首先通过对阿里巴\r\n巴的分布式数据库OceanBase的实现细节的深入剖析完整地展示了大规模分布式存储系统的架构与设计过程，然后讲解了大规模分布式存储技术在云计算和\r\n大数据领域的实践与应用。<br/>　　本书内容分为四个部分：基础篇——分布式存储系统的基础知识，包含单机存储系统的知识，如数据模型、事务与并发控\r\n制、故障恢复、存储引擎、压缩/解压缩等；分布式系统的数据分布、复制、一致性、容错、可扩展性等。范型篇——介绍谷歌、亚马逊、微软、阿里巴巴等著名互\r\n联网公司的大规模分布式存储系统架构，涉及分布式文件系统、分布式键值系统、分布式表格系统以及分布式数据库技术等。实践篇——以阿里巴巴的分布式数据库\r\nOceanBase为例，详细介绍分布式数据库内部实现，以及实践过程中的经验。专题篇——介绍分布式系统的主要应用：云存储和大数据，这些是近年来的热\r\n门领域，本书介绍了云存储平台、技术与安全，以及大数据的概念、流式计算、实时分析等。</span></p>', '1461305640', '1461305893', '10', '0', '0', '1', '1', 'zxx123', '2016', 'zxx123');
+INSERT INTO `ad_post` VALUES ('37', 'topic', '表情IP化是变现路径吗', '7', '1', '<p>承认与否，表情包所掀起的浪潮正在波及全民。在今年开年那场喧嚣的Facebook表情包大战中，内地网友充分显示出了他们的创造能力与表情包存储量的丰富。表情包是一个等待挖掘的巨大蓝海， 尽管尚未发觉足够的金块。</p>', '1461307197', '1461307197', '10', '0', '0', '61', '1', 'zxx123', '2016', 'zxx123');
+INSERT INTO `ad_post` VALUES ('38', 'topic', '浏览器中因cookie设置HttpOnly标志引起的安全问题', '7', '1', '<p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\"><strong style=\"text-align: center;\">1、简介</strong></p><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\">如果cookie设置了HttpOnly标志，可以在发生XSS时避免JavaScript读取cookie，这也是HttpOnly被引入的原因。但这种方式能防住攻击者吗?HttpOnly标志可以防止cookie被“读取”，那么能不能防止被“写”呢?答案是否定的，那么这里面就有文章可做了，因为已证明有些浏览器的HttpOnly标记可以被JavaScript写入覆盖，而这种覆盖可能被攻击者利用发动session fixation攻击。本文主题就是讨论这种技术。</p><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; text-align: center; background-color: rgb(248, 248, 248);\"><a href=\"http://s9.51cto.com/wyfs02/M02/24/12/wKioL1NLf3exhfqOAAEHYZITmUA763.jpg\" target=\"_blank\" style=\"color: rgb(0, 66, 118);\"><img class=\"fit-image\" border=\"0\" alt=\"浏览器中因cookie设置HttpOnly标志引起的安全问题\" src=\"/ueditor/php/upload/image/20160422/1461316121301652.jpg\" width=\"498\" height=\"256\" style=\"border: 0px;\"/></a></p><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\"><strong style=\"text-align: center;\">2、用JavaScript覆盖cookie中的HttpOnly标志</strong></p><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\">当JavaScript可以覆盖cookie中的HttpOnly标志时，攻击者如果发现网站的XSS漏洞，就可以利用HttpOnly cookie发动session fixation攻击(更多关于session fixation攻击的内容可以参考笔者之前的文章[1])。</p><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\">session fixation攻击的后果是攻击者可以冒充受害者，因为其知道受害者的session ID。这里假设当成功登录应用后session不会重新生成。现实也确实是这样的，但浏览器不应该允许JavaScript覆盖HttpOnly标志，因为这种覆盖可能与某些应用程序登录成功后不会重新生成会话这一特性结合，发动session fixation攻击。</p><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\">那么登录成功后如果重新生成session ID的话安全性是怎么样的呢?还能被攻击者利用吗?登录之后，攻击者通过设置用户的session为攻击者正在使用的session，将用户切换为攻击者自己的帐户。受害者以为其正在使用自己的帐户，实际上一些敏感信息已经泄露给攻击者了。</p><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\"><strong style=\"text-align: center;\">3、允许JavaScript覆盖HttpOnly cookie的浏览器</strong></p><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\">经笔者证实，以下浏览器允许JavaScript覆盖HttpOnly cookies：</p><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\">Safari</p><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\">Opera Mobile</p><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\">Opera Mini</p><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\">BlackBerry browser</p><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\">Konqueror browser</p><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\">该问题已经(于2014年2月14日)提交给相应的厂商。</p><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\">IE、Firefix和Opera(标准安装版本)不容易受到上述攻击影响。</p><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\"><strong style=\"text-align: center;\">4、厂商的回复</strong></p><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\">Opera公司已经确认该问题在Opera Mobile和Opera Mini中存在，决定在Opera Mini中修复该问题(修复日期还未确定)。尽管Opera Mobile当前在Google Play中可以下载，但Opera公司认为该版本已经过时，因此决定不对其进行修改(他们建议替换为Opera for Android版本，该版本可以防止JavaScript覆盖HttpOnly cookie)。</p><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\">黑莓公司回复说已经宣布于2014年4月后不再对PlayBook Tablet的操作系统(笔者当时测试时使用的系统)进行支持，因此不会修复该问题。但是由于该问题是在支持结束声明之前提交的，他们决定将我加入到黑莓安全事件响应小组的感谢名单中(根据他们的规定，笔者的名字会在2014年4月底才会被加入)[2]。</p><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\">Konqueror确认了该问题，但可能不会去修复。该bug的信息可以在KDE Bugtracking系统中找到[3]。</p><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\">该问题两个月前提交给了苹果公司，但从未收到任何反馈。</p><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\"><strong style=\"text-align: center;\">5、漏洞利用</strong></p><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\">以下是部分示例代码：</p><pre style=\"margin-top: 0px; margin-bottom: 1em; padding: 0px; color: rgb(51, 51, 51); font-family: &#39;Courier New&#39;, monospace; font-size: 12px; width: 591.016px; overflow: auto; line-height: 28px; background-color: rgb(230, 230, 230);\">&lt;?&nbsp;setcookie(&#39;cookie1&#39;,++$_COOKIE[&#39;cookie1&#39;],time()+2592000,&#39;/&#39;,&#39;&#39;,0,1);&nbsp;&nbsp;setcookie(&#39;cookie2&#39;,++$_COOKIE[&#39;cookie2&#39;],time()+2592000,&#39;/&#39;,&#39;&#39;,0,0);&nbsp;&nbsp;?&gt;&nbsp;&lt;HTML&gt;&nbsp;&lt;?&nbsp;print&nbsp;&quot;Cookie1:&quot;.$_COOKIE[&#39;cookie1&#39;].&quot;&lt;br&gt;&quot;;&nbsp;&nbsp;print&nbsp;&quot;Cookie2:&quot;.$_COOKIE[&#39;cookie2&#39;];&nbsp;&nbsp;?&gt;&nbsp;&lt;script&gt;alert(document.cookie);&lt;/script&gt;&nbsp;&lt;script&gt;document.cookie=&#39;cookie1=100;expires=Thu,&nbsp;2&nbsp;Aug&nbsp;2014&nbsp;20:00:00&nbsp;UTC;&nbsp;path=/&#39;;&lt;/script&gt;&nbsp;&lt;/HTML&gt;</pre><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\">过程如下：运行这段代码，之后可以看到cookie1(设置了HttpOnly标志)已经被JavaScript写入覆盖了。</p><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\"><strong style=\"text-align: center;\">6、总结</strong></p><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\">HttpOnly标志的引入是为了防止设置了该标志的cookie被JavaScript读取，但事实证明设置了这种cookie在某些浏览器中却能被JavaScript覆盖，可被攻击者利用来发动session fixation攻击。该问题被提出后，得到了相关厂商的响应。最后，本文给出了一段利用演示代码。</p><p><br/></p>', '1461316124', '1461316124', '10', '0', '0', '4', '1', 'zxx123', '2016', 'zxx123');
 
 -- ----------------------------
 -- Table structure for `ad_reply`
@@ -305,7 +313,7 @@ CREATE TABLE `ad_reply` (
   `reply_deld` tinyint(4) DEFAULT '0',
   `reply_status` tinyint(4) DEFAULT '0',
   PRIMARY KEY (`reply_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=148 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of ad_reply
@@ -357,6 +365,106 @@ INSERT INTO `ad_reply` VALUES ('44', '30', '哦哦哦', '1461228435', '1', null,
 INSERT INTO `ad_reply` VALUES ('45', '30', '哦哦哦', '1461228457', '1', null, 'zxx123', 'gggg', '1461228457', '0', '0', '0', '0', '0', '0');
 INSERT INTO `ad_reply` VALUES ('46', '30', '哦哦哦', '1461228482', '1', null, 'zxx123', 'gggg', '1461228482', '0', '0', '0', '0', '0', '0');
 INSERT INTO `ad_reply` VALUES ('47', '30', '哦哦哦', '1461228674', '1', null, 'zxx123', 'gggg', '1461228674', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('48', '30', '反反复复', '1461233038', '1', null, 'zxx123', 'gggg', '1461233038', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('49', '30', '反反复复', '1461233073', '1', null, 'zxx123', 'gggg', '1461233073', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('50', '30', '反反复复', '1461287478', '1', null, 'zxx123', 'gggg', '1461287478', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('51', '30', '反反复复', '1461287735', '1', null, 'zxx123', 'gggg', '1461287735', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('52', '30', '反反复复', '1461288882', '1', null, 'zxx123', 'gggg', '1461288882', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('53', '30', 'kkkkkkkkkkkk', '1461292050', '1', null, 'zxx123', 'gggg', '1461292050', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('54', '30', 'kkkkkkkkkkkk', '1461292069', '1', null, 'zxx123', 'gggg', '1461292069', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('55', '30', 'kkkkkkkkkkkk', '1461292394', '1', null, 'zxx123', 'gggg', '1461292394', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('56', '30', 'kkkkkkkkkkkk', '1461292450', '1', null, 'zxx123', 'gggg', '1461292450', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('57', '30', 'kkkkkkkkkkkk', '1461292503', '1', null, 'zxx123', 'gggg', '1461292503', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('58', '30', 'kkkkkkkkkkkk', '1461292684', '1', null, 'zxx123', 'gggg', '1461292684', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('59', '30', 'oooooo', '1461292689', '1', null, 'zxx123', 'gggg', '1461292689', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('60', '30', '9999999999999', '1461292703', '1', null, 'zxx123', 'gggg', '1461292703', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('61', '29', 'oooo', '1461294697', '1', null, 'zxx123', 'gggg', '1461294697', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('62', '29', 'oooo', '1461294712', '1', null, 'zxx123', 'gggg', '1461294712', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('63', '29', 'oooo', '1461296483', '1', null, 'zxx123', 'gggg', '1461296483', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('64', '29', 'oooo', '1461296533', '1', null, 'zxx123', 'gggg', '1461296533', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('65', '29', 'oooo', '1461296590', '1', null, 'zxx123', 'gggg', '1461296590', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('66', '29', 'oooo', '1461296647', '1', null, 'zxx123', 'gggg', '1461296647', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('67', '29', 'oooo', '1461296971', '1', null, 'zxx123', 'gggg', '1461296971', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('68', '29', 'oooo', '1461297283', '1', null, 'zxx123', 'gggg', '1461297283', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('69', '29', 'oooo', '1461303293', '1', null, 'zxx123', 'gggg', '1461303293', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('70', '29', 'oooo', '1461303397', '1', null, 'zxx123', 'gggg', '1461303397', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('71', '29', 'oooo', '1461303414', '1', null, 'zxx123', 'gggg', '1461303414', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('72', '29', 'oooo', '1461303487', '1', null, 'zxx123', 'gggg', '1461303487', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('73', '29', 'oooo', '1461303501', '1', null, 'zxx123', 'gggg', '1461303501', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('74', '29', 'oooo', '1461303517', '1', null, 'zxx123', 'gggg', '1461303517', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('75', '29', 'oooo', '1461303539', '1', null, 'zxx123', 'gggg', '1461303539', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('76', '29', 'oooo', '1461304985', '1', null, 'zxx123', 'gggg', '1461304985', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('77', '29', 'oooo', '1461305591', '1', null, 'zxx123', 'gggg', '1461305591', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('78', '29', 'oooo', '1461305601', '1', null, 'zxx123', 'gggg', '1461305601', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('79', '36', '<p><span id=\"content_all\">本书是分布式系统领域的经典著作，由阿里巴巴高级技术专家“阿里日照”（OceanBase核心开发人\r\n员）撰写，阳振坤、章文嵩、杨卫华、汪源、余锋（褚霸）、赖春波等来自阿里、新浪、网易和百度的资深技术专家联袂推荐。理论方面，不仅讲解了大规模分布式\r\n存储系统的核心技术和基本原理，而且对谷歌、亚马逊、微软和阿里巴巴等国际型大互联网公司的大规模分布式存储系统进行了分析；实战方面，首先通过对阿里巴\r\n巴的分布式数据库OceanBase的实现细节的深入剖析完整地展示了大规模分布式存储系统的架构与设计过程，然后讲解了大规模分布式存储技术在云计算和\r\n大数据领域的实践与应用。<br/>　　本书内容分为四个部分：基础篇——分布式存储系统的基础知识，包含单机存储系统的知识，如数据模型、事务与并发控\r\n制、故障恢复、存储引擎、压缩/解压缩等；分布式系统的数据分布、复制、一致性、容错、可扩展性等。范型篇——介绍谷歌、亚马逊、微软、阿里巴巴等著名互\r\n联网公司的大规模分布式存储系统架构，涉及分布式文件系统、分布式键值系统、分布式表格系统以及分布式数据库技术等。实践篇——以阿里巴巴的分布式数据库\r\nOceanBase为例，详细介绍分布式数据库内部实现，以及实践过程中的经验。专题篇——介绍分布式系统的主要应用：云存储和大数据，这些是近年来的热\r\n门领域，本书介绍了云存储平台、技术与安全，以及大数据的概念、流式计算、实时分析等。</span></p>', '1461305640', '1', null, 'zxx123', '正式第一帖', '1461305640', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('80', '36', '订单多的', '1461307158', '1', null, 'zxx123', '正式第一帖,编辑标题2', '1461307158', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('81', '37', '<p>承认与否，表情包所掀起的浪潮正在波及全民。在今年开年那场喧嚣的Facebook表情包大战中，内地网友充分显示出了他们的创造能力与表情包存储量的丰富。表情包是一个等待挖掘的巨大蓝海， 尽管尚未发觉足够的金块。</p>', '1461307197', '1', null, 'zxx123', '表情IP化是变现路径吗', '1461307197', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('82', '37', '沙发', '1461307525', '1', null, 'zxx123', '表情IP化是变现路径吗', '1461307525', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('83', '37', '沙发', '1461311114', '1', null, 'zxx123', '表情IP化是变现路径吗', '1461311114', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('84', '37', '沙发', '1461311178', '1', null, 'zxx123', '表情IP化是变现路径吗', '1461311178', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('85', '37', '沙发', '1461311716', '1', null, 'zxx123', '表情IP化是变现路径吗', '1461311716', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('86', '37', '沙发', '1461311902', '1', null, 'zxx123', '表情IP化是变现路径吗', '1461311902', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('87', '37', '沙发', '1461312039', '1', null, 'zxx123', '表情IP化是变现路径吗', '1461312039', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('88', '37', '沙发', '1461312153', '1', null, 'zxx123', '表情IP化是变现路径吗', '1461312153', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('89', '37', '沙发', '1461312269', '1', null, 'zxx123', '表情IP化是变现路径吗', '1461312269', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('90', '37', '沙发', '1461312310', '1', null, 'zxx123', '表情IP化是变现路径吗', '1461312310', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('91', '37', '沙发', '1461312342', '1', null, 'zxx123', '表情IP化是变现路径吗', '1461312342', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('92', '37', '沙发', '1461312359', '1', null, 'zxx123', '表情IP化是变现路径吗', '1461312359', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('93', '37', '沙发', '1461312374', '1', null, 'zxx123', '表情IP化是变现路径吗', '1461312374', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('94', '37', '沙发', '1461312489', '1', null, 'zxx123', '表情IP化是变现路径吗', '1461312489', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('95', '37', '沙发', '1461312657', '1', null, 'zxx123', '表情IP化是变现路径吗', '1461312657', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('96', '37', '沙发', '1461312694', '1', null, 'zxx123', '表情IP化是变现路径吗', '1461312694', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('97', '37', '沙发', '1461312739', '1', null, 'zxx123', '表情IP化是变现路径吗', '1461312739', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('98', '37', '沙发', '1461312811', '1', null, 'zxx123', '表情IP化是变现路径吗', '1461312811', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('99', '37', '沙发', '1461312834', '1', null, 'zxx123', '表情IP化是变现路径吗', '1461312834', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('100', '37', 'sssssss', '1461312906', '1', null, 'zxx123', '表情IP化是变现路径吗', '1461312906', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('101', '37', 'oo', '1461312931', '1', null, 'zxx123', '表情IP化是变现路径吗', '1461312931', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('102', '37', 'uuuu', '1461312945', '1', null, 'zxx123', '表情IP化是变现路径吗', '1461312945', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('103', '37', 'uuuu', '1461313715', '1', null, 'zxx123', '表情IP化是变现路径吗', '1461313715', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('104', '37', 'uuuu', '1461313718', '1', null, 'zxx123', '表情IP化是变现路径吗', '1461313718', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('105', '37', 'uuuu', '1461314011', '1', null, 'zxx123', '表情IP化是变现路径吗', '1461314011', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('106', '37', 'uuuu', '1461314019', '1', null, 'zxx123', '表情IP化是变现路径吗', '1461314019', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('107', '37', 'uuuu', '1461314060', '1', null, 'zxx123', '表情IP化是变现路径吗', '1461314060', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('108', '37', 'dddddd', '1461314180', '5', null, 'zhou', '表情IP化是变现路径吗', '1461314180', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('109', '37', 'dddddd', '1461314211', '5', null, 'zhou', '表情IP化是变现路径吗', '1461314211', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('110', '37', 'dddddd', '1461314248', '5', null, 'zhou', '表情IP化是变现路径吗', '1461314248', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('111', '37', 'dddddd', '1461314296', '5', null, 'zhou', '表情IP化是变现路径吗', '1461314296', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('112', '37', 'dddddd', '1461314402', '5', null, 'zhou', '表情IP化是变现路径吗', '1461314402', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('113', '37', 'dddddd', '1461314415', '5', null, 'zhou', '表情IP化是变现路径吗', '1461314415', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('114', '37', 'dddddd', '1461314450', '5', null, 'zhou', '表情IP化是变现路径吗', '1461314450', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('115', '37', 'dddddd', '1461314516', '5', null, 'zhou', '表情IP化是变现路径吗', '1461314516', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('116', '37', 'dddddd', '1461314554', '5', null, 'zhou', '表情IP化是变现路径吗', '1461314554', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('117', '37', 'dddddd', '1461314615', '5', null, 'zhou', '表情IP化是变现路径吗', '1461314615', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('118', '37', 'dddddd', '1461314630', '5', null, 'zhou', '表情IP化是变现路径吗', '1461314630', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('119', '37', 'dddddd', '1461314670', '5', null, 'zhou', '表情IP化是变现路径吗', '1461314670', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('120', '37', 'dddddd', '1461314752', '5', null, 'zhou', '表情IP化是变现路径吗', '1461314752', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('121', '37', 'dddddd', '1461314800', '5', null, 'zhou', '表情IP化是变现路径吗', '1461314800', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('122', '37', 'dddddd', '1461314852', '5', null, 'zhou', '表情IP化是变现路径吗', '1461314852', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('123', '37', 'dddddd', '1461314904', '5', null, 'zhou', '表情IP化是变现路径吗', '1461314904', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('124', '37', 'ddddd', '1461315318', '1', null, 'zxx123', '表情IP化是变现路径吗', '1461315318', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('125', '37', 'ddddd', '1461315522', '1', null, 'zxx123', '表情IP化是变现路径吗', '1461315522', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('126', '37', 'ddddd', '1461315537', '1', null, 'zxx123', '表情IP化是变现路径吗', '1461315537', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('127', '37', 'ddddd', '1461315555', '1', null, 'zxx123', '表情IP化是变现路径吗', '1461315555', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('128', '37', 'ddddd', '1461315570', '1', null, 'zxx123', '表情IP化是变现路径吗', '1461315570', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('129', '37', 'ddddd', '1461315580', '1', null, 'zxx123', '表情IP化是变现路径吗', '1461315580', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('130', '37', 'ddddd', '1461315591', '1', null, 'zxx123', '表情IP化是变现路径吗', '1461315591', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('131', '37', 'ddddd', '1461315612', '1', null, 'zxx123', '表情IP化是变现路径吗', '1461315612', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('132', '37', 'ddddd', '1461315626', '1', null, 'zxx123', '表情IP化是变现路径吗', '1461315626', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('133', '37', 'ddddd', '1461315681', '1', null, 'zxx123', '表情IP化是变现路径吗', '1461315681', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('134', '37', 'ddddd', '1461315719', '1', null, 'zxx123', '表情IP化是变现路径吗', '1461315719', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('135', '37', 'ddddd', '1461315734', '1', null, 'zxx123', '表情IP化是变现路径吗', '1461315734', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('136', '37', 'ddddd', '1461315841', '1', null, 'zxx123', '表情IP化是变现路径吗', '1461315841', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('137', '37', 'ddddd', '1461315879', '1', null, 'zxx123', '表情IP化是变现路径吗', '1461315879', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('138', '37', 'ddddd', '1461315922', '1', null, 'zxx123', '表情IP化是变现路径吗', '1461315922', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('139', '37', 'ddddd', '1461315943', '1', null, 'zxx123', '表情IP化是变现路径吗', '1461315943', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('140', '37', 'ddddd', '1461315991', '1', null, 'zxx123', '表情IP化是变现路径吗', '1461315991', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('141', '37', 'ddddd', '1461316014', '1', null, 'zxx123', '表情IP化是变现路径吗', '1461316014', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('142', '37', 'ddddd', '1461316054', '1', null, 'zxx123', '表情IP化是变现路径吗', '1461316054', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('143', '38', '<p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\"><strong style=\"text-align: center;\">1、简介</strong></p><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\">如果cookie设置了HttpOnly标志，可以在发生XSS时避免JavaScript读取cookie，这也是HttpOnly被引入的原因。但这种方式能防住攻击者吗?HttpOnly标志可以防止cookie被“读取”，那么能不能防止被“写”呢?答案是否定的，那么这里面就有文章可做了，因为已证明有些浏览器的HttpOnly标记可以被JavaScript写入覆盖，而这种覆盖可能被攻击者利用发动session fixation攻击。本文主题就是讨论这种技术。</p><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; text-align: center; background-color: rgb(248, 248, 248);\"><a href=\"http://s9.51cto.com/wyfs02/M02/24/12/wKioL1NLf3exhfqOAAEHYZITmUA763.jpg\" target=\"_blank\" style=\"color: rgb(0, 66, 118);\"><img class=\"fit-image\" border=\"0\" alt=\"浏览器中因cookie设置HttpOnly标志引起的安全问题\" src=\"/ueditor/php/upload/image/20160422/1461316121301652.jpg\" width=\"498\" height=\"256\" style=\"border: 0px;\"/></a></p><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\"><strong style=\"text-align: center;\">2、用JavaScript覆盖cookie中的HttpOnly标志</strong></p><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\">当JavaScript可以覆盖cookie中的HttpOnly标志时，攻击者如果发现网站的XSS漏洞，就可以利用HttpOnly cookie发动session fixation攻击(更多关于session fixation攻击的内容可以参考笔者之前的文章[1])。</p><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\">session fixation攻击的后果是攻击者可以冒充受害者，因为其知道受害者的session ID。这里假设当成功登录应用后session不会重新生成。现实也确实是这样的，但浏览器不应该允许JavaScript覆盖HttpOnly标志，因为这种覆盖可能与某些应用程序登录成功后不会重新生成会话这一特性结合，发动session fixation攻击。</p><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\">那么登录成功后如果重新生成session ID的话安全性是怎么样的呢?还能被攻击者利用吗?登录之后，攻击者通过设置用户的session为攻击者正在使用的session，将用户切换为攻击者自己的帐户。受害者以为其正在使用自己的帐户，实际上一些敏感信息已经泄露给攻击者了。</p><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\"><strong style=\"text-align: center;\">3、允许JavaScript覆盖HttpOnly cookie的浏览器</strong></p><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\">经笔者证实，以下浏览器允许JavaScript覆盖HttpOnly cookies：</p><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\">Safari</p><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\">Opera Mobile</p><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\">Opera Mini</p><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\">BlackBerry browser</p><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\">Konqueror browser</p><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\">该问题已经(于2014年2月14日)提交给相应的厂商。</p><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\">IE、Firefix和Opera(标准安装版本)不容易受到上述攻击影响。</p><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\"><strong style=\"text-align: center;\">4、厂商的回复</strong></p><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\">Opera公司已经确认该问题在Opera Mobile和Opera Mini中存在，决定在Opera Mini中修复该问题(修复日期还未确定)。尽管Opera Mobile当前在Google Play中可以下载，但Opera公司认为该版本已经过时，因此决定不对其进行修改(他们建议替换为Opera for Android版本，该版本可以防止JavaScript覆盖HttpOnly cookie)。</p><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\">黑莓公司回复说已经宣布于2014年4月后不再对PlayBook Tablet的操作系统(笔者当时测试时使用的系统)进行支持，因此不会修复该问题。但是由于该问题是在支持结束声明之前提交的，他们决定将我加入到黑莓安全事件响应小组的感谢名单中(根据他们的规定，笔者的名字会在2014年4月底才会被加入)[2]。</p><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\">Konqueror确认了该问题，但可能不会去修复。该bug的信息可以在KDE Bugtracking系统中找到[3]。</p><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\">该问题两个月前提交给了苹果公司，但从未收到任何反馈。</p><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\"><strong style=\"text-align: center;\">5、漏洞利用</strong></p><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\">以下是部分示例代码：</p><pre style=\"margin-top: 0px; margin-bottom: 1em; padding: 0px; color: rgb(51, 51, 51); font-family: &#39;Courier New&#39;, monospace; font-size: 12px; width: 591.016px; overflow: auto; line-height: 28px; background-color: rgb(230, 230, 230);\">&lt;?&nbsp;setcookie(&#39;cookie1&#39;,++$_COOKIE[&#39;cookie1&#39;],time()+2592000,&#39;/&#39;,&#39;&#39;,0,1);&nbsp;&nbsp;setcookie(&#39;cookie2&#39;,++$_COOKIE[&#39;cookie2&#39;],time()+2592000,&#39;/&#39;,&#39;&#39;,0,0);&nbsp;&nbsp;?&gt;&nbsp;&lt;HTML&gt;&nbsp;&lt;?&nbsp;print&nbsp;&quot;Cookie1:&quot;.$_COOKIE[&#39;cookie1&#39;].&quot;&lt;br&gt;&quot;;&nbsp;&nbsp;print&nbsp;&quot;Cookie2:&quot;.$_COOKIE[&#39;cookie2&#39;];&nbsp;&nbsp;?&gt;&nbsp;&lt;script&gt;alert(document.cookie);&lt;/script&gt;&nbsp;&lt;script&gt;document.cookie=&#39;cookie1=100;expires=Thu,&nbsp;2&nbsp;Aug&nbsp;2014&nbsp;20:00:00&nbsp;UTC;&nbsp;path=/&#39;;&lt;/script&gt;&nbsp;&lt;/HTML&gt;</pre><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\">过程如下：运行这段代码，之后可以看到cookie1(设置了HttpOnly标志)已经被JavaScript写入覆盖了。</p><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\"><strong style=\"text-align: center;\">6、总结</strong></p><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\">HttpOnly标志的引入是为了防止设置了该标志的cookie被JavaScript读取，但事实证明设置了这种cookie在某些浏览器中却能被JavaScript覆盖，可被攻击者利用来发动session fixation攻击。该问题被提出后，得到了相关厂商的响应。最后，本文给出了一段利用演示代码。</p><p><br/></p>', '1461316124', '1', null, 'zxx123', '浏览器中因cookie设置HttpOnly标志引起的安全问题', '1461316124', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('144', '38', '哎呦不错哦  好屌哦', '1461316142', '1', null, 'zxx123', '浏览器中因cookie设置HttpOnly标志引起的安全问题', '1461316142', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('145', '38', 'hhhhhh', '1461316221', '5', null, 'zhou', '浏览器中因cookie设置HttpOnly标志引起的安全问题', '1461316221', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('146', '38', 'yyyyyy', '1461316476', '5', null, 'zhou', '浏览器中因cookie设置HttpOnly标志引起的安全问题', '1461316476', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_reply` VALUES ('147', '38', '顶顶顶顶顶', '1461316522', '1', null, 'zxx123', '浏览器中因cookie设置HttpOnly标志引起的安全问题', '1461316522', '0', '0', '0', '0', '0', '0');
 
 -- ----------------------------
 -- Table structure for `ad_user`
@@ -376,27 +484,28 @@ CREATE TABLE `ad_user` (
   `user_authkey` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `user_password_reset_token` varchar(100) COLLATE utf8_unicode_ci DEFAULT '0',
   `user_role` tinyint(4) DEFAULT '1',
+  `user_notice_count` int(11) DEFAULT '0',
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of ad_user
 -- ----------------------------
-INSERT INTO `ad_user` VALUES ('1', 'zxx123', '$2y$13$PEm7VNw5ApXrUbdT1OE/l..BbF.2zFxWJLBuC9ChYnsZ8zpFLL8ya', '297208251@qq.com', '1458637332', '1460703637', '127.0.0.1', '哎呦不错哦', '10', '0', 'aYOOl2ZOT95Y2YlZ5ZwTON_y8jwgvdoc', '', '0');
-INSERT INTO `ad_user` VALUES ('2', 'zxx123456', '$2y$13$Hz8.xi2c3K21ETvzxndFU.Et4J6aHL4xmH4Scc0ZUXhxhYF0XvA9K', '89203299@qq.com', '1458702633', '1458719856', '127.0.0.1', '0', '10', '0', '74HSYguDlqW7VlgngIJoHkvq0a8HATQj', null, '1');
-INSERT INTO `ad_user` VALUES ('3', 'zxx123456789', '$2y$13$lzRDSnYGTb4prlzuwNYAzugWt91Nrk.PclFFZsXFAUYF1rdHmJohi', '297208251@qq.com', '1458702664', '1459848986', '127.0.0.1', '0', '10', '1', 'jVtryq7r0L3EIEMLM-b-xKt9ZySzNaLB', '0', '1');
-INSERT INTO `ad_user` VALUES ('4', 'zhou123', '$2y$13$U7M8MXazZ08GWGf1En6VreFkZjUi1VGEiNkXI4yDFmdvhgZQhtmNq', '89203299@qq.com', '1458704684', '1458704684', '127.0.0.1', '0', '10', '0', 'ZGJo0sUaGeb6TZZUGN-NcG7sIcAFCrH0', '0', '1');
-INSERT INTO `ad_user` VALUES ('5', 'zhou', '$2y$13$3QtCxoSrbBKlXrr5QsRxf.EPzvmMXbT46Zs./tASC7.eU5ORXruRq', 'zhou@qq.com', '1459413352', '1460015211', '127.0.0.1', '周杰伦 哎呦 不错哦 fffff', '10', '0', 'DjGz9-xIyEShxvnuWpcNgRcB3mo3ysSS', '0', '2');
-INSERT INTO `ad_user` VALUES ('6', 'admin', '$2y$13$EhOsRRMZ/M4ExlW5MU1Ot.IgdU6hH51ZsaQjbHcn9R8KYyb5juwme', 'admin@qq.com', '1459848774', '1459848870', '127.0.0.1', '系统管理员', '10', '0', 'RPIFqqC8qO5WNyyZnubtS5aPagfEGfXE', '0', '1');
-INSERT INTO `ad_user` VALUES ('7', 'b1', '$2y$13$A3/8.w5R9BXDKHKn0bg4dORnxHziyZItFau.MdBDX4bNdiWE1NQku', 'b1@qq.com', '1460018291', '1460018291', '127.0.0.1', '0', '10', '0', 'RGmrOErhwFTsp3oZjm1igsZPt-pOHSO4', '0', '1');
-INSERT INTO `ad_user` VALUES ('8', 'abc', '$2y$13$L6sD6PrQSyPIj/gvguQgJef99mFvALGE1kiR7Wr/MrjeAbm0sYWHi', 'abc@qq.com', '1461217665', '1461217665', '127.0.0.1', '0', '10', '0', 'WyUQVQLLKUS4vUH_EKruOR26ZUBXkX4Q', '0', '1');
+INSERT INTO `ad_user` VALUES ('1', 'zxx123', '$2y$13$PEm7VNw5ApXrUbdT1OE/l..BbF.2zFxWJLBuC9ChYnsZ8zpFLL8ya', '297208251@qq.com', '1458637332', '1460703637', '127.0.0.1', '哎呦不错哦', '10', '0', 'aYOOl2ZOT95Y2YlZ5ZwTON_y8jwgvdoc', '', '0', '2');
+INSERT INTO `ad_user` VALUES ('2', 'zxx123456', '$2y$13$Hz8.xi2c3K21ETvzxndFU.Et4J6aHL4xmH4Scc0ZUXhxhYF0XvA9K', '89203299@qq.com', '1458702633', '1458719856', '127.0.0.1', '0', '10', '0', '74HSYguDlqW7VlgngIJoHkvq0a8HATQj', null, '1', '0');
+INSERT INTO `ad_user` VALUES ('3', 'zxx123456789', '$2y$13$lzRDSnYGTb4prlzuwNYAzugWt91Nrk.PclFFZsXFAUYF1rdHmJohi', '297208251@qq.com', '1458702664', '1459848986', '127.0.0.1', '0', '10', '1', 'jVtryq7r0L3EIEMLM-b-xKt9ZySzNaLB', '0', '1', '0');
+INSERT INTO `ad_user` VALUES ('4', 'zhou123', '$2y$13$U7M8MXazZ08GWGf1En6VreFkZjUi1VGEiNkXI4yDFmdvhgZQhtmNq', '89203299@qq.com', '1458704684', '1458704684', '127.0.0.1', '0', '10', '0', 'ZGJo0sUaGeb6TZZUGN-NcG7sIcAFCrH0', '0', '1', '0');
+INSERT INTO `ad_user` VALUES ('5', 'zhou', '$2y$13$LF1tWQg6SEYsTT0Gcj1E0Ojpcpk6MkoNp4atfRZf46ArS2831rnFG', 'zhou@qq.com', '1459413352', '1461316357', '127.0.0.1', '周杰伦 哎呦 不错哦 fffff', '10', '0', 'DjGz9-xIyEShxvnuWpcNgRcB3mo3ysSS', '0', '2', '2');
+INSERT INTO `ad_user` VALUES ('6', 'admin', '$2y$13$EhOsRRMZ/M4ExlW5MU1Ot.IgdU6hH51ZsaQjbHcn9R8KYyb5juwme', 'admin@qq.com', '1459848774', '1459848870', '127.0.0.1', '系统管理员', '10', '0', 'RPIFqqC8qO5WNyyZnubtS5aPagfEGfXE', '0', '1', '0');
+INSERT INTO `ad_user` VALUES ('7', 'b1', '$2y$13$A3/8.w5R9BXDKHKn0bg4dORnxHziyZItFau.MdBDX4bNdiWE1NQku', 'b1@qq.com', '1460018291', '1460018291', '127.0.0.1', '0', '10', '0', 'RGmrOErhwFTsp3oZjm1igsZPt-pOHSO4', '0', '1', '0');
+INSERT INTO `ad_user` VALUES ('8', 'abc', '$2y$13$L6sD6PrQSyPIj/gvguQgJef99mFvALGE1kiR7Wr/MrjeAbm0sYWHi', 'abc@qq.com', '1461217665', '1461217665', '127.0.0.1', '0', '10', '0', 'WyUQVQLLKUS4vUH_EKruOR26ZUBXkX4Q', '0', '1', '0');
 
 -- ----------------------------
 -- Table structure for `ad_user_meta`
 -- ----------------------------
 DROP TABLE IF EXISTS `ad_user_meta`;
 CREATE TABLE `ad_user_meta` (
-  `meta_id` int(11) NOT NULL,
+  `meta_id` int(11) NOT NULL AUTO_INCREMENT,
   `meta_user_id` int(11) NOT NULL,
   `meta_type` varchar(50) CHARACTER SET utf8 DEFAULT '0',
   `meta_value` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
@@ -404,11 +513,15 @@ CREATE TABLE `ad_user_meta` (
   `meta_target_type` varchar(100) CHARACTER SET utf8 DEFAULT '0',
   `meta_create` int(11) NOT NULL,
   PRIMARY KEY (`meta_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of ad_user_meta
 -- ----------------------------
+INSERT INTO `ad_user_meta` VALUES ('1', '1', 'follow', null, '37', 'topic', '1461312310');
+INSERT INTO `ad_user_meta` VALUES ('2', '5', 'follow', null, '37', 'topic', '1461314180');
+INSERT INTO `ad_user_meta` VALUES ('3', '1', 'follow', null, '38', 'topic', '1461316142');
+INSERT INTO `ad_user_meta` VALUES ('4', '5', 'follow', null, '38', 'topic', '1461316222');
 
 -- ----------------------------
 -- Table structure for `migration`
