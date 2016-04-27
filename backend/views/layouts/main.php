@@ -25,20 +25,28 @@ AppAsset::register($this);
     <div class="wrap">
         <?php
             NavBar::begin([
-                'brandLabel' => 'My Company',
+                'brandLabel' => Yii::t('app','My Place'),
                 'brandUrl' => Yii::$app->homeUrl,
                 'options' => [
                     'class' => 'navbar-inverse navbar-fixed-top',
                 ],
             ]);
             $menuItems = [
-                ['label' => 'Home', 'url' => ['/site/index']],
+                ['label' => Yii::t('app','Home'), 'url' => ['/site/index']],
+//                 ['label' => '添加', 'url' => ['/ad-admin/create']],
             ];
             if (Yii::$app->user->isGuest) {
-                $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+                $menuItems[] = ['label' =>Yii::t('app','Login'), 'url' => ['/site/login']];
             } else {
+                $menuItems[] = ['label' =>Yii::t('app','Catelist'), 'url' => ['/ad-cat/index']];
+                $menuItems[] = ['label' =>Yii::t('app','Permission'), 'url' => ['/rbac/itemindex']];
+                $menuItems[] = ['label' =>Yii::t('app','Role'), 'url' => ['/role/index']];
+                $menuItems[] = ['label' =>Yii::t('app','Permission'), 'url' => ['/permission/index']];
+                $menuItems[] = ['label' =>Yii::t('app','Add Test Role'), 'url' => ['/ad-auth-item/create']];
+                $menuItems[] = ['label' =>Yii::t('app','Add Admin'), 'url' => ['/ad-admin/create']];
+                $menuItems[] = ['label' =>Yii::t('app','User List'), 'url' => ['/ad-user/index']];
                 $menuItems[] = [
-                    'label' => 'Logout (' . Yii::$app->user->identity->username . ')',
+                    'label' => Yii::t('app','Login Out').'(' . Yii::$app->user->identity->admin_name . ')',
                     'url' => ['/site/logout'],
                     'linkOptions' => ['data-method' => 'post']
                 ];

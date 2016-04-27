@@ -6,11 +6,12 @@ use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
+use yiier\merit\models\Merit;
 
 /**
  * User model
  *
- * @property integer $id
+ * @property integer $user_id
  * @property string $username
  * @property string $password_hash
  * @property string $password_reset_token
@@ -25,6 +26,9 @@ class User extends ActiveRecord implements IdentityInterface
 {
     const STATUS_DELETED = 0;
     const STATUS_ACTIVE = 10;
+    const ROLE_USER = 10;
+    const ROLE_ADMIN = 20;
+    const ROLE_SUPER_ADMIN = 30;
 
     /**
      * @inheritdoc
@@ -40,7 +44,12 @@ class User extends ActiveRecord implements IdentityInterface
     public function behaviors()
     {
         return [
-            TimestampBehavior::className(),
+            [
+            'class' => TimestampBehavior::className(),
+            'createdAtAttribute' => 'user_create',
+            'updatedAtAttribute' => 'user_logintime',
+//             'value' => new Expression('NOW()'),//如果是timestamp类型 ,需要这样操作
+            ],
         ];
     }
 
@@ -60,7 +69,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public static function findIdentity($id)
     {
-        return static::findOne(['id' => $id, 'user_status' => self::STATUS_ACTIVE]);
+        return static::findOne(['user_id' => $id, 'user_status' => self::STATUS_ACTIVE]);
     }
 
     /**
@@ -95,7 +104,7 @@ class User extends ActiveRecord implements IdentityInterface
         }
 
         return static::findOne([
-            'password_reset_token' => $token,
+            'user_password_reset_token' => $token,
             'user_status' => self::STATUS_ACTIVE,
         ]);
     }
@@ -175,7 +184,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function generatePasswordResetToken()
     {
-        $this->password_reset_token = Yii::$app->security->generateRandomString() . '_' . time();
+        $this->user_password_reset_token = Yii::$app->security->generateRandomString() . '_' . time();
     }
 
     /**
@@ -183,6 +192,75 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function removePasswordResetToken()
     {
-        $this->password_reset_token = null;
+        $this->user_password_reset_token = null;
     }
+    
+    /**
+     * @desc 转化时间格式
+     * @param 时间戳格式  $datetime
+     * @return 返回 2016-03-02 03:07:49 这种格式
+     */
+    public static function convertDate($datetime){
+        return date('Y-m-d H:i:s',$datetime);
+    }
+    
+    
+    /**
+     * @desc 根据用户id获取发帖者姓名
+     * @param $userid 发帖作者的用户id
+     * @return string 发帖者的用户名
+     */
+    public static function getAuthName($userid){
+        $userinfo = User::find()->where(['user_id' => $userid])->asArray()->one();
+         
+        if($userinfo){
+            return $userinfo['user_name'];
+        }else{
+            return '';
+        }
+    }
+    
+    /**
+     * @desc 转化删除状态
+     * @param 时间戳格式  $datetime
+     * @return 返回 2016-03-02 03:07:49 这种格式
+     */
+    public static function getDelstatus($deld){
+        if($deld=='0'){
+            return '正常';
+        }else{
+            return '已删除';
+        }
+    }
+    
+    public function getUserInfo()
+    {
+        return $this->hasOne(UserInfo::className(), ['info_user_id' => 'user_id']);
+    }
+    
+    public function getMerit()
+    {
+        return $this->hasOne(Merit::className(), ['user_id' => 'user_id']);
+    }
+    
+    public static function isAdmin($username)
+    {
+        if (static::findOne(['user_name' => $username, 'user_role' => self::ROLE_ADMIN])) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    public static function isSuperAdmin($username)
+    {
+        if (static::findOne(['user_name' => $username, 'user_role' => self::ROLE_SUPER_ADMIN])) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    
+    
 }

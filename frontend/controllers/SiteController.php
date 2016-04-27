@@ -2,16 +2,23 @@
 namespace frontend\controllers;
 
 use Yii;
+use common\helpers\Arr;
 use common\models\LoginForm;
+use common\models\AdPost;
+use common\models\Reply;
+use common\models\Session;
+use common\models\RightLink;
 use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
+use common\services\UserService;
 use frontend\models\ContactForm;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+use dosamigos\qrcode\QrCode;
 
 /**
  * Site controller
@@ -67,8 +74,34 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-        return $this->render('index');
+//         return $this->render('index');
+        $topics = AdPost::find()->limit(20)->where(['post_status' => 0])->orderBy(['post_create' => SORT_DESC])->all();
+        $users = UserService::findActiveUser(12);
+        $headline = Arr::getColumn(RightLink::find()->where(['link_type' => RightLink::RIGHT_LINK_TYPE_HEADLINE])->all(), 'link_content');
+        
+        $statistics = [];
+        $statistics['post_count'] = AdPost::find()->count();
+        $statistics['reply_count'] = Reply::find()->count();
+        $statistics['online_count'] = Session::find()->where(['>', 'expire', time()])->count();
+        
+        return $this->render('index', [
+                'topics' => $topics,
+                'users' => $users,
+                'statistics' => $statistics,
+                'headline' => Arr::arrayRandomAssoc($headline),
+        ]);
     }
+    
+    public function actionUsers()
+    {
+        $model = UserService::findActiveUser(100);
+        $count = User::find()->where(['status' => 10])->count();
+        return $this->render('users', [
+                'model' => $model,
+                'count' => $count,
+        ]);
+    }
+    
 
     public function actionLogin()
     {
@@ -78,11 +111,11 @@ class SiteController extends Controller
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+            return $this->goBack(); 
+            //登陆成功跳转到帖子首页
+//             return $this->redirect('../ad-post/index', ['model' => $model,]);
         } else {
-            return $this->render('login', [
-                'model' => $model,
-            ]);
+            return $this->render('login', ['model' => $model,]);
         }
     }
 
@@ -167,5 +200,10 @@ class SiteController extends Controller
         return $this->render('resetPassword', [
             'model' => $model,
         ]);
+    }
+    
+    public function actionQrcode($url = '')
+    {
+        return QrCode::png($url);
     }
 }

@@ -53,18 +53,25 @@ class SignupForm extends Model
             $user = new User();
             $user->user_name = $this->user_name;
             $user->user_email = $this->user_email;
-            $user->user_create =time();
-            $user->user_logintime =time();
+//             $user->user_create =time();
+//             $user->user_logintime =time();
             $user->user_ip = $_SERVER['REMOTE_ADDR'];
             $user->user_status = self::STATUS_ACTIVE;
             $user->user_deld = 0;
             $user->setPassword($this->user_pass);
             $user->generateAuthKey();
+            $user->save(false);
+            
+            // 权限的功能  要添加以下三行代码：
+            $auth = Yii::$app->authManager;
+            $authorRole = $auth->getRole('author');
+            $auth->assign($authorRole, $user->getId());
+            
             if ($user->save()) {
                 return $user;
             }
         }
-
+        
         return null;
     }
 
