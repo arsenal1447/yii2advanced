@@ -13,7 +13,7 @@ jQuery(function ($) {
         var originalTitle = document.title;
         if (notification.length > 0) {
             function scheduleGetNotification() {
-                $.get(location.origin + '/notification/count', function (data) {
+                $.get(location.origin + '/ad-notice/count', function (data) {
                     var nCount = parseInt(data)
                     if (nCount > 0) {
                         $('.notification-count a span').text(nCount);
