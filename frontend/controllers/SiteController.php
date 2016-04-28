@@ -206,4 +206,9 @@ class SiteController extends Controller
     {
         return QrCode::png($url);
     }
+    
+    public function actionTimeline()
+    {
+        return $this->render('timeline');
+    }
 }

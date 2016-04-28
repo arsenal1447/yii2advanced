@@ -7,7 +7,7 @@ use frontend\modules\user\models\UserMeta;
 use common\components\Controller;
 use common\models\User;
 use common\models\UserInfo;
-use common\models\PostComment;
+use common\models\Reply;
 use yii\data\ActiveDataProvider;
 use yii\web\NotFoundHttpException;
 use yiier\merit\models\MeritLog;
@@ -31,22 +31,22 @@ class DefaultController extends Controller
         $user = $this->user($username);
         // 个人主页浏览次数
         $currentUserId = \Yii::$app->getUser()->getId();
-        if (null != $currentUserId
-            && $user->id != $currentUserId
-        ) {
-            UserInfo::updateAllCounters(['view_count' => 1], ['user_id' => $user->id]);
+        if (null != $currentUserId && $user->id != $currentUserId) {
+            UserInfo::updateAllCounters(['info_view_count' => 1], ['info_user_id' => $user->id]);
         }
+
+        UserInfo::updateAllCounters(['info_view_count' => 1], ['info_user_id' => $user->id]);
 
         return $this->render('show', [
             'user' => $user,
-            'dataProvider' => $this->comment($user->id),
+            'dataProvider' => $this->comment($user->user_id),
         ]);
     }
 
     protected function comment($userId)
     {
         return new ActiveDataProvider([
-            'query' => PostComment::find()->where(['user_id' => $userId, 'status' => 1])->orderBy(['created_at' => SORT_DESC]),
+            'query' => Reply::find()->where(['reply_user_id' => $userId, 'reply_status' => 1])->orderBy(['reply_create' => SORT_DESC]),
         ]);
     }
 
@@ -62,9 +62,9 @@ class DefaultController extends Controller
 
         $dataProvider = new ActiveDataProvider([
             'query' => Topic::find()
-                ->where(['user_id' => $user->id, 'type' => Topic::TYPE])
-                ->andWhere('status > :status ', [':status' => Topic::STATUS_DELETED])
-                ->orderBy(['created_at' => SORT_DESC]),
+                ->where(['reply_user_id' => $user->id, 'reply_type' => Topic::TYPE])
+                ->andWhere('reply_status > :status ', [':status' => Topic::STATUS_DELETED])
+                ->orderBy(['reply_create' => SORT_DESC]),
         ]);
 
         return $this->render('show', [
@@ -85,10 +85,10 @@ class DefaultController extends Controller
 
         $dataProvider = new ActiveDataProvider([
             'query' => UserMeta::find()->where([
-                'user_id' => $user->id,
-                'type' => 'favorite',
-                'target_type' => 'topic',
-            ])->orderBy(['created_at' => SORT_DESC])
+                'meta_user_id' => $user->user_id,
+                'meta_type' => 'favorite',
+                'meta_target_type' => 'topic',
+            ])->orderBy(['meta_create' => SORT_DESC])
         ]);
 
         return $this->render('show', [
@@ -116,7 +116,7 @@ class DefaultController extends Controller
 
     protected function user($username = '')
     {
-        $user = User::findOne(['username' => $username]);
+        $user = User::findOne(['user_name' => $username]);
 
         if ($user === null) {
             throw new NotFoundHttpException;

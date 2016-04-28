@@ -32,11 +32,11 @@ return [
                 'class' => 'funson86\setting\Setting',
         ],
             
-        //需要去除indx.php  打开此注释
-//         'urlManager' => [
-//             'enablePrettyUrl' => true,
-//             'showScriptName'=>false
-//         ],
+//                 需要去除indx.php  打开此注释
+        'urlManager' => [
+            'enablePrettyUrl' => true,
+            'showScriptName'=>false
+        ],
 
         'i18n' => [
                 'translations' => [

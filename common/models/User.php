@@ -2,6 +2,7 @@
 namespace common\models;
 
 use Yii;
+use common\helpers\Avatar;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
@@ -259,6 +260,52 @@ class User extends ActiveRecord implements IdentityInterface
         } else {
             return false;
         }
+    }
+    
+    /**
+     * 获取用户头像
+     * @param int $size
+     * @return string
+     * @throws \yii\base\Exception
+     */
+    public function getUserAvatar($size = 50)
+    {
+        if ($this->user_avatar) {
+            // TODO 写法更优雅
+            $avatarPath = Yii::$app->basePath . Yii::$app->params['avatarPath'];
+            $avatarCachePath = Yii::$app->basePath . Yii::$app->params['avatarCachePath'];
+            FileHelper::createDirectory($avatarCachePath); // 创建文件夹
+            if (file_exists($avatarCachePath . $size . '_' . $this->user_avatar)) {
+                // 缓存头像是否存在
+                return Yii::$app->params['avatarCacheUrl'] . $size . '_' . $this->user_avatar;
+            }
+            if (file_exists($avatarPath . $this->user_avatar)) {
+                // 原始头像是否存在
+                \yii\imagine\Image::thumbnail($avatarPath . $this->user_avatar, $size, $size)
+                ->save($avatarCachePath . $size . '_' . $this->user_avatar, ['quality' => 100]);
+                return Yii::$app->params['avatarCacheUrl'] . $size . '_' . $this->user_avatar;
+            }
+        }
+        return (new Avatar($this->user_email, $size))->getAvater();
+    }
+    
+    public static function getRoles($role)
+    {
+        $data = [
+                self::ROLE_ADMIN => [
+                        'name' => '高级会员',
+                        'color' => 'primary',
+                ],
+                self::ROLE_USER => [
+                        'name' => '会员',
+                        'color' => 'info',
+                ],
+                self::ROLE_SUPER_ADMIN => [
+                        'name' => '管理员',
+                        'color' => 'success',
+                ]
+        ];
+        return $data[$role];
     }
     
     

@@ -5,7 +5,7 @@ use yii\helpers\Html;
 <li class="list-group-item media col-sm-6 mt0">
 
     <?= Html::a(Html::tag('span', $model['post_reply_count'], ['class' => 'badge badge-reply-count']),
-        ['/topic/default/view', 'id' => $model->post_id, '#' => 'comment' . $model['post_reply_count']], ['class' => 'pull-right']
+        ['/ad-post/view', 'id' => $model->post_id, '#' => 'comment' . $model['post_reply_count']], ['class' => 'pull-right']
     ); ?>
 
     <div class="avatar pull-left">
@@ -18,7 +18,7 @@ use yii\helpers\Html;
 
         <div class="media-heading">
             <?= Html::a($model->post_title,
-                ['/topic/default/view', 'id' => $model->post_id], ['title' => $model->post_title]
+                ['/ad-post/view', 'id' => $model->post_id], ['title' => $model->post_title]
             ); ?>
             <?= ($model->post_status == 2) ? Html::tag('i', '', ['class' => 'fa fa-trophy excellent']) : null ?>
         </div>
@@ -26,12 +26,12 @@ use yii\helpers\Html;
             <?php
             if ($model->post_like_count) {
                 echo Html::a(Html::tag('span', ' ' . $model->post_like_count . ' ', ['class' => 'fa fa-thumbs-o-up']),
-                    ['/topic/default/view', 'id' => $model->post_id], ['class' => 'remove-padding-left']
+                    ['/ad-post/view', 'id' => $model->post_id], ['class' => 'remove-padding-left']
                 ), '•';
             }
             echo Html::a(
                 $model->category->cat_name,
-                ['/topic/default/index', 'node' => $model->category->cat_alias],
+                ['/ad-post/index', 'node' => $model->category->cat_alias],
                 ['class' => 'node']
             ), '•',
             Html::a(
