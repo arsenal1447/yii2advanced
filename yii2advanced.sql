@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50624
 File Encoding         : 65001
 
-Date: 2016-04-29 15:28:01
+Date: 2016-04-29 17:28:27
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -495,8 +495,8 @@ CREATE TABLE `ad_session` (
 -- ----------------------------
 -- Records of ad_session
 -- ----------------------------
-INSERT INTO `ad_session` VALUES ('0bbn8octs8dipcdognolaagpf4', '1461916308', 0x5F5F666C6173687C613A303A7B7D5F5F69647C733A313A2231223B71725F74696D655F62656E63687C613A313A7B733A31323A2261667465725F656E636F6465223B643A313436313931343132342E34353035313B7D);
-INSERT INTO `ad_session` VALUES ('p56gqpns7qce6m8nt645vm6l40', '1461916307', 0x5F5F666C6173687C613A303A7B7D5F5F69647C733A313A2237223B71725F74696D655F62656E63687C613A313A7B733A31323A2261667465725F656E636F6465223B643A313436313931343830362E3735393533363B7D);
+INSERT INTO `ad_session` VALUES ('0bbn8octs8dipcdognolaagpf4', '1461923545', 0x5F5F666C6173687C613A303A7B7D5F5F69647C733A313A2231223B71725F74696D655F62656E63687C613A313A7B733A31323A2261667465725F656E636F6465223B643A313436313931363030312E3737393838373B7D);
+INSERT INTO `ad_session` VALUES ('p56gqpns7qce6m8nt645vm6l40', '1461922306', 0x5F5F666C6173687C613A303A7B7D5F5F69647C733A313A2237223B71725F74696D655F62656E63687C613A313A7B733A31323A2261667465725F656E636F6465223B643A313436313931393433392E333834353036393B7D);
 
 -- ----------------------------
 -- Table structure for `ad_user`
@@ -534,6 +534,26 @@ INSERT INTO `ad_user` VALUES ('5', 'zhou', '0', '$2y$13$LF1tWQg6SEYsTT0Gcj1E0Ojp
 INSERT INTO `ad_user` VALUES ('6', 'admin', '0', '$2y$13$EhOsRRMZ/M4ExlW5MU1Ot.IgdU6hH51ZsaQjbHcn9R8KYyb5juwme', '0', 'admin@qq.com', '1459848774', '1459848870', '127.0.0.1', '系统管理员', '10', '0', 'RPIFqqC8qO5WNyyZnubtS5aPagfEGfXE', '0', '30', '0', '0');
 INSERT INTO `ad_user` VALUES ('7', 'b1', '0', '$2y$13$A3/8.w5R9BXDKHKn0bg4dORnxHziyZItFau.MdBDX4bNdiWE1NQku', '0', 'b1@qq.com', '1460018291', '1460018291', '127.0.0.1', '0', '10', '0', 'RGmrOErhwFTsp3oZjm1igsZPt-pOHSO4', '0', '10', '1', '0');
 INSERT INTO `ad_user` VALUES ('8', 'abc', '0', '$2y$13$L6sD6PrQSyPIj/gvguQgJef99mFvALGE1kiR7Wr/MrjeAbm0sYWHi', '0', 'abc@qq.com', '1461217665', '1461217665', '127.0.0.1', '0', '10', '0', 'WyUQVQLLKUS4vUH_EKruOR26ZUBXkX4Q', '0', '10', '4', '0');
+
+-- ----------------------------
+-- Table structure for `ad_user_account`
+-- ----------------------------
+DROP TABLE IF EXISTS `ad_user_account`;
+CREATE TABLE `ad_user_account` (
+  `account_id` int(11) NOT NULL AUTO_INCREMENT,
+  `account_user_id` int(11) unsigned DEFAULT NULL COMMENT '用户ID',
+  `account_provider` varchar(100) NOT NULL DEFAULT '' COMMENT '授权提供商',
+  `account_client_id` varchar(255) NOT NULL,
+  `account_data` text NOT NULL,
+  `account_create` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
+  PRIMARY KEY (`account_id`),
+  KEY `account_client_id` (`account_client_id`),
+  KEY `account_user_id` (`account_user_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of ad_user_account
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for `ad_user_info`
