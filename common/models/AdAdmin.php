@@ -153,7 +153,7 @@ class AdAdmin extends ActiveRecord implements IdentityInterface
      * @return boolean if password provided is valid for current user
      */
     public function validatePassword($password)
-    {   
+    {
         return Yii::$app->security->validatePassword($password, $this->admin_passhash);
     }
 
@@ -190,7 +190,7 @@ class AdAdmin extends ActiveRecord implements IdentityInterface
     {
         $this->admin_password_reset_token = null;
     }
-    
+
     /**
      * @desc 转化时间格式
      * @param 时间戳格式  $datetime
@@ -199,7 +199,7 @@ class AdAdmin extends ActiveRecord implements IdentityInterface
     public static function convertDate($datetime){
         return date('Y-m-d H:i:s',$datetime);
     }
-    
+
     /**
      * @desc 转化删除状态
      * @param 时间戳格式  $datetime

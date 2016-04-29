@@ -24,7 +24,7 @@ class TopicService extends PostService
      */
     public static function revoke(Topic $topic)
     {
-        $topic->setAttributes(['status' => Topic::STATUS_ACTIVE]);
+        $topic->setAttributes(['post_status' => Topic::STATUS_ACTIVE]);
         $topic->save();
     }
 
@@ -34,8 +34,8 @@ class TopicService extends PostService
      */
     public static function excellent(Topic $topic)
     {
-        $action = ($topic->status == Topic::STATUS_ACTIVE) ? Topic::STATUS_EXCELLENT : Topic::STATUS_ACTIVE;
-        $topic->setAttributes(['status' => $action]);
+        $action = ($topic->post_status == Topic::STATUS_ACTIVE) ? Topic::STATUS_EXCELLENT : Topic::STATUS_ACTIVE;
+        $topic->setAttributes(['post_status' => $action]);
         $topic->save();
     }
 }

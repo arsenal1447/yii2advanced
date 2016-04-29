@@ -69,8 +69,8 @@ if (Yii::$app->user->isGuest) {
     $menuItems[] = [
         'label' => Yii::$app->user->identity->user_name,
         'items' => [
-            ['label' => '我的主页', 'url' => ['/user/default']],
-            ['label' => '帐号设置', 'url' => ['/user/setting/profile']],
+            ['label' => '我的主页', 'url' => ["/ad-user/show?username=".\Yii::$app->user->identity->user_name]],
+            ['label' => '帐号设置', 'url' => ['/setting/profile']],
             ['label' => '退出', 'url' => ['/site/logout'], 'linkOptions' => ['data-method' => 'post']]
         ]
     ];

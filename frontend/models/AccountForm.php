@@ -46,9 +46,9 @@ class AccountForm extends Model
         $this->mailer = $mailer;
         $this->module = \Yii::$app->getModule('user');
         $this->setAttributes([
-            'username' => $this->user->username,
-            'email'    => $this->user->email,
-            'tagline'  => $this->user->tagline,
+            'user_name' => $this->user->user_name,
+            'user_email'    => $this->user->user_email,
+            'user_tagline'  => $this->user->user_tagline,
         ], false);
         parent::__construct($config);
     }
@@ -101,10 +101,10 @@ class AccountForm extends Model
     public function save()
     {
         if ($this->validate()) {
-            $this->user->username = $this->username;
+            $this->user->username = $this->user_name;
             // 新密码没填写 则为不修改密码
             ($this->new_password) ? $this->user->password = $this->new_password : '';
-            $this->user->tagline = $this->tagline;
+            $this->user->tagline = $this->user_tagline;
             return $this->user->save();
         }
 

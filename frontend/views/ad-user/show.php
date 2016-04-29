@@ -148,10 +148,10 @@ $username = Yii::$app->getRequest()->getQueryParam('user_name');
                 'class' => 'nav navbar-nav',
             ],
             'items' => [
-                ['label' => '最新评论',  'url' => ['/user/default/show', 'username'=> $username]],
-                ['label' => '最新主题',  'url' => ['/user/default/post', 'username'=> $username]],
-                ['label' => '最新收藏',  'url' => ['/user/default/favorite', 'username'=> $username]],
-                ['label' => '积分动态',  'url' => ['/user/default/point', 'username'=> $username]],
+                ['label' => '最新评论',  'url' => ['/ad-user/show', 'username'=> $username]],
+                ['label' => '最新主题',  'url' => ['/ad-user/post', 'username'=> $username]],
+                ['label' => '最新收藏',  'url' => ['/ad-user/favorite', 'username'=> $username]],
+                ['label' => '积分动态',  'url' => ['/ad-user/point', 'username'=> $username]],
             ]
         ]) ?>
         </nav>

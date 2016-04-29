@@ -7,17 +7,17 @@ use Yii;
 use yii\web\UploadedFile;
 
 /**
- * This is the model class for table "{{%donate}}".
+ * This is the model class for table "{{%ad_donate}}".
  *
- * @property integer $id
- * @property integer $user_id
- * @property integer $status
- * @property string $description
- * @property string $qr_code
- * @property integer $created_at
- * @property integer $updated_at
+ * @property integer $donate_id
+ * @property integer $donate_user_id
+ * @property integer $donate_status
+ * @property string $donate_description
+ * @property string $donate_qr_code
+ * @property integer $donate_create
+ * @property integer $donate_update
  */
-class Donate extends ActiveRecord
+class AdDonate extends ActiveRecord
 {
     const STATUS_ACTIVE = 1;
     const STATUS_DELETE = 0;
@@ -27,7 +27,7 @@ class Donate extends ActiveRecord
      */
     public static function tableName()
     {
-        return '{{%donate}}';
+        return '{{%ad_donate}}';
     }
 
     /**
@@ -36,11 +36,11 @@ class Donate extends ActiveRecord
     public function rules()
     {
         return [
-            [['user_id'], 'required'],
-            ['qr_code', 'required', 'on' => 'create'],
-            [['user_id', 'status', 'created_at', 'updated_at'], 'integer'],
-            [['qr_code'], 'file', 'extensions' => 'gif, jpg, png', 'maxSize' => 1024 * 1024 * 2, 'tooBig' => \Yii::t('app', 'File has to be smaller than 2MB')],
-            [['description', 'qr_code'], 'string', 'max' => 50]
+            [['donate_user_id'], 'required'],
+            ['donate_qr_code', 'required', 'on' => 'create'],
+            [['donate_user_id', 'donate_status', 'donate_create', 'donate_update'], 'integer'],
+            [['donate_qr_code'], 'file', 'extensions' => 'gif, jpg, png', 'maxSize' => 1024 * 1024 * 2, 'tooBig' => \Yii::t('app', 'File has to be smaller than 2MB')],
+            [['donate_description', 'donate_qr_code'], 'string', 'max' => 50]
         ];
     }
 
@@ -50,13 +50,13 @@ class Donate extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'user_id' => Yii::t('app', 'User ID'),
-            'status' => Yii::t('app', 'Status'),
-            'description' => Yii::t('app', 'Description'),
-            'qr_code' => Yii::t('app', 'Qr Code'),
-            'created_at' => Yii::t('app', 'Created At'),
-            'updated_at' => Yii::t('app', 'Updated At'),
+            'donate_id' => Yii::t('app', 'ID'),
+            'donate_user_id' => Yii::t('app', 'User ID'),
+            'donate_status' => Yii::t('app', 'Status'),
+            'donate_description' => Yii::t('app', 'Description'),
+            'donate_qr_code' => Yii::t('app', 'Qr Code'),
+            'donate_create' => Yii::t('app', 'Created At'),
+            'donate_update' => Yii::t('app', 'Updated At'),
         ];
     }
 
@@ -70,7 +70,7 @@ class Donate extends ActiveRecord
         // get the uploaded file instance. for multiple file uploads
         // the following data will return an array (you may need to use
         // getInstances method)
-        $image = UploadedFile::getInstance($this, 'qr_code');
+        $image = UploadedFile::getInstance($this, 'donate_qr_code');
 
         // if no image was uploaded abort the upload
         if (empty($image)) {
@@ -78,7 +78,7 @@ class Donate extends ActiveRecord
         }
 
         // generate a unique file name
-        $this->qr_code = \Yii::$app->security->generateRandomString() . ".{$image->extension}";
+        $this->donate_qr_code = \Yii::$app->security->generateRandomString() . ".{$image->extension}";
         // the uploaded image instance
         return $image;
     }
@@ -90,11 +90,11 @@ class Donate extends ActiveRecord
      */
     public function deleteImage()
     {
-        if (!isset($this->oldAttributes['qr_code']) || !$this->oldAttributes['qr_code']) {
+        if (!isset($this->oldAttributes['donate_qr_code']) || !$this->oldAttributes['donate_qr_code']) {
             return false;
         }
 
-        $file = \Yii::$app->basePath . \Yii::$app->params['qrCodePath'] . $this->oldAttributes['qr_code'];
+        $file = \Yii::$app->basePath . \Yii::$app->params['qrCodePath'] . $this->oldAttributes['donate_qr_code'];
         // check if file exists on server
         if (empty($file) || !file_exists($file)) {
             return false;

@@ -8,12 +8,12 @@ use common\models\User;
 /**
  * This is the model class for table "user_account".
  *
- * @property integer $id
- * @property string $user_id
- * @property string $provider
- * @property string $client_id
- * @property string $data
- * @property string $created_at
+ * @property integer $account_id
+ * @property string $account_user_id
+ * @property string $account_provider
+ * @property string $account_client_id
+ * @property string $account_data
+ * @property string $account_create
  */
 class UserAccount extends \yii\db\ActiveRecord
 {
@@ -22,7 +22,7 @@ class UserAccount extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'user_account';
+        return 'ad_user_account';
     }
 
     /**
@@ -31,17 +31,17 @@ class UserAccount extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'created_at'], 'integer'],
-            [['client_id', 'data'], 'required'],
-            [['data'], 'string'],
-            [['provider'], 'string', 'max' => 100],
-            [['client_id'], 'string', 'max' => 255]
+            [['account_user_id', 'account_create'], 'integer'],
+            [['account_client_id', 'account_data'], 'required'],
+            [['account_data'], 'string'],
+            [['account_provider'], 'string', 'max' => 100],
+            [['account_client_id'], 'string', 'max' => 255]
         ];
     }
 
     public function getIsConnected()
     {
-        return $this->user_id != null;
+        return $this->account_user_id != null;
     }
 
     /**
@@ -58,12 +58,12 @@ class UserAccount extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'user_id' => '用户ID',
-            'provider' => '授权提供商',
-            'client_id' => 'Client ID',
-            'data' => 'Data',
-            'created_at' => '创建时间',
+            'account_id' => 'ID',
+            'account_user_id' => '用户ID',
+            'account_provider' => '授权提供商',
+            'account_client_id' => 'Client ID',
+            'account_data' => 'Data',
+            'account_created_at' => '创建时间',
         ];
     }
 }
