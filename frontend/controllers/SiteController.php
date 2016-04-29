@@ -77,7 +77,7 @@ class SiteController extends Controller
     public function actionIndex()
     {
 //         return $this->render('index');
-        $topics = AdPost::find()->limit(20)->where(['post_status' => 0])->orderBy(['post_create' => SORT_DESC])->all();
+        $topics = AdPost::find()->limit(20)->where(['post_deld'=>0,'post_status'=>0,'post_type'=>AdPost::TYPE])->orderBy(['post_create' => SORT_DESC])->all();
         $users = UserService::findActiveUser(12);
         $headline = Arr::getColumn(RightLink::find()->where(['link_type' => RightLink::RIGHT_LINK_TYPE_HEADLINE])->all(), 'link_content');
         
