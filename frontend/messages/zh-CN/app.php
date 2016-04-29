@@ -81,6 +81,8 @@ return [
 
     'Recomended Resources' => '推荐资源',
     'Tips and Tricks' => '小贴士',
+    'New Topic' => '发 布 新 帖',
+    'Same Node Topics' => '节点下其他主题',
     'Notices' => '重要消息',
     'site_intro' => 'Get Yii，对！没错！这里就是 Yii 社区，我们想做国内最权威的 Yii 社区，拥有国内所有资深的 Yii 工程师。',
     'Excellent Topics' => '社区精华帖',

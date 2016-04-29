@@ -7,10 +7,11 @@ use common\models\AdPost;
 use common\services\NoticeService;
 use common\services\TopicService;
 use frontend\models\AdNotice;
-use frontend\modules\topic\models\Topic;
-use frontend\modules\user\models\UserMeta;
+use frontend\models\Topic;
+use frontend\models\UserMeta;
 use yii\data\ActiveDataProvider;
-use yii\web\Controller;
+// use yii\web\Controller;
+use common\components\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use frontend\base\BaseFrontController;
@@ -18,11 +19,15 @@ use common\models\AdCat;
 use base\Ad;
 use common\models\Reply;
 use common\helpers\TTimeHelper;
+use common\models\UserInfo;
+use yii\filters\AccessControl;
+use yii\helpers\ArrayHelper;
 
 /**
  * AdPostController implements the CRUD actions for AdPost model.
  */
-class AdPostController extends BaseFrontController
+class AdPostController extends Controller
+// class AdPostController extends BaseFrontController
 {
     const PAGE_SIZE = 50;
     public $sorts = [
@@ -51,7 +56,7 @@ class AdPostController extends BaseFrontController
     public function actionIndex()
     {
         $query = AdPost::find();
-        $query->where(['post_deld'=>0,'post_status'=>0])->orderBy('post_create DESC');//只显示未删除的帖子
+        $query->where(['post_deld'=>0,'post_status'=>0,'post_type'=>AdPost::TYPE])->orderBy('post_create DESC');//只显示未删除的帖子
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
@@ -73,26 +78,25 @@ class AdPostController extends BaseFrontController
         if($model->post_deld == 1){
             return $this->redirect(['index']);
         }
-        
 
         $dataProvider = new ActiveDataProvider([
-                'query' => Reply::findCommentList($id),
-                'pagination' => [
-                        'pageSize' => self::PAGE_SIZE,
-                ],
-                'sort' => ['defaultOrder' => ['reply_create' => SORT_ASC]]
+            'query' => Reply::findCommentList($id),
+            'pagination' => [
+                'pageSize' => self::PAGE_SIZE,
+            ],
+            'sort' => ['defaultOrder' => ['reply_create' => SORT_ASC]]
         ]);
 
         AdPost::UpViewCount($id);
         //帖子的回复情况
-        $query = Reply::find()->where(['reply_post'=>$model['post_id']]);
+//         $query = Reply::find()->where(['reply_post_id'=>$model['post_id']]);
 
-        $locals = Ad::getPagedRows($query,['order'=>'reply_create asc','pageSize'=>10]);
+//         $locals = Ad::getPagedRows($query,['order'=>'reply_create asc','pageSize'=>10]);
 
-        $locals['currentBoard'] = $this->getBoard($model['post_cate_id']);
-        $locals['post'] = $model;
-        $locals['newPost'] = new Reply;
-        
+//         $locals['currentBoard'] = $this->getBoard($model['post_cate_id']);
+//         $locals['post'] = $model;
+//         $locals['newPost'] = new Reply;
+
         $user = Yii::$app->user->identity;
         $admin = ($user && ($user->isAdmin($user->user_name) || $user->isSuperAdmin($user->user_name))) ? true : false;
 
@@ -124,7 +128,8 @@ class AdPostController extends BaseFrontController
             //获取分类列表
             $catmodel = AdCat::getCate();
             if ($model->load(Yii::$app->request->post())) {
-                $model->post_cateid = Yii::$app->request->post('AdPost')['post_cate_id'];
+//                 echo "<pre>";print_R(Yii::$app->request->post());die('131');
+                $model->post_cate_id = Yii::$app->request->post('AdPost')['post_cate_id'];
                 if($model->save(false)){
                     $this->saveReplyForPost($model);
 
@@ -157,7 +162,7 @@ class AdPostController extends BaseFrontController
         if($reply==null)
         {
             $reply = new Reply;
-            $reply->reply_post = $post['post_id'];
+            $reply->reply_post_id = $post['post_id'];
             $reply->reply_user_id = $post['post_user_id'];
             $reply->reply_user_name = $post['post_user_name'];
             $reply->reply_title = $post['post_title'];
@@ -218,7 +223,7 @@ class AdPostController extends BaseFrontController
         $postTitle = $data['post_title'];
 //         yii::myPrint($data);
         if ($model->load(Yii::$app->request->post())) {
-            $model->reply_post = $postId;
+            $model->reply_post_id = $postId;
 //             $model->reply_user_id = Ad::getIdentity()->id;
             $model->reply_user_id = Yii::$app->user->id;
             $model->reply_user_name = Yii::$app->user->getIdentity()->user_name;

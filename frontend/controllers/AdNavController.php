@@ -1,15 +1,15 @@
 <?php
 
-namespace frontend\modules\nav\controllers;
+namespace frontend\controllers;
 
 use common\components\Controller;
 use common\models\Nav;
 
-class DefaultController extends Controller
+class AdNavController extends Controller
 {
     public function actionIndex()
     {
-        $nav = Nav::find()->orderBy('order asc')->all();
+        $nav = Nav::find()->orderBy('nav_order asc')->all();
         return $this->render('index', ['nav' => $nav]);
     }
 }

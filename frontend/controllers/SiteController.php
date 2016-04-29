@@ -8,6 +8,8 @@ use common\models\AdPost;
 use common\models\Reply;
 use common\models\Session;
 use common\models\RightLink;
+use common\models\User;
+use common\models\AdPostTag;
 use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
@@ -95,7 +97,7 @@ class SiteController extends Controller
     public function actionUsers()
     {
         $model = UserService::findActiveUser(100);
-        $count = User::find()->where(['status' => 10])->count();
+        $count = User::find()->where(['user_status' => 10])->count();
         return $this->render('users', [
                 'model' => $model,
                 'count' => $count,
@@ -210,5 +212,24 @@ class SiteController extends Controller
     public function actionTimeline()
     {
         return $this->render('timeline');
+    }
+    
+    public function actionTags()
+    {
+        $tags = AdPostTag::find()->orderBy('tag_update DESC')->all();
+    
+        return $this->render('tags', [
+                'tags' => $tags,
+        ]);
+    }
+    
+    public function actionContributors()
+    {
+        return $this->render('contributors');
+    }
+    
+    public function actionGetstart()
+    {
+        return $this->render('getstart');
     }
 }

@@ -7,9 +7,6 @@ use common\models\User;
 use yii\helpers\Url;
 
 $this->title = Html::encode($user->user_name);
-// $this->params['breadcrumbs'][] = $this->title;
-//var_dump($user->userInfo);
-//die('xxx');
 $username = Yii::$app->getRequest()->getQueryParam('user_name');
 /** @var User $user*/
 ?>
@@ -34,10 +31,10 @@ $username = Yii::$app->getRequest()->getQueryParam('user_name');
 
                 <div class="follow-info row">
                     <div class="col-sm-4 followers" data-login="rei">
-                        <a class="counter" href="<?= Url::to(['/user/default/point', 'username'=> $username])?>">
+                        <a class="counter" href="<?= Url::to(['/ad-user/point', 'username'=> $username])?>">
                             <?= $user->merit ? $user->merit->merit : 0 ?>
                         </a>
-                        <a class="text" href="<?= Url::to(['/user/default/point', 'username'=> $username])?>">积分</a>
+                        <a class="text" href="<?= Url::to(['/ad-user/point', 'username'=> $username])?>">积分</a>
                     </div>
                     <div class="col-sm-4 following">
                         <a class="counter" href="#"><?= $user->userInfo->info_like_count ?></a>

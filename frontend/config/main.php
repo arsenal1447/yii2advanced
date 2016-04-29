@@ -35,15 +35,15 @@ return [
         ],
     ],
     'modules' => [
-        'user' => [
-            'class' => 'frontend\modules\user\Module',
-        ],
-        'topic' => [
-            'class' => 'frontend\modules\topic\Module',
-        ],
-        'nav' => [
-            'class' => 'frontend\modules\nav\Module',
-        ],
+        //'user' => [
+            //'class' => 'frontend\modules\user\Module',
+        //],
+        //'topic' => [
+            //'class' => 'frontend\modules\topic\Module',
+        //],
+        //'nav' => [
+            //'class' => 'frontend\modules\nav\Module',
+        //],
 //         'tweet' => [
 //             'class' => 'frontend\modules\tweet\Module',
 //         ],

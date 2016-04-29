@@ -98,7 +98,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                         ],
                                     ]);
                                 }else{
-                                    echo Html::a('编辑', ['edit-post','id'=>$row['reply_post'],'boardid'=>$currentBoard['id']]);
+                                    echo Html::a('编辑', ['edit-post','id'=>$row['reply_post_id'],'boardid'=>$currentBoard['id']]);
                                 }
                             ?>
                             </span><span>支持</span><span>反对</span>

@@ -8,7 +8,7 @@ use common\services\NoticeService;
 use common\services\TweetService;
 use frontend\models\Tweet;
 use frontend\models\TweetSearch;
-use frontend\modules\user\models\UserMeta;
+use frontend\models\UserMeta;
 use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;

@@ -5,7 +5,6 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
 use frontend\widgets\Alert;
-
 use frontend\assets\BowerAsset;
 use frontend\assets\EmojifyAsset;
 use yii\helpers\Url;
@@ -79,7 +78,7 @@ $emojify = EmojifyAsset::register($this);
         <?= $content ?>
         </div>
     </div>
-    
+
     <!--
     <footer class="footer">
         <div class="container">
@@ -88,7 +87,7 @@ $emojify = EmojifyAsset::register($this);
         </div>
     </footer>
     -->
-    
+
     <footer class="footer">
     <div class="container">
         <div class="row">

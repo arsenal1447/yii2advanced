@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\helpers\HtmlPurifier;
 use yii\helpers\Markdown;
+use common\models\AdPost;
 
 /* @var $this yii\web\View */
 /* @var $model common\Models\Post */
@@ -19,20 +20,21 @@ $this->title = $model->post_title;
                 <div class="info">
                     <?= Html::a(
                         $model->category->cat_name,
-                        ['/topic/default/index', 'node' => $model->category->cat_alias],
+                        ['/ad-post/index', 'node' => $model->category->cat_alias],
                         ['class' => 'node']
                     ) ?>
                     ·
-                    <?= Html::a($model->user['user_name'], ['/user/default/show', 'username' => $model->user['user_name']]) ?>
+                    <?= Html::a($model->user['user_name'], ['/ad-user/show', 'username' => $model->user['user_name']]) ?>
                     ·
                     于 <?= Html::tag('abbr', Yii::$app->formatter->asRelativeTime($model->post_create), ['title' => Yii::$app->formatter->asDatetime($model->post_create)]) ?>发布
                     ·
-                    <?= $model->post_view_count ?> 次阅读
+                    <?php //echo $model->post_view_count ?> <!-- 次阅读 -->
+                    <?= AdPost::getViewCount($model->post_id); ?> 次阅读
                 </div>
             </div>
             <div class="avatar media-right">
                 <?= Html::a(Html::img($model->user->user_avatar, ['class' => 'media-object avatar-48']),
-                    ['/user/default/show', 'username' => $model->user['user_name']]
+                    ['/ad-user/show', 'username' => $model->user['user_name']]
                 ); ?>
             </div>
         </div>
@@ -110,7 +112,7 @@ $this->title = $model->post_title;
                 echo $favorite;
 
                 if ($admin) {
-                    $class = $model->post_status == 2 ? ['class' => 'active'] : null;
+                    $class = $model->status == 2 ? ['class' => 'active'] : null;
                     echo Html::a(
                         Html::tag('i', '', ['class' => 'fa fa-trophy']) . ' 加精',
                         ['/topic/default/excellent', 'id' => $model->post_id],
@@ -122,12 +124,12 @@ $this->title = $model->post_title;
                 <span class="pull-right">
                     <?= Html::a(
                         Html::tag('i', '', ['class' => 'fa fa-pencil']) . ' 修改',
-                        ['/topic/default/update', 'id' => $model->post_id]
+                        ['/ad-post/update', 'id' => $model->post_id]
                     ) ?>
               <?php if($model->post_reply_count == 0): ?>
                     <?= Html::a(
                         Html::tag('i', '', ['class' => 'fa fa-trash']) . ' 删除',
-                        ['/topic/default/delete', 'id' => $model->post_id],
+                        ['/ad-post/delete', 'id' => $model->post_id],
                         [
                             'data' => [
                                 'confirm' => "您确认要删除文章「{$model->post_title}」吗？",
@@ -142,15 +144,18 @@ $this->title = $model->post_title;
         </div>
     </div>
 
-   <?= $this->render(
-        '@frontend/modules/topic/views/comment/index',
+    <?= $this->render(
+//         '@frontend/modules/topic/views/comment/index',
+        '@frontend/views/ad-reply/index',
         ['model' => $model, 'dataProvider' => $dataProvider]
     ) ?>
 
     <?= $this->render(
-        '@frontend/modules/topic/views/comment/create',
+//         '@frontend/modules/topic/views/comment/create',
+        '@frontend/views/ad-reply/create',
         ['model' => $comment, 'post' => $model]
     ) ?>
+
 </div>
 <?= \frontend\widgets\TopicSidebar::widget([
     'type' => 'view',

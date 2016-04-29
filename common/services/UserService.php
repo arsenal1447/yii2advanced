@@ -6,8 +6,8 @@ use common\models\Reply;
 use common\models\User;
 // use common\models\UserInfo;
 use DevGroup\TagDependencyHelper\NamingHelper;
-use frontend\modules\topic\models\Topic;
-use frontend\modules\user\models\UserMeta;
+use frontend\models\Topic;
+use frontend\models\UserMeta;
 use yii\caching\TagDependency;
 
 class UserService

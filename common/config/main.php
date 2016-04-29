@@ -31,7 +31,7 @@ return [
         'setting' => [
                 'class' => 'funson86\setting\Setting',
         ],
-            
+
 //                 需要去除indx.php  打开此注释
         'urlManager' => [
             'enablePrettyUrl' => true,
@@ -57,12 +57,12 @@ return [
     ],
     'timeZone'=>'Asia/Chongqing',//设置时区
     'modules' => [
-            'topic' => [
-                    'class' => 'frontend\modules\topic\Module',
-            ],
-            'nav' => [
-                    'class' => 'frontend\modules\nav\Module',
-            ],
+            //'topic' => [
+                    //'class' => 'frontend\modules\topic\Module',
+            //],
+            //'nav' => [
+                    //'class' => 'frontend\modules\nav\Module',
+            //],
             'merit' => [
                 'class' => 'yiier\merit\Module',
             ],

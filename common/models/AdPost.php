@@ -5,7 +5,7 @@ use base\BaseActiveRecord;
 use base\Ad;
 use common\helpers\TTimeHelper;
 use yii\db\Expression;
-use frontend\modules\user\models\UserMeta;
+use frontend\models\UserMeta;
 
 /**
  * This is the model class for table "ad_post".

@@ -8,7 +8,7 @@ use Yii;
  * This is the model class for table "{{%ad_reply}}".
  *
  * @property integer $reply_id
- * @property integer $reply_post
+ * @property integer $reply_post_id
  * @property string $reply_content
  * @property integer $reply_create
  * @property integer $reply_user
@@ -39,8 +39,8 @@ class AdReply extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['reply_id', 'reply_post', 'reply_content', 'reply_user_id', 'reply_user_name', 'reply_update'], 'required'],
-            [['reply_id', 'reply_post', 'reply_create', 'reply_user_id', 'reply_update', 'reply_support', 'reply_against', 'reply_floor', 'reply_deld', 'reply_status'], 'integer'],
+            [['reply_id', 'reply_post_id', 'reply_content', 'reply_user_id', 'reply_user_name', 'reply_update'], 'required'],
+            [['reply_id', 'reply_post_id', 'reply_create', 'reply_user_id', 'reply_update', 'reply_support', 'reply_against', 'reply_floor', 'reply_deld', 'reply_status'], 'integer'],
             [['reply_content'], 'string'],
             [['reply_ip', 'reply_user_name', 'reply_note'], 'string', 'max' => 50],
             [['reply_title'], 'string', 'max' => 100]
@@ -54,7 +54,7 @@ class AdReply extends \yii\db\ActiveRecord
     {
         return [
             'reply_id' => Yii::t('app', 'Reply ID'),
-            'reply_post' => Yii::t('app', 'Reply Post'),
+            'reply_post_id' => Yii::t('app', 'Reply Post'),
             'reply_content' => Yii::t('app', 'Reply Content'),
             'reply_create' => Yii::t('app', 'Reply Create'),
             'reply_user_id' => Yii::t('app', 'Reply User'),

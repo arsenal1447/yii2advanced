@@ -13,9 +13,9 @@ use yii\helpers\HtmlPurifier;
 </div>
 <div class="media-body">
     <div class="media-heading">
-        <?= Html::tag('span', Html::a($model->fromUser['user_name'], ['/user/default/show', 'username' => $model->fromUser['user_name']])); ?>
+        <?= Html::tag('span', Html::a($model->fromUser['user_name'], ['/ad-user/show', 'username' => $model->fromUser['user_name']])); ?>
         <span class="info"><?= $model->getlable($model->notice_type) ?>
-            <?php //echo Html::a(Html::encode($model->post->post_title), ['/topic/default/view', 'id' => $model->post_id], ['title' => $model->post->post_title]); ?>
+            <?php //echo Html::a(Html::encode($model->post->post_title), ['/ad-post/view', 'id' => $model->post_id], ['title' => $model->post->post_title]); ?>
             <?= Html::a(Html::encode($model->post->post_title), ['/ad-post/view', 'id' => $model->notice_post_id], ['title' => $model->post->post_title]); ?>
         <span class="date pull-right">
             <i class="fa fa-clock-o"></i>

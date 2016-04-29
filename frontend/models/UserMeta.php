@@ -1,11 +1,11 @@
 <?php
 
-namespace frontend\modules\user\models;
+namespace frontend\models;
 
 use common\models\Reply;
 use common\services\NoticeService;
-use frontend\modules\topic\models\Topic;
-// use frontend\modules\tweet\models\Tweet;
+use frontend\models\Topic;
+// use frontend\models\Tweet;
 use Yii;
 use yii\db\ActiveRecord;
 

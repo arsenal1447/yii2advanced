@@ -1,7 +1,7 @@
 <?php
 
 namespace common\models;
-
+die('models/PostSearch');
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
@@ -64,7 +64,7 @@ class PostSearch extends Post
         $query->andFilterWhere([
             'id' => $this->id,
             'post_meta_id' => $this->post_meta_id,
-            'post_user_id' => $this->user_id,
+            'post_user_id' => $this->post_user_id,
             'post_view_count' => $this->view_count,
             'post_reply_count' => $this->comment_count,
             'post_favorite_count' => $this->favorite_count,

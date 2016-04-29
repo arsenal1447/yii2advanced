@@ -1,11 +1,4 @@
 <?php
-/**
- * @Author: forecho
- * @Date:   2015-01-29 23:26:54
- * @Last Modified by:   forecho
- * @Last Modified time: 2015-02-04 21:53:45
- */
-
 use yii\helpers\Html;
 use yii\helpers\HtmlPurifier;
 use yii\helpers\Markdown;
@@ -15,12 +8,12 @@ use yii\helpers\Markdown;
     case 'show':
         // 评论
         echo Html::a(
-            Html::encode($model->post->title),
-            ["/{$model->post->type}/default/view", 'id' => $model->post->id],
+            Html::encode($model->post->post_title),
+            ["/{$model->post->post_type}/default/view", 'id' => $model->post->post_user_id],
             ['class' => 'list-group-item-heading']
         );
-        echo Html::tag('span', Yii::$app->formatter->asRelativeTime($model->created_at), ['class' => 'ml5 fade-info']);
-        echo Html::tag('p', HtmlPurifier::process(Markdown::process($model->comment, 'gfm')));
+        echo Html::tag('span', Yii::$app->formatter->asRelativeTime($model->reply_create), ['class' => 'ml5 fade-info']);
+        echo Html::tag('p', HtmlPurifier::process(Markdown::process($model->reply_content, 'gfm')));
         break;
     case 'favorite':
         // 收藏

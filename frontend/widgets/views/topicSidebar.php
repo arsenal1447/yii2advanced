@@ -24,7 +24,7 @@ $node = $config['node'];
                 <div class="btn-group">
                     <?= Html::a(
                         \Yii::t('app', 'New Topic'),
-                        ['/topic/default/create', 'id' => 'id'],
+                        ['/ad-post/create', 'id' => 'id'],
                         ['class' => 'btn btn-success']
                     ) ?>
                 </div>

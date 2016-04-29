@@ -1,50 +1,59 @@
 <?php
+/**
+ * author     : forecho <caizhenghai@gmail.com>
+ * createTime : 15/4/20 下午9:15
+ * description:
+ */
 
 use yii\helpers\Html;
+use yii\helpers\HtmlPurifier;
+use yii\helpers\Markdown;
 use yii\widgets\ActiveForm;
 
-/* @var $this yii\web\View */
-/* @var $model app\models\AdReply */
-/* @var $form yii\widgets\ActiveForm */
 ?>
+<div class="list-group-item">
 
-<div class="ad-reply-form">
+    <?php $form = ActiveForm::begin([
+        'action' => [
+//             $model->isNewRecord ? '/topic/comment/create' : '/topic/comment/update',
+            $model->isNewRecord ? '/ad-reply/create' : '/ad-reply/update',
+            'id' => Yii::$app->request->getQueryParam('id')],
+        'fieldConfig' => [
+            'template' => "{input}\n{hint}\n{error}"
+        ]
+    ]); ?>
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?= $form->errorSummary($model, [
+        'class' => 'alert alert-danger'
+    ]) ?>
 
-    <?= $form->field($model, 'reply_id')->textInput() ?>
+    <?= $this->render('@frontend/views/partials/markdwon_help') ?>
 
-    <?= $form->field($model, 'reply_post')->textInput() ?>
-
-    <?= $form->field($model, 'reply_content')->textarea(['rows' => 6]) ?>
-
-    <?= $form->field($model, 'reply_create')->textInput() ?>
-
-    <?= $form->field($model, 'reply_user_id')->textInput() ?>
-
-    <?= $form->field($model, 'reply_ip')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'reply_user_name')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'reply_title')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'reply_update')->textInput() ?>
-
-    <?= $form->field($model, 'reply_support')->textInput() ?>
-
-    <?= $form->field($model, 'reply_against')->textInput() ?>
-
-    <?= $form->field($model, 'reply_floor')->textInput() ?>
-
-    <?= $form->field($model, 'reply_note')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'reply_deld')->textInput() ?>
-
-    <?= $form->field($model, 'reply_status')->textInput() ?>
+    <?= $form->field($model, 'reply_content', [
+        'selectors' => [
+            'input' => '#md-input'
+        ],
+    ])->textarea([
+        'placeholder' => '内容',
+        'id' => 'md-input',
+        'disabled' => Yii::$app->user->getIsGuest(),
+        'rows' => 6
+    ]) ?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton(
+            $model->isNewRecord ? '创建评论' : '修改评论',
+            [
+                'class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary',
+            ]
+        ) ?>
+
+        <div class="pull-right">
+            <?= Html::a('排版说明', ['/site/markdown'], ['target' => '_blank']) ?>
+        </div>
     </div>
+
+    <div id="md-preview"><?= HtmlPurifier::process(Markdown::process($model->reply_content, 'gfm')) ?></div>
 
     <?php ActiveForm::end(); ?>
 

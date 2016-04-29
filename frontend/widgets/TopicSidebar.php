@@ -10,8 +10,8 @@ namespace frontend\widgets;
 use common\helpers\Arr;
 use common\models\PostMeta;
 use common\models\RightLink;
-use frontend\modules\topic\models\Topic;
-use frontend\modules\user\models\Donate;
+use frontend\models\Topic;
+use frontend\models\Donate;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 
@@ -52,7 +52,7 @@ class TopicSidebar extends \yii\bootstrap\Widget
                     ->limit(200)->all(),
                 'title',
                 function ($e) {
-                    return Url::to(['/topic/default/view', 'id' => $e->id]);
+                    return Url::to(['/ad-post/view', 'id' => $e->id]);
                 }
             );
             if (count($sameTopics) > 10) {

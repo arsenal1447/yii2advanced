@@ -1,45 +1,25 @@
 <?php
-
 use yii\helpers\Html;
-use yii\grid\GridView;
-
-/* @var $this yii\web\View */
-/* @var $dataProvider yii\data\ActiveDataProvider */
-
-$this->title = Yii::t('app', 'Ad Replies');
-$this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="ad-reply-index">
+<div class="panel panel-default">
+    <div class="panel-heading clearfix">
+        <?= \Yii::t('app', 'Received {0} reply', $model->post_reply_count) ?>
+        <?php if ($tags = $model->post_tags): ?>
+            <span class="pull-right">
+                <i class="icon-tags"></i>
+                <?php foreach (explode(',', $tags) as $key => $value){
+                    echo Html::a(Html::encode($value),
+                        ['/topic/default/index', 'tag' => $value],
+                        ['class' => 'btn btn-xs btn-primary']
+                    ), ' ';} ?>
+            </span>
+        <?php endif ?>
+    </div>
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= Html::a(Yii::t('app', 'Create Ad Reply'), ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-
-    <?= GridView::widget([
+    <?= \yii\widgets\ListView::widget([
         'dataProvider' => $dataProvider,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'reply_id',
-            'reply_post',
-            'reply_content:ntext',
-            'reply_create',
-            'reply_user_id',
-            // 'reply_ip',
-            // 'reply_user_name',
-            // 'reply_title',
-            // 'reply_update:datetime',
-            // 'reply_support',
-            // 'reply_against',
-            // 'reply_floor',
-            // 'reply_note',
-            // 'reply_deld',
-            // 'reply_status',
-
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
-
+        'itemOptions' => ['class' => 'list-group-item media mt0'],
+        'summary' => false,
+        'itemView' => '_item',
+    ]) ?>
 </div>

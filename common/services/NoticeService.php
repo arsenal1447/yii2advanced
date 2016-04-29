@@ -4,9 +4,9 @@ namespace common\services;
 use common\models\Reply;
 use common\models\User;
 use frontend\models\AdNotice;
-use frontend\modules\topic\models\Topic;
+use frontend\models\Topic;
 use common\models\AdPost;
-use frontend\modules\user\models\UserMeta;
+use frontend\models\UserMeta;
 use yii\base\Exception;
 use yii\helpers\VarDumper;
 
@@ -23,18 +23,18 @@ class NoticeService
      * @throws Exception
      */
     public function newReplyNotify(User $fromUser, Topic $topic, Reply $comment, $rawComment = '')
-    { 
+    {
 //         echo "<pre>";
         foreach ($topic->follower as $key => $value) {
 //             print_R($value);
 //             $users[$value->meta_user_id] = $value->meta_user_id;
             $users[$value['meta_user_id']] = $value['meta_user_id'];
         }
-        
+
 //         die('31');
         // Notify mentioned users
         $this->batchNotify('at',$fromUser,$this->removeDuplication($comment->parse($rawComment)),$topic,$comment);
-       
+
         // 通知关注的用户
 //         print_r($users);die;
 // echo "<pre>";
@@ -107,8 +107,8 @@ class NoticeService
         foreach ($users as $key => $value) {
             if ($fromUser->user_id == $key) {
 //                 die('104');
-//                 echo "<br>fromUser->user_id=".$fromUser->user_id."<br>"; 
-//                 echo "<br>key=".$key."<br>"; 
+//                 echo "<br>fromUser->user_id=".$fromUser->user_id."<br>";
+//                 echo "<br>key=".$key."<br>";
 //                 die('107');
                 continue;
             }
@@ -143,7 +143,7 @@ class NoticeService
      * @return array
      */
     public function removeDuplication($users)
-    {  
+    {
         $notYetNotifyUsers = [];
         foreach ($users as $key => $value) {
             if (!in_array($key, $this->notifiedUsers)) {

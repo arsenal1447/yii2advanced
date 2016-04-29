@@ -1,21 +1,15 @@
 <?php
-/**
- * author     : forecho <caizhenghai@gmail.com>
- * createTime : 15/4/20 下午9:56
- * description:
- */
-
 use yii\helpers\Html;
 use yii\helpers\HtmlPurifier;
 use yii\helpers\Markdown;
 $index += +1 + $widget->dataProvider->pagination->page * $widget->dataProvider->pagination->pageSize;
 ?>
-<?php if (!$model->status): ?>
+<?php if (!$model->reply_status): ?>
     <div class="deleted text-center"><?= $index ?>楼 已删除.</div>
 <?php else: ?>
     <div class="avatar pull-left">
-        <?= Html::a(Html::img($model->user->userAvatar, ['class' => 'media-object avatar-48']),
-            ['/user/default/show', 'username' => $model->user['username']]
+        <?= Html::a(Html::img($model->user->user_avatar, ['class' => 'media-object avatar-48']),
+            ['/ad-user/show', 'username' => $model->user['user_name']]
         ); ?>
     </div>
 
@@ -23,9 +17,9 @@ $index += +1 + $widget->dataProvider->pagination->page * $widget->dataProvider->
 
         <div class="media-heading meta info opts">
             <?php
-            echo Html::a($model->user['username'], ['/user/default/show', 'username' => $model->user['username']], ['class' => 'author']), '•',
+            echo Html::a($model->user['user_name'], ['/ad-user/show', 'username' => $model->user['user_name']], ['class' => 'author']), '•',
             Html::a("#{$index}", "#comment{$index}", ['class' => 'comment-floor']), '•',
-            Html::tag('addr', Yii::$app->formatter->asRelativeTime($model->created_at), ['title' => Yii::$app->formatter->asDatetime($model->created_at)]);
+            Html::tag('addr', Yii::$app->formatter->asRelativeTime($model->reply_create), ['title' => Yii::$app->formatter->asDatetime($model->reply_create)]);
             ?>
 
             <span class="opts pull-right">
@@ -33,16 +27,16 @@ $index += +1 + $widget->dataProvider->pagination->page * $widget->dataProvider->
 
                 if($model->isCurrent()){
                     echo Html::a(
-                        Html::tag('i', '', ['class' => 'fa fa-thumbs-o-up']) . ' ' . Html::tag('span', $model->like_count) . ' 个赞',
+                        Html::tag('i', '', ['class' => 'fa fa-thumbs-o-up']) . ' ' . Html::tag('span', $model->reply_like_count) . ' 个赞',
                         'javascript:;'
                     );
 
                     echo Html::a('',
-                        ['/topic/comment/update', 'id' => $model->id],
+                        ['/ad-reply/update', 'id' => $model->reply_id],
                         ['title' => '修改回帖', 'class' => 'fa fa-pencil']
                     );
                     echo Html::a('',
-                        ['/topic/comment/delete', 'id' => $model->id],
+                        ['/ad-reply/delete', 'id' => $model->reply_id],
                         [
                             'title' => '删除评论',
                             'class' => 'fa fa-trash',
@@ -54,18 +48,18 @@ $index += +1 + $widget->dataProvider->pagination->page * $widget->dataProvider->
                     );
                 } else{
                     echo Html::a(
-                        Html::tag('i', '', ['class' => 'fa fa-thumbs-o-up']) . ' ' . Html::tag('span', $model->like_count) . ' 个赞',
+                        Html::tag('i', '', ['class' => 'fa fa-thumbs-o-up']) . ' ' . Html::tag('span', $model->reply_like_count) . ' 个赞',
                         '#',
                         [
                             'data-do' => 'like',
-                            'data-id' => $model->id,
+                            'data-id' => $model->reply_id,
                             'data-type' => 'comment',
                             'class' => ($model->like) ? 'active': ''
                         ]
                     );
                     echo Html::a('', '#',
                         [
-                            'data-username' => $model->user['username'],
+                            'data-username' => $model->user['user_name'],
                             'data-floor' => $index,
                             'title' => '回复此楼',
                             'class' => 'fa fa-mail-reply btn-reply'
@@ -78,7 +72,7 @@ $index += +1 + $widget->dataProvider->pagination->page * $widget->dataProvider->
         </div>
 
         <div class="media-body markdown-reply content-body">
-            <?= HtmlPurifier::process(Markdown::process($model->comment, 'gfm')) ?>
+            <?= HtmlPurifier::process(Markdown::process($model->reply_content, 'gfm')) ?>
         </div>
     </div>
 <?php endif ?>

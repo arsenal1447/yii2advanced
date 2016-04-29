@@ -308,6 +308,24 @@ class User extends ActiveRecord implements IdentityInterface
         return $data[$role];
     }
     
+    /**
+     * 获取权限
+     * @param $username
+     * @return bool
+     */
+    public static function getThrones($username = '')
+    {
+        if (!$username && Yii::$app->user->id) {
+            $username = Yii::$app->user->identity->user_name;
+        } else {
+            return false;
+        }
+        if ($isAdmin = self::isAdmin($username)) {
+            return $isAdmin;
+        }
+        return self::isSuperAdmin($username);
+    }
+    
     
     
 }

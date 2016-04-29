@@ -1,23 +1,30 @@
 <?php
+/**
+ * author     : forecho <caizhenghai@gmail.com>
+ * createTime : 15/4/20 下午9:15
+ * description:
+ */
 
 use yii\helpers\Html;
 
-/* @var $this yii\web\View */
-/* @var $model app\models\AdReply */
-
 $this->title = Yii::t('app', 'Update {modelClass}: ', [
-    'modelClass' => 'Ad Reply',
-]) . ' ' . $model->reply_id;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Ad Replies'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->reply_id, 'url' => ['view', 'id' => $model->reply_id]];
-$this->params['breadcrumbs'][] = Yii::t('app', 'Update');
+        'modelClass' => 'Post Comment',
+    ]) . ' ' . $model->post->title;
 ?>
-<div class="ad-reply-update">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="col-md-9 topic-create" contenteditable="false" style="">
 
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
+    <div class="panel panel-default">
+        <div class="panel-heading clearfix">
+            <?= Html::encode($this->title) ?>
+        </div>
 
+        <?= $this->render('_form', [
+            'model' => $model,
+        ]) ?>
+    </div>
 </div>
+
+<?= \frontend\widgets\TopicSidebar::widget([
+
+])?>

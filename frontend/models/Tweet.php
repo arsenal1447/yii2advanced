@@ -2,7 +2,7 @@
 namespace frontend\models;
 
 use common\models\AdPost;
-use frontend\modules\user\models\UserMeta;
+use frontend\models\UserMeta;
 use yii\web\NotFoundHttpException;
 use Yii;
 
@@ -29,7 +29,7 @@ class Tweet extends AdPost
             [['post_title'], 'default', 'value' => ''],
         ];
     }
-    
+
     /**
      * @desc  发帖的预处理
      * @return boolean whether the record should be saved.

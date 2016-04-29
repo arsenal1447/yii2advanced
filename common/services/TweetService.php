@@ -1,7 +1,7 @@
 <?php
 namespace common\services;
 
-use frontend\modules\topic\models\Topic;
+use frontendmodels\Topic;
 use frontend\models\Tweet;
 use yii\helpers\Url;
 

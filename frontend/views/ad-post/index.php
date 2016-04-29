@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ListView;
 use yii\widgets\Pjax;
 use frontend\widgets\TopicSidebar;
+
 use kartik\icons\Icon;
 
 Icon::map($this);
@@ -20,7 +21,7 @@ if ($node = Yii::$app->request->getQueryParam('node')) {
         <?php if($node): ?>
         <div class="panel-heading clearfix">
             <?= Icon::show('cloud-upload') ?> <?= $node->cat_name; ?>
-            <?php if(!empty($node->cat_desc)): ?>
+            <?php if(!empty($node->description)): ?>
                 <br/>
                 <span style="color: #666666; font-size: 12px;"><?= $node->cat_desc; ?></span>
             <?php endif; ?>
@@ -62,4 +63,7 @@ if ($node = Yii::$app->request->getQueryParam('node')) {
 <?= TopicSidebar::widget([
     'node' => $node
 ]); ?>
+
+
+
 

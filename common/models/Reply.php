@@ -7,12 +7,13 @@ use yii\base\Model;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
 use yii\helpers\ArrayHelper;
+use frontend\models\UserMeta;
 
 /**
  * This is the model class for table "reply".
  *
  * @property integer $reply_id
- * @property integer $reply_post
+ * @property integer $reply_post_id
  * @property integer $reply_user
  * @property string $reply_user_name
  * @property string $reply_title
@@ -52,8 +53,8 @@ class Reply extends ActiveRecord
     public function rules()
     {
         return [
-                [['reply_post','reply_user_id','reply_user_name','reply_content','reply_create'],'required'],
-                [['reply_post','reply_user_id','reply_support','reply_against','reply_floor'],'integer'],
+                [['reply_post_id','reply_user_id','reply_user_name','reply_content','reply_create'],'required'],
+                [['reply_post_id','reply_user_id','reply_support','reply_against','reply_floor'],'integer'],
                 [['reply_content'],'string'],
                 [['reply_create','reply_update'],'safe'],
                 [['reply_user_name'],'string','max' => 32],
@@ -69,7 +70,7 @@ class Reply extends ActiveRecord
     {
         return [
                 'reply_id' => 'ID',
-                'reply_post' => 'Post ID',
+                'reply_post_id' => 'Post ID',
                 'reply_user_id' => 'User ID',
                 'reply_user_name' => 'User Name',
                 'reply_title' => '标题',
@@ -207,12 +208,12 @@ class Reply extends ActiveRecord
 
     public function getUser()
     {
-        return $this->hasOne(User::className(), ['id' => 'user_id']);
+        return $this->hasOne(User::className(), ['user_id' => 'reply_user_id']);
     }
 
     public function getPost()
     {
-        return $this->hasOne(AdPost::className(), ['id' => 'post_id']);
+        return $this->hasOne(AdPost::className(), ['post_id' => 'reply_post_id']);
     }
 
     public function getTopic()
@@ -223,7 +224,7 @@ class Reply extends ActiveRecord
     public function getLike()
     {
         $model = new UserMeta();
-        return $model->isUserAction(self::TYPE, 'like', $this->id);
+        return $model->isUserAction(self::TYPE, 'like', $this->reply_id);
     }
 
 
@@ -245,7 +246,7 @@ class Reply extends ActiveRecord
      */
     public static function findCommentList($postId)
     {
-        return static::find()->where(['reply_post' => $postId]);
+        return static::find()->where(['reply_post_id' => $postId]);
     }
 
     /**
@@ -254,7 +255,7 @@ class Reply extends ActiveRecord
      */
     public function isCurrent()
     {
-        return $this->user_id == Yii::$app->user->id;
+        return $this->reply_user_id == Yii::$app->user->id;
     }
 
     /**

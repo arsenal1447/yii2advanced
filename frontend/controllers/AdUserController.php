@@ -11,6 +11,7 @@ use yii\web\ForbiddenHttpException;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use common\models\UserInfo;
 
 /**
  * AdUserController implements the CRUD actions for AdUser model.
@@ -128,16 +129,34 @@ class AdUserController extends Controller
      */
     public function actionShow($username = '')
     {
-        $user = $this->user($user_name);
+        $user = $this->user($username);
         // 个人主页浏览次数
         $currentUserId = \Yii::$app->getUser()->getId();
         if (null != $currentUserId && $user->id != $currentUserId) {
-            UserInfo::updateAllCounters(['user_view_count' => 1], ['reply_user_id' => $user->user_id]);
+            UserInfo::updateAllCounters(['info_view_count' => 1], ['info_user_id' => $user->user_id]);
         }
     
         return $this->render('show', [
                 'user' => $user,
+//                 'model' => $user,
                 'dataProvider' => $this->comment($user->user_id),
+        ]);
+    }
+    
+    public function actionPoint($username = '')
+    {
+        $user = $this->user($username);
+    
+        $dataProvider = new ActiveDataProvider([
+                'query' => MeritLog::find()->where([
+                        'user_id' => $user->id,
+                        'type' => 1,
+                ])->orderBy(['created_at' => SORT_DESC])
+        ]);
+    
+        return $this->render('show', [
+                'user' => $user,
+                'dataProvider' => $dataProvider,
         ]);
     }
 }

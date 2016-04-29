@@ -20,12 +20,12 @@ use kartik\select2\Select2;
         'class' => 'alert alert-danger'
     ]) ?>
 
-    <?= $form->field($model, 'title')->textInput([
+    <?= $form->field($model, 'post_title')->textInput([
         'maxlength' => 255,
         'placeholder' => '标题'
     ]) ?>
 
-    <?= $form->field($model, 'post_meta_id')->widget(Select2::classname(), [
+    <?= $form->field($model, 'post_cate_id')->widget(Select2::classname(), [
         'data' => \common\models\PostMeta::topicCategory(),
         'options' => ['placeholder' => '选择一个分类'],
         'pluginOptions' => [
@@ -62,7 +62,7 @@ use kartik\select2\Select2;
     </div>
 
     <div class="form-group" id="editor">
-        <?= $form->field($model, 'content')->widget(
+        <?= $form->field($model, 'post_content')->widget(
             'trntv\aceeditor\AceEditor',
             [
                 'id' => 'markdown',
@@ -77,7 +77,7 @@ use kartik\select2\Select2;
 
     <?= SelectizeTextInput::widget([
         'name' => 'Topic[tags]',
-        'value' => $model->tags,
+        'value' => $model->post_tags,
         'loadUrl' => ['/post-tag/index'],
         'clientOptions' => [
             'placeholder' => '标签（可选）',
@@ -94,7 +94,7 @@ use kartik\select2\Select2;
     ]) ?>
 
     <div class="form-group">
-        <?= $form->field($model, 'cc')->checkbox()  ?>
+        <?php //echo $form->field($model, 'cc')->checkbox()  ?>
     </div>
 
     <div class="form-group">
@@ -111,7 +111,7 @@ use kartik\select2\Select2;
     </div>
 
     <div id="md-preview" class="pt10">
-        <?= HtmlPurifier::process(\yii\helpers\Markdown::process($model->content, 'gfm')) ?>
+        <?= HtmlPurifier::process(\yii\helpers\Markdown::process($model->post_content, 'gfm')) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

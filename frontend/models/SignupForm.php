@@ -16,7 +16,7 @@ class SignupForm extends Model
     public $user_passhash;
     public $created_at;
     public $captcha;
-    
+
     const STATUS_ACTIVE = 10;
 
     /**
@@ -61,17 +61,17 @@ class SignupForm extends Model
             $user->setPassword($this->user_pass);
             $user->generateAuthKey();
             $user->save(false);
-            
+
             // 权限的功能  要添加以下三行代码：
             $auth = Yii::$app->authManager;
             $authorRole = $auth->getRole('author');
             $auth->assign($authorRole, $user->getId());
-            
+
             if ($user->save()) {
                 return $user;
             }
         }
-        
+
         return null;
     }
 

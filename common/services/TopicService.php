@@ -2,7 +2,7 @@
 namespace common\services;
 
 use frontend\models\AdNotice;
-use frontend\modules\topic\models\Topic;
+use frontend\models\Topic;
 
 class TopicService extends PostService
 {
