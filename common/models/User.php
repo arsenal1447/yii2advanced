@@ -8,6 +8,7 @@ use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
 use yiier\merit\models\Merit;
+use frontend\models\UserAccount;
 
 /**
  * User model
@@ -324,6 +325,22 @@ class User extends ActiveRecord implements IdentityInterface
             return $isAdmin;
         }
         return self::isSuperAdmin($username);
+    }
+    
+    /**
+     * @return array
+     */
+    public function getAccounts()
+    {
+        $connected = [];
+        $accounts = $this->hasMany(UserAccount::className(), ['account_user_id' => 'id'])->all();
+    
+        // @var Account $account
+        foreach ($accounts as $account) {
+            $connected[$account->account_provider] = $account;
+        }
+    
+        return $connected;
     }
     
     

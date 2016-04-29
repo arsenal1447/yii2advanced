@@ -1,11 +1,4 @@
 <?php
-/**
- * @Author: forecho
- * @Date:   2015-01-24 21:37:24
- * @Last Modified by:   forecho
- * @Last Modified time: 2015-01-24 22:19:04
- */
-
 namespace frontend\widgets;
 
 use yii\authclient\ClientInterface;
@@ -45,7 +38,7 @@ class Connect extends AuthChoice
     public function createClientUrl($provider)
     {
         if ($this->isConnected($provider)) {
-            return Url::to(['/user/setting/disconnect', 'id' => $this->accounts[$provider->getId()]->id]);
+            return Url::to(['/setting/disconnect', 'id' => $this->accounts[$provider->getId()]->id]);
         } else {
             return parent::createClientUrl($provider);
         }

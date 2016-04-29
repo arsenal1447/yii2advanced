@@ -3,8 +3,6 @@ use frontend\widgets\Connect;
 use yii\helpers\Html;
 
 $this->title = 'Networks';
-pr($user);
-die('7');
 // $this->params['breadcrumbs'][] = $this->title;
 ?>
 
