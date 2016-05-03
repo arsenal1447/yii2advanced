@@ -396,39 +396,6 @@
         ]
     },
     {
-        "name": "bower-asset/jquery",
-        "version": "2.2.3",
-        "version_normalized": "2.2.3.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/jquery/jquery-dist.git",
-            "reference": "af22a351b2ea5801ffb1695abb3bb34d5bed9198"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/jquery/jquery-dist/zipball/af22a351b2ea5801ffb1695abb3bb34d5bed9198",
-            "reference": "af22a351b2ea5801ffb1695abb3bb34d5bed9198",
-            "shasum": ""
-        },
-        "type": "bower-asset-library",
-        "extra": {
-            "bower-asset-main": "dist/jquery.js",
-            "bower-asset-ignore": [
-                "package.json"
-            ]
-        },
-        "installation-source": "dist",
-        "license": [
-            "MIT"
-        ],
-        "keywords": [
-            "browser",
-            "javascript",
-            "jquery",
-            "library"
-        ]
-    },
-    {
         "name": "bower-asset/yii2-pjax",
         "version": "v2.0.6",
         "version_normalized": "2.0.6.0",
@@ -1815,74 +1782,6 @@
         "description": "Font Awesome"
     },
     {
-        "name": "bower-asset/marked",
-        "version": "v0.3.5",
-        "version_normalized": "0.3.5.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/chjj/marked.git",
-            "reference": "88ce4df47c4d994dc1b1df1477a21fb893e11ddc"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/chjj/marked/zipball/88ce4df47c4d994dc1b1df1477a21fb893e11ddc",
-            "reference": "88ce4df47c4d994dc1b1df1477a21fb893e11ddc",
-            "shasum": ""
-        },
-        "type": "bower-asset-library",
-        "extra": {
-            "bower-asset-main": "lib/marked.js",
-            "bower-asset-ignore": [
-                "**/.*",
-                "node_modules",
-                "bower_components",
-                "app/bower_components",
-                "test",
-                "tests"
-            ]
-        },
-        "installation-source": "dist",
-        "license": [
-            "MIT"
-        ],
-        "description": "A markdown parser built for speed",
-        "keywords": [
-            "html",
-            "markdown",
-            "markup"
-        ]
-    },
-    {
-        "name": "bower-asset/highlightjs",
-        "version": "9.2.0",
-        "version_normalized": "9.2.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/components/highlightjs.git",
-            "reference": "08d860a08b885d78975076cf3f9fb165ed9ff253"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/components/highlightjs/zipball/08d860a08b885d78975076cf3f9fb165ed9ff253",
-            "reference": "08d860a08b885d78975076cf3f9fb165ed9ff253",
-            "shasum": ""
-        },
-        "type": "bower-asset-library",
-        "extra": {
-            "bower-asset-main": [
-                "highlight.pack.js",
-                "styles/default.css"
-            ],
-            "bower-asset-ignore": [
-                "**/.*",
-                "node_modules",
-                "vendor",
-                "components"
-            ]
-        },
-        "installation-source": "dist"
-    },
-    {
         "name": "bower-asset/metisMenu",
         "version": "v2.5.0",
         "version_normalized": "2.5.0.0",
@@ -1932,132 +1831,6 @@
             "twbs",
             "twitter"
         ]
-    },
-    {
-        "name": "bower-asset/emojify.js",
-        "version": "1.1.0",
-        "version_normalized": "1.1.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/Ranks/emojify.js.git",
-            "reference": "230b992b2754000b52da2542fa7a4fa730dc9a24"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/Ranks/emojify.js/zipball/230b992b2754000b52da2542fa7a4fa730dc9a24",
-            "reference": "230b992b2754000b52da2542fa7a4fa730dc9a24",
-            "shasum": ""
-        },
-        "type": "bower-asset-library",
-        "extra": {
-            "bower-asset-main": "dist/js/emojify.js",
-            "bower-asset-ignore": [
-                "src",
-                "**/.*",
-                "node_modules",
-                "tests"
-            ]
-        },
-        "installation-source": "dist",
-        "license": [
-            "MIT"
-        ],
-        "description": "A Javascript module to convert Emoji keywords to images http://hassankhan.github.io/emojify.js/",
-        "keywords": [
-            "emoji"
-        ]
-    },
-    {
-        "name": "bower-asset/pace",
-        "version": "v1.0.2",
-        "version_normalized": "1.0.2.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/HubSpot/pace.git",
-            "reference": "c6846cbf6b928e9903b569269fa9fbf32f2554f4"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/HubSpot/pace/zipball/c6846cbf6b928e9903b569269fa9fbf32f2554f4",
-            "reference": "c6846cbf6b928e9903b569269fa9fbf32f2554f4",
-            "shasum": ""
-        },
-        "type": "bower-asset-library",
-        "extra": {
-            "bower-asset-main": "pace.js",
-            "bower-asset-ignore": [
-                ".*",
-                "Gruntfile.coffee",
-                "bower_components",
-                "docs",
-                "node_modules",
-                "package.json",
-                "templates",
-                "tests"
-            ]
-        },
-        "installation-source": "dist",
-        "license": [
-            "MIT"
-        ],
-        "description": "Automatic page load progress bar",
-        "keywords": [
-            "activity",
-            "ajax",
-            "automatic",
-            "bar",
-            "client-side",
-            "load",
-            "loading",
-            "pageload",
-            "progress",
-            "progress",
-            "spinner"
-        ]
-    },
-    {
-        "name": "bower-asset/localforage",
-        "version": "1.4.0",
-        "version_normalized": "1.4.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/mozilla/localForage.git",
-            "reference": "757253aa8fd177fb87efb822d7f497f82811574e"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/mozilla/localForage/zipball/757253aa8fd177fb87efb822d7f497f82811574e",
-            "reference": "757253aa8fd177fb87efb822d7f497f82811574e",
-            "shasum": ""
-        },
-        "require-dev": {
-            "bower-asset/assert": "~0.1.0",
-            "bower-asset/es6-promise": "~1.0.0",
-            "bower-asset/expect": "~0.3.1",
-            "bower-asset/mocha": "~1.18.2",
-            "bower-asset/modernizr": "~2.8.1",
-            "bower-asset/requirejs": "~2.1.10"
-        },
-        "type": "bower-asset-library",
-        "extra": {
-            "bower-asset-main": [
-                "dist/localforage.js"
-            ],
-            "bower-asset-ignore": [
-                ".travis.yml",
-                "CONTRIBUTING.md",
-                "config.rb",
-                "Gemfile",
-                "Gemfile.lock",
-                "Rakefile",
-                "LICENSE",
-                "docs*",
-                "examples*",
-                "test*",
-                "site*"
-            ]
-        },
-        "installation-source": "dist"
     },
     {
         "name": "bower-asset/caret.js",
@@ -2678,5 +2451,232 @@
             "GPL-v3"
         ],
         "description": "Yii2 slack client based on GuzzleHttp library"
+    },
+    {
+        "name": "bower-asset/emojify.js",
+        "version": "1.1.0",
+        "version_normalized": "1.1.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Ranks/emojify.js.git",
+            "reference": "230b992b2754000b52da2542fa7a4fa730dc9a24"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Ranks/emojify.js/zipball/230b992b2754000b52da2542fa7a4fa730dc9a24",
+            "reference": "230b992b2754000b52da2542fa7a4fa730dc9a24",
+            "shasum": ""
+        },
+        "type": "bower-asset-library",
+        "extra": {
+            "bower-asset-main": "dist/js/emojify.js",
+            "bower-asset-ignore": [
+                "src",
+                "**/.*",
+                "node_modules",
+                "tests"
+            ]
+        },
+        "installation-source": "dist",
+        "license": [
+            "MIT"
+        ],
+        "description": "A Javascript module to convert Emoji keywords to images http://hassankhan.github.io/emojify.js/",
+        "keywords": [
+            "emoji"
+        ]
+    },
+    {
+        "name": "bower-asset/highlightjs",
+        "version": "9.2.0",
+        "version_normalized": "9.2.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/components/highlightjs.git",
+            "reference": "08d860a08b885d78975076cf3f9fb165ed9ff253"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/components/highlightjs/zipball/08d860a08b885d78975076cf3f9fb165ed9ff253",
+            "reference": "08d860a08b885d78975076cf3f9fb165ed9ff253",
+            "shasum": ""
+        },
+        "type": "bower-asset-library",
+        "extra": {
+            "bower-asset-main": [
+                "highlight.pack.js",
+                "styles/default.css"
+            ],
+            "bower-asset-ignore": [
+                "**/.*",
+                "node_modules",
+                "vendor",
+                "components"
+            ]
+        },
+        "installation-source": "dist"
+    },
+    {
+        "name": "bower-asset/localforage",
+        "version": "1.4.0",
+        "version_normalized": "1.4.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/mozilla/localForage.git",
+            "reference": "757253aa8fd177fb87efb822d7f497f82811574e"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/mozilla/localForage/zipball/757253aa8fd177fb87efb822d7f497f82811574e",
+            "reference": "757253aa8fd177fb87efb822d7f497f82811574e",
+            "shasum": ""
+        },
+        "require-dev": {
+            "bower-asset/assert": "~0.1.0",
+            "bower-asset/es6-promise": "~1.0.0",
+            "bower-asset/expect": "~0.3.1",
+            "bower-asset/mocha": "~1.18.2",
+            "bower-asset/modernizr": "~2.8.1",
+            "bower-asset/requirejs": "~2.1.10"
+        },
+        "type": "bower-asset-library",
+        "extra": {
+            "bower-asset-main": [
+                "dist/localforage.js"
+            ],
+            "bower-asset-ignore": [
+                ".travis.yml",
+                "CONTRIBUTING.md",
+                "config.rb",
+                "Gemfile",
+                "Gemfile.lock",
+                "Rakefile",
+                "LICENSE",
+                "docs*",
+                "examples*",
+                "test*",
+                "site*"
+            ]
+        },
+        "installation-source": "dist"
+    },
+    {
+        "name": "bower-asset/marked",
+        "version": "v0.3.5",
+        "version_normalized": "0.3.5.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/chjj/marked.git",
+            "reference": "88ce4df47c4d994dc1b1df1477a21fb893e11ddc"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/chjj/marked/zipball/88ce4df47c4d994dc1b1df1477a21fb893e11ddc",
+            "reference": "88ce4df47c4d994dc1b1df1477a21fb893e11ddc",
+            "shasum": ""
+        },
+        "type": "bower-asset-library",
+        "extra": {
+            "bower-asset-main": "lib/marked.js",
+            "bower-asset-ignore": [
+                "**/.*",
+                "node_modules",
+                "bower_components",
+                "app/bower_components",
+                "test",
+                "tests"
+            ]
+        },
+        "installation-source": "dist",
+        "license": [
+            "MIT"
+        ],
+        "description": "A markdown parser built for speed",
+        "keywords": [
+            "html",
+            "markdown",
+            "markup"
+        ]
+    },
+    {
+        "name": "bower-asset/jquery",
+        "version": "2.2.3",
+        "version_normalized": "2.2.3.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/jquery/jquery-dist.git",
+            "reference": "af22a351b2ea5801ffb1695abb3bb34d5bed9198"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/jquery/jquery-dist/zipball/af22a351b2ea5801ffb1695abb3bb34d5bed9198",
+            "reference": "af22a351b2ea5801ffb1695abb3bb34d5bed9198",
+            "shasum": ""
+        },
+        "type": "bower-asset-library",
+        "extra": {
+            "bower-asset-main": "dist/jquery.js",
+            "bower-asset-ignore": [
+                "package.json"
+            ]
+        },
+        "installation-source": "dist",
+        "license": [
+            "MIT"
+        ],
+        "keywords": [
+            "browser",
+            "javascript",
+            "jquery",
+            "library"
+        ]
+    },
+    {
+        "name": "bower-asset/pace",
+        "version": "v1.0.2",
+        "version_normalized": "1.0.2.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/HubSpot/pace.git",
+            "reference": "c6846cbf6b928e9903b569269fa9fbf32f2554f4"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/HubSpot/pace/zipball/c6846cbf6b928e9903b569269fa9fbf32f2554f4",
+            "reference": "c6846cbf6b928e9903b569269fa9fbf32f2554f4",
+            "shasum": ""
+        },
+        "type": "bower-asset-library",
+        "extra": {
+            "bower-asset-main": "pace.js",
+            "bower-asset-ignore": [
+                ".*",
+                "Gruntfile.coffee",
+                "bower_components",
+                "docs",
+                "node_modules",
+                "package.json",
+                "templates",
+                "tests"
+            ]
+        },
+        "installation-source": "dist",
+        "license": [
+            "MIT"
+        ],
+        "description": "Automatic page load progress bar",
+        "keywords": [
+            "activity",
+            "ajax",
+            "automatic",
+            "bar",
+            "client-side",
+            "load",
+            "loading",
+            "pageload",
+            "progress",
+            "progress",
+            "spinner"
+        ]
     }
 ]

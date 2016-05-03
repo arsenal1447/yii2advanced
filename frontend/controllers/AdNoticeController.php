@@ -52,7 +52,7 @@ class AdNoticeController extends Controller
 //         ->select(['notice_id','notice_from_user_id','notice_user_id','notice_post_id','notice_comment_id'])
 //         ->where(['notice_status'=>1,'notice_user_id'=>$userid]);
         
-        $query =  AdNotice::find()->where(['notice_status'=>1,'notice_user_id'=>Yii::$app->user->id]);
+        $query =  AdNotice::find()->where(['notice_status'=>AdNotice::Notice_Show,'notice_deld'=>AdNotice::Notice_Normal,'notice_user_id'=>Yii::$app->user->id]);
         
         $notifyCount = UserService::findNotifyCount();
         
@@ -65,33 +65,11 @@ class AdNoticeController extends Controller
                 'notice_id' => SORT_ASC,
             ]]
         ]);
-      
-//         echo "<pre>";
-//         print_R($dataProvider);
-//         echo "</pre>";
-        
-//         die('73');
-        
         
         return $this->render('index', [
             'dataProvider' => $dataProvider,
             'notifyCount' => $notifyCount,
         ]);
-        
-//         ***********************
-//         $dataProvider = new ActiveDataProvider([
-//                 'query' => Notification::find()->where(['user_id' => Yii::$app->user->id]),
-//                 'sort' => ['defaultOrder' => [
-//                         'created_at' => SORT_DESC,
-//                         'id' => SORT_ASC,
-//                 ]]
-//         ]);
-//         $notifyCount = UserService::findNotifyCount();
-//         UserService::clearNotifyCount();
-//         return $this->render('index', [
-//                 'dataProvider' => $dataProvider,
-//                 'notifyCount' => $notifyCount,
-//         ]);
     }
 
     /**
@@ -126,7 +104,7 @@ class AdNoticeController extends Controller
     {
 //         AdNotice::deleteAll(['notice_user_id' => Yii::$app->user->id]);
         $userid = Yii::$app->user->id;
-        AdNotice::updateAll(['notice_deld'=>AdNotice::Notice_Deld]," notice_user_id = $userid");
+        AdNotice::updateAll(['notice_deld'=>AdNotice::Notice_Deld,'notice_update'=>time()]," notice_user_id = $userid");
     
         return $this->redirect(['index']);
     }

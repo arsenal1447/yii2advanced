@@ -22,7 +22,11 @@ use common\models\AdPost;
  */
 class AdNotice extends \yii\db\ActiveRecord
 {
-    public $Notice_Deld = 1;
+    const Notice_Deld = 1;
+    
+    const Notice_Normal = 0;
+
+    const Notice_Show = 1;
     /**
      * @inheritdoc
      */
