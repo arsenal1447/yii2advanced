@@ -44,7 +44,8 @@ class AccountForm extends Model
     public function __construct(Mailer $mailer, $config = [])
     {
         $this->mailer = $mailer;
-        $this->module = \Yii::$app->getModule('user');
+//         $this->module = \Yii::$app->getModule('user');
+        $this->module = \Yii::$app->user;
         $this->setAttributes([
             'user_name' => $this->user->user_name,
             'user_email'    => $this->user->user_email,
@@ -57,8 +58,8 @@ class AccountForm extends Model
     public function rules()
     {
         return [
-            [['username', 'email', 'current_password'], 'required'],
-            [['username', 'email'], 'filter', 'filter' => 'trim'],
+            [['username', 'user_email', 'current_password'], 'required'],
+            [['username', 'user_email'], 'filter', 'filter' => 'trim'],
             ['username', 'match', 'pattern' => '/^[a-zA-Z]\w+$/'],
             ['username', 'string', 'min' => 3, 'max' => 20],
             ['email', 'email'],
@@ -66,7 +67,7 @@ class AccountForm extends Model
                 return $this->user->$attribute != $model->$attribute;
             }, 'targetClass' => '\common\models\User', 'message' => '此{attribute}已经被使用。'],
             ['new_password', 'string', 'min' => 6],
-            ['tagline', 'string', 'max' => 40],
+            ['user_tagline', 'string', 'max' => 40],
             ['current_password', function ($attr) {
                 if (!\Yii::$app->security->validatePassword($this->$attr, $this->user->password_hash)) {
                     $this->addError($attr, '当前密码是输入错误');

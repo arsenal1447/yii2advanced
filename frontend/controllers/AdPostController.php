@@ -10,6 +10,8 @@ use frontend\models\AdNotice;
 use frontend\models\Topic;
 use frontend\models\UserMeta;
 use yii\data\ActiveDataProvider;
+use common\models\PostSearch;
+use common\models\PostMeta;
 // use yii\web\Controller;
 use common\components\Controller;
 use yii\web\NotFoundHttpException;
@@ -55,15 +57,46 @@ class AdPostController extends Controller
      */
     public function actionIndex()
     {
-        $query = AdPost::find();
-        $query->where(['post_deld'=>0,'post_status'=>0,'post_type'=>AdPost::TYPE])->orderBy('post_create DESC');//只显示未删除的帖子
-        $dataProvider = new ActiveDataProvider([
-            'query' => $query,
+        $searchModel = new PostSearch();
+        
+        // 话题或者分类筛选
+        $params = Yii::$app->request->queryParams;
+        empty($params['tag']) ?: $params['PostSearch']['tags'] = $params['tag'];
+        if (isset($params['node'])) {
+            $postMeta = PostMeta::findOne(['cat_alias' => $params['node']]);
+            ($postMeta) ? $params['PostSearch']['post_meta_id'] = $postMeta->cat_id : '';
+        }
+        
+        $dataProvider = $searchModel->search($params);
+        $dataProvider->query->andWhere([AdPost::tableName() . '.post_type' => 'topic', 'post_status' => [AdPost::STATUS_ACTIVE, AdPost::STATUS_EXCELLENT]]);
+        // 排序
+        $sort = $dataProvider->getSort();
+        $sort->attributes = array_merge($sort->attributes, [
+                'hotest' => [
+                        'asc' => [
+                                'post_view_count' => SORT_DESC,
+                                'post_create' => SORT_DESC
+                        ],
+                ],
+                'excellent' => [
+                        'asc' => [
+                                'post_status' => SORT_DESC,
+                                'post_view_count' => SORT_DESC,
+                                'post_create' => SORT_DESC
+                        ],
+                ],
+                'uncommented' => [
+                        'asc' => [
+                                'post_view_count' => SORT_ASC,
+                                'post_create' => SORT_DESC
+                        ],
+                ]
         ]);
-
+        
         return $this->render('index', [
-            'dataProvider' => $dataProvider,
-            'sorts' => $this->sorts,
+                'searchModel' => $searchModel,
+                'sorts' => $this->sorts,
+                'dataProvider' => $dataProvider,
         ]);
     }
 

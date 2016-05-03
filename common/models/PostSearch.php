@@ -1,16 +1,15 @@
 <?php
 
 namespace common\models;
-die('models/PostSearch');
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\Post;
+use common\models\AdPost;
 
 /**
- * PostSearch represents the model behind the search form about `common\Models\Post`.
+ * PostSearch represents the model behind the search form about `common\Models\AdPost`.
  */
-class PostSearch extends Post
+class PostSearch extends AdPost
 {
     /**
      * @inheritdoc
@@ -38,7 +37,7 @@ class PostSearch extends Post
      */
     public function search($params)
     {
-        $query = Post::find();
+        $query = AdPost::find();
 
         // 如果有无人区节点 帖子列表过滤无人区节点的帖子
         if (PostMeta::noManLandId() && (empty($params['PostSearch']['post_cate_id']) || $params['PostSearch']['post_cate_id'] != PostMeta::noManLandId())) {
@@ -53,7 +52,7 @@ class PostSearch extends Post
             'sort' => ['defaultOrder' => [
                 'post_order' => SORT_ASC,
                 'post_last_comment_time' => SORT_DESC,
-                'post_create_at' => SORT_DESC,
+                'post_create' => SORT_DESC,
             ]]
         ]);
 
