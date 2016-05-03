@@ -176,38 +176,6 @@
             ]
         },
         {
-            "name": "bower-asset/emojify.js",
-            "version": "1.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Ranks/emojify.js.git",
-                "reference": "230b992b2754000b52da2542fa7a4fa730dc9a24"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Ranks/emojify.js/zipball/230b992b2754000b52da2542fa7a4fa730dc9a24",
-                "reference": "230b992b2754000b52da2542fa7a4fa730dc9a24",
-                "shasum": ""
-            },
-            "type": "bower-asset-library",
-            "extra": {
-                "bower-asset-main": "dist/js/emojify.js",
-                "bower-asset-ignore": [
-                    "src",
-                    "**/.*",
-                    "node_modules",
-                    "tests"
-                ]
-            },
-            "license": [
-                "MIT"
-            ],
-            "description": "A Javascript module to convert Emoji keywords to images http://hassankhan.github.io/emojify.js/",
-            "keywords": [
-                "emoji"
-            ]
-        },
-        {
             "name": "bower-asset/ace-builds",
             "version": "v1.1.9",
             "source": {
