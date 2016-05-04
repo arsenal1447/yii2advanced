@@ -4,14 +4,17 @@ namespace frontend\controllers;
 
 use Yii;
 use app\models\AdUser;
+use common\models\AdPost;
 use common\models\User;
 use common\models\Reply;
+use frontend\models\UserMeta;
 use yii\data\ActiveDataProvider;
 use yii\web\ForbiddenHttpException;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use common\models\UserInfo;
+use yiier\merit\models\MeritLog;
 
 /**
  * AdUserController implements the CRUD actions for AdUser model.
@@ -152,6 +155,55 @@ class AdUserController extends Controller
                         'user_id' => $user->id,
                         'type' => 1,
                 ])->orderBy(['created_at' => SORT_DESC])
+        ]);
+    
+        return $this->render('show', [
+                'user' => $user,
+                'dataProvider' => $dataProvider,
+        ]);
+    }
+    
+    /**
+     * 最近主题
+     * @param string $username
+     * @return string
+     * @throws NotFoundHttpException
+     */
+    public function actionPost($username = '')
+    {
+//         pr(Yii::$app->requestedParams,true);
+        
+        $user = $this->user($username);
+    
+        $dataProvider = new ActiveDataProvider([
+                'query' => AdPost::find()
+                ->where(['post_user_id' => $user->user_id, 'post_type' => AdPost::TYPE])
+                ->andWhere('post_status > :status ', [':status' => AdPost::STATUS_DELETED])
+                ->orderBy(['post_create' => SORT_DESC]),
+        ]);
+    
+        return $this->render('show', [
+                'user' => $user,
+                'dataProvider' => $dataProvider,
+        ]);
+    }
+    
+    /**
+     * 最新收藏
+     * @param string $username
+     * @return string
+     * @throws NotFoundHttpException
+     */
+    public function actionFavorite($username = '')
+    {
+        $user = $this->user($username);
+    
+        $dataProvider = new ActiveDataProvider([
+                'query' => UserMeta::find()->where([
+                        'meta_user_id' => $user->user_id,
+                        'meta_type' => 'favorite',
+                        'meta_target_type' => AdPost::TYPE,
+                ])->orderBy(['meta_create' => SORT_DESC])
         ]);
     
         return $this->render('show', [

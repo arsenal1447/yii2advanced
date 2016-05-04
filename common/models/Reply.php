@@ -35,9 +35,14 @@ class Reply extends ActiveRecord
     const STATUS_ACTIVE = 0;
 
     /**
-     * 删除
+     * 未删除
      */
     const STATUS_DELETED = 0;
+    
+    /**
+     * 被删除
+     */
+    const STATUS_BEDELD = 1;
 
     /**
      * @inheritdoc
@@ -277,7 +282,7 @@ class Reply extends ActiveRecord
         $users = $this->parse($comment);
         foreach ($users as $key => $value) {
             $search = '@' . $value;
-            $url = Url::to(['/user/default/show', 'username' => $value]);
+            $url = Url::to(['/ad-user/show', 'username' => $value]);
             $place = "[{$search}]({$url}) ";
             $comment = str_replace($search . ' ', $place, $comment);
         }

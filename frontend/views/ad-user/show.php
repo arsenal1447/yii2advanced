@@ -7,7 +7,8 @@ use common\models\User;
 use yii\helpers\Url;
 
 $this->title = Html::encode($user->user_name);
-$username = Yii::$app->getRequest()->getQueryParam('user_name');
+$username = Yii::$app->getRequest()->getQueryParam('username');
+
 /** @var User $user*/
 ?>
 <section class="container user-default-index">

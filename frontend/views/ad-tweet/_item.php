@@ -15,7 +15,7 @@ use yii\helpers\Html;
         <div class="fade-info">
             <?= Html::a(
                 $model->user['user_name'],
-                ['/user/default/show', 'username' => $model->user['user_name']]
+                ['/ad-user/show', 'username' => $model->user['user_name']]
             ). '•'.
             Html::tag('span', \common\helpers\Formatter::relative($model->post_update));
             ?>

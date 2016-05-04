@@ -109,7 +109,8 @@ class AdPost extends BaseActiveRecord
                 $this->post_status = 0;
                 $this->post_view_count = 10;
                 $this->post_deld = 0;
-                $this->post_type = 'topic';
+                //$this->post_type = 'topic';
+                $this->post_type = AdPost::TYPE;
             }else{//更新修改时间
                 $this->post_update = time();
                 $this->post_last_comment_time = time();

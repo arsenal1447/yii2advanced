@@ -41,7 +41,7 @@ $this->title = \Yii::$app->setting->get('siteName');
                 ：<?= $statistics['online_count']; ?>
                 &nbsp;<?= Icon::show('list'); ?><?= \Yii::t('app', 'Post Count') ?>：<?= $statistics['post_count']; ?>
                 &nbsp;<?= Icon::show('share'); ?><?= \Yii::t('app', 'Comment Count') ?>
-                ：<?= $statistics['reply_count']; ?></span><?= Html::a(\Yii::t('app', 'More Excellent Topics'), ['topic/default/index', 'sort' => 'excellent']) ?>
+                ：<?= $statistics['reply_count']; ?></span><?= Html::a(\Yii::t('app', 'More Excellent Topics'), ['ad-post/index', 'sort' => 'excellent']) ?>
         </div>
     </div>
 

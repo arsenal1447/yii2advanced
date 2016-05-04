@@ -353,9 +353,11 @@ class User extends ActiveRecord implements IdentityInterface
         if($userid == Yii::$app->user->id){
             $model = User::findOne($userid);
             $model->user_notice_count = 0;
-            $model->update();
+            return $model->update();
         }else{
             $this->flash('当前用户非法', 'warning');
+//             return $model->update();
+            //等待测试,未完成
         }
     }
     

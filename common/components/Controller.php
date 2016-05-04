@@ -51,6 +51,10 @@ class Controller extends \yii\web\Controller
             Yii::$app->end(0, $this->redirect($url));
         }
     }
+    
+    public function alertInfo($url){
+        echo '<script>setTimeout(function(){window.location.href="index";},3000);</script>';
+    }
 
     /**
      * @param $message 信息显示内容

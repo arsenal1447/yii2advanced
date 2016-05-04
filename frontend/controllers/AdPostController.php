@@ -68,7 +68,7 @@ class AdPostController extends Controller
         }
         
         $dataProvider = $searchModel->search($params);
-        $dataProvider->query->andWhere([AdPost::tableName() . '.post_type' => 'topic', 'post_status' => [AdPost::STATUS_ACTIVE, AdPost::STATUS_EXCELLENT]]);
+        $dataProvider->query->andWhere([AdPost::tableName() . '.post_type' => 'topic', 'post_deld'=>AdPost::STATUS_DELETED,'post_status' => [AdPost::STATUS_ACTIVE, AdPost::STATUS_EXCELLENT]]);
         // 排序
         $sort = $dataProvider->getSort();
         $sort->attributes = array_merge($sort->attributes, [
@@ -109,6 +109,7 @@ class AdPostController extends Controller
     {
         $model = $this->findModel($id);
         if($model->post_deld == 1){
+            $this->flash('此贴已经被删除', 'error');
             return $this->redirect(['index']);
         }
 
@@ -265,7 +266,6 @@ class AdPostController extends Controller
                 AdPost::updateLastData($postId);
                 $userMeta = new UserMeta();
                 $userMeta->saveNewMeta('topic', $postId, 'follow');
-//                 die('205');
                 $noticeservice = new NoticeService();
                 $noticeservice->newReplyNotify(Yii::$app->user->identity, $post, $model, $rawComment);
             }
@@ -314,10 +314,19 @@ class AdPostController extends Controller
         if (Yii::$app->user->isGuest) {
             return $this->redirect(['site/login']);
         }
-        //需要添加权限判断,判断是否是发表帖子的用户,发布者才可以编辑
+        //需要添加权限判断,判断是否是发表帖子的用户,发布者才可以编辑     --待完成
         $model = $this->findModel($id);
+        if($model->post_user_id!= Yii::$app->user->id){
+            return $this->redirect(['index']);
+        }
         $model->post_deld = 1;
         if($model->save()){
+            //同时把ad_reply回复表的数据也变成被删除状态
+            $replymodel = Reply::find()->select(['reply_id'])->where(['reply_post_id'=>$id,'reply_deld'=>Reply::STATUS_DELETED])->asArray()->all();
+    
+            if($replymodel){
+                Reply::updateAll(['reply_deld' => Reply::STATUS_BEDELD], 'reply_post_id=:id',['id'=>$id]);
+            }
             return $this->redirect(['index']);
         }
     }

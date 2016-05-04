@@ -2,14 +2,23 @@
 use yii\helpers\Html;
 use yii\helpers\HtmlPurifier;
 use yii\helpers\Markdown;
+use common\models\AdPost;
+use frontend\models\Tweet;
 
 ?>
-<?php switch ($this->context->action->id) {
+<?php
+    $str = '';
+    if($model->post->post_type==AdPost::TYPE){
+        $str = 'ad-post';
+    }elseif($model->post->post_type==Tweet::TweetTYPE){
+        $str = 'ad-tweet';
+    }
+ switch ($this->context->action->id) {
     case 'show':
         // 评论
         echo Html::a(
             Html::encode($model->post->post_title),
-            ["/{$model->post->post_type}/default/view", 'id' => $model->post->post_user_id],
+            ["/{$str}/view", 'id' => $model->post->post_user_id],
             ['class' => 'list-group-item-heading']
         );
         echo Html::tag('span', Yii::$app->formatter->asRelativeTime($model->reply_create), ['class' => 'ml5 fade-info']);
@@ -21,13 +30,13 @@ use yii\helpers\Markdown;
 
         echo Html::a(
             Html::encode($model->topic->title),
-            ["/{$model->topic->type}/default/view", 'id' => $model->topic->id],
+            ["/{$model->topic->type}/view", 'id' => $model->topic->id],
             ['class' => 'list-group-item-heading']
         );
         echo Html::tag('span', Yii::$app->formatter->asRelativeTime($model->topic->created_at), ['class' => 'ml5 fade-info']);
         echo Html::beginTag('p', ['class' => 'list-group-item-text title-info']);
 
-        echo Html::a($model->topic->category->name, ["/{$model->topic->type}/default/index", 'node' => $model->topic->category->alias]);
+        echo Html::a($model->topic->category->name, ["/{$model->topic->type}/index", 'node' => $model->topic->category->alias]);
         echo ' • ';
         echo Html::beginTag('span');
         echo "{$model->topic->like_count} 个赞 • {$model->topic->comment_count} 条回复";
@@ -45,12 +54,12 @@ use yii\helpers\Markdown;
         // post 文章
         echo Html::a(
             Html::encode($model->title),
-            ["/{$model->type}/default/view", 'id' => $model->id],
+            ["/{$model->type}/view", 'id' => $model->id],
             ['class' => 'list-group-item-heading']
         );
         echo Html::tag('span', Yii::$app->formatter->asRelativeTime($model->created_at), ['class' => 'ml5 fade-info']);
         echo Html::beginTag('p', ['class' => 'list-group-item-text title-info']);
-        echo Html::a($model->category->name, ["/{$model->type}/default/index", 'node' => $model->category->alias]);
+        echo Html::a($model->category->cat_name, ["/{$model->type}/index", 'node' => $model->category->alias]);
         echo ' • ';
         echo Html::beginTag('span');
         echo "{$model->like_count} 个赞 • {$model->comment_count} 条回复";
