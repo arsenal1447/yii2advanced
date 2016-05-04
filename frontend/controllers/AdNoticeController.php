@@ -105,6 +105,10 @@ class AdNoticeController extends Controller
 //         AdNotice::deleteAll(['notice_user_id' => Yii::$app->user->id]);
         $userid = Yii::$app->user->id;
         AdNotice::updateAll(['notice_deld'=>AdNotice::Notice_Deld,'notice_update'=>time()]," notice_user_id = $userid");
+        
+        //情况用户表的消息数据
+        $user = new User;
+        $user->clearUserNotice($userid);
     
         return $this->redirect(['index']);
     }

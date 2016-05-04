@@ -161,7 +161,6 @@ class AdPostController extends Controller
             //获取分类列表
             $catmodel = AdCat::getCate();
             if ($model->load(Yii::$app->request->post())) {
-//                 echo "<pre>";print_R(Yii::$app->request->post());die('131');
                 $model->post_cate_id = Yii::$app->request->post('AdPost')['post_cate_id'];
                 if($model->save(false)){
                     $this->saveReplyForPost($model);
@@ -170,14 +169,9 @@ class AdPostController extends Controller
                     (new NoticeService())->newPostNotify(Yii::$app->user->identity, $model, $model->post_content);
                     // 更新个人总统计
 //                     UserInfo::updateAllCounters(['post_count' => 1], ['user_id' => $model->user_id]);
-//                     $this->flash('发表文章成功!', 'success');
-                     //die('116');
-//                      var_dump($model->post_id);
-//                      die('116');
-                     return $this->redirect(['view', 'id' => $model->post_id]);
+                    $this->flash('发表文章成功!', 'success');
+                    return $this->redirect(['view', 'id' => $model->post_id]);
                 }
-//                 return $this->redirect(['view', 'id' => $model->post_id]);
-                //return $this->redirect('view',['id' => $model->post_id,'catmodel' => $catmodel]);
             } else {
                 return $this->render('create', [
                     'model' => $model,
@@ -355,13 +349,9 @@ class AdPostController extends Controller
         $cate_id = $getparam['cate_id'];
         $query = AdPost::find();
         $query->where(['post_deld'=>0,'post_status'=>0,'post_cate_id'=>$cate_id]);//只显示未删除的帖子
-        $dataProvider = new ActiveDataProvider([
-                'query' => $query,
-                ]);
+        $dataProvider = new ActiveDataProvider(['query' => $query,]);
 
-        return $this->render('cat', [
-                'dataProvider' => $dataProvider,
-                ]);
+        return $this->render('cat', ['dataProvider' => $dataProvider,]);
     }
 
 

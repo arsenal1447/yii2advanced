@@ -31,7 +31,7 @@ use yii\helpers\Html;
             }
             echo Html::a(
                 $model->category->cat_name,
-                ['/ad-post/index', 'node' => $model->category->cat_alias],
+                ['/ad-post/', 'node' => $model->category->cat_alias],
                 ['class' => 'node']
             ), '•',
             Html::a(

@@ -7,7 +7,7 @@ use yii\web\UploadedFile;
 class AvatarForm extends Model
 {
     /** @var string */
-    public $avatar;
+    public $user_avatar;
 
     /** @var User */
     private $_user;
@@ -26,8 +26,8 @@ class AvatarForm extends Model
     public function rules()
     {
         return [
-            [['avatar'], 'required'],
-            [['avatar'], 'file', 'extensions' => 'gif, jpg, png', 'maxSize' => 1024 * 1024 * 2, 'tooBig' => \Yii::t('app', 'File has to be smaller than 2MB')],
+            [['user_avatar'], 'required'],
+            [['user_avatar'], 'file', 'extensions' => 'gif, jpg, png', 'maxSize' => 1024 * 1024 * 2, 'tooBig' => \Yii::t('app', 'File has to be smaller than 2MB')],
         ];
     }
 
@@ -47,7 +47,7 @@ class AvatarForm extends Model
     public function save()
     {
         if ($this->validate()) {
-            $this->user->avatar = $this->avatar;
+            $this->user->user_avatar = $this->user_avatar;
             return $this->user->save();
         }
         return false;
@@ -59,7 +59,7 @@ class AvatarForm extends Model
      */
     public function getImageFile()
     {
-        return isset($this->user->avatar) ? \Yii::$app->basePath . \Yii::$app->params['avatarPath'] . $this->user->avatar : null;
+        return isset($this->user->user_avatar) ? \Yii::$app->basePath . \Yii::$app->params['avatarPath'] . $this->user->user_avatar : null;
     }
 
 
@@ -69,7 +69,7 @@ class AvatarForm extends Model
      */
     public function getNewUploadedImageFile()
     {
-        return isset($this->avatar) ? \Yii::$app->basePath . \Yii::$app->params['avatarPath'] . $this->avatar : null;
+        return isset($this->user_avatar) ? \Yii::$app->basePath . \Yii::$app->params['avatarPath'] . $this->user_avatar : null;
     }
 
     /**
@@ -78,7 +78,7 @@ class AvatarForm extends Model
     public function useDefaultImage()
     {
         $identicon = new \Identicon\Identicon();
-        $this->avatar = $identicon->getImageDataUri($this->user->email);
+        $this->user_avatar = $identicon->getImageDataUri($this->user->user_email);
     }
 
     /**
@@ -99,7 +99,7 @@ class AvatarForm extends Model
         }
 
         // generate a unique file name
-        $this->avatar = \Yii::$app->security->generateRandomString() . ".{$image->extension}";
+        $this->user_avatar = \Yii::$app->security->generateRandomString() . ".{$image->extension}";
 
         // the uploaded image instance
         return $image;
@@ -120,7 +120,7 @@ class AvatarForm extends Model
         }
         // 删除缓存的旧头像
         $avatarCachePath = \Yii::$app->basePath . \Yii::$app->params['avatarCachePath'];
-        $files = glob("{$avatarCachePath}/*_{$this->user->avatar}");
+        $files = glob("{$avatarCachePath}/*_{$this->user->user_avatar}");
         array_walk($files, function ($file) {
             unlink($file);
         });
@@ -132,7 +132,7 @@ class AvatarForm extends Model
 
 
         // if deletion successful, reset your file attributes
-        $this->avatar = null;
+        $this->user_avatar = null;
 
         return true;
     }

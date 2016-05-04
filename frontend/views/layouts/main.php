@@ -36,7 +36,7 @@ $emojify = EmojifyAsset::register($this);
 //             NavBar::begin([
 //                 'brandLabel' => '我的地盘',
 // //                 'brandUrl' => Yii::$app->homeUrl,
-//                 'brandUrl' => 'index.php?r=/ad-post/index',
+//                 'brandUrl' => 'index.php?r=/ad-post/',
 //                 'options' => [
 //                     'class' => 'navbar-inverse navbar-fixed-top',
 //                 ],

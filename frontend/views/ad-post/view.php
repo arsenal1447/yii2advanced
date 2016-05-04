@@ -20,7 +20,7 @@ $this->title = $model->post_title;
                 <div class="info">
                     <?= Html::a(
                         $model->category->cat_name,
-                        ['/ad-post/index', 'node' => $model->category->cat_alias],
+                        ['/ad-post/', 'node' => $model->category->cat_alias],
                         ['class' => 'node']
                     ) ?>
                     ·
@@ -115,7 +115,7 @@ $this->title = $model->post_title;
                     $class = $model->status == 2 ? ['class' => 'active'] : null;
                     echo Html::a(
                         Html::tag('i', '', ['class' => 'fa fa-trophy']) . ' 加精',
-                        ['/topic/default/excellent', 'id' => $model->post_id],
+                        ['/ad-post/excellent', 'id' => $model->post_id],
                         $class
                     );
                 }

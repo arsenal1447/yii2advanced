@@ -42,8 +42,11 @@ $this->title = '网站导航';
                 <?php $NavUrl = NavUrl::find()->where(['nav_id' => $item->id ])->orderBy('order asc')->all(); ?>
                 <?php if($NavUrl): ?>
                     <?php foreach($NavUrl as $sub_key => $sub_item): ?>
-                        <div class="col-md-2 nav-item"><a href="<?php echo $sub_item->url; ?>" target="_blank" data-toggle="tooltip" data-placement="top"
-                                                  title="<?php echo $sub_item->description; ?>"><?php echo $sub_item->title; ?></a></div>
+                        <div class="col-md-2 nav-item">
+                            <a href="<?php echo $sub_item->url; ?>" target="_blank" data-toggle="tooltip" data-placement="top" title="<?php echo $sub_item->description; ?>">
+                                <?php echo $sub_item->title; ?>
+                            </a>
+                        </div>
                     <?php endforeach ?>
                 <?php  endif; ?>
             </div>

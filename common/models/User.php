@@ -9,6 +9,7 @@ use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
 use yiier\merit\models\Merit;
 use frontend\models\UserAccount;
+use yii\helpers\FileHelper;
 
 /**
  * User model
@@ -341,6 +342,21 @@ class User extends ActiveRecord implements IdentityInterface
         }
     
         return $connected;
+    }
+    
+    /**
+     * @desc 清空用户消息的时候,把用户表的消息字段设置为0
+     * @return boolean
+     */
+    public function clearUserNotice($userid)
+    {   
+        if($userid == Yii::$app->user->id){
+            $model = User::findOne($userid);
+            $model->user_notice_count = 0;
+            $model->update();
+        }else{
+            $this->flash('当前用户非法', 'warning');
+        }
     }
     
     

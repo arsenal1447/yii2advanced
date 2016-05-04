@@ -37,7 +37,7 @@ if ($node = Yii::$app->request->getQueryParam('node')) {
             <div class="filter pull-right">
                 <span class="l">查看:</span>
                 <?php foreach ($sorts as $key => $name): ?>
-                    <?= Html::a($name, \yii\helpers\Url::current(['sort' => $key]), ['class' => ($sort == $key || ((empty($sort) && $key == 'newest'))) ? 'active' : '']) ?> \
+                    <?= Html::a($name, str_replace('index','',\yii\helpers\Url::current(['sort' => $key])), ['class' => ($sort == $key || ((empty($sort) && $key == 'newest'))) ? 'active' : '']) ?> \
                 <?php endforeach ?>
             </div>
 

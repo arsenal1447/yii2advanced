@@ -130,9 +130,9 @@ class SettingController extends Controller
     {
         /** @var AvatarForm $model */
         $model = Yii::createObject(AvatarForm::className());
-
+                
         if ($model->load(Yii::$app->request->post())) {
-            if ($model->user->avatar) {
+            if ($model->user->user_avatar) {
                 // 删除头像
                 $model->deleteImage();
             }

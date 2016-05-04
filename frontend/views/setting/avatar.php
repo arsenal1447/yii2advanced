@@ -1,11 +1,4 @@
 <?php
-/**
- * @Author: forecho
- * @Date:   2015-01-29 23:23:12
- * @Last Modified by:   forecho
- * @Last Modified time: 2015-01-30 22:56:49
- */
-
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
 use bupy7\cropbox\Cropbox;
@@ -32,7 +25,7 @@ $this->title = Yii::t('app', 'Avatar');
                 <?= Html::img($model->user->getUserAvatar(24)); ?>
                 <br>
                 <br>
-                <?= $form->field($model, 'avatar')->fileInput(); ?>
+                <?= $form->field($model, 'user_avatar')->fileInput(); ?>
                 <div class="form-group">
                     <?= Html::submitButton(Yii::t('yii', 'Update'), ['class' => 'btn btn-success']) ?><br>
                 </div>
