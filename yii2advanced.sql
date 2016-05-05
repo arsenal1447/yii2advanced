@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50624
 File Encoding         : 65001
 
-Date: 2016-05-04 18:04:41
+Date: 2016-05-05 17:39:46
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -295,9 +295,9 @@ INSERT INTO `ad_notice` VALUES ('7', '7', '8', '56', '1', 'new_comment', 'dddddd
 INSERT INTO `ad_notice` VALUES ('8', '7', '5', '56', '1', 'new_comment', 'ddddddd', '0', '1461914279', null, '0');
 INSERT INTO `ad_notice` VALUES ('9', '1', '8', '56', '2', 'new_comment', 'uuuuu', '0', '1461914290', null, '0');
 INSERT INTO `ad_notice` VALUES ('10', '1', '5', '56', '2', 'new_comment', 'uuuuu', '0', '1461914291', null, '0');
-INSERT INTO `ad_notice` VALUES ('11', '1', '7', '56', '2', 'new_comment', 'uuuuu', '0', '1461914291', '1462343739', '1');
+INSERT INTO `ad_notice` VALUES ('11', '1', '7', '56', '2', 'new_comment', 'uuuuu', '0', '1461914291', '1462416771', '1');
 INSERT INTO `ad_notice` VALUES ('12', '7', '1', '57', '4', 'new_comment', '我是b1 我来回复了', '0', '1462352327', null, '0');
-INSERT INTO `ad_notice` VALUES ('13', '1', '7', '57', '5', 'new_comment', '哎呦  不错哦 ', '0', '1462352354', null, '0');
+INSERT INTO `ad_notice` VALUES ('13', '1', '7', '57', '5', 'new_comment', '哎呦  不错哦 ', '0', '1462352354', '1462416771', '1');
 INSERT INTO `ad_notice` VALUES ('14', '1', '5', '40', '6', 'new_comment', '订单', '0', '1462354822', null, '0');
 
 -- ----------------------------
@@ -502,8 +502,9 @@ CREATE TABLE `ad_session` (
 -- ----------------------------
 -- Records of ad_session
 -- ----------------------------
-INSERT INTO `ad_session` VALUES ('giiitehitje0c4hjcmqu8ejag5', '1462357717', 0x5F5F666C6173687C613A303A7B7D5F5F69647C733A313A2231223B71725F74696D655F62656E63687C613A313A7B733A31323A2261667465725F656E636F6465223B643A313436323335343932392E3933333033373B7D);
-INSERT INTO `ad_session` VALUES ('pv6vthnro01oobocbcnc1d5r72', '1462357712', 0x5F5F666C6173687C613A303A7B7D5F5F69647C733A313A2237223B71725F74696D655F62656E63687C613A313A7B733A31323A2261667465725F656E636F6465223B643A313436323335323533362E343437313337313B7D);
+INSERT INTO `ad_session` VALUES ('7u1vs7j72tt2frapisspkso8k5', '1462440861', 0x5F5F666C6173687C613A303A7B7D5F5F69647C733A313A2237223B71725F74696D655F62656E63687C613A313A7B733A31323A2261667465725F656E636F6465223B643A313436323433393431342E343438303431393B7D);
+INSERT INTO `ad_session` VALUES ('kan010dck0i5gido8mmlqjs3c5', '1462442599', 0x5F5F666C6173687C613A303A7B7D5F5F72657475726E55726C7C733A33333A222F61642F66726F6E74656E642F7765622F73657474696E672F6E6574776F726B73223B71725F74696D655F62656E63687C613A313A7B733A31323A2261667465725F656E636F6465223B643A313436323434303937362E32303433373B7D5F5F69647C733A313A2231223B);
+INSERT INTO `ad_session` VALUES ('nh9a00t7jts1etij20pqa53ko6', '1462440883', 0x5F5F666C6173687C613A303A7B7D71725F74696D655F62656E63687C613A313A7B733A31323A2261667465725F656E636F6465223B643A313436323433393434332E3231323638383B7D5F5F69647C733A313A2231223B);
 
 -- ----------------------------
 -- Table structure for `ad_user`
@@ -539,7 +540,7 @@ INSERT INTO `ad_user` VALUES ('3', 'zxx123456789', '0', '$2y$13$lzRDSnYGTb4prlzu
 INSERT INTO `ad_user` VALUES ('4', 'zhou123', '0', '$2y$13$U7M8MXazZ08GWGf1En6VreFkZjUi1VGEiNkXI4yDFmdvhgZQhtmNq', '0', '89203299@qq.com', '1458704684', '1458704684', '127.0.0.1', '0', '10', '0', 'ZGJo0sUaGeb6TZZUGN-NcG7sIcAFCrH0', '0', '10', '0', '0');
 INSERT INTO `ad_user` VALUES ('5', 'zhou', '0', '$2y$13$LF1tWQg6SEYsTT0Gcj1E0Ojpcpk6MkoNp4atfRZf46ArS2831rnFG', '0', 'zhou@qq.com', '1459413352', '1461316357', '127.0.0.1', '周杰伦 哎呦 不错哦 fffff', '10', '0', 'DjGz9-xIyEShxvnuWpcNgRcB3mo3ysSS', '0', '10', '5', '0');
 INSERT INTO `ad_user` VALUES ('6', 'admin', '0', '$2y$13$EhOsRRMZ/M4ExlW5MU1Ot.IgdU6hH51ZsaQjbHcn9R8KYyb5juwme', '0', 'admin@qq.com', '1459848774', '1459848870', '127.0.0.1', '系统管理员', '10', '0', 'RPIFqqC8qO5WNyyZnubtS5aPagfEGfXE', '0', '30', '0', '0');
-INSERT INTO `ad_user` VALUES ('7', 'b1', 'uxJ9UZzYFJXJYX_IOh4vheIWjQRFNzRm.jpg', '$2y$13$A3/8.w5R9BXDKHKn0bg4dORnxHziyZItFau.MdBDX4bNdiWE1NQku', '0', 'b1@qq.com', '1460018291', '1462343739', '127.0.0.1', '0', '10', '0', 'RGmrOErhwFTsp3oZjm1igsZPt-pOHSO4', '0', '10', '1', '0');
+INSERT INTO `ad_user` VALUES ('7', 'b123', 'uxJ9UZzYFJXJYX_IOh4vheIWjQRFNzRm.jpg', '$2y$13$A3/8.w5R9BXDKHKn0bg4dORnxHziyZItFau.MdBDX4bNdiWE1NQku', '0', 'b123@qq.com', '1460018291', '1462437731', '127.0.0.1', '0', '10', '0', 'RGmrOErhwFTsp3oZjm1igsZPt-pOHSO4', '0', '10', '0', '0');
 INSERT INTO `ad_user` VALUES ('8', 'abc', '0', '$2y$13$L6sD6PrQSyPIj/gvguQgJef99mFvALGE1kiR7Wr/MrjeAbm0sYWHi', '0', 'abc@qq.com', '1461217665', '1461217665', '127.0.0.1', '0', '10', '0', 'WyUQVQLLKUS4vUH_EKruOR26ZUBXkX4Q', '0', '10', '4', '0');
 
 -- ----------------------------
@@ -569,11 +570,11 @@ DROP TABLE IF EXISTS `ad_user_info`;
 CREATE TABLE `ad_user_info` (
   `info_id` int(11) NOT NULL AUTO_INCREMENT,
   `info_user_id` int(11) unsigned NOT NULL,
-  `info_info` varchar(255) DEFAULT NULL COMMENT '会员简介',
-  `info_github` varchar(100) DEFAULT NULL COMMENT 'GitHub 帐号',
-  `info_website` varchar(100) DEFAULT NULL COMMENT '个人主页',
-  `info_company` varchar(40) DEFAULT NULL COMMENT '公司',
-  `info_location` varchar(10) DEFAULT NULL COMMENT '城市',
+  `info_info` varchar(255) DEFAULT '0' COMMENT '会员简介',
+  `info_github` varchar(100) DEFAULT '0' COMMENT 'GitHub 帐号',
+  `info_website` varchar(100) DEFAULT '0' COMMENT '个人主页',
+  `info_company` varchar(40) DEFAULT '0' COMMENT '公司',
+  `info_location` varchar(10) DEFAULT '0' COMMENT '城市',
   `info_view_count` int(11) DEFAULT '0' COMMENT '个人主页浏览次数',
   `info_comment_count` int(11) DEFAULT '0' COMMENT '发布评论数',
   `info_post_count` int(11) DEFAULT '0' COMMENT '发布文章数',
@@ -581,13 +582,13 @@ CREATE TABLE `ad_user_info` (
   `info_like_count` int(11) DEFAULT '0' COMMENT '被赞次数',
   `info_hate_count` int(11) DEFAULT '0' COMMENT '喝倒彩次数',
   `info_login_count` int(11) DEFAULT '1' COMMENT '登录次数',
-  `info_prev_login_time` int(11) unsigned NOT NULL COMMENT '上次登录时间',
-  `info_prev_login_ip` varchar(32) NOT NULL COMMENT '上次登录IP',
-  `info_last_login_time` int(11) unsigned NOT NULL COMMENT '最后登录时间',
-  `info_last_login_ip` varchar(32) NOT NULL COMMENT '最后登录IP',
+  `info_prev_login_time` int(11) unsigned DEFAULT '0' COMMENT '上次登录时间',
+  `info_prev_login_ip` varchar(32) DEFAULT '0' COMMENT '上次登录IP',
+  `info_last_login_time` int(11) unsigned DEFAULT '0' COMMENT '最后登录时间',
+  `info_last_login_ip` varchar(32) DEFAULT '0' COMMENT '最后登录IP',
   `info_session_id` varchar(100) DEFAULT NULL,
-  `info_created_at` int(11) unsigned NOT NULL,
-  `info_updated_at` int(11) unsigned NOT NULL,
+  `info_create` int(11) unsigned DEFAULT '0',
+  `info_update` int(11) unsigned DEFAULT '0',
   PRIMARY KEY (`info_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
@@ -595,7 +596,7 @@ CREATE TABLE `ad_user_info` (
 -- Records of ad_user_info
 -- ----------------------------
 INSERT INTO `ad_user_info` VALUES ('1', '1', null, null, null, null, null, '22', '1', '1', '1', '1', '1', '11', '1461307802', '127.0.0.1', '1461550819', '127.0.0.1', null, '1461143981', '1461550819');
-INSERT INTO `ad_user_info` VALUES ('2', '7', null, null, null, null, null, '8', '0', '0', '0', '0', '0', '1', '1461307802', '127.0.0.1', '1461307802', '127.0.0.1', null, '1461307802', '1461307802');
+INSERT INTO `ad_user_info` VALUES ('2', '7', '哎呦不错哦', 'github.com/zxx1988328', 'www.baidu.com', '百度公司', '北京市海淀区', '0', '0', '0', '0', '0', '0', '1', '0', '0', '0', '0', null, '0', '1462435525');
 
 -- ----------------------------
 -- Table structure for `ad_user_meta`

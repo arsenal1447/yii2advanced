@@ -12,6 +12,20 @@ return [
             'password' => 'zxx123456',
             'database' => 0,
         ],
+        'authClientCollection' => [
+            'class' => 'yii\authclient\Collection',
+            'clients' => [
+                'github' => [
+                    'class' => 'yii\authclient\clients\GitHub',
+                    'clientId' => '9c8d914b20682278aac5',
+                    'clientSecret' => '0237782d08299c40fcd31c4dd664147915f96a27',
+                    'viewOptions' => [
+                        'popupWidth' => 820,
+                        'popupHeight' => 600,
+                    ]
+                 ],
+            ],
+        ],
 //         'redisCache'=>[
 //             'class'=>'yii\redis\Cache'
 //         ],

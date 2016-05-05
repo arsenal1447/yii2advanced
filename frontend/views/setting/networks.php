@@ -43,6 +43,9 @@ $this->title = 'Networks';
                                         'class' => 'btn btn-success btn-block'
                                     ])
                                 ?>
+                                 <?php //echo Html::a('Connect', 'https://github.com/login/oauth/authorize?client_id=9c8d914b20682278aac5&state=zhouxinxin&redirect_uri=http://127.0.0.1/ad/frontend/web/setting/networks', [
+                                        //'class' => 'btn btn-success btn-block'])
+                                 ?>
                             </td>
                         </tr>
                     <?php endforeach; ?>
