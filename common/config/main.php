@@ -17,8 +17,8 @@ return [
             'clients' => [
                 'github' => [
                     'class' => 'yii\authclient\clients\GitHub',
-                    'clientId' => '9c8d914b20682278aac5',
-                    'clientSecret' => '0237782d08299c40fcd31c4dd664147915f96a27',
+                    'clientId' => 'xxx',
+                    'clientSecret' => 'xxx',
                     'viewOptions' => [
                         'popupWidth' => 820,
                         'popupHeight' => 600,
