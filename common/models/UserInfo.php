@@ -3,7 +3,9 @@
 namespace common\models;
 
 use Yii;
+// use yii\db\ActiveRecord;
 use common\components\db\ActiveRecord;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "ad_user_info".
@@ -30,13 +32,28 @@ use common\components\db\ActiveRecord;
  * @property string $updated_at
  */
 class UserInfo extends ActiveRecord
-{
+{   
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
         return '{{%ad_user_info}}';
+    }
+    
+    /**
+     * @inheritdoc
+     */
+    public function behaviors()
+    {
+        return [
+                [
+                    'class' => TimestampBehavior::className(),
+                    'createdAtAttribute' => 'info_create',
+                    'updatedAtAttribute' => 'info_update',
+                    //             'value' => new Expression('NOW()'),//如果是timestamp类型 ,需要这样操作
+                ],
+        ];
     }
 
     /**
@@ -83,4 +100,42 @@ class UserInfo extends ActiveRecord
             'info_update' => 'Updated At',
         ];
     }
+    
+    
+//     /**
+//      * @desc 预处理
+//      * @return boolean whether the record should be saved.
+//      */
+//     public function beforeSave($insert) {
+//         $userid =  Yii::$app->user->identity->id;
+// //         if (parent::beforeSave($insert)) {
+// //         $this->info_info = $this->info_info;
+// //         $this->info_github = $this->info_github;
+// //         $this->info_website = $this->info_website;
+// //         $this->info_company = $this->info_company;
+// //         $this->info_location = $this->info_location;
+//             if ($this->isNewRecord) {
+//                 die('123');
+//                 $this->info_user_id = $userid;
+// //                 $this->info_view_count = $this->info_github;
+// //                 $this->info_comment_count = $this->info_github;
+// //                 $this->info_post_count = $this->info_github;
+// //                 $this->info_thanks_count = $this->info_github;
+// //                 $this->info_like_count = $this->info_github;
+// //                 $this->info_hate_count = $this->info_github;
+// //                 $this->info_login_count = $this->info_github;
+// //                 $this->info_prev_login_time = time();
+// //                 $this->info_prev_login_ip = Yii::$app->getRequest()->getUserIP();
+// //                 $this->info_last_login_time = time();
+// //                 $this->info_session_id = Yii::$app->getRequest()->getUserIP();
+//                 $this->info_create = time();
+//             }else{//更新修改时间
+//                 die('138');
+//                 $this->info_update = time();
+//             }
+//             return true;
+// //         } else {
+// //             return false;
+// //         }
+//     }
 }

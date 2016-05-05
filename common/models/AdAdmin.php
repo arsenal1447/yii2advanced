@@ -11,14 +11,14 @@ use yii\web\IdentityInterface;
  * User model
  *
  * @property integer $id
- * @property string $username
- * @property string $password_hash
- * @property string $password_reset_token
- * @property string $email
- * @property string $auth_key
- * @property integer $status
- * @property integer $created_at
- * @property integer $updated_at
+ * @property string $admin_user_name
+ * @property string $admin_password_hash
+ * @property string $admin_password_reset_token
+ * @property string $admin_email
+ * @property string $admin_auth_key
+ * @property integer $admin_status
+ * @property integer $admin_create
+ * @property integer $admin_update
  * @property string $password write-only password
  */
 class AdAdmin extends ActiveRecord implements IdentityInterface

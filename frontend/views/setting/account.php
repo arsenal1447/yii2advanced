@@ -28,11 +28,11 @@ $this->title = '账号设置';
                     'enableClientValidation' => false,
                 ]); ?>
 
-                <?= $form->field($model, 'email') ?>
+                <?= $form->field($model, 'user_email') ?>
 
-                <?= $form->field($model, 'username') ?>
+                <?= $form->field($model, 'user_name') ?>
 
-                <?= $form->field($model, 'tagline') ?>
+                <?= $form->field($model, 'user_tagline') ?>
 
                 <?= $form->field($model, 'new_password')->passwordInput()->hint('不填写则不修改密码') ?>
 

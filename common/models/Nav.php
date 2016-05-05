@@ -6,14 +6,14 @@ use Yii;
 use yii\helpers\ArrayHelper;
 
 /**
- * This is the model class for table "nav".
+ * This is the model class for table "ad_nav".
  *
- * @property integer $id
- * @property string $name
- * @property string $alias
- * @property integer $order
- * @property string $created_at
- * @property string $updated_at
+ * @property integer $nav_id
+ * @property string $nav_name
+ * @property string $nav_alias
+ * @property integer $nav_order
+ * @property string $nav_create
+ * @property string $nav_update
  */
 class Nav extends \yii\db\ActiveRecord
 {

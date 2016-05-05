@@ -89,15 +89,13 @@ class SettingController extends Controller
     {
         /** @var UserInfo $model */
         $model = UserInfo::findOne(['info_user_id' => Yii::$app->user->id]);
+        
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-
             $this->flash('更新成功', 'success');
             return $this->refresh();
         }
 
-        return $this->render('profile', [
-            'model' => $model,
-        ]);
+        return $this->render('profile', ['model' => $model,]);
     }
 
     /**
@@ -130,7 +128,7 @@ class SettingController extends Controller
     {
         /** @var AvatarForm $model */
         $model = Yii::createObject(AvatarForm::className());
-                
+
         if ($model->load(Yii::$app->request->post())) {
             if ($model->user->user_avatar) {
                 // 删除头像
@@ -271,7 +269,7 @@ class SettingController extends Controller
             Yii::$app->session->setFlash('error', '绑定失败，此账号已经绑定过了');
         }
 
-        $this->action->successUrl = Url::to(['/user/setting/networks']);
+        $this->action->successUrl = Url::to(['networks']);
     }
 
     /**
@@ -280,7 +278,7 @@ class SettingController extends Controller
      * @throws \yii\base\ExitException
      */
     protected function performAjaxValidation($model)
-    {
+    {   
         if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
             Yii::$app->response->format = Response::FORMAT_JSON;
             echo json_encode(ActiveForm::validate($model));

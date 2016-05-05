@@ -22,7 +22,7 @@ class UserAccount extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'ad_user_account';
+        return '{{%ad_user_account}}';
     }
 
     /**

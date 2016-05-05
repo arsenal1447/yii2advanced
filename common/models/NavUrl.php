@@ -5,17 +5,17 @@ namespace common\models;
 use Yii;
 
 /**
- * This is the model class for table "nav_url".
+ * This is the model class for table "ad_nav_url".
  *
- * @property integer $id
- * @property integer $nav_id
- * @property string $title
- * @property string $url
- * @property string $description
- * @property integer $order
- * @property integer $user_id
- * @property string $created_at
- * @property string $updated_at
+ * @property integer $url_id
+ * @property integer $url_nav_id
+ * @property string $url_title
+ * @property string $url_url
+ * @property string $url_description
+ * @property integer $url_order
+ * @property integer $url_user_id
+ * @property string $url_create
+ * @property string $url_update
  */
 class NavUrl extends \yii\db\ActiveRecord
 {
@@ -53,8 +53,8 @@ class NavUrl extends \yii\db\ActiveRecord
             'url_description' => Yii::t('app', 'Description'),
             'url_order' => Yii::t('app', 'Order'),
             'url_user_id' => Yii::t('app', 'User ID'),
-            'url_created_at' => Yii::t('app', 'Created At'),
-            'url_updated_at' => Yii::t('app', 'Updated At'),
+            'url_create' => Yii::t('app', 'Created At'),
+            'url_update' => Yii::t('app', 'Updated At'),
         ];
     }
 

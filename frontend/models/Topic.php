@@ -140,11 +140,11 @@ class Topic extends AdPost
                     // 如果立即修改 会因为在 xunsearch 找不到而不能 save
                     return false;
                 }
-                $search->status = $this->status;
+                $search->post_status = $this->status;
             }
-            $search->title = $this->title;
-            $search->content = $this->content;
-            $search->updated_at = $this->updated_at;
+            $search->post_title = $this->post_title;
+            $search->post_content = $this->post_content;
+            $search->post_update = $this->post_update;
             $search->save();
         }
     }

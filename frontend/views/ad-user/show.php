@@ -59,7 +59,7 @@ $username = Yii::$app->getRequest()->getQueryParam('username');
             <ul class="list-group">
                 <li class="list-group-item text-right">
                     <span class="pull-left"><strong class="">加入于</strong></span>
-                    <?= Yii::$app->formatter->asDateTime($user->userInfo->info_created_at) ?>
+                    <?= Yii::$app->formatter->asDateTime($user->userInfo->info_create) ?>
                 </li>
                 <?php if ($user->userInfo->info_location): ?>
                     <li class="list-group-item text-right">

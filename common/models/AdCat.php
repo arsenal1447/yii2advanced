@@ -10,11 +10,11 @@ use yii\db\ActiveRecord;
 /**
  * User model
  *
- * @property integer $id
- * @property string  $username
- * @property integer $status
- * @property integer $created_at
- * @property integer $updated_at
+ * @property integer $cat_id
+ * @property string  $cat_name
+ * @property integer $cat_status
+ * @property integer $cat_create
+ * @property integer $cat_update
  * @property string $password write-only password
  */
 class AdCat extends ActiveRecord
