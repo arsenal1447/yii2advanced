@@ -23,7 +23,7 @@ $this->title = '网站导航';
         <div class="panel-body text-center" style="padding-top: 5px;">
             <div class="list-group ">
                 <?php foreach($nav as $key => $item): ?>
-                <a href="#<?php echo $item->alias; ?>" class="list-group-item"><?php echo $item->name; ?></a>
+                <a href="#<?php echo $item->nav_alias; ?>" class="list-group-item"><?php echo $item->nav_name; ?></a>
                 <?php endforeach ?>
             </div>
         </div>
@@ -33,18 +33,18 @@ $this->title = '网站导航';
 
 <div class="nav-index col-md-10">
     <?php foreach($nav as $key => $item): ?>
-    <div class="panel panel-default corner-radius" id="<?php echo $item->alias; ?>">
+    <div class="panel panel-default corner-radius" id="<?php echo $item->nav_alias; ?>">
         <div class="panel-heading text-left">
-            <h3 class="panel-title"><?php echo $item->name; ?></h3>
+            <h3 class="panel-title"><?php echo $item->nav_name; ?></h3>
         </div>
         <div class="panel-body text-left">
             <div class="row">
-                <?php $NavUrl = NavUrl::find()->where(['nav_id' => $item->id ])->orderBy('order asc')->all(); ?>
+                <?php $NavUrl = NavUrl::find()->where(['url_nav_id' => $item->nav_id ])->orderBy('url_order asc')->all(); ?>
                 <?php if($NavUrl): ?>
                     <?php foreach($NavUrl as $sub_key => $sub_item): ?>
                         <div class="col-md-2 nav-item">
-                            <a href="<?php echo $sub_item->url; ?>" target="_blank" data-toggle="tooltip" data-placement="top" title="<?php echo $sub_item->description; ?>">
-                                <?php echo $sub_item->title; ?>
+                            <a href="<?php echo $sub_item->nav_url; ?>" target="_blank" data-toggle="tooltip" data-placement="top" title="<?php echo $sub_item->nav_description; ?>">
+                                <?php echo $sub_item->nav_title; ?>
                             </a>
                         </div>
                     <?php endforeach ?>

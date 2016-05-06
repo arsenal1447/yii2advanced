@@ -33,7 +33,7 @@ class Nav extends \yii\db\ActiveRecord
         return [
             [['nav_name','nav_alias','nav_order'], 'required'],
             [['nav_order'], 'integer'],
-            [['nav_name', 'alias'], 'string', 'max' => 50]
+            [['nav_name', 'nav_alias'], 'string', 'max' => 50]
         ];
     }
 
