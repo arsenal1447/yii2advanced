@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50624
 File Encoding         : 65001
 
-Date: 2016-05-06 15:28:03
+Date: 2016-05-06 18:07:00
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -230,17 +230,18 @@ CREATE TABLE `ad_donate` (
 DROP TABLE IF EXISTS `ad_nav`;
 CREATE TABLE `ad_nav` (
   `nav_id` int(11) NOT NULL AUTO_INCREMENT,
-  `nav_name` varchar(255) NOT NULL COMMENT '名称',
-  `nav_alias` varchar(255) NOT NULL COMMENT '变量（别名）',
-  `nav_order` int(11) unsigned NOT NULL DEFAULT '99' COMMENT '项目排序',
+  `nav_name` varchar(255) DEFAULT '0' COMMENT '名称',
+  `nav_alias` varchar(255) DEFAULT '0' COMMENT '变量（别名）',
+  `nav_order` int(11) unsigned DEFAULT '99' COMMENT '项目排序',
   `nav_create` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
   `nav_update` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '修改时间',
   PRIMARY KEY (`nav_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of ad_nav
 -- ----------------------------
+INSERT INTO `ad_nav` VALUES ('1', '百度', '百度', '1', '0', '0');
 
 -- ----------------------------
 -- Table structure for `ad_nav_url`
@@ -257,11 +258,12 @@ CREATE TABLE `ad_nav_url` (
   `url_create` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
   `url_update` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '修改时间',
   PRIMARY KEY (`url_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of ad_nav_url
 -- ----------------------------
+INSERT INTO `ad_nav_url` VALUES ('1', '0', '百度标题', 'www.baidu.com', '百度一下 你就完了', '1', '0', '0', '0');
 
 -- ----------------------------
 -- Table structure for `ad_notice`
@@ -505,8 +507,9 @@ CREATE TABLE `ad_session` (
 -- ----------------------------
 -- Records of ad_session
 -- ----------------------------
-INSERT INTO `ad_session` VALUES ('dmn76mus4j6nm63kn7dtrnp681', '1462521096', 0x5F5F666C6173687C613A303A7B7D5F5F72657475726E55726C7C733A313A222F223B5F5F69647C733A313A2236223B);
-INSERT INTO `ad_session` VALUES ('j66fj7f7ivm8pcamdf3784vla4', '1462521115', 0x5F5F666C6173687C613A303A7B7D5F5F69647C733A313A2237223B71725F74696D655F62656E63687C613A313A7B733A31323A2261667465725F656E636F6465223B643A313436323531363237382E3937373131393B7D);
+INSERT INTO `ad_session` VALUES ('j66fj7f7ivm8pcamdf3784vla4', '1462530287', 0x5F5F666C6173687C613A303A7B7D5F5F69647C733A313A2237223B71725F74696D655F62656E63687C613A313A7B733A31323A2261667465725F656E636F6465223B643A313436323532353734322E343631313931393B7D);
+INSERT INTO `ad_session` VALUES ('pbe7jcobratalq5b2dg7cfp8d1', '1462530553', 0x5F5F666C6173687C613A303A7B7D5F5F69647C733A313A2236223B);
+INSERT INTO `ad_session` VALUES ('qqp4ha0mgn0c1c5bnn7oes2o90', '1462528046', 0x5F5F666C6173687C613A303A7B7D5F5F72657475726E55726C7C733A313A222F223B5F5F69647C733A313A2236223B);
 
 -- ----------------------------
 -- Table structure for `ad_user`
