@@ -57,51 +57,6 @@ return array (
       '@yii/gii' => $vendorDir . '/yiisoft/yii2-gii',
     ),
   ),
-  'kartik-v/yii2-krajee-base' =>
-  array (
-    'name' => 'kartik-v/yii2-krajee-base',
-    'version' => '1.8.4.0',
-    'alias' =>
-    array (
-      '@kartik/base' => $vendorDir . '/kartik-v/yii2-krajee-base',
-    ),
-  ),
-  'yiisoft/yii2-jui' =>
-  array (
-    'name' => 'yiisoft/yii2-jui',
-    'version' => '2.0.5.0',
-    'alias' =>
-    array (
-      '@yii/jui' => $vendorDir . '/yiisoft/yii2-jui',
-    ),
-  ),
-  'kartik-v/yii2-icons' =>
-  array (
-    'name' => 'kartik-v/yii2-icons',
-    'version' => '1.4.1.0',
-    'alias' =>
-    array (
-      '@kartik/icons' => $vendorDir . '/kartik-v/yii2-icons',
-    ),
-  ),
-  'kartik-v/yii2-widget-select2' =>
-  array (
-    'name' => 'kartik-v/yii2-widget-select2',
-    'version' => '2.0.8.0',
-    'alias' =>
-    array (
-      '@kartik/select2' => $vendorDir . '/kartik-v/yii2-widget-select2',
-    ),
-  ),
-  0 =>
-  array (
-    'name' => 'yiier/yii2-redis',
-    'version' => '3.0.1',
-    'alias' =>
-    array (
-      '@yii/redis' => $vendorDir . '/yiisoft/yii2-redis',
-    ),
-  ),
   'funson86/yii2-setting' =>
   array (
     'name' => 'funson86/yii2-setting',
@@ -155,6 +110,42 @@ return array (
     'alias' =>
     array (
       '@yii/imagine' => $vendorDir . '/yiisoft/yii2-imagine',
+    ),
+  ),
+  'kartik-v/yii2-krajee-base' =>
+  array (
+    'name' => 'kartik-v/yii2-krajee-base',
+    'version' => '1.8.4.0',
+    'alias' =>
+    array (
+      '@kartik/base' => $vendorDir . '/kartik-v/yii2-krajee-base',
+    ),
+  ),
+  'yiisoft/yii2-jui' =>
+  array (
+    'name' => 'yiisoft/yii2-jui',
+    'version' => '2.0.5.0',
+    'alias' =>
+    array (
+      '@yii/jui' => $vendorDir . '/yiisoft/yii2-jui',
+    ),
+  ),
+  'kartik-v/yii2-icons' =>
+  array (
+    'name' => 'kartik-v/yii2-icons',
+    'version' => '1.4.1.0',
+    'alias' =>
+    array (
+      '@kartik/icons' => $vendorDir . '/kartik-v/yii2-icons',
+    ),
+  ),
+  'kartik-v/yii2-widget-select2' =>
+  array (
+    'name' => 'kartik-v/yii2-widget-select2',
+    'version' => '2.0.8.0',
+    'alias' =>
+    array (
+      '@kartik/select2' => $vendorDir . '/kartik-v/yii2-widget-select2',
     ),
   ),
   'yiier/yii2-backup' =>

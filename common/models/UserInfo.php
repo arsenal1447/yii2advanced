@@ -4,7 +4,7 @@ namespace common\models;
 
 use Yii;
 // use yii\db\ActiveRecord;
-use common\components\db\ActiveRecord;
+use common\components\db\MyActiveRecord;
 use yii\behaviors\TimestampBehavior;
 
 /**
@@ -31,8 +31,8 @@ use yii\behaviors\TimestampBehavior;
  * @property string $created_at
  * @property string $updated_at
  */
-class UserInfo extends ActiveRecord
-{   
+class UserInfo extends MyActiveRecord
+{
     /**
      * @inheritdoc
      */
@@ -40,7 +40,7 @@ class UserInfo extends ActiveRecord
     {
         return '{{%ad_user_info}}';
     }
-    
+
     /**
      * @inheritdoc
      */
@@ -100,8 +100,8 @@ class UserInfo extends ActiveRecord
             'info_update' => 'Updated At',
         ];
     }
-    
-    
+
+
 //     /**
 //      * @desc 预处理
 //      * @return boolean whether the record should be saved.

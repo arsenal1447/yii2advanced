@@ -10,6 +10,6 @@ $this->title = '活跃用户';
     </div>
 
     <div class="panel-body row">
-        <?= $this->render('/partials/users', ['model' => $model]); ?>
+        <?php echo $this->render('/partials/users', ['model' => $model]); ?>
     </div>
 </div>

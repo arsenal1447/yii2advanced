@@ -17,7 +17,7 @@ use yii\web\UploadedFile;
  * @property integer $donate_create
  * @property integer $donate_update
  */
-class AdDonate extends ActiveRecord
+class AdDonate extends MyActiveRecord
 {
     const STATUS_ACTIVE = 1;
     const STATUS_DELETE = 0;

@@ -2,7 +2,7 @@
 
 namespace common\models;
 
-use common\components\db\ActiveRecord;
+use common\components\db\MyActiveRecord;
 use Yii;
 
 /**
@@ -18,7 +18,7 @@ use Yii;
  * @property integer $created_at
  * @property integer $updated_at
  */
-class RightLink extends ActiveRecord
+class RightLink extends MyActiveRecord
 {
     /**
      * 推荐资源
@@ -52,7 +52,7 @@ class RightLink extends ActiveRecord
     {
         return [
             [['link_title', 'link_created_user'], 'required'],
-            [['link_type', 'link_created_at', 'link_updated_at'], 'integer'],
+            [['link_type', 'link_create', 'link_update'], 'integer'],
             [['link_title', 'link_image', 'link_content'], 'string', 'max' => 255],
             [['link_url'], 'string', 'max' => 225],
             [['link_created_user'], 'string', 'max' => 32]
@@ -72,8 +72,8 @@ class RightLink extends ActiveRecord
             'link_content' => '内容',
             'link_type' => '展示类别',
             'link_created_user' => '创建人',
-            'link_created_at' => 'Created At',
-            'link_updated_at' => 'Updated At',
+            'link_create' => 'Created At',
+            'link_update' => 'Updated At',
         ];
     }
 

@@ -6,7 +6,7 @@ use DevGroup\TagDependencyHelper\CacheableActiveRecord;
 use DevGroup\TagDependencyHelper\TagDependencyTrait;
 use Yii;
 use yii\helpers\ArrayHelper;
-use common\components\db\ActiveRecord;
+use common\components\db\MyActiveRecord;
 
 /**
  * This is the model class for table "ad_cat".
@@ -21,7 +21,7 @@ use common\components\db\ActiveRecord;
  * @property string $created_at
  * @property string $updated_at
  */
-class PostMeta extends ActiveRecord
+class PostMeta extends MyActiveRecord
 {
 
     use TagDependencyTrait;

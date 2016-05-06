@@ -28,4 +28,4 @@ phpunit.phar
 
 
 # composer 供应商目录
-#/vendor
+/vendor

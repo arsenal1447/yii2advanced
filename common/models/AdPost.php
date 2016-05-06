@@ -1,7 +1,8 @@
 <?php
 namespace common\models;
 use Yii;
-use base\BaseActiveRecord;
+// use base\BaseActiveRecord;
+use common\components\db\MyActiveRecord;
 use base\Ad;
 use common\helpers\TTimeHelper;
 use yii\db\Expression;
@@ -26,24 +27,28 @@ use frontend\models\UserMeta;
  * @property string $last_user_name
  * @property string $last_post_update
  */
-class AdPost extends BaseActiveRecord
+class AdPost extends MyActiveRecord
 {
     const TYPE = 'topic';
     /**
      * 发布
      */
-    const STATUS_ACTIVE = 0;
-
-    /**
-     * 删除
-     */
-    const STATUS_DELETED = 0;
+    const STATUS_ACTIVE = 1;
 
     /**
      * 推荐
      */
     const STATUS_EXCELLENT = 2;
+    /**
+     * 置顶
+     */
+    const STATUS_TOP = 3;
 
+
+    /**
+     * 删除
+     */
+    const STATUS_DELETED = 0;
 
     /**
      * @inheritdoc
@@ -76,7 +81,7 @@ class AdPost extends BaseActiveRecord
     {
         return [
                 //'id' => 'ID',
-                'post_id' => 'Post ID',
+                'post_id' => 'ID',
                 'post_user_id' => '用户ID',
                 //'user_name' => '用户名',
                 'post_title' => '标题',
@@ -86,8 +91,9 @@ class AdPost extends BaseActiveRecord
                 'post_view_count' => '浏览数',
                 'post_reply_count' => '回帖数',
                 'post_status' => '状态',
-//                 'note1' => 'Note1',
-//                 'note2' => 'Note2',
+                'category_name' => '分类',//用于点击排序和翻译                
+                'username' => '用户',//用于点击排序和翻译
+                'post_order' => '排序',//用于点击排序和翻译
                 'post_last_user_id' => 'Last User ID',
                 'post_last_comment_user_name' => 'Last User Name',
                 'post_last_comment_time' => 'Last Modify Time'
@@ -207,40 +213,6 @@ class AdPost extends BaseActiveRecord
         }
     }
 
-//     /**
-//      * @desc 更新每个帖子的阅读量,每次查看更新一次 ,使用redis
-//      * @param string $id
-//      * @return mixed
-//      */
-//     public static function UpViewCount($id)
-//     {
-//         $model = AdPost::find()->select(['post_id','post_view_count'])->where(['post_id' => $id,'post_deld'=>0,'post_status'=>0])->one();
-
-//         $redis = Yii::$app->redis;
-
-//         $currentcount = AdPost::getViewCount($id);
-//         $count = 0;
-//         if($currentcount>0){
-//             $count = $currentcount;
-//         }else{
-//             $count = $model->post_view_count;
-//         }
-
-//         $redis->hset("counthash","pid_".$id,$count);
-//         $result = $redis->hincrby('counthash', "pid_".$id, '1');
-//     }
-
-
-//     /**
-//      * @desc 更新每个帖子的阅读量,每次查看更新一次,使用redis
-//      * @param string $id
-//      * @return mixed
-//      */
-//     public static function getViewCount($id)
-//     {
-//         $redis = Yii::$app->redis;
-//         return $redis->hget('counthash', "pid_".$id);
-//     }
     /**
      * @desc 更新每个帖子的阅读量,每次查看更新一次
      * @param string $id
@@ -317,6 +289,22 @@ class AdPost extends BaseActiveRecord
     public function getCategory()
     {
         return $this->hasOne(PostMeta::className(), ['cat_id' => 'post_cate_id']);
+    }
+
+    /**
+     * @param bool $status
+     * @return array|mixed
+     */
+    public static function getStatuses($status = false)
+    {
+        $statuses = [
+            self::STATUS_DELETED => Yii::t('common', 'DELETED'),
+            self::STATUS_ACTIVE => Yii::t('common', 'ACTIVE'),
+            self::STATUS_EXCELLENT => Yii::t('common', 'EXCELLENT'),
+            self::STATUS_TOP => Yii::t('common', 'TOP'),
+        ];
+
+        return $status !== false ? ArrayHelper::getValue($statuses, $status) : $statuses;
     }
 
 }

@@ -163,6 +163,8 @@ class AdPostController extends Controller
             $catmodel = AdCat::getCate();
             if ($model->load(Yii::$app->request->post())) {
                 $model->post_cate_id = Yii::$app->request->post('AdPost')['post_cate_id'];
+                $model->post_create = time();
+                $model->post_update = time();
                 if($model->save(false)){
                     $this->saveReplyForPost($model);
 

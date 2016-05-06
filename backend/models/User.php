@@ -5,32 +5,27 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "{{%ad_user}}".
+ * This is the model class for table "{{%user}}".
  *
- * @property string $user_id
- * @property string $user_name
- * @property string $user_passhash
- * @property string $user_email
- * @property integer $user_create
- * @property integer $user_logintime
- * @property string $user_ip
- * @property string $user_nickname
- * @property integer $user_status
- * @property integer $user_deld
- * @property string $user_authkey
- * @property string $user_password_reset_token
- * @property string $user_role
+ * @property integer $id
+ * @property string $username
+ * @property string $auth_key
+ * @property string $password_hash
+ * @property string $password_reset_token
+ * @property string $email
+ * @property integer $role
+ * @property integer $status
+ * @property integer $created_at
+ * @property integer $updated_at
  */
-class AdUser extends \yii\db\ActiveRecord
+class User extends \yii\db\ActiveRecord
 {
-
-    public $user_password;
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return '{{%ad_user}}';
+        return '{{%user}}';
     }
 
     /**
@@ -39,10 +34,10 @@ class AdUser extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_name', 'user_passhash', 'user_email', 'user_create', 'user_logintime', 'user_authkey','user_role'], 'required'],
-            [['user_status', 'user_deld'], 'integer'],
-            [['user_name', 'user_passhash', 'user_nickname', 'user_authkey', 'user_password_reset_token','user_role'], 'string', 'max' => 100],
-            [['user_email', 'user_ip'], 'string', 'max' => 50]
+            [['username', 'auth_key', 'password_hash', 'email', 'created_at', 'updated_at'], 'required'],
+            [['role', 'status', 'created_at', 'updated_at'], 'integer'],
+            [['username', 'password_hash', 'password_reset_token', 'email'], 'string', 'max' => 255],
+            [['auth_key'], 'string', 'max' => 32]
         ];
     }
 
@@ -52,42 +47,16 @@ class AdUser extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'user_id' => Yii::t('app', 'ID'),
-            'user_name' => Yii::t('app', 'User Name'),
-            'user_passhash' => Yii::t('app', 'User Passhash'),
-            'user_password' => Yii::t('app', 'Password'),
-            'user_email' => Yii::t('app', 'User Email'),
-            'user_create' => Yii::t('app', 'User Create'),
-            'user_logintime' => Yii::t('app', 'User Logintime'),
-            'user_ip' => Yii::t('app', 'User Ip'),
-            'user_nickname' => Yii::t('app', 'User Nickname'),
-            'user_status' => Yii::t('app', 'User Status'),
-            'user_deld' => Yii::t('app', 'User Deld'),
-            'user_authkey' => Yii::t('app', 'User Authkey'),
-            'user_password_reset_token' => Yii::t('app', 'User Password Reset Token'),
-            'user_role' => Yii::t('app', 'User Role'),
+            'id' => Yii::t('app', 'ID'),
+            'username' => Yii::t('app', 'Username'),
+            'auth_key' => Yii::t('app', 'Auth Key'),
+            'password_hash' => Yii::t('app', 'Password Hash'),
+            'password_reset_token' => Yii::t('app', 'Password Reset Token'),
+            'email' => Yii::t('app', 'Email'),
+            'role' => Yii::t('app', 'Role'),
+            'status' => Yii::t('app', 'Status'),
+            'created_at' => Yii::t('app', 'Created At'),
+            'updated_at' => Yii::t('app', 'Updated At'),
         ];
-    }
-
-
-    public function beforeSave($insert)
-    {
-        if(!empty($this->user_password)){
-//             die('101');
-            $this->user_passhash = Yii::$app->security->generatePasswordHash($this->user_password);
-        }
-        if($this->isNewRecord){
-            $this->user_authkey = Yii::$app->security->generateRandomString();
-            $this->user_create = time();
-            $this->user_logintime = time();
-            $this->user_ip = $_SERVER['REMOTE_ADDR'];
-            //$this->generatePasswordResetToken();
-        }else{
-            $this->user_logintime = time();
-            $this->user_ip = $_SERVER['REMOTE_ADDR'];
-
-        }
-
-        return parent::beforeSave($insert);
     }
 }

@@ -47,6 +47,21 @@ class AdPost extends \yii\db\ActiveRecord
             [['post_title'], 'string', 'max' => 100]
         ];
     }
+    
+    /**
+     * @inheritdoc
+     */
+//     public function behaviors()
+//     {
+//         return [
+//                 [
+//                     'class' => TimestampBehavior::className(),
+//                     'createdAtAttribute' => 'post_create',
+//                     'updatedAtAttribute' => 'post_update',
+//                     //             'value' => new Expression('NOW()'),//如果是timestamp类型 ,需要这样操作
+//                 ],
+//         ];
+//     }
 
     /**
      * @inheritdoc
@@ -77,8 +92,8 @@ class AdPost extends \yii\db\ActiveRecord
             if ($this->isNewRecord) {
                 $this->post_user_id = $userid;
                 $this->post_user_name = Yii::$app->user->identity->user_name;
-                $this->post_create = time();
-                $this->post_update = time();
+//                 $this->post_create = time();
+//                 $this->post_update = time();
                 $this->post_status = 0;
                 $this->post_view_count = 10;
                 $this->post_deld = 0;

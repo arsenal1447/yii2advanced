@@ -10,8 +10,8 @@ return [
     'Password' => '密码',
     'Remember Me' => '记住我',
     'Username' => '用户名',
-    'Username' => '用户名',
-    'Username' => '用户名',
+        
+        
 
 
     'Article View' => 'Vista de Artículo',

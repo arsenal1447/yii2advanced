@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50624
 File Encoding         : 65001
 
-Date: 2016-05-05 17:39:46
+Date: 2016-05-06 15:28:03
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -333,7 +333,7 @@ CREATE TABLE `ad_post` (
   `post_last_comment_time` int(11) DEFAULT '0',
   `post_user_name` varchar(255) CHARACTER SET utf8 DEFAULT '0',
   PRIMARY KEY (`post_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of ad_post
@@ -413,6 +413,7 @@ INSERT INTO `ad_post` VALUES ('72', '0', 'topic', 'fff', '4', '0', '0', '0', '0'
 INSERT INTO `ad_post` VALUES ('73', '0', 'tweet', '', '2', '0', '0', '0', '0', '7', 'ssss', '1461912043', '1461912043', '0', '0', '0', '0', '0', '0', '10', '0', '0', '0', '0', '0', '0', 'b1');
 INSERT INTO `ad_post` VALUES ('74', '0', 'tweet', '', '2', '0', '0', '0', '0', '7', 'ddddd', '1461912154', '1461912154', '0', '0', '0', '0', '0', '0', '10', '0', '0', '0', '0', '0', '0', 'b1');
 INSERT INTO `ad_post` VALUES ('75', '0', 'tweet', '', '1', '0', '0', '0', '0', '7', 'ddddd', '1461914470', '1461914470', '0', '0', '0', '0', '0', '0', '10', '0', '0', '0', '0', '0', '0', 'b1');
+INSERT INTO `ad_post` VALUES ('76', '0', 'topic', 'erwer', '4', '0', '0', '0', '0', '7', 'rrrrrr', '1462515331', '1462515331', '0', '0', '0', '0', '0', '0', '10', '0', '0', '0', '0', '0', '0', 'b123');
 
 -- ----------------------------
 -- Table structure for `ad_post_tag`
@@ -453,7 +454,7 @@ CREATE TABLE `ad_reply` (
   `reply_deld` tinyint(4) DEFAULT '0',
   `reply_status` tinyint(4) DEFAULT '1',
   PRIMARY KEY (`reply_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of ad_reply
@@ -464,6 +465,8 @@ INSERT INTO `ad_reply` VALUES ('3', '72', '反反复复', '1462351647', '7', '12
 INSERT INTO `ad_reply` VALUES ('4', '57', '我是b1 我来回复了', '1462352327', '7', '127.0.0.1', 'b1', '0', '0', '0', '0', '0', '0', '0', '1', '1');
 INSERT INTO `ad_reply` VALUES ('5', '57', '哎呦  不错哦 ', '1462352353', '1', '127.0.0.1', 'zxx123', '0', '0', '0', '0', '0', '0', '0', '1', '1');
 INSERT INTO `ad_reply` VALUES ('6', '40', '订单', '1462354821', '1', '127.0.0.1', 'zxx123', '0', '0', '0', '0', '0', '0', '0', '1', '1');
+INSERT INTO `ad_reply` VALUES ('7', '76', 'rrrrrr', '1462515331', '7', null, 'b123', '0', 'erwer', '1462515331', '0', '0', '0', '0', '0', '1');
+INSERT INTO `ad_reply` VALUES ('8', '76', 'jjjjj', '1462516241', '7', '127.0.0.1', 'b123', '0', '0', '0', '0', '0', '0', '0', '0', '1');
 
 -- ----------------------------
 -- Table structure for `ad_right_link`
@@ -477,8 +480,8 @@ CREATE TABLE `ad_right_link` (
   `link_content` varchar(255) DEFAULT NULL COMMENT '内容',
   `link_type` int(5) DEFAULT NULL COMMENT '展示类别',
   `link_created_user` varchar(32) NOT NULL COMMENT '创建人',
-  `link_created_at` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
-  `link_updated_at` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '修改时间',
+  `link_create` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
+  `link_update` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '修改时间',
   PRIMARY KEY (`link_id`),
   KEY `type_index` (`link_type`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -502,9 +505,8 @@ CREATE TABLE `ad_session` (
 -- ----------------------------
 -- Records of ad_session
 -- ----------------------------
-INSERT INTO `ad_session` VALUES ('7u1vs7j72tt2frapisspkso8k5', '1462440861', 0x5F5F666C6173687C613A303A7B7D5F5F69647C733A313A2237223B71725F74696D655F62656E63687C613A313A7B733A31323A2261667465725F656E636F6465223B643A313436323433393431342E343438303431393B7D);
-INSERT INTO `ad_session` VALUES ('kan010dck0i5gido8mmlqjs3c5', '1462442599', 0x5F5F666C6173687C613A303A7B7D5F5F72657475726E55726C7C733A33333A222F61642F66726F6E74656E642F7765622F73657474696E672F6E6574776F726B73223B71725F74696D655F62656E63687C613A313A7B733A31323A2261667465725F656E636F6465223B643A313436323434303937362E32303433373B7D5F5F69647C733A313A2231223B);
-INSERT INTO `ad_session` VALUES ('nh9a00t7jts1etij20pqa53ko6', '1462440883', 0x5F5F666C6173687C613A303A7B7D71725F74696D655F62656E63687C613A313A7B733A31323A2261667465725F656E636F6465223B643A313436323433393434332E3231323638383B7D5F5F69647C733A313A2231223B);
+INSERT INTO `ad_session` VALUES ('dmn76mus4j6nm63kn7dtrnp681', '1462521096', 0x5F5F666C6173687C613A303A7B7D5F5F72657475726E55726C7C733A313A222F223B5F5F69647C733A313A2236223B);
+INSERT INTO `ad_session` VALUES ('j66fj7f7ivm8pcamdf3784vla4', '1462521115', 0x5F5F666C6173687C613A303A7B7D5F5F69647C733A313A2237223B71725F74696D655F62656E63687C613A313A7B733A31323A2261667465725F656E636F6465223B643A313436323531363237382E3937373131393B7D);
 
 -- ----------------------------
 -- Table structure for `ad_user`
@@ -595,7 +597,7 @@ CREATE TABLE `ad_user_info` (
 -- ----------------------------
 -- Records of ad_user_info
 -- ----------------------------
-INSERT INTO `ad_user_info` VALUES ('1', '1', null, null, null, null, null, '22', '1', '1', '1', '1', '1', '11', '1461307802', '127.0.0.1', '1461550819', '127.0.0.1', null, '1461143981', '1461550819');
+INSERT INTO `ad_user_info` VALUES ('1', '1', null, null, null, null, null, '24', '1', '1', '1', '1', '1', '11', '1461307802', '127.0.0.1', '1461550819', '127.0.0.1', null, '1461143981', '1461550819');
 INSERT INTO `ad_user_info` VALUES ('2', '7', '哎呦不错哦', 'github.com/zxx1988328', 'www.baidu.com', '百度公司', '北京市海淀区', '0', '0', '0', '0', '0', '0', '1', '0', '0', '0', '0', null, '0', '1462435525');
 
 -- ----------------------------
@@ -611,7 +613,7 @@ CREATE TABLE `ad_user_meta` (
   `meta_target_type` varchar(100) CHARACTER SET utf8 DEFAULT '0',
   `meta_create` int(11) NOT NULL,
   PRIMARY KEY (`meta_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of ad_user_meta
@@ -669,6 +671,7 @@ INSERT INTO `ad_user_meta` VALUES ('50', '7', 'follow', null, '56', 'topic', '14
 INSERT INTO `ad_user_meta` VALUES ('51', '7', 'follow', null, '75', 'tweet', '1461914470');
 INSERT INTO `ad_user_meta` VALUES ('52', '7', 'follow', null, '57', 'topic', '1462352327');
 INSERT INTO `ad_user_meta` VALUES ('53', '1', 'follow', null, '40', 'topic', '1462354822');
+INSERT INTO `ad_user_meta` VALUES ('54', '7', 'follow', null, '76', 'topic', '1462515332');
 
 -- ----------------------------
 -- Table structure for `merit`
@@ -796,8 +799,8 @@ INSERT INTO `setting` VALUES ('3113', '31', 'smtpUser', 'text', '', '', '', '50'
 INSERT INTO `setting` VALUES ('3114', '31', 'smtpPassword', 'password', '', '', '', '50');
 INSERT INTO `setting` VALUES ('3115', '31', 'smtpMail', 'text', '', '', '', '50');
 INSERT INTO `setting` VALUES ('4111', '41', 'githubLogin', 'select', '0,1', '', '1', '50');
-INSERT INTO `setting` VALUES ('4112', '41', 'githubClientId', 'text', '', '', '', '50');
-INSERT INTO `setting` VALUES ('4113', '41', 'githubClientSecret', 'text', '', '', '', '50');
+INSERT INTO `setting` VALUES ('4112', '41', 'githubClientId', 'text', '', '', '9c8d914b20682278aac5', '50');
+INSERT INTO `setting` VALUES ('4113', '41', 'githubClientSecret', 'text', '', '', '0237782d08299c40fcd31c4dd664147915f96a27', '50');
 INSERT INTO `setting` VALUES ('1114', '11', 'siteAnalytics', 'text', '', '', 'Your Site Analytics', '50');
 INSERT INTO `setting` VALUES ('4115', '41', 'googleClientId', 'text', '', '', '', '50');
 INSERT INTO `setting` VALUES ('4116', '41', 'googleClientSecret', 'text', '', '', '', '50');

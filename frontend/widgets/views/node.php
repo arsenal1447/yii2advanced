@@ -11,7 +11,7 @@
                 <dd>
                     <ul class="list-inline">
                         <?php foreach ($value as $node): ?>
-                            <li><?= \yii\helpers\Html::a($node['cat_name'], ['/ad-post/', 'node' => $node['cat_alias']]) ?></li>
+                            <li><?= \yii\helpers\Html::a($node['name'], ['/ad-post/', 'node' => $node['alias']]) ?></li>
                         <?php endforeach ?>
                     </ul>
                 </dd>

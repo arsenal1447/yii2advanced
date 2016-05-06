@@ -3,7 +3,7 @@
 namespace common\models;
 
 use Yii;
-use common\components\db\ActiveRecord;
+use common\components\db\MyActiveRecord;
 
 /**
  * This is the model class for table "ad_post_tag".
@@ -14,7 +14,7 @@ use common\components\db\ActiveRecord;
  * @property string $tag_create
  * @property integer $tag_update
  */
-class AdPostTag extends ActiveRecord
+class AdPostTag extends MyActiveRecord
 {
     /**
      * @inheritdoc
