@@ -18,12 +18,12 @@ use Yii;
  * @property string $url_update
  */
 class NavUrl extends \yii\db\ActiveRecord
-{   
-    public $url_nav_id;
-    public $url_title;
-    public $url_url;
-    public $url_description;
-    public $url_order;
+{
+//     public $url_nav_id;
+//     public $url_title;
+//     public $url_url;
+//     public $url_description;
+//     public $url_order;
     /**
      * @inheritdoc
      */
@@ -62,39 +62,37 @@ class NavUrl extends \yii\db\ActiveRecord
             'url_update' => Yii::t('app', 'Updated At'),
         ];
     }
-    
+
     /**
      * @desc  发帖的预处理
      * @return boolean whether the record should be saved.
      */
-    public function beforeSave($insert) {
-            die('ccc');
-        $userid =  Yii::$app->user->identity->id;
-            die('ccc');
-        if (parent::beforeSave($insert)) {
-            die('xxxxx');
-            if ($this->isNewRecord) {
-            die('aaaa');
-                $this->url_nav_id = $this->url_nav_id;
-                $this->url_title = $this->url_title;
-                $this->url_url = $this->url_url;
-                $this->url_description = $this->url_description;
-                $this->url_order = $this->url_order;
-                $this->url_user_id = $userid;
-                $this->url_create = time();
-                $this->save(false);
-                die('xxxx');
-            }else{//更新修改时间
-                $this->url_update = time();
-//                 $this->post_last_comment_time = time();
-//                 $this->post_last_comment_user_name = Yii::$app->user->identity->user_name;
-//                 $this->post_last_user_id = Yii::$app->user->identity->id;
-            }
-            return true;
-        } else {
-            return false;
-        }
-    }
+//     public function beforeSave($insert) {
+//         ini_set ('memory_limit', '128M');
+//         $userid =  Yii::$app->user->identity->id;
+//         if (parent::beforeSave($insert)) {
+//             if ($this->isNewRecord) {
+//                 //$this->url_nav_id = $this->url_nav_id;
+//                 //$this->url_title = $this->url_title;
+//                 //$this->url_url = $this->url_url;
+//                 //$this->url_description = $this->url_description;
+//                 //$this->url_order = $this->url_order;
+//                 $this->url_user_id = $userid;
+//                 $this->url_create = time();
+//                 $this->save(false);
+//                 die('82');
+//             }else{//更新修改时间
+//                 die('84');
+//                 $this->url_update = time();
+// //                 $this->post_last_comment_time = time();
+// //                 $this->post_last_comment_user_name = Yii::$app->user->identity->user_name;
+// //                 $this->post_last_user_id = Yii::$app->user->identity->id;
+//             }
+//             return true;
+//         } else {
+//             return false;
+//         }
+//     }
 
 
 }
