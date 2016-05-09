@@ -10,6 +10,7 @@ return array(
     'yiier\\merit\\' => array($vendorDir . '/yiier/yii2-merit'),
     'yiier\\backup\\' => array($vendorDir . '/yiier/yii2-backup'),
     'yii\\swiftmailer\\' => array($vendorDir . '/yiisoft/yii2-swiftmailer'),
+    'yii\\redis\\' => array($vendorDir . '/yiisoft/yii2-redis'),
     'yii\\jui\\' => array($vendorDir . '/yiisoft/yii2-jui'),
     'yii\\imagine\\' => array($vendorDir . '/yiisoft/yii2-imagine'),
     'yii\\httpclient\\' => array($vendorDir . '/yiisoft/yii2-httpclient'),
