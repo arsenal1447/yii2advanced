@@ -43,8 +43,8 @@ $this->title = '网站导航';
                 <?php if($NavUrl): ?>
                     <?php foreach($NavUrl as $sub_key => $sub_item): ?>
                         <div class="col-md-2 nav-item">
-                            <a href="<?php echo $sub_item->nav_url; ?>" target="_blank" data-toggle="tooltip" data-placement="top" title="<?php echo $sub_item->nav_description; ?>">
-                                <?php echo $sub_item->nav_title; ?>
+                            <a href="<?php echo $sub_item->url_url; ?>" target="_blank" data-toggle="tooltip" data-placement="top" title="<?php echo $sub_item->url_description; ?>">
+                                <?php echo $sub_item->url_title; ?>
                             </a>
                         </div>
                     <?php endforeach ?>
