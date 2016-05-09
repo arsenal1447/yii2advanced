@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50624
 File Encoding         : 65001
 
-Date: 2016-05-06 18:07:00
+Date: 2016-05-09 16:37:14
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -258,12 +258,14 @@ CREATE TABLE `ad_nav_url` (
   `url_create` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
   `url_update` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '修改时间',
   PRIMARY KEY (`url_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of ad_nav_url
 -- ----------------------------
 INSERT INTO `ad_nav_url` VALUES ('1', '0', '百度标题', 'www.baidu.com', '百度一下 你就完了', '1', '0', '0', '0');
+INSERT INTO `ad_nav_url` VALUES ('2', '1', 'xx', 'xx', 'xxx', '2', '6', '1462782283', '0');
+INSERT INTO `ad_nav_url` VALUES ('3', '1', 'aa', 'aa', 'aasssss', '22', '6', '1462782339', '1462782439');
 
 -- ----------------------------
 -- Table structure for `ad_notice`
@@ -507,9 +509,8 @@ CREATE TABLE `ad_session` (
 -- ----------------------------
 -- Records of ad_session
 -- ----------------------------
-INSERT INTO `ad_session` VALUES ('j66fj7f7ivm8pcamdf3784vla4', '1462530287', 0x5F5F666C6173687C613A303A7B7D5F5F69647C733A313A2237223B71725F74696D655F62656E63687C613A313A7B733A31323A2261667465725F656E636F6465223B643A313436323532353734322E343631313931393B7D);
-INSERT INTO `ad_session` VALUES ('pbe7jcobratalq5b2dg7cfp8d1', '1462530553', 0x5F5F666C6173687C613A303A7B7D5F5F69647C733A313A2236223B);
-INSERT INTO `ad_session` VALUES ('qqp4ha0mgn0c1c5bnn7oes2o90', '1462528046', 0x5F5F666C6173687C613A303A7B7D5F5F72657475726E55726C7C733A313A222F223B5F5F69647C733A313A2236223B);
+INSERT INTO `ad_session` VALUES ('0gg9617e6cg2b8mfrvpm9a2ke4', '1462783879', 0x5F5F666C6173687C613A303A7B7D5F5F69647C733A313A2236223B);
+INSERT INTO `ad_session` VALUES ('a22jtpmc1okgo7k0oh5cjo8uk5', '1462784462', 0x5F5F666C6173687C613A303A7B7D5F5F69647C733A313A2231223B71725F74696D655F62656E63687C613A313A7B733A31323A2261667465725F656E636F6465223B643A313436323738303739312E3037353231313B7D);
 
 -- ----------------------------
 -- Table structure for `ad_user`
@@ -601,7 +602,7 @@ CREATE TABLE `ad_user_info` (
 -- Records of ad_user_info
 -- ----------------------------
 INSERT INTO `ad_user_info` VALUES ('1', '1', null, null, null, null, null, '24', '1', '1', '1', '1', '1', '11', '1461307802', '127.0.0.1', '1461550819', '127.0.0.1', null, '1461143981', '1461550819');
-INSERT INTO `ad_user_info` VALUES ('2', '7', '哎呦不错哦', 'github.com/zxx1988328', 'www.baidu.com', '百度公司', '北京市海淀区', '0', '0', '0', '0', '0', '0', '1', '0', '0', '0', '0', null, '0', '1462435525');
+INSERT INTO `ad_user_info` VALUES ('2', '7', '哎呦不错哦', 'github.com/zxx1988328', 'www.baidu.com', '百度公司', '北京市海淀区', '1', '0', '0', '0', '0', '0', '1', '0', '0', '0', '0', null, '0', '1462435525');
 
 -- ----------------------------
 -- Table structure for `ad_user_meta`
@@ -763,6 +764,24 @@ CREATE TABLE `migration` (
 -- ----------------------------
 INSERT INTO `migration` VALUES ('m000000_000000_base', '1459933607');
 INSERT INTO `migration` VALUES ('m140506_102106_rbac_init', '1459933612');
+
+-- ----------------------------
+-- Table structure for `search_log`
+-- ----------------------------
+DROP TABLE IF EXISTS `search_log`;
+CREATE TABLE `search_log` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) unsigned DEFAULT NULL COMMENT '用户ID',
+  `keyword` varchar(255) NOT NULL DEFAULT '' COMMENT '搜索关键词',
+  `created_at` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
+  PRIMARY KEY (`id`),
+  KEY `keyword` (`keyword`),
+  KEY `user_id` (`user_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of search_log
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for `setting`
