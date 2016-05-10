@@ -53,6 +53,11 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName'=>false
         ],
+        'user' => [
+            'identityClass' => 'common\models\User',
+            'enableAutoLogin' => true,
+            'as afterLogin' => 'frontend\behaviors\AfterLoginBehavior',
+        ],
 
         'i18n' => [
                 'translations' => [

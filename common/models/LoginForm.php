@@ -74,6 +74,33 @@ class LoginForm extends Model
             return false;
         }
     }
+    
+    /**
+     * 登陆之后更新用户资料
+     * @return bool
+     */
+    public function updateUserInfo()
+    {
+        /** @var UserInfo $model */
+        $model = UserInfo::findOne(['user_id' => Yii::$app->user->getId()]);
+        $model->info_login_count += 1;
+        $model->info_prev_login_time = $model->info_last_login_time;
+        $model->info_prev_login_ip = $model->info_last_login_ip;
+        $model->info_last_login_time = time();
+        $model->info_last_login_ip = Yii::$app->getRequest()->getUserIP();
+    
+        if (!Yii::$app->session->isActive) {
+            Yii::$app->session->open();
+        }
+        $model->session_id = Yii::$app->session->id;
+        Yii::$app->session->close();
+    
+        if ($model->save()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     /**
      * Finds user by [[username]]
