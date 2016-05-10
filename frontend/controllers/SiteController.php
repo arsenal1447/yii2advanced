@@ -17,9 +17,11 @@ use common\services\UserService;
 use frontend\models\ContactForm;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
-use yii\web\Controller;
+// use yii\web\Controller;
+use common\components\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+use yii\web\Response;
 use dosamigos\qrcode\QrCode;
 
 /**
@@ -154,6 +156,9 @@ class SiteController extends Controller
     public function actionSignup()
     {
         $model = new SignupForm();
+    
+        $this->performAjaxValidation($model);
+    
         if ($model->load(Yii::$app->request->post())) {
             if ($user = $model->signup()) {
                 if (Yii::$app->getUser()->login($user)) {
@@ -161,9 +166,9 @@ class SiteController extends Controller
                 }
             }
         }
-
+    
         return $this->render('signup', [
-            'model' => $model,
+                'model' => $model,
         ]);
     }
 
@@ -231,5 +236,19 @@ class SiteController extends Controller
     public function actionGetstart()
     {
         return $this->render('getstart');
+    }
+    
+    /**
+     * Performs ajax validation.
+     * @param Model $model
+     * @throws \yii\base\ExitException
+     */
+    protected function performAjaxValidation($model)
+    {
+        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            echo json_encode(\yii\widgets\ActiveForm::validate($model));
+            Yii::$app->end();
+        }
     }
 }

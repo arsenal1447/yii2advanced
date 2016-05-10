@@ -361,6 +361,30 @@ class User extends ActiveRecord implements IdentityInterface
         }
     }
     
+    /**
+     * @desc 注册的时候插入ad_user表之后,插入ad_user_info表
+     * @return boolean
+     */
+    public function afterSave($insert, $changedAttributes)
+    {
+        if ($insert) {
+            $time = time();
+            $ip = isset(Yii::$app->request->userIP) ? Yii::$app->request->userIP : '127.0.0.1';
+            $userInfo = Yii::createObject([
+                    'class' => UserInfo::className(),
+                    'info_user_id' => $this->id,
+                    'info_prev_login_time' => $time,
+                    'info_prev_login_ip' => $ip,
+                    'info_last_login_time' => $time,
+                    'info_last_login_ip' => $ip,
+                    'info_create' => $time,
+                    'info_update' => $time,
+            ]);
+            $userInfo->save();
+        }
+        parent::afterSave($insert, $changedAttributes);
+    }
+    
     
     
 }

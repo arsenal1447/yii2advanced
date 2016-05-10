@@ -1,33 +1,37 @@
 <?php
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
-use yii\captcha\Captcha;
+use frontend\widgets\Connect;
 
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model \frontend\models\SignupForm */
 
-$this->title = '加入';
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = Yii::t('app', 'Sign up');
+
 ?>
-<div class="site-signup">
-    <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>Please fill out the following fields to signup:</p>
-
-    <div class="row">
-        <div class="col-lg-5">
-            <?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
+<div class="row">
+    <div class="col-md-4 col-sm-offset-3">
+        <div class="panel panel-default">
+            <div class="panel-heading"><?= Html::encode($this->title) ?></div>
+            <div class="panel-body">
+                <?php $form = ActiveForm::begin([
+                    'id' => 'form-signup',
+                    'enableAjaxValidation' => true,
+                    'enableClientValidation' => false
+                ]); ?>
                 <?= $form->field($model, 'user_name') ?>
                 <?= $form->field($model, 'user_email') ?>
-                <?= $form->field($model, 'user_pass')->passwordInput() ?>
-                <?= $form->field($model, 'captcha')->widget(Captcha::classname(), [
-                    // configure additional widget properties here
-                ]) ?>
+                <?= $form->field($model, 'password')->passwordInput() ?>
                 <div class="form-group">
-                    <?= Html::submitButton('Signup', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
+                    <?= Html::submitButton(Yii::t('app', 'Sign up'), ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
                 </div>
-            <?php ActiveForm::end(); ?>
+                <?php ActiveForm::end(); ?>
+            </div>
+            <div class="panel-footer">
+                <?= Html::a(Yii::t('app', 'Login'), '/site/login') ?>
+            </div>
         </div>
     </div>
 </div>

@@ -4,7 +4,7 @@ namespace common\services;
 use common\models\AdPost;
 use common\models\Reply;
 use common\models\User;
-// use common\models\UserInfo;
+use common\models\UserInfo;
 use DevGroup\TagDependencyHelper\NamingHelper;
 use frontend\models\Topic;
 use frontend\models\UserMeta;

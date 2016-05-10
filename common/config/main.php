@@ -12,20 +12,22 @@ return [
             'password' => 'zxx123456',
             'database' => 0,
         ],
-//         'authClientCollection' => [
-//             'class' => 'yii\authclient\Collection',
-//             'clients' => [
-//                 'github' => [
-//                     'class' => 'yii\authclient\clients\GitHub',
+        'authClientCollection' => [
+            'class' => 'yii\authclient\Collection',
+            'clients' => [
+                'github' => [
+                    'class' => 'yii\authclient\clients\GitHub',
 //                     'clientId' => '9c8d914b20682278aac5',
+                    'clientId' => 'github_client_id',
 //                     'clientSecret' => '0237782d08299c40fcd31c4dd664147915f96a27',
-//                     'viewOptions' => [
-//                         'popupWidth' => 820,
-//                         'popupHeight' => 600,
-//                     ]
-//                  ],
-//             ],
-//         ],
+                    'clientSecret' => 'github_client_secret',
+                    'viewOptions' => [
+                        'popupWidth' => 820,
+                        'popupHeight' => 600,
+                    ]
+                 ],
+            ],
+        ],
 //         'redisCache'=>[
 //             'class'=>'yii\redis\Cache'
 //         ],
@@ -71,12 +73,6 @@ return [
     ],
     'timeZone'=>'Asia/Chongqing',//设置时区
     'modules' => [
-            //'topic' => [
-                    //'class' => 'frontend\modules\topic\Module',
-            //],
-            //'nav' => [
-                    //'class' => 'frontend\modules\nav\Module',
-            //],
             'merit' => [
                 'class' => 'yiier\merit\Module',
             ],

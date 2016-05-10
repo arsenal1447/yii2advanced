@@ -12,10 +12,10 @@ class SignupForm extends Model
 {
     public $user_name;
     public $user_email;
-    public $user_pass;
-    public $user_passhash;
-    public $created_at;
-    public $captcha;
+//     public $username;
+//     public $email;
+    public $password;
+    public $role;
 
     const STATUS_ACTIVE = 10;
 
@@ -25,23 +25,40 @@ class SignupForm extends Model
     public function rules()
     {
         return [
-            ['user_name', 'filter', 'filter' => 'trim'],
-            ['user_name', 'required'],
-            ['user_name', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This user_name has already been taken.'],
-            ['user_name', 'string', 'min' => 2, 'max' => 255],
-
-            ['user_email', 'filter', 'filter' => 'trim'],
-            ['user_email', 'required'],
-            ['user_email', 'email'],
-            ['user_email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This email address has already been taken.'],
-
-            ['user_pass', 'required'],
-            ['user_pass', 'string', 'min' => 6],
-
-//             ['captcha', 'captcha']
+                ['user_name', 'filter', 'filter' => 'trim'],
+                ['user_name', 'required'],
+                ['user_name', 'match', 'pattern' => '/^[a-z]\w*$/i', 'message' => '{attribute}只能为数字和字母'],
+                ['user_name', 'unique', 'targetClass' => '\common\models\User', 'message' => '此{attribute}已经被使用'],
+                ['user_name', 'string', 'min' => 4, 'max' => 12],
+    
+                ['user_email', 'filter', 'filter' => 'trim'],
+                ['user_email', 'required'],
+                ['user_email', 'email'],
+                ['user_email', 'unique', 'targetClass' => '\common\models\User', 'message' => '此{attribute}已经被使用'],
+    
+                ['password', 'required'],
+                ['password', 'string', 'min' => 6],
+    
+                ['role', 'integer'],
+                ['role', 'default', 'value' => User::ROLE_USER],
+        ];
+    }
+    
+    
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'user_name' => '用户名',
+            'password' => '密码',
+            'user_email' => '邮箱',
+            'role' => '角色',
         ];
     }
 
+    
     /**
      * Signs user up.
      *
@@ -53,25 +70,13 @@ class SignupForm extends Model
             $user = new User();
             $user->user_name = $this->user_name;
             $user->user_email = $this->user_email;
-//             $user->user_create =time();
-//             $user->user_logintime =time();
-            $user->user_ip = $_SERVER['REMOTE_ADDR'];
-            $user->user_status = self::STATUS_ACTIVE;
-            $user->user_deld = 0;
-            $user->setPassword($this->user_pass);
+            $user->user_role = $this->role;
+            $user->setPassword($this->password);
             $user->generateAuthKey();
-            $user->save(false);
-
-            // 权限的功能  要添加以下三行代码：
-            $auth = Yii::$app->authManager;
-            $authorRole = $auth->getRole('author');
-            $auth->assign($authorRole, $user->getId());
-
-            if ($user->save()) {
-                return $user;
-            }
+            $user->save();
+            return $user;
         }
-
+    
         return null;
     }
 
