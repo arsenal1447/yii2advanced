@@ -157,8 +157,8 @@ class Topic extends AdPost
     public function lastCommentToUpdate($username = '')
     {
         $this->setAttributes([
-            'last_comment_username' => $username,
-            'last_comment_time' => time()
+            'post_last_comment_username' => $username,
+            'post_last_comment_time' => time()
         ]);
         return $this->save();
     }
@@ -174,17 +174,17 @@ class Topic extends AdPost
         $tagItem = new PostTag();
         foreach ($tags as $tag) {
             $_tagItem = clone $tagItem;
-            $tagRaw = $_tagItem::findOne(['name' => $tag]);
+            $tagRaw = $_tagItem::findOne(['tag_name' => $tag]);
             if (!$tagRaw) {
                 $_tagItem->setAttributes([
-                    'name' => $tag,
-                    'count' => 1,
+                    'tag_name' => $tag,
+                    'tag_count' => 1,
                 ]);
                 if ($_tagItem->save()) {
                     $return = true;
                 }
             } else {
-                $tagRaw->updateCounters(['count' => 1]);
+                $tagRaw->updateCounters(['tag_count' => 1]);
             }
         }
         return $return;

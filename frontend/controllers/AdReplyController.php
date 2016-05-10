@@ -81,16 +81,16 @@ class AdReplyController extends Controller
             $model->reply_create = time();
             $rawComment = $model->reply_content;
             $model->reply_content = $model->replace($rawComment);
-            if ($model->save(false)) {
+            if ($model->save()) {
 //                 die('84');
                 (new UserMeta())->saveNewMeta('topic', $id, 'follow');
                 (new NoticeService())->newReplyNotify(Yii::$app->user->identity, $post, $model, $rawComment);
                 // 更新回复时间
-//                 $post->lastCommentToUpdate(Yii::$app->user->identity->username);
-//                 // 评论计数器
+                $post->lastCommentToUpdate(Yii::$app->user->identity->user_name);
+                // 评论计数器
 //                 Topic::updateAllCounters(['comment_count' => 1], ['id' => $post->id]);
-//                 // 更新个人总统计
-//                 UserInfo::updateAllCounters(['comment_count' => 1], ['user_id' => $model->user_id]);
+                // 更新个人总统计
+                UserInfo::updateAllCounters(['comment_count' => 1], ['info_user_id' => $model->reply_user_id]);
 
                 $this->flash("评论成功", 'success');
             } else {

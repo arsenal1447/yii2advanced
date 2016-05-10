@@ -44,7 +44,7 @@ class AfterLoginBehavior extends Behavior
         }
         $model->info_session_id = Yii::$app->session->id;
         Yii::$app->session->close();
-//         pr($model);
+        
         if ($model->save()) {
             return true;
         } else {

@@ -72,25 +72,25 @@ class AdPostController extends Controller
         // 排序
         $sort = $dataProvider->getSort();
         $sort->attributes = array_merge($sort->attributes, [
-                'hotest' => [
-                        'asc' => [
-                                'post_view_count' => SORT_DESC,
-                                'post_create' => SORT_DESC
-                        ],
+            'hotest' => [
+                'asc' => [
+                    'post_view_count' => SORT_DESC,
+                    'post_create' => SORT_DESC
                 ],
-                'excellent' => [
-                        'asc' => [
-                                'post_status' => SORT_DESC,
-                                'post_view_count' => SORT_DESC,
-                                'post_create' => SORT_DESC
-                        ],
+            ],
+            'excellent' => [
+                'asc' => [
+                    'post_status' => SORT_DESC,
+                    'post_view_count' => SORT_DESC,
+                    'post_create' => SORT_DESC
                 ],
-                'uncommented' => [
-                        'asc' => [
-                                'post_view_count' => SORT_ASC,
-                                'post_create' => SORT_DESC
-                        ],
-                ]
+            ],
+            'uncommented' => [
+                'asc' => [
+                    'post_view_count' => SORT_ASC,
+                    'post_create' => SORT_DESC
+                ],
+            ]
         ]);
         
         return $this->render('index', [
@@ -166,7 +166,7 @@ class AdPostController extends Controller
                 $model->post_create = time();
                 $model->post_update = time();
                 if($model->save(false)){
-                    $this->saveReplyForPost($model);
+//                     $this->saveReplyForPost($model);
 
                     (new UserMeta)->saveNewMeta('topic', $model->post_id, 'follow');
                     (new NoticeService())->newPostNotify(Yii::$app->user->identity, $model, $model->post_content);

@@ -33,7 +33,7 @@ class AdPost extends MyActiveRecord
     /**
      * 发布
      */
-    const STATUS_ACTIVE = 1;
+    const STATUS_ACTIVE = 0;
 
     /**
      * 推荐
