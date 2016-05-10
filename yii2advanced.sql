@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50624
 File Encoding         : 65001
 
-Date: 2016-05-10 15:41:06
+Date: 2016-05-10 16:45:08
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -510,9 +510,9 @@ CREATE TABLE `ad_session` (
 -- Records of ad_session
 -- ----------------------------
 INSERT INTO `ad_session` VALUES ('7oe96ap9mne9rgkbv4sgfo0gc7', '1462852974', 0x5F5F666C6173687C613A303A7B7D71725F74696D655F62656E63687C613A313A7B733A31323A2261667465725F656E636F6465223B643A313436323835313530322E313735363534393B7D5F5F636170746368612F736974652F636170746368617C733A363A22636961796A61223B5F5F636170746368612F736974652F63617074636861636F756E747C693A313B5F5F69647C733A323A223130223B);
+INSERT INTO `ad_session` VALUES ('b9c6gvme1n38ljf42oonsbn535', '1462871336', 0x5F5F666C6173687C613A303A7B7D71725F74696D655F62656E63687C613A313A7B733A31323A2261667465725F656E636F6465223B643A313436323836393831362E3438323137333B7D5F5F69647C733A323A223134223B);
 INSERT INTO `ad_session` VALUES ('jo5r2thegglf8ktcrmigvu6893', '1462863564', 0x5F5F666C6173687C613A303A7B7D);
 INSERT INTO `ad_session` VALUES ('m7v5lhp4n0n7638afgvumfu1s7', '1462848896', 0x5F5F666C6173687C613A303A7B7D5F5F69647C733A313A2236223B);
-INSERT INTO `ad_session` VALUES ('vmvtb2vh0gfe2agi2h8ihl7qg6', '1462867494', 0x5F5F666C6173687C613A303A7B7D71725F74696D655F62656E63687C613A313A7B733A31323A2261667465725F656E636F6465223B643A313436323836333136332E333236363333393B7D5F5F69647C733A323A223132223B);
 
 -- ----------------------------
 -- Table structure for `ad_user`
@@ -537,7 +537,7 @@ CREATE TABLE `ad_user` (
   `user_notice_count` int(11) DEFAULT '0',
   `user_view_count` int(11) DEFAULT '0',
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of ad_user
@@ -555,6 +555,7 @@ INSERT INTO `ad_user` VALUES ('10', 'bbbb', '0', '$2y$13$rIqs7lA7GFq9sn1cTvfiq./
 INSERT INTO `ad_user` VALUES ('11', 'dddd', '0', '$2y$13$OhQa2h8MzxbxMbZxct8oCeHH3/.itYWFVcmVhylXZAO1O9PFLm6Ii', '0', 'dddd@qq.com', '1462851573', '1462851573', '0', '0', '10', '0', 'Qouu26y1nGXDcQeefrovy1ZZSXcndjII', '0', '10', '0', '0');
 INSERT INTO `ad_user` VALUES ('12', 'eeee', '0', '$2y$13$QUalxH2Ds1rwYME.ktdXTeGW.MSQl2i9TSaOkrXaIbPIhh1.hRxSy', '0', 'eeee@qq.com', '1462851914', '1462851914', '0', '0', '10', '0', 'LGZIHqoQKkrM8k0WqTch4qOsyiUQAOmP', '0', '10', '0', '0');
 INSERT INTO `ad_user` VALUES ('13', 'gggg', '0', '$2y$13$8LlZBCOvO3IiI6fTewRfMedn9NSmFMarv1YLkcgWho6OhvBOrYR5W', '0', 'gggg@qq.com', '1462862148', '1462862148', '0', '0', '10', '0', 'IjXiuuxbn3qXZgYNuIC9jdgMROmkA9GR', '0', '10', '0', '0');
+INSERT INTO `ad_user` VALUES ('14', 'hhhh', '0', '$2y$13$wMvbhU8uswW8eT6jMC04peOMV4U.btdKgkeMMK2JcQFAlbCTiE9iG', '0', 'hhhh@qq.com', '1462869795', '1462869795', '0', '0', '10', '0', 'e9dlAzxhj65afRWoDl6V52UO6OhCe2qt', '0', '10', '0', '0');
 
 -- ----------------------------
 -- Table structure for `ad_user_account`
@@ -603,7 +604,7 @@ CREATE TABLE `ad_user_info` (
   `info_create` int(11) unsigned DEFAULT '0',
   `info_update` int(11) unsigned DEFAULT '0',
   PRIMARY KEY (`info_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of ad_user_info
@@ -611,6 +612,8 @@ CREATE TABLE `ad_user_info` (
 INSERT INTO `ad_user_info` VALUES ('1', '1', null, null, null, null, null, '24', '1', '1', '1', '1', '1', '11', '1461307802', '127.0.0.1', '1461550819', '127.0.0.1', null, '1461143981', '1461550819');
 INSERT INTO `ad_user_info` VALUES ('2', '7', '哎呦不错哦', 'github.com/zxx1988328', 'www.baidu.com', '百度公司', '北京市海淀区', '1', '0', '0', '0', '0', '0', '1', '0', '0', '0', '0', null, '0', '1462435525');
 INSERT INTO `ad_user_info` VALUES ('3', '13', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '1462862149', '127.0.0.1', '1462862149', '127.0.0.1', null, '1462862149', '1462862149');
+INSERT INTO `ad_user_info` VALUES ('4', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '2', '0', '0', '1462869667', '127.0.0.1', 'rp0lbr9nr52682nk8c26jvko21', '0', '1462869667');
+INSERT INTO `ad_user_info` VALUES ('5', '14', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '2', '1462869795', '127.0.0.1', '1462869795', '127.0.0.1', 'b9c6gvme1n38ljf42oonsbn535', '1462869795', '1462869795');
 
 -- ----------------------------
 -- Table structure for `ad_user_meta`
