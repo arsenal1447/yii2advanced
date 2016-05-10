@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50624
 File Encoding         : 65001
 
-Date: 2016-05-09 16:37:14
+Date: 2016-05-10 15:41:06
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -291,16 +291,16 @@ CREATE TABLE `ad_notice` (
 -- ----------------------------
 INSERT INTO `ad_notice` VALUES ('1', '1', '8', '56', '1', 'new_comment', 'dsadasdasd', '0', '1461914141', null, '0');
 INSERT INTO `ad_notice` VALUES ('2', '1', '5', '56', '1', 'new_comment', 'dsadasdasd', '0', '1461914142', null, '0');
-INSERT INTO `ad_notice` VALUES ('3', '7', '1', '56', '2', 'new_comment', 'fsdgfsdfssfsdfsfdfsdfsdfsdfsdfsdfgggggggggg', '1', '1461914153', '1462332048', '1');
+INSERT INTO `ad_notice` VALUES ('3', '7', '1', '56', '2', 'new_comment', 'fsdgfsdfssfsdfsfdfsdfsdfsdfsdfsdfgggggggggg', '1', '1461914153', '1462785982', '1');
 INSERT INTO `ad_notice` VALUES ('4', '7', '8', '56', '2', 'new_comment', 'fsdgfsdfssfsdfsfdfsdfsdfsdfsdfsdfgggggggggg', '0', '1461914153', null, '0');
 INSERT INTO `ad_notice` VALUES ('5', '7', '5', '56', '2', 'new_comment', 'fsdgfsdfssfsdfsfdfsdfsdfsdfsdfsdfgggggggggg', '0', '1461914153', null, '0');
-INSERT INTO `ad_notice` VALUES ('6', '7', '1', '56', '1', 'new_comment', 'ddddddd', '1', '1461914278', '1462332048', '1');
+INSERT INTO `ad_notice` VALUES ('6', '7', '1', '56', '1', 'new_comment', 'ddddddd', '1', '1461914278', '1462785982', '1');
 INSERT INTO `ad_notice` VALUES ('7', '7', '8', '56', '1', 'new_comment', 'ddddddd', '0', '1461914278', null, '0');
 INSERT INTO `ad_notice` VALUES ('8', '7', '5', '56', '1', 'new_comment', 'ddddddd', '0', '1461914279', null, '0');
 INSERT INTO `ad_notice` VALUES ('9', '1', '8', '56', '2', 'new_comment', 'uuuuu', '0', '1461914290', null, '0');
 INSERT INTO `ad_notice` VALUES ('10', '1', '5', '56', '2', 'new_comment', 'uuuuu', '0', '1461914291', null, '0');
 INSERT INTO `ad_notice` VALUES ('11', '1', '7', '56', '2', 'new_comment', 'uuuuu', '0', '1461914291', '1462416771', '1');
-INSERT INTO `ad_notice` VALUES ('12', '7', '1', '57', '4', 'new_comment', '我是b1 我来回复了', '0', '1462352327', null, '0');
+INSERT INTO `ad_notice` VALUES ('12', '7', '1', '57', '4', 'new_comment', '我是b1 我来回复了', '0', '1462352327', '1462785982', '1');
 INSERT INTO `ad_notice` VALUES ('13', '1', '7', '57', '5', 'new_comment', '哎呦  不错哦 ', '0', '1462352354', '1462416771', '1');
 INSERT INTO `ad_notice` VALUES ('14', '1', '5', '40', '6', 'new_comment', '订单', '0', '1462354822', null, '0');
 
@@ -381,7 +381,7 @@ INSERT INTO `ad_post` VALUES ('36', '0', 'topic', '正式第一帖,编辑标题2
 INSERT INTO `ad_post` VALUES ('37', '0', 'topic', '表情IP化是变现路径吗', '7', '0', '0', '0', '0', '1', '<p>承认与否，表情包所掀起的浪潮正在波及全民。在今年开年那场喧嚣的Facebook表情包大战中，内地网友充分显示出了他们的创造能力与表情包存储量的丰富。表情包是一个等待挖掘的巨大蓝海， 尽管尚未发觉足够的金块。</p>', '1461307197', '1461307197', '0', '0', '0', '0', '0', '0', '10', '0', '0', '0', '1', 'zxx123', '2016', 'zxx123');
 INSERT INTO `ad_post` VALUES ('38', '0', 'topic', '浏览器中因cookie设置HttpOnly标志引起的安全问题', '7', '0', '0', '0', '0', '1', '<p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\"><strong style=\"text-align: center;\">1、简介</strong></p><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\">如果cookie设置了HttpOnly标志，可以在发生XSS时避免JavaScript读取cookie，这也是HttpOnly被引入的原因。但这种方式能防住攻击者吗?HttpOnly标志可以防止cookie被“读取”，那么能不能防止被“写”呢?答案是否定的，那么这里面就有文章可做了，因为已证明有些浏览器的HttpOnly标记可以被JavaScript写入覆盖，而这种覆盖可能被攻击者利用发动session fixation攻击。本文主题就是讨论这种技术。</p><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; text-align: center; background-color: rgb(248, 248, 248);\"><a href=\"http://s9.51cto.com/wyfs02/M02/24/12/wKioL1NLf3exhfqOAAEHYZITmUA763.jpg\" target=\"_blank\" style=\"color: rgb(0, 66, 118);\"><img class=\"fit-image\" border=\"0\" alt=\"浏览器中因cookie设置HttpOnly标志引起的安全问题\" src=\"/ueditor/php/upload/image/20160422/1461316121301652.jpg\" width=\"498\" height=\"256\" style=\"border: 0px;\"/></a></p><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\"><strong style=\"text-align: center;\">2、用JavaScript覆盖cookie中的HttpOnly标志</strong></p><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\">当JavaScript可以覆盖cookie中的HttpOnly标志时，攻击者如果发现网站的XSS漏洞，就可以利用HttpOnly cookie发动session fixation攻击(更多关于session fixation攻击的内容可以参考笔者之前的文章[1])。</p><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\">session fixation攻击的后果是攻击者可以冒充受害者，因为其知道受害者的session ID。这里假设当成功登录应用后session不会重新生成。现实也确实是这样的，但浏览器不应该允许JavaScript覆盖HttpOnly标志，因为这种覆盖可能与某些应用程序登录成功后不会重新生成会话这一特性结合，发动session fixation攻击。</p><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\">那么登录成功后如果重新生成session ID的话安全性是怎么样的呢?还能被攻击者利用吗?登录之后，攻击者通过设置用户的session为攻击者正在使用的session，将用户切换为攻击者自己的帐户。受害者以为其正在使用自己的帐户，实际上一些敏感信息已经泄露给攻击者了。</p><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\"><strong style=\"text-align: center;\">3、允许JavaScript覆盖HttpOnly cookie的浏览器</strong></p><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\">经笔者证实，以下浏览器允许JavaScript覆盖HttpOnly cookies：</p><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\">Safari</p><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\">Opera Mobile</p><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\">Opera Mini</p><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\">BlackBerry browser</p><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\">Konqueror browser</p><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\">该问题已经(于2014年2月14日)提交给相应的厂商。</p><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\">IE、Firefix和Opera(标准安装版本)不容易受到上述攻击影响。</p><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\"><strong style=\"text-align: center;\">4、厂商的回复</strong></p><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\">Opera公司已经确认该问题在Opera Mobile和Opera Mini中存在，决定在Opera Mini中修复该问题(修复日期还未确定)。尽管Opera Mobile当前在Google Play中可以下载，但Opera公司认为该版本已经过时，因此决定不对其进行修改(他们建议替换为Opera for Android版本，该版本可以防止JavaScript覆盖HttpOnly cookie)。</p><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\">黑莓公司回复说已经宣布于2014年4月后不再对PlayBook Tablet的操作系统(笔者当时测试时使用的系统)进行支持，因此不会修复该问题。但是由于该问题是在支持结束声明之前提交的，他们决定将我加入到黑莓安全事件响应小组的感谢名单中(根据他们的规定，笔者的名字会在2014年4月底才会被加入)[2]。</p><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\">Konqueror确认了该问题，但可能不会去修复。该bug的信息可以在KDE Bugtracking系统中找到[3]。</p><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\">该问题两个月前提交给了苹果公司，但从未收到任何反馈。</p><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\"><strong style=\"text-align: center;\">5、漏洞利用</strong></p><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\">以下是部分示例代码：</p><pre style=\"margin-top: 0px; margin-bottom: 1em; padding: 0px; color: rgb(51, 51, 51); font-family: &#39;Courier New&#39;, monospace; font-size: 12px; width: 591.016px; overflow: auto; line-height: 28px; background-color: rgb(230, 230, 230);\">&lt;?&nbsp;setcookie(&#39;cookie1&#39;,++$_COOKIE[&#39;cookie1&#39;],time()+2592000,&#39;/&#39;,&#39;&#39;,0,1);&nbsp;&nbsp;setcookie(&#39;cookie2&#39;,++$_COOKIE[&#39;cookie2&#39;],time()+2592000,&#39;/&#39;,&#39;&#39;,0,0);&nbsp;&nbsp;?&gt;&nbsp;&lt;HTML&gt;&nbsp;&lt;?&nbsp;print&nbsp;&quot;Cookie1:&quot;.$_COOKIE[&#39;cookie1&#39;].&quot;&lt;br&gt;&quot;;&nbsp;&nbsp;print&nbsp;&quot;Cookie2:&quot;.$_COOKIE[&#39;cookie2&#39;];&nbsp;&nbsp;?&gt;&nbsp;&lt;script&gt;alert(document.cookie);&lt;/script&gt;&nbsp;&lt;script&gt;document.cookie=&#39;cookie1=100;expires=Thu,&nbsp;2&nbsp;Aug&nbsp;2014&nbsp;20:00:00&nbsp;UTC;&nbsp;path=/&#39;;&lt;/script&gt;&nbsp;&lt;/HTML&gt;</pre><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\">过程如下：运行这段代码，之后可以看到cookie1(设置了HttpOnly标志)已经被JavaScript写入覆盖了。</p><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\"><strong style=\"text-align: center;\">6、总结</strong></p><p style=\"margin-top: 10px; margin-bottom: 10px; padding: 0px; color: rgb(51, 51, 51); text-indent: 28px; font-family: 宋体; font-size: 14px; line-height: 28px; white-space: normal; background-color: rgb(248, 248, 248);\">HttpOnly标志的引入是为了防止设置了该标志的cookie被JavaScript读取，但事实证明设置了这种cookie在某些浏览器中却能被JavaScript覆盖，可被攻击者利用来发动session fixation攻击。该问题被提出后，得到了相关厂商的响应。最后，本文给出了一段利用演示代码。</p><p><br/></p>', '1461316124', '1461316124', '0', '0', '0', '0', '0', '0', '10', '0', '0', '0', '8', 'abc', '2016', 'zxx123');
 INSERT INTO `ad_post` VALUES ('39', '0', 'topic', '我是zxx123发的帖子', '2', '0', '0', '0', '0', '1', '<p>我是zxx123的内容</p>', '1461551163', '1461551163', '0', '0', '0', '0', '0', '0', '10', '0', '0', '0', '8', 'abc', '2016', 'zxx123');
-INSERT INTO `ad_post` VALUES ('40', '0', 'topic', '我是zxx123的标题2', '4', '0', '0', '0', '0', '1', '<p>我是zxx123的内容2</p>', '1461554266', '1462355235', '0', '0', '0', '0', '0', '0', '10', '0', '1', '0', '1', 'zxx123', '1462355235', 'zxx123');
+INSERT INTO `ad_post` VALUES ('40', '0', 'topic', '我是zxx123的标题2', '4', '0', '0', '0', '0', '1', '<p>我是zxx123的内容2</p>', '1461554266', '1462787889', '0', '0', '0', '0', '0', '0', '10', '0', '1', '0', '6', 'admin', '1462787889', 'zxx123');
 INSERT INTO `ad_post` VALUES ('41', '0', 'topic', '我是zhou', '2', '0', '0', '0', '0', '5', '<p>订单多的<br/></p>', '1461555263', '1461555263', '0', '0', '0', '0', '0', '0', '10', '0', '0', '0', '0', '0', '0', 'zhou');
 INSERT INTO `ad_post` VALUES ('42', '0', 'topic', '我是zhou', '2', '0', '0', '0', '0', '5', '<p>订单多的<br/></p>', '1461555296', '1461555296', '0', '0', '0', '0', '0', '0', '10', '0', '0', '0', '0', '0', '0', 'zhou');
 INSERT INTO `ad_post` VALUES ('43', '0', 'topic', '我是zhou', '2', '0', '0', '0', '0', '5', '<p>订单多的<br/></p>', '1461555300', '1461555300', '0', '0', '0', '0', '0', '0', '10', '0', '0', '0', '8', 'abc', '2016', 'zhou');
@@ -509,8 +509,10 @@ CREATE TABLE `ad_session` (
 -- ----------------------------
 -- Records of ad_session
 -- ----------------------------
-INSERT INTO `ad_session` VALUES ('0gg9617e6cg2b8mfrvpm9a2ke4', '1462783879', 0x5F5F666C6173687C613A303A7B7D5F5F69647C733A313A2236223B);
-INSERT INTO `ad_session` VALUES ('a22jtpmc1okgo7k0oh5cjo8uk5', '1462784462', 0x5F5F666C6173687C613A303A7B7D5F5F69647C733A313A2231223B71725F74696D655F62656E63687C613A313A7B733A31323A2261667465725F656E636F6465223B643A313436323738303739312E3037353231313B7D);
+INSERT INTO `ad_session` VALUES ('7oe96ap9mne9rgkbv4sgfo0gc7', '1462852974', 0x5F5F666C6173687C613A303A7B7D71725F74696D655F62656E63687C613A313A7B733A31323A2261667465725F656E636F6465223B643A313436323835313530322E313735363534393B7D5F5F636170746368612F736974652F636170746368617C733A363A22636961796A61223B5F5F636170746368612F736974652F63617074636861636F756E747C693A313B5F5F69647C733A323A223130223B);
+INSERT INTO `ad_session` VALUES ('jo5r2thegglf8ktcrmigvu6893', '1462863564', 0x5F5F666C6173687C613A303A7B7D);
+INSERT INTO `ad_session` VALUES ('m7v5lhp4n0n7638afgvumfu1s7', '1462848896', 0x5F5F666C6173687C613A303A7B7D5F5F69647C733A313A2236223B);
+INSERT INTO `ad_session` VALUES ('vmvtb2vh0gfe2agi2h8ihl7qg6', '1462867494', 0x5F5F666C6173687C613A303A7B7D71725F74696D655F62656E63687C613A313A7B733A31323A2261667465725F656E636F6465223B643A313436323836333136332E333236363333393B7D5F5F69647C733A323A223132223B);
 
 -- ----------------------------
 -- Table structure for `ad_user`
@@ -535,12 +537,12 @@ CREATE TABLE `ad_user` (
   `user_notice_count` int(11) DEFAULT '0',
   `user_view_count` int(11) DEFAULT '0',
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of ad_user
 -- ----------------------------
-INSERT INTO `ad_user` VALUES ('1', 'zxx123', 'XNo3TETKevft6xmta3heGIsRkhjVclKq.jpg', '$2y$13$PEm7VNw5ApXrUbdT1OE/l..BbF.2zFxWJLBuC9ChYnsZ8zpFLL8ya', '0', '297208251@qq.com', '1458637332', '1462345843', '127.0.0.1', '哎呦不错哦', '10', '0', 'aYOOl2ZOT95Y2YlZ5ZwTON_y8jwgvdoc', '', '10', '1', '0');
+INSERT INTO `ad_user` VALUES ('1', 'zxx123', 'XNo3TETKevft6xmta3heGIsRkhjVclKq.jpg', '$2y$13$PEm7VNw5ApXrUbdT1OE/l..BbF.2zFxWJLBuC9ChYnsZ8zpFLL8ya', '0', '297208251@qq.com', '1458637332', '1462785958', '127.0.0.1', '哎呦不错哦', '10', '0', 'aYOOl2ZOT95Y2YlZ5ZwTON_y8jwgvdoc', '', '10', '0', '0');
 INSERT INTO `ad_user` VALUES ('2', 'zxx123456', '0', '$2y$13$Hz8.xi2c3K21ETvzxndFU.Et4J6aHL4xmH4Scc0ZUXhxhYF0XvA9K', '0', '89203299@qq.com', '1458702633', '1458719856', '127.0.0.1', '0', '10', '0', '74HSYguDlqW7VlgngIJoHkvq0a8HATQj', null, '10', '0', '0');
 INSERT INTO `ad_user` VALUES ('3', 'zxx123456789', '0', '$2y$13$lzRDSnYGTb4prlzuwNYAzugWt91Nrk.PclFFZsXFAUYF1rdHmJohi', '0', '297208251@qq.com', '1458702664', '1459848986', '127.0.0.1', '0', '10', '1', 'jVtryq7r0L3EIEMLM-b-xKt9ZySzNaLB', '0', '10', '0', '0');
 INSERT INTO `ad_user` VALUES ('4', 'zhou123', '0', '$2y$13$U7M8MXazZ08GWGf1En6VreFkZjUi1VGEiNkXI4yDFmdvhgZQhtmNq', '0', '89203299@qq.com', '1458704684', '1458704684', '127.0.0.1', '0', '10', '0', 'ZGJo0sUaGeb6TZZUGN-NcG7sIcAFCrH0', '0', '10', '0', '0');
@@ -548,6 +550,11 @@ INSERT INTO `ad_user` VALUES ('5', 'zhou', '0', '$2y$13$LF1tWQg6SEYsTT0Gcj1E0Ojp
 INSERT INTO `ad_user` VALUES ('6', 'admin', '0', '$2y$13$EhOsRRMZ/M4ExlW5MU1Ot.IgdU6hH51ZsaQjbHcn9R8KYyb5juwme', '0', 'admin@qq.com', '1459848774', '1459848870', '127.0.0.1', '系统管理员', '10', '0', 'RPIFqqC8qO5WNyyZnubtS5aPagfEGfXE', '0', '30', '0', '0');
 INSERT INTO `ad_user` VALUES ('7', 'b123', 'uxJ9UZzYFJXJYX_IOh4vheIWjQRFNzRm.jpg', '$2y$13$A3/8.w5R9BXDKHKn0bg4dORnxHziyZItFau.MdBDX4bNdiWE1NQku', '0', 'b123@qq.com', '1460018291', '1462437731', '127.0.0.1', '0', '10', '0', 'RGmrOErhwFTsp3oZjm1igsZPt-pOHSO4', '0', '10', '0', '0');
 INSERT INTO `ad_user` VALUES ('8', 'abc', '0', '$2y$13$L6sD6PrQSyPIj/gvguQgJef99mFvALGE1kiR7Wr/MrjeAbm0sYWHi', '0', 'abc@qq.com', '1461217665', '1461217665', '127.0.0.1', '0', '10', '0', 'WyUQVQLLKUS4vUH_EKruOR26ZUBXkX4Q', '0', '10', '4', '0');
+INSERT INTO `ad_user` VALUES ('9', 'cccc', '0', '$2y$13$RqoaRpVbRdt9UL7xz3Z.SOFrwc7rBXdghfmoaOniykroq3CzET1SC', '0', 'cccc@qq.com', '1462851436', '1462851436', '0', '0', '0', '0', 'nDR5coC9Yp7Wrr5GNoWGZ18QP0tedHTF', '0', '10', '0', '0');
+INSERT INTO `ad_user` VALUES ('10', 'bbbb', '0', '$2y$13$rIqs7lA7GFq9sn1cTvfiq./wLBhMYFIjDkk4QwFSHhzNOhbURImfy', '0', 'bbbb@qq.com', '1462851533', '1462851533', '0', '0', '0', '0', 'beNWSuIpLKV7ZvMrqYogPNh4JHD-Ko0m', '0', '10', '0', '0');
+INSERT INTO `ad_user` VALUES ('11', 'dddd', '0', '$2y$13$OhQa2h8MzxbxMbZxct8oCeHH3/.itYWFVcmVhylXZAO1O9PFLm6Ii', '0', 'dddd@qq.com', '1462851573', '1462851573', '0', '0', '10', '0', 'Qouu26y1nGXDcQeefrovy1ZZSXcndjII', '0', '10', '0', '0');
+INSERT INTO `ad_user` VALUES ('12', 'eeee', '0', '$2y$13$QUalxH2Ds1rwYME.ktdXTeGW.MSQl2i9TSaOkrXaIbPIhh1.hRxSy', '0', 'eeee@qq.com', '1462851914', '1462851914', '0', '0', '10', '0', 'LGZIHqoQKkrM8k0WqTch4qOsyiUQAOmP', '0', '10', '0', '0');
+INSERT INTO `ad_user` VALUES ('13', 'gggg', '0', '$2y$13$8LlZBCOvO3IiI6fTewRfMedn9NSmFMarv1YLkcgWho6OhvBOrYR5W', '0', 'gggg@qq.com', '1462862148', '1462862148', '0', '0', '10', '0', 'IjXiuuxbn3qXZgYNuIC9jdgMROmkA9GR', '0', '10', '0', '0');
 
 -- ----------------------------
 -- Table structure for `ad_user_account`
@@ -596,13 +603,14 @@ CREATE TABLE `ad_user_info` (
   `info_create` int(11) unsigned DEFAULT '0',
   `info_update` int(11) unsigned DEFAULT '0',
   PRIMARY KEY (`info_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of ad_user_info
 -- ----------------------------
 INSERT INTO `ad_user_info` VALUES ('1', '1', null, null, null, null, null, '24', '1', '1', '1', '1', '1', '11', '1461307802', '127.0.0.1', '1461550819', '127.0.0.1', null, '1461143981', '1461550819');
 INSERT INTO `ad_user_info` VALUES ('2', '7', '哎呦不错哦', 'github.com/zxx1988328', 'www.baidu.com', '百度公司', '北京市海淀区', '1', '0', '0', '0', '0', '0', '1', '0', '0', '0', '0', null, '0', '1462435525');
+INSERT INTO `ad_user_info` VALUES ('3', '13', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '1462862149', '127.0.0.1', '1462862149', '127.0.0.1', null, '1462862149', '1462862149');
 
 -- ----------------------------
 -- Table structure for `ad_user_meta`
@@ -743,11 +751,12 @@ CREATE TABLE `merit_template` (
   PRIMARY KEY (`id`),
   KEY `type` (`type`),
   KEY `unique_id` (`unique_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of merit_template
 -- ----------------------------
+INSERT INTO `merit_template` VALUES ('1', '1', '登陆', 'Site/Login', '2', '0', '2', '1', '100', '2', '1', '1462846226', '1462847456');
 
 -- ----------------------------
 -- Table structure for `migration`
