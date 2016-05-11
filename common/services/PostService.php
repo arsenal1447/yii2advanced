@@ -3,7 +3,7 @@ namespace common\services;
 
 
 use app\models\User;
-use common\models\AdPost;
+use common\models\Post;
 use frontend\models\AdNotice;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
@@ -15,11 +15,11 @@ class PostService
      * 删除帖子
      * @param Post $post
      */
-    public static function delete(AdPost $post)
+    public static function delete(Post $post)
     {
-        $post->setAttributes(['post_status' => AdPost::STATUS_DELETED]);
+        $post->setAttributes(['post_status' => Post::STATUS_DELETED]);
         $post->save();
-        Notification::updateAll(['post_status' => AdPost::STATUS_DELETED], ['post_id' => $post->id]);
+        Notification::updateAll(['post_status' => Post::STATUS_DELETED], ['post_id' => $post->id]);
     }
 
     /**

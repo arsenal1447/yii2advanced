@@ -90,7 +90,7 @@ class User extends ActiveRecord implements IdentityInterface
      * @return static|null
      */
     public static function findByUsername($username)
-    { 
+    {
         return static::findOne(['user_name' => $username, 'user_status' => self::STATUS_ACTIVE]);
     }
 
@@ -197,7 +197,7 @@ class User extends ActiveRecord implements IdentityInterface
     {
         $this->user_password_reset_token = null;
     }
-    
+
     /**
      * @desc 转化时间格式
      * @param 时间戳格式  $datetime
@@ -206,8 +206,8 @@ class User extends ActiveRecord implements IdentityInterface
     public static function convertDate($datetime){
         return date('Y-m-d H:i:s',$datetime);
     }
-    
-    
+
+
     /**
      * @desc 根据用户id获取发帖者姓名
      * @param $userid 发帖作者的用户id
@@ -215,14 +215,14 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public static function getAuthName($userid){
         $userinfo = User::find()->where(['user_id' => $userid])->asArray()->one();
-         
+
         if($userinfo){
             return $userinfo['user_name'];
         }else{
             return '';
         }
     }
-    
+
     /**
      * @desc 转化删除状态
      * @param 时间戳格式  $datetime
@@ -235,17 +235,17 @@ class User extends ActiveRecord implements IdentityInterface
             return '已删除';
         }
     }
-    
+
     public function getUserInfo()
     {
         return $this->hasOne(UserInfo::className(), ['info_user_id' => 'user_id']);
     }
-    
+
     public function getMerit()
     {
         return $this->hasOne(Merit::className(), ['user_id' => 'user_id']);
     }
-    
+
     public static function isAdmin($username)
     {
         if (static::findOne(['user_name' => $username, 'user_role' => self::ROLE_ADMIN])) {
@@ -254,7 +254,7 @@ class User extends ActiveRecord implements IdentityInterface
             return false;
         }
     }
-    
+
     public static function isSuperAdmin($username)
     {
         if (static::findOne(['user_name' => $username, 'user_role' => self::ROLE_SUPER_ADMIN])) {
@@ -263,7 +263,7 @@ class User extends ActiveRecord implements IdentityInterface
             return false;
         }
     }
-    
+
     /**
      * 获取用户头像
      * @param int $size
@@ -290,26 +290,26 @@ class User extends ActiveRecord implements IdentityInterface
         }
         return (new Avatar($this->user_email, $size))->getAvater();
     }
-    
+
     public static function getRoles($role)
     {
         $data = [
                 self::ROLE_ADMIN => [
-                        'name' => '高级会员',
-                        'color' => 'primary',
+                    'name' => '高级会员',
+                    'color' => 'primary',
                 ],
                 self::ROLE_USER => [
-                        'name' => '会员',
-                        'color' => 'info',
+                    'name' => '会员',
+                    'color' => 'info',
                 ],
                 self::ROLE_SUPER_ADMIN => [
-                        'name' => '管理员',
-                        'color' => 'success',
+                    'name' => '管理员',
+                    'color' => 'success',
                 ]
         ];
         return $data[$role];
     }
-    
+
     /**
      * 获取权限
      * @param $username
@@ -327,7 +327,7 @@ class User extends ActiveRecord implements IdentityInterface
         }
         return self::isSuperAdmin($username);
     }
-    
+
     /**
      * @return array
      */
@@ -335,21 +335,21 @@ class User extends ActiveRecord implements IdentityInterface
     {
         $connected = [];
         $accounts = $this->hasMany(UserAccount::className(), ['account_user_id' => 'id'])->all();
-    
+
         // @var Account $account
         foreach ($accounts as $account) {
             $connected[$account->account_provider] = $account;
         }
-    
+
         return $connected;
     }
-    
+
     /**
      * @desc 清空用户消息的时候,把用户表的消息字段设置为0
      * @return boolean
      */
     public function clearUserNotice($userid)
-    {   
+    {
         if($userid == Yii::$app->user->id){
             $model = User::findOne($userid);
             $model->user_notice_count = 0;
@@ -360,7 +360,7 @@ class User extends ActiveRecord implements IdentityInterface
             //等待测试,未完成
         }
     }
-    
+
     /**
      * @desc 注册的时候插入ad_user表之后,插入ad_user_info表
      * @return boolean
@@ -384,7 +384,7 @@ class User extends ActiveRecord implements IdentityInterface
         }
         parent::afterSave($insert, $changedAttributes);
     }
-    
-    
-    
+
+
+
 }

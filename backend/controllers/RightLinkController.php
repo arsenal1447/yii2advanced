@@ -48,7 +48,7 @@ class RightLinkController extends Controller
     {
         $model = new RightLink();
         $request = Yii::$app->request->post();
-        $request['RightLink']['created_user'] = Yii::$app->user->identity->username;
+        $request['RightLink']['created_user'] = Yii::$app->user->identity->user_name;
 
         if ($model->load($request) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);

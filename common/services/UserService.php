@@ -1,7 +1,7 @@
 <?php
 namespace common\services;
 
-use common\models\AdPost;
+use common\models\Post;
 use common\models\Reply;
 use common\models\User;
 use common\models\UserInfo;
@@ -46,11 +46,11 @@ class UserService
     /**
      * 用户对话题其他动作
      * @param User $user
-     * @param AdPost $model
+     * @param Post $model
      * @param $action  fa
      * @return array
      */
-    public static function TopicActionB(User $user, AdPost $model, $action)
+    public static function TopicActionB(User $user, Post $model, $action)
     {
         $data = [
             'meta_target_id' => $model->post_id,

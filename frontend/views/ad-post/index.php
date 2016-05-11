@@ -21,7 +21,7 @@ if ($node = Yii::$app->request->getQueryParam('node')) {
         <?php if($node): ?>
         <div class="panel-heading clearfix">
             <?= Icon::show('cloud-upload') ?> <?= $node->cat_name; ?>
-            <?php if(!empty($node->description)): ?>
+            <?php if(!empty($node->cat_desc)): ?>
                 <br/>
                 <span style="color: #666666; font-size: 12px;"><?= $node->cat_desc; ?></span>
             <?php endif; ?>

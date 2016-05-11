@@ -1,12 +1,12 @@
 <?php
 namespace frontend\models;
 
-use common\models\AdPost;
+use common\models\Post;
 use frontend\models\UserMeta;
 use yii\web\NotFoundHttpException;
 use Yii;
 
-class Tweet extends AdPost
+class Tweet extends Post
 {
     const TweetTYPE = 'tweet';
 

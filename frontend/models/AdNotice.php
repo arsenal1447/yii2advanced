@@ -4,7 +4,7 @@ namespace frontend\models;
 
 use Yii;
 use common\models\User;
-use common\models\AdPost;
+use common\models\Post;
 /**
  * This is the model class for table "{{%ad_notice}}".
  *
@@ -23,7 +23,7 @@ use common\models\AdPost;
 class AdNotice extends \yii\db\ActiveRecord
 {
     const Notice_Deld = 1;
-    
+
     const Notice_Normal = 0;
 
     const Notice_Show = 1;
@@ -67,17 +67,17 @@ class AdNotice extends \yii\db\ActiveRecord
             'notice_deld' => Yii::t('app', 'Notice Deld'),
         ];
     }
-    
+
     public function getFromUser()
     {
         return $this->hasOne(User::className(), ['user_id' => 'notice_from_user_id']);
     }
-    
+
     public function getPost()
     {
-        return $this->hasOne(AdPost::className(), ['post_id' => 'notice_post_id']);
+        return $this->hasOne(Post::className(), ['post_id' => 'notice_post_id']);
     }
-    
+
     public function getLable($type)
     {
         switch ($type) {
@@ -126,16 +126,16 @@ class AdNotice extends \yii\db\ActiveRecord
             case 'attention_append':
                 $lable = Yii::t('app', 'Attented topic has new update:');
                 break;
-    
+
             default:
                 $lable = '';
                 break;
         }
         return $lable;
     }
-    
-    
-    
-    
-    
+
+
+
+
+
 }

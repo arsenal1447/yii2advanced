@@ -4,6 +4,7 @@ namespace common\models;
 
 use Yii;
 use common\components\db\ActiveRecord;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "ad_post_tag".
@@ -30,8 +31,23 @@ class PostTag extends ActiveRecord
     public function rules()
     {
         return [
-            [['tag_count', 'tag_create', 'update'], 'integer'],
+            [['tag_count', 'tag_create', 'tag_update'], 'integer'],
             [['tag_name'], 'string', 'max' => 20]
+        ];
+    }
+    
+    /**
+     * @inheritdoc
+     */
+    public function behaviors()
+    {
+        return [
+                [
+                    'class' => TimestampBehavior::className(),
+                    'createdAtAttribute' => 'tag_create',
+                    'updatedAtAttribute' => 'tag_update',
+                    //             'value' => new Expression('NOW()'),//如果是timestamp类型 ,需要这样操作
+                ],
         ];
     }
 

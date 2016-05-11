@@ -3,7 +3,8 @@
 namespace frontend\controllers;
 
 use Yii;
-use app\models\AdReply;
+use frontend\models\AdReply;
+use frontend\models\AdPost;
 use yii\data\ActiveDataProvider;
 // use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -67,7 +68,7 @@ class AdReplyController extends Controller
      */
     public function actionCreate($id)
     {
-        $post = Topic::findTopic($id);
+        $post = AdPost::findTopic($id);
         $model = new Reply();
         if ($model->load(Yii::$app->request->post())) {
             $topService = new TopicService();
@@ -89,7 +90,7 @@ class AdReplyController extends Controller
                 // 更新回复时间
                 $post->lastCommentToUpdate(Yii::$app->user->identity->user_name);
                 // 评论计数器
-//                 Topic::updateAllCounters(['comment_count' => 1], ['id' => $post->id]);
+                AdPost::updateAllCounters(['post_reply_count' => 1], ['post_id' => $post->post_id]);
                 // 更新个人总统计
                 UserInfo::updateAllCounters(['info_comment_count' => 1], ['info_user_id' => $model->reply_user_id]);
 

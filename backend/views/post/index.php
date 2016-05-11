@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
-use common\models\AdPost;
+use common\models\Post;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\Models\PostSearch */
@@ -72,8 +72,8 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'class' => \common\grid\EnumColumn::className(),
                 'attribute' => 'post_status',
-                'filter' => AdPost::getStatuses(),
-                'enum' => AdPost::getStatuses(),
+                'filter' => Post::getStatuses(),
+                'enum' => Post::getStatuses(),
             ],
             'post_update:datetime',
 

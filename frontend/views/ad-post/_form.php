@@ -16,14 +16,9 @@ use kartik\select2\Select2;
         ]
     ]); ?>
 
-    <?= $form->errorSummary($model, [
-        'class' => 'alert alert-danger'
-    ]) ?>
+    <?= $form->errorSummary($model, ['class' => 'alert alert-danger']) ?>
 
-    <?= $form->field($model, 'post_title')->textInput([
-        'maxlength' => 255,
-        'placeholder' => '标题'
-    ]) ?>
+    <?= $form->field($model, 'post_title')->textInput(['maxlength' => 255,'placeholder' => '标题']) ?>
 
     <?= $form->field($model, 'post_cate_id')->widget(Select2::classname(), [
         'data' => \common\models\PostMeta::topicCategory(),
@@ -76,7 +71,7 @@ use kartik\select2\Select2;
     </div>
 
     <?= SelectizeTextInput::widget([
-        'name' => 'Topic[tags]',
+        'name' => 'AdPost[post_tags]',
         'value' => $model->post_tags,
         'loadUrl' => ['/post-tag/index'],
         'clientOptions' => [

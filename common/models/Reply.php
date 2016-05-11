@@ -38,7 +38,7 @@ class Reply extends ActiveRecord
      * 未删除
      */
     const STATUS_DELETED = 0;
-    
+
     /**
      * 被删除
      */
@@ -218,12 +218,12 @@ class Reply extends ActiveRecord
 
     public function getPost()
     {
-        return $this->hasOne(AdPost::className(), ['post_id' => 'reply_post_id']);
+        return $this->hasOne(Post::className(), ['post_id' => 'reply_post_id']);
     }
 
     public function getTopic()
     {
-        return $this->hasOne(AdPost::className(), ['id' => 'post_id'])->where(['post_type' => 'topic']);
+        return $this->hasOne(Post::className(), ['id' => 'post_id'])->where(['post_type' => 'topic']);
     }
 
     public function getLike()

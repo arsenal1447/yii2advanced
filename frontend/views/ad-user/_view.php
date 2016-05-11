@@ -2,13 +2,13 @@
 use yii\helpers\Html;
 use yii\helpers\HtmlPurifier;
 use yii\helpers\Markdown;
-use common\models\AdPost;
+use common\models\Post;
 use frontend\models\Tweet;
 
 ?>
 <?php switch ($this->context->action->id) {
     case 'show':
-//         if($model->post_type==AdPost::TYPE){
+//         if($model->post_type==Post::TYPE){
 //             $str = 'ad-post';
 //         }elseif($model->post_type==Tweet::TweetTYPE){
 //             $str = 'ad-tweet';

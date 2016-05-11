@@ -5,12 +5,12 @@ namespace backend\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\AdPost;
+use common\models\Post;
 
 /**
  * PostSearch represents the model behind the search form about `common\Models\Post`.
  */
-class PostSearch extends AdPost
+class PostSearch extends Post
 {
     public $category_name;
     public $username;
@@ -41,7 +41,7 @@ class PostSearch extends AdPost
      */
     public function search($params)
     {
-        $query = AdPost::find()->joinWith(['category', 'user']);
+        $query = Post::find()->joinWith(['category', 'user']);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -77,13 +77,13 @@ class PostSearch extends AdPost
             'post_like_count' => $this->like_count,
             'post_thanks_count' => $this->thanks_count,
             'post_hate_count' => $this->hate_count,
-            AdPost::tableName() . '.post_status' => $this->status,
+            Post::tableName() . '.post_status' => $this->status,
             'post_order' => $this->order,
             'post_create' => $this->created_at,
             'post_update' => $this->updated_at,
         ]);
 
-        $query->andFilterWhere(['like', AdPost::tableName() . '.post_type', $this->type])
+        $query->andFilterWhere(['like', Post::tableName() . '.post_type', $this->type])
             ->andFilterWhere(['like', 'post_title', $this->title])
             ->andFilterWhere(['like', 'post_author', $this->author])
             ->andFilterWhere(['like', 'post_excerpt', $this->excerpt])

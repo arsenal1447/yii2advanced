@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use frontend\models\Topic;
+use frontend\models\AdPost;
 use common\helpers\Formatter;
 
 /* @var $this yii\web\View */
@@ -22,7 +22,7 @@ use common\helpers\Formatter;
             <?= Html::a(Html::encode($model->post_title),
                 ['/ad-post/view', 'id' => $model->post_id], ['title' => $model->post_title]
             ); ?>
-            <?= ($model->post_status == Topic::STATUS_EXCELLENT) ? Html::tag('i', '', ['class' => 'fa fa-trophy excellent']) : null ?>
+            <?= ($model->post_status == AdPost::STATUS_EXCELLENT) ? Html::tag('i', '', ['class' => 'fa fa-trophy excellent']) : null ?>
         </div>
 
         <div class="title-info">

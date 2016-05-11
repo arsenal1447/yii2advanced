@@ -103,6 +103,9 @@ return [
     'Data has been deleted.' => '信息已被删除.',
     'You dont have any notice yet!' => '还未收到提醒!',
     'Received {0} reply' => '共收到 {0} 条回复',
+    'cc {username}' => '
+> 本文由 [{username}](http://www.getyii.com/member/{username}) 创作，采用 [知识共享署名 3.0 中国大陆许可协议](http://creativecommons.org/licenses/by/3.0/cn) 进行许可。
+可自由转载、引用，但需署名作者且注明文章出处。',
         
     
 ];

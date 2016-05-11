@@ -4,7 +4,7 @@ namespace frontend\controllers;
 use Yii;
 use common\helpers\Arr;
 use common\models\LoginForm;
-use common\models\AdPost;
+use common\models\Post;
 use common\models\Reply;
 use common\models\Session;
 use common\models\RightLink;
@@ -79,15 +79,15 @@ class SiteController extends Controller
     public function actionIndex()
     {
 //         return $this->render('index');
-        $topics = AdPost::find()->limit(20)->where(['post_deld'=>0,'post_status'=>0,'post_type'=>AdPost::TYPE])->orderBy(['post_create' => SORT_DESC])->all();
+        $topics = Post::find()->limit(20)->where(['post_deld'=>0,'post_status'=>0,'post_type'=>Post::TYPE])->orderBy(['post_create' => SORT_DESC])->all();
         $users = UserService::findActiveUser(12);
         $headline = Arr::getColumn(RightLink::find()->where(['link_type' => RightLink::RIGHT_LINK_TYPE_HEADLINE])->all(), 'link_content');
-        
+
         $statistics = [];
-        $statistics['post_count'] = AdPost::find()->count();
+        $statistics['post_count'] = Post::find()->count();
         $statistics['reply_count'] = Reply::find()->count();
         $statistics['online_count'] = Session::find()->where(['>', 'expire', time()])->count();
-        
+
         return $this->render('index', [
                 'topics' => $topics,
                 'users' => $users,
@@ -95,7 +95,7 @@ class SiteController extends Controller
                 'headline' => Arr::arrayRandomAssoc($headline),
         ]);
     }
-    
+
     public function actionUsers()
     {
         $model = UserService::findActiveUser(100);
@@ -105,7 +105,7 @@ class SiteController extends Controller
                 'count' => $count,
         ]);
     }
-    
+
 
     public function actionLogin()
     {
@@ -115,7 +115,7 @@ class SiteController extends Controller
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack(); 
+            return $this->goBack();
             //登陆成功跳转到帖子首页
 //             return $this->redirect('../ad-post/index', ['model' => $model,]);
         } else {
@@ -156,9 +156,9 @@ class SiteController extends Controller
     public function actionSignup()
     {
         $model = new SignupForm();
-    
+
         $this->performAjaxValidation($model);
-    
+
         if ($model->load(Yii::$app->request->post())) {
             if ($user = $model->signup()) {
                 if (Yii::$app->getUser()->login($user)) {
@@ -166,7 +166,7 @@ class SiteController extends Controller
                 }
             }
         }
-    
+
         return $this->render('signup', [
                 'model' => $model,
         ]);
@@ -208,36 +208,36 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
-    
+
     public function actionQrcode($url = '')
     {
         return QrCode::png($url);
     }
-    
+
     public function actionTimeline()
     {
         return $this->render('timeline');
     }
-    
+
     public function actionTags()
     {
         $tags = AdPostTag::find()->orderBy('tag_update DESC')->all();
-    
+
         return $this->render('tags', [
                 'tags' => $tags,
         ]);
     }
-    
+
     public function actionContributors()
     {
         return $this->render('contributors');
     }
-    
+
     public function actionGetstart()
     {
         return $this->render('getstart');
     }
-    
+
     /**
      * Performs ajax validation.
      * @param Model $model

@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 use yii\helpers\HtmlPurifier;
 use yii\helpers\Markdown;
-use common\models\AdPost;
+// use common\models\Post;
 
 /* @var $this yii\web\View */
 /* @var $model common\Models\Post */
@@ -29,7 +29,7 @@ $this->title = $model->post_title;
                     于 <?= Html::tag('abbr', Yii::$app->formatter->asRelativeTime($model->post_create), ['title' => Yii::$app->formatter->asDatetime($model->post_create)]) ?>发布
                     ·
                     <?php //echo $model->post_view_count ?> <!-- 次阅读 -->
-                    <?= AdPost::getViewCount($model->post_id); ?> 次阅读
+                    <?php //echo \common\models\Post::getViewCount($model->post_id); ?> 次阅读
                 </div>
             </div>
             <div class="avatar media-right">

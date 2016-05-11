@@ -26,6 +26,8 @@ class PostTagController extends Controller
                 return $model->getAttributes(['tag_name']);
             }));
         }
+        
+        pr($dataProvider);
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,

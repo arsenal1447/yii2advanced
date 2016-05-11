@@ -27,7 +27,7 @@ use frontend\models\UserMeta;
  * @property string $last_user_name
  * @property string $last_post_update
  */
-class AdPost extends MyActiveRecord
+class Post extends MyActiveRecord
 {
     const TYPE = 'topic';
     /**
@@ -50,6 +50,7 @@ class AdPost extends MyActiveRecord
      */
     const STATUS_DELETED = 0;
 
+
     /**
      * @inheritdoc
      */
@@ -71,6 +72,7 @@ class AdPost extends MyActiveRecord
                 //[['user_name','last_user_name'],'string','max' => 32],
                 [['post_title'],'string','max' => 256],
                 //[['note1','note2'],'string','max' => 64]
+//                 [['cc'], 'safe']
         ];
     }
 
@@ -91,42 +93,14 @@ class AdPost extends MyActiveRecord
                 'post_view_count' => '浏览数',
                 'post_reply_count' => '回帖数',
                 'post_status' => '状态',
-                'category_name' => '分类',//用于点击排序和翻译                
+                'category_name' => '分类',//用于点击排序和翻译
                 'username' => '用户',//用于点击排序和翻译
                 'post_order' => '排序',//用于点击排序和翻译
                 'post_last_user_id' => 'Last User ID',
                 'post_last_comment_user_name' => 'Last User Name',
-                'post_last_comment_time' => 'Last Modify Time'
+                'post_last_comment_time' => 'Last Modify Time',
+//                 'cc' => '注明版权信息（原创文章欢迎使用）',
         ];
-    }
-
-    /**
-     * @desc  发帖的预处理
-     * @return boolean whether the record should be saved.
-     */
-    public function beforeSave($insert) {
-        $userid =  Yii::$app->user->identity->id;
-        if (parent::beforeSave($insert)) {
-            if ($this->isNewRecord) {
-                $this->post_user_id = $userid;
-                $this->post_user_name = Yii::$app->user->identity->user_name;
-                $this->post_create = time();
-                $this->post_update = time();
-                $this->post_status = 0;
-                $this->post_view_count = 10;
-                $this->post_deld = 0;
-                //$this->post_type = 'topic';
-                $this->post_type = AdPost::TYPE;
-            }else{//更新修改时间
-                $this->post_update = time();
-                $this->post_last_comment_time = time();
-                $this->post_last_comment_user_name = Yii::$app->user->identity->user_name;
-                $this->post_last_user_id = Yii::$app->user->identity->id;
-            }
-            return true;
-        } else {
-            return false;
-        }
     }
 
     private $_post_content;
@@ -144,36 +118,39 @@ class AdPost extends MyActiveRecord
     {
         $this->_post_content = $value;
     }
-
+    
     public function getLike()
     {
         $model = new UserMeta();
-        return $model->isUserAction(self::TYPE, 'like', $this->post_id);
+        return $model->isUserAction(self::TYPE, 'like', $this->post_user_id);
     }
-
+    
     public function getFollow()
     {
         $model = new UserMeta();
-        return $model->isUserAction(self::TYPE, 'follow', $this->post_id);
+        return $model->isUserAction(self::TYPE, 'follow', $this->post_user_id);
     }
-
+    
     public function getHate()
     {
         $model = new UserMeta();
-        return $model->isUserAction(self::TYPE, 'hate', $this->post_id);
+        return $model->isUserAction(self::TYPE, 'hate', $this->post_user_id);
     }
-
+    
     public function getFavorite()
     {
         $model = new UserMeta();
-        return $model->isUserAction(self::TYPE, 'favorite', $this->post_id);
+        return $model->isUserAction(self::TYPE, 'favorite', $this->post_user_id);
     }
-
+    
     public function getThanks()
     {
         $model = new UserMeta();
-        return $model->isUserAction(self::TYPE, 'thanks', $this->post_id);
+        return $model->isUserAction(self::TYPE, 'thanks', $this->post_user_id);
     }
+    
+
+
 
     public function isCurrent()
     {
@@ -204,7 +181,7 @@ class AdPost extends MyActiveRecord
      */
     public static function getTitleById($id)
     {
-        $model = AdPost::find()->select(['post_title'])->where(['post_id' => $id,'post_deld'=>0,'post_status'=>0])->asArray()->one();
+        $model = Post::find()->select(['post_title'])->where(['post_id' => $id,'post_deld'=>0,'post_status'=>0])->asArray()->one();
 
         if($model){
             return $model['post_title'];
@@ -220,11 +197,11 @@ class AdPost extends MyActiveRecord
      */
     public static function UpViewCount($id)
     {
-        $model = AdPost::find()->select(['post_id','post_view_count'])->where(['post_id' => $id,'post_deld'=>0,'post_status'=>0])->one();
+        $model = Post::find()->select(['post_id','post_view_count'])->where(['post_id' => $id,'post_deld'=>0,'post_status'=>0])->one();
 
         $redis = Yii::$app->redis;
 
-        $currentcount = AdPost::getViewCount($id);
+        $currentcount = Post::getViewCount($id);
         $count = 0;
         if($currentcount>0){
             $count = $currentcount;
@@ -253,17 +230,12 @@ class AdPost extends MyActiveRecord
     {
         $attributes = [];
 
-        $attributes['post_reply_count'] = new Expression("[[post_reply_count]]+:bp0", [
-                ":bp0" => 1
-        ]);
-
+        $attributes['post_reply_count'] = new Expression("[[post_reply_count]]+:bp0", [":bp0" => 1]);
         $attributes['post_last_user_id'] = Ad::getIdentity()->id;
         $attributes['post_last_comment_user_name'] = Ad::getIdentity()->user_name;
         $attributes['post_last_comment_time'] = TTimeHelper::getCurrentTime();
 
-        AdPost::updateAll($attributes, [
-        'post_id' => intval($postId)
-        ]);
+        Post::updateAll($attributes, ['post_id' => intval($postId)]);
     }
 
     /**

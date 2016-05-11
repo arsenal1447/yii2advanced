@@ -3,12 +3,13 @@
 namespace frontend\controllers;
 
 use Yii;
-use common\models\AdPost;
+use common\models\Post;
 use common\services\NoticeService;
 use common\services\TopicService;
 use frontend\models\AdNotice;
 use frontend\models\Topic;
 use frontend\models\UserMeta;
+use frontend\models\AdPost;
 use yii\data\ActiveDataProvider;
 use common\models\PostSearch;
 use common\models\PostMeta;
@@ -52,23 +53,24 @@ class AdPostController extends Controller
     }
 
     /**
-     * Lists all AdPost models.
+     * Lists all Post models.
      * @return mixed
      */
     public function actionIndex()
     {
         $searchModel = new PostSearch();
-        
+
         // 话题或者分类筛选
         $params = Yii::$app->request->queryParams;
         empty($params['tag']) ?: $params['PostSearch']['tags'] = $params['tag'];
         if (isset($params['node'])) {
             $postMeta = PostMeta::findOne(['cat_alias' => $params['node']]);
-            ($postMeta) ? $params['PostSearch']['post_meta_id'] = $postMeta->cat_id : '';
+//             ($postMeta) ? $params['PostSearch']['post_meta_id'] = $postMeta->cat_id : '';
+            ($postMeta) ? $params['PostSearch']['post_cate_id'] = $postMeta->cat_id : '';
         }
-        
+//         pr($params);
         $dataProvider = $searchModel->search($params);
-        $dataProvider->query->andWhere([AdPost::tableName() . '.post_type' => 'topic', 'post_deld'=>AdPost::STATUS_DELETED,'post_status' => [AdPost::STATUS_ACTIVE, AdPost::STATUS_EXCELLENT]]);
+        $dataProvider->query->andWhere([Post::tableName() . '.post_type' => 'topic', 'post_deld'=>Post::STATUS_DELETED,'post_status' => [Post::STATUS_ACTIVE, Post::STATUS_EXCELLENT]]);
         // 排序
         $sort = $dataProvider->getSort();
         $sort->attributes = array_merge($sort->attributes, [
@@ -92,7 +94,7 @@ class AdPostController extends Controller
                 ],
             ]
         ]);
-        
+
         return $this->render('index', [
                 'searchModel' => $searchModel,
                 'sorts' => $this->sorts,
@@ -101,7 +103,7 @@ class AdPostController extends Controller
     }
 
     /**
-     * Displays a single AdPost model.
+     * Displays a single Post model.
      * @param string $id
      * @return mixed
      */
@@ -121,7 +123,7 @@ class AdPostController extends Controller
             'sort' => ['defaultOrder' => ['reply_create' => SORT_ASC]]
         ]);
 
-        AdPost::UpViewCount($id);
+        Post::UpViewCount($id);
         //帖子的回复情况
 //         $query = Reply::find()->where(['reply_post_id'=>$model['post_id']]);
 
@@ -148,7 +150,7 @@ class AdPostController extends Controller
     }
 
     /**
-     * Creates a new AdPost model.
+     * Creates a new Post model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
@@ -157,37 +159,74 @@ class AdPostController extends Controller
         if (Yii::$app->user->isGuest) {
             return $this->redirect(['site/login']);
         }
-//         if (\Yii::$app->user->can('createPost')) {
-             $model = new AdPost();
-            //获取分类列表
-            $catmodel = AdCat::getCate();
-            if ($model->load(Yii::$app->request->post())) {
-                $model->post_cate_id = Yii::$app->request->post('AdPost')['post_cate_id'];
-                $model->post_create = time();
-                $model->post_update = time();
-                if($model->save(false)){
-//                     $this->saveReplyForPost($model);
-
-                    (new UserMeta)->saveNewMeta('topic', $model->post_id, 'follow');
-                    (new NoticeService())->newPostNotify(Yii::$app->user->identity, $model, $model->post_content);
-                    // 更新个人总统计
-//                     UserInfo::updateAllCounters(['post_count' => 1], ['user_id' => $model->user_id]);
-                    $this->flash('发表文章成功!', 'success');
-                    return $this->redirect(['view', 'id' => $model->post_id]);
-                }
-            } else {
-                return $this->render('create', [
-                    'model' => $model,
-                    'catmodel' => $catmodel,
-                ]);
+        
+        $model = new AdPost();
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            $topService = new TopicService();
+            if (!$topService->filterContent($model->post_title) || !$topService->filterContent($model->post_content)) {
+                $this->flash('请勿发表无意义的内容', 'warning');
+                return $this->redirect('create');
             }
+            $model->post_create = time();
+            $model->post_update = time();
+            if ($model->save()) {
+                (new UserMeta)->saveNewMeta('topic', $model->post_id, 'follow');
+                (new NoticeService())->newPostNotify(Yii::$app->user->identity, $model, $model->post_content);
+                // 更新个人总统计
+                UserInfo::updateAllCounters(['info_post_count' => 1], ['info_user_id' => $model->post_user_id]);
+                $this->flash('发表文章成功!', 'success');
+                return $this->redirect(['view', 'id' => $model->post_id]);
+            }
+        
+        } else {
+            return $this->render('create', [
+                    'model' => $model,
+            ]);
+        }
+//         if (\Yii::$app->user->can('createPost')) {
+//              $model = new AdPost();
+//             //获取分类列表
+//             $catmodel = AdCat::getCate();
+            
+//             if ($model->load(Yii::$app->request->post())) {
+// //                 $model->post_user_id = Yii::$app->user->identity->id;;
+// //                 $model->post_cate_id = Yii::$app->request->post('Post')['post_cate_id'];
+// //                 $model->post_create = time();
+// //                 $model->post_update = time();
+// //                 $model->post_type = Post::TYPE;
+
+
+// //                 pr($model->post_tags);
+// //                 if ($model->post_tags) {
+// //                     $model->addTags(explode(',', $model->post_tags));
+// //                 }
+// //                 die('no');
+// //                 $this->post_content = TopicService::replace($this->post_content)
+// //                 . ($this->cc ? t('app', 'cc {username}', ['username' => Yii::$app->user->identity->user_name]) : '');
+
+//                 if($model->save(false)){
+// //                     $this->saveReplyForPost($model);
+
+//                     (new UserMeta)->saveNewMeta('topic', $model->post_id, 'follow');
+//                     (new NoticeService())->newPostNotify(Yii::$app->user->identity, $model, $model->post_content);
+//                     // 更新个人总统计
+// //                     UserInfo::updateAllCounters(['post_count' => 1], ['user_id' => $model->user_id]);
+//                     $this->flash('发表文章成功!', 'success');
+//                     return $this->redirect(['view', 'id' => $model->post_id]);
+//                 }
+//             } else {
+//                 return $this->render('create', [
+//                     'model' => $model,
+//                     'catmodel' => $catmodel,
+//                 ]);
+//             }
 //         }
 
     }
 
 
     private function saveReplyForPost($post,$reply=null){
-        $data = Ad::getPostValue('AdPost');
+        $data = Ad::getPostValue('Post');
 
         if($reply==null)
         {
@@ -239,7 +278,7 @@ class AdPostController extends Controller
         $post = Topic::findTopic($postId);
         $data = Ad::getPostValue('Reply');
         if($data == null){
-            $post = AdPost::findOne(['post_id' => $postId]);
+            $post = Post::findOne(['post_id' => $postId]);
 
             $locals=[];
             $locals['post'] = $post;
@@ -265,7 +304,7 @@ class AdPostController extends Controller
             $model->reply_update = time();
             if($model->save())
             {
-                AdPost::updateLastData($postId);
+                Post::updateLastData($postId);
                 $userMeta = new UserMeta();
                 $userMeta->saveNewMeta('topic', $postId, 'follow');
                 $noticeservice = new NoticeService();
@@ -279,7 +318,7 @@ class AdPostController extends Controller
     }
 
     /**
-     * Updates an existing AdPost model.
+     * Updates an existing Post model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param string $id
      * @return mixed
@@ -306,7 +345,7 @@ class AdPostController extends Controller
     }
 
     /**
-     * Deletes an existing AdPost model.
+     * Deletes an existing Post model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param string $id
      * @return mixed
@@ -325,7 +364,7 @@ class AdPostController extends Controller
         if($model->save()){
             //同时把ad_reply回复表的数据也变成被删除状态
             $replymodel = Reply::find()->select(['reply_id'])->where(['reply_post_id'=>$id,'reply_deld'=>Reply::STATUS_DELETED])->asArray()->all();
-    
+
             if($replymodel){
                 Reply::updateAll(['reply_deld' => Reply::STATUS_BEDELD], 'reply_post_id=:id',['id'=>$id]);
             }
@@ -334,15 +373,15 @@ class AdPostController extends Controller
     }
 
     /**
-     * Finds the AdPost model based on its primary key value.
+     * Finds the Post model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param string $id
-     * @return AdPost the loaded model
+     * @return Post the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = AdPost::findOne($id)) !== null) {
+        if (($model = Post::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
@@ -358,7 +397,7 @@ class AdPostController extends Controller
         $getparam = Yii::$app->request->get();
 //         $get = Yii::$app()->request->getParam();;
         $cate_id = $getparam['cate_id'];
-        $query = AdPost::find();
+        $query = Post::find();
         $query->where(['post_deld'=>0,'post_status'=>0,'post_cate_id'=>$cate_id]);//只显示未删除的帖子
         $dataProvider = new ActiveDataProvider(['query' => $query,]);
 

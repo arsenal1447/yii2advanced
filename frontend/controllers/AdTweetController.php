@@ -3,7 +3,7 @@
 namespace frontend\controllers;
 
 use common\components\Controller;
-use common\models\AdPost;
+use common\models\Post;
 use common\services\NoticeService;
 use common\services\TweetService;
 use frontend\models\Tweet;
@@ -49,8 +49,8 @@ class AdTweetController extends Controller
         $params['TweetSearch']['post_content'] = empty($params['topic']) ? '' : $params['topic'];
         $dataProvider = $searchModel->search($params);
         $dataProvider->query->andWhere([
-            AdPost::tableName() . '.post_type' => Tweet::TweetTYPE,
-            'post_status' => [AdPost::STATUS_ACTIVE, AdPost::STATUS_EXCELLENT]
+            Post::tableName() . '.post_type' => Tweet::TweetTYPE,
+            'post_status' => [Post::STATUS_ACTIVE, Post::STATUS_EXCELLENT]
         ]);
 
         $model = new Tweet();

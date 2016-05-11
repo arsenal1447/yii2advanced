@@ -5,7 +5,7 @@ use yii\widgets\DetailView;
 use common\models\User;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\AdPost */
+/* @var $model app\models\Post */
 $this->title = $model->user_name;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'User Info'), 'url' => ['info']];
 $this->params['breadcrumbs'][] = $this->title;
@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="ad-post-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
-    
+
     <?php if($model->user_id==yii::$app->user->id){?>
     <p>
         <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->user_id], ['class' => 'btn btn-primary']) ?>
@@ -50,7 +50,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'user_role',
 //             [
 //                 'label'=>Yii::t('app','Post Viewcount'),
-//                 'value'=>AdPost::getViewCount($model->user_id),
+//                 'value'=>Post::getViewCount($model->user_id),
 //             ],
 //             'user_status',
 //             'user_deld',

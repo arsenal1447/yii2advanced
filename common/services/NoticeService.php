@@ -4,8 +4,9 @@ namespace common\services;
 use common\models\Reply;
 use common\models\User;
 use frontend\models\AdNotice;
+use frontend\models\AdPost;
 use frontend\models\Topic;
-use common\models\AdPost;
+use common\models\Post;
 use frontend\models\UserMeta;
 use yii\base\Exception;
 use yii\helpers\VarDumper;
@@ -22,7 +23,7 @@ class NoticeService
      * @param string $rawComment
      * @throws Exception
      */
-    public function newReplyNotify(User $fromUser, Topic $topic, Reply $comment, $rawComment = '')
+    public function newReplyNotify(User $fromUser, AdPost $topic, Reply $comment, $rawComment = '')
     {
 //         echo "<pre>";
         foreach ($topic->follower as $key => $value) {
@@ -51,7 +52,7 @@ class NoticeService
      * @param string $rawContent
      * @throws Exception
      */
-    public function newPostNotify(User $fromUser, AdPost $post, $rawContent = '')
+    public function newPostNotify(User $fromUser, Post $post, $rawContent = '')
     {
         $this->batchNotify(
             'at_' . $post->post_type,
@@ -100,7 +101,7 @@ class NoticeService
      * @param PostComment $comment
      * @throws Exception
      */
-    public function batchNotify($type, User $fromUser, $users, AdPost $post, Reply $comment = null)
+    public function batchNotify($type, User $fromUser, $users, Post $post, Reply $comment = null)
     {
         echo "<pre>";
         print_R($users);

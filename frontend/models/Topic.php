@@ -2,7 +2,7 @@
 namespace frontend\models;
 
 
-use common\models\AdPost;
+use common\models\Post;
 use common\models\PostTag;
 use common\models\Search;
 use common\services\TopicService;
@@ -10,7 +10,7 @@ use frontend\models\UserMeta;
 use yii\web\NotFoundHttpException;
 use Yii;
 
-class Topic extends AdPost
+class Topic extends Post
 {
     const TYPE = 'topic';
 
@@ -105,26 +105,28 @@ class Topic extends AdPost
         return static::findModel($id, ['=', 'post_status', self::STATUS_DELETED]);
     }
 
-    public function beforeSave($insert)
-    {
-        if (parent::beforeSave($insert)) {
+//     public function beforeSave($insert)
+//     {
+//         if (parent::beforeSave($insert)) {
+//             pr($this->post_tags);
 
-            if ($this->post_tags) {
-                $this->addTags(explode(',', $this->post_tags));
-            }
-            $this->post_content = TopicService::replace($this->post_content)
-                . ($this->cc ? t('app', 'cc {username}', ['username' => Yii::$app->user->identity->username]) : '');
+//             if ($this->post_tags) {
+//                 $this->addTags(explode(',', $this->post_tags));
+//             }
+//             die('no');
+//             $this->post_content = TopicService::replace($this->post_content)
+//                 . ($this->cc ? t('app', 'cc {username}', ['username' => Yii::$app->user->identity->username]) : '');
 
-            if ($insert) {
-                $this->post_user_id = (($this->post_user_id) ?: Yii::$app->user->id);
-                $this->post_type = self::TYPE;
-                $this->post_last_comment_time = $this->post_create;
-            }
-            return true;
-        } else {
-            return false;
-        }
-    }
+//             if ($insert) {
+//                 $this->post_user_id = (($this->post_user_id) ?: Yii::$app->user->id);
+//                 $this->post_type = self::TYPE;
+//                 $this->post_last_comment_time = $this->post_create;
+//             }
+//             return true;
+//         } else {
+//             return false;
+//         }
+//     }
 
     public function afterSave($insert, $changedAttributes)
     {

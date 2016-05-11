@@ -4,7 +4,7 @@ namespace frontend\controllers;
 
 use Yii;
 use app\models\AdUser;
-use common\models\AdPost;
+use common\models\Post;
 use common\models\User;
 use common\models\Reply;
 use frontend\models\UserMeta;
@@ -96,10 +96,10 @@ class AdUserController extends Controller
         if (Yii::$app->user->isGuest) {
             return $this->redirect(['site/login']);
         }
-        
+
         $model = AdUser::find()->select(['user_id','user_name','user_create','user_status','user_email','user_logintime','user_ip','user_nickname'])
         ->where(['user_id'=>Yii::$app->user->identity->id,'user_deld'=>0,'user_status'=>10])->one();
-        
+
         if($model){
             return $this->render('info',['model' => $model,]);
         }else{
@@ -107,11 +107,11 @@ class AdUserController extends Controller
         }
 
     }
-    
+
     protected function user($username = '')
     {
         $user = User::findOne(['user_name' => $username]);
-    
+
         if ($user === null) {
             throw new NotFoundHttpException;
         }
@@ -123,7 +123,7 @@ class AdUserController extends Controller
                 'query' => Reply::find()->where(['reply_user_id' => $userId, 'reply_status' => 1])->orderBy(['reply_create' => SORT_DESC]),
         ]);
     }
-    
+
     /**
      * Shows user's profile.
      * @param  string $username
@@ -138,31 +138,31 @@ class AdUserController extends Controller
         if (null != $currentUserId && $user->id != $currentUserId) {
             UserInfo::updateAllCounters(['info_view_count' => 1], ['info_user_id' => $user->user_id]);
         }
-    
+
         return $this->render('show', [
                 'user' => $user,
 //                 'model' => $user,
                 'dataProvider' => $this->comment($user->user_id),
         ]);
     }
-    
+
     public function actionPoint($username = '')
     {
         $user = $this->user($username);
-    
+
         $dataProvider = new ActiveDataProvider([
                 'query' => MeritLog::find()->where([
                         'user_id' => $user->id,
                         'type' => 1,
                 ])->orderBy(['created_at' => SORT_DESC])
         ]);
-    
+
         return $this->render('show', [
                 'user' => $user,
                 'dataProvider' => $dataProvider,
         ]);
     }
-    
+
     /**
      * 最近主题
      * @param string $username
@@ -172,22 +172,22 @@ class AdUserController extends Controller
     public function actionPost($username = '')
     {
 //         pr(Yii::$app->requestedParams,true);
-        
+
         $user = $this->user($username);
-    
+
         $dataProvider = new ActiveDataProvider([
-                'query' => AdPost::find()
-                ->where(['post_user_id' => $user->user_id, 'post_type' => AdPost::TYPE])
-                ->andWhere('post_status > :status ', [':status' => AdPost::STATUS_DELETED])
+                'query' => Post::find()
+                ->where(['post_user_id' => $user->user_id, 'post_type' => Post::TYPE])
+                ->andWhere('post_status > :status ', [':status' => Post::STATUS_DELETED])
                 ->orderBy(['post_create' => SORT_DESC]),
         ]);
-    
+
         return $this->render('show', [
                 'user' => $user,
                 'dataProvider' => $dataProvider,
         ]);
     }
-    
+
     /**
      * 最新收藏
      * @param string $username
@@ -197,15 +197,15 @@ class AdUserController extends Controller
     public function actionFavorite($username = '')
     {
         $user = $this->user($username);
-    
+
         $dataProvider = new ActiveDataProvider([
                 'query' => UserMeta::find()->where([
                         'meta_user_id' => $user->user_id,
                         'meta_type' => 'favorite',
-                        'meta_target_type' => AdPost::TYPE,
+                        'meta_target_type' => Post::TYPE,
                 ])->orderBy(['meta_create' => SORT_DESC])
         ]);
-    
+
         return $this->render('show', [
                 'user' => $user,
                 'dataProvider' => $dataProvider,
