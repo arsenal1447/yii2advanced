@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50624
 File Encoding         : 65001
 
-Date: 2016-05-11 17:56:08
+Date: 2016-05-11 18:09:55
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -337,7 +337,7 @@ CREATE TABLE `ad_post` (
   `post_last_comment_time` int(11) DEFAULT '0',
   `post_user_name` varchar(255) CHARACTER SET utf8 DEFAULT '0',
   PRIMARY KEY (`post_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=92 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=99 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of ad_post
@@ -433,6 +433,13 @@ INSERT INTO `ad_post` VALUES ('88', '0', 'topic', 'i am a title', '4', '0', '0',
 INSERT INTO `ad_post` VALUES ('89', '0', 'topic', 'dddddssssss', '3', '0', '0', '0', '0', '1', 'dddddddd', '1462954076', '1462954076', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1462954076', '0');
 INSERT INTO `ad_post` VALUES ('90', '0', 'topic', 'eee', '3', '0', '0', '0', '0', '1', 'dddd', '1462955922', '1462955922', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '1462955922', '0');
 INSERT INTO `ad_post` VALUES ('91', '0', 'topic', 'dd', '3', '0', '0', '0', '0', '1', 'ddd', '1462956072', '1462956072', '0', '0', '0', '0', '0', '0', '0', '0', '0', '2', '0', '0', '1462956072', '0');
+INSERT INTO `ad_post` VALUES ('92', '0', 'tweet', '', '0', '0', '0', '0', '0', '1', 'sssssss', '1462961073', '1462961073', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_post` VALUES ('93', '0', 'tweet', '', '0', '0', '0', '0', '0', '1', 'hhhhh', '1462961091', '1462961091', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_post` VALUES ('94', '0', 'tweet', '', '0', '0', '0', '0', '0', '1', 'dddddd', '1462961104', '1462961104', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_post` VALUES ('95', '0', 'tweet', '', '0', '0', '0', '0', '0', '1', 'sddd', '1462961170', '1462961170', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_post` VALUES ('96', '0', 'tweet', '', '0', '0', '0', '0', '0', '1', '444444444', '1462961256', '1462961256', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_post` VALUES ('97', '0', 'tweet', '', '0', '0', '0', '0', '0', '1', '33333333', '1462961302', '1462961302', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_post` VALUES ('98', '0', 'tweet', '', '0', '0', '0', '0', '0', '1', 'dddd', '1462961318', '1462961318', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
 
 -- ----------------------------
 -- Table structure for `ad_post_tag`
@@ -563,7 +570,7 @@ CREATE TABLE `ad_session` (
 -- ----------------------------
 -- Records of ad_session
 -- ----------------------------
-INSERT INTO `ad_session` VALUES ('2sdjhmaodv8uf84r349ppacan1', '1462962006', 0x5F5F666C6173687C613A303A7B7D5F5F69647C733A313A2231223B71725F74696D655F62656E63687C613A313A7B733A31323A2261667465725F656E636F6465223B643A313436323936303434332E3738353438353B7D);
+INSERT INTO `ad_session` VALUES ('2sdjhmaodv8uf84r349ppacan1', '1462962826', 0x5F5F666C6173687C613A303A7B7D5F5F69647C733A313A2231223B71725F74696D655F62656E63687C613A313A7B733A31323A2261667465725F656E636F6465223B643A313436323936313330332E343332363533393B7D);
 INSERT INTO `ad_session` VALUES ('u0gqbc2bcb7ae86nnve15afak0', '1462959019', 0x5F5F666C6173687C613A303A7B7D71725F74696D655F62656E63687C613A313A7B733A31323A2261667465725F656E636F6465223B643A313436323935373537392E353639363630393B7D);
 
 -- ----------------------------
@@ -689,7 +696,7 @@ CREATE TABLE `ad_user_meta` (
   `meta_target_type` varchar(100) CHARACTER SET utf8 DEFAULT '0',
   `meta_create` int(11) NOT NULL,
   PRIMARY KEY (`meta_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of ad_user_meta
@@ -763,6 +770,13 @@ INSERT INTO `ad_user_meta` VALUES ('66', '1', 'follow', null, '88', 'topic', '14
 INSERT INTO `ad_user_meta` VALUES ('67', '1', 'follow', null, '89', 'topic', '1462954076');
 INSERT INTO `ad_user_meta` VALUES ('68', '1', 'follow', null, '90', 'topic', '1462955923');
 INSERT INTO `ad_user_meta` VALUES ('69', '1', 'follow', null, '91', 'topic', '1462956072');
+INSERT INTO `ad_user_meta` VALUES ('70', '1', 'follow', null, '92', 'tweet', '1462961073');
+INSERT INTO `ad_user_meta` VALUES ('71', '1', 'follow', null, '93', 'tweet', '1462961091');
+INSERT INTO `ad_user_meta` VALUES ('72', '1', 'follow', null, '94', 'tweet', '1462961104');
+INSERT INTO `ad_user_meta` VALUES ('73', '1', 'follow', null, '95', 'tweet', '1462961170');
+INSERT INTO `ad_user_meta` VALUES ('74', '1', 'follow', null, '96', 'tweet', '1462961256');
+INSERT INTO `ad_user_meta` VALUES ('75', '1', 'follow', null, '97', 'tweet', '1462961302');
+INSERT INTO `ad_user_meta` VALUES ('76', '1', 'follow', null, '98', 'tweet', '1462961318');
 
 -- ----------------------------
 -- Table structure for `merit`
