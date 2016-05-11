@@ -8,7 +8,7 @@ $index += +1 + $widget->dataProvider->pagination->page * $widget->dataProvider->
     <div class="deleted text-center"><?= $index ?>楼 已删除.</div>
 <?php else: ?>
     <div class="avatar pull-left">
-        <?= Html::a(Html::img($model->user->user_avatar, ['class' => 'media-object avatar-48']),
+        <?= Html::a(Html::img($model->user->userAvatar, ['class' => 'media-object avatar-48']),
             ['/ad-user/show', 'username' => $model->user['user_name']]
         ); ?>
     </div>

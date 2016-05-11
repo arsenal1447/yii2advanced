@@ -8,7 +8,7 @@ use yii\helpers\Html;
     <div class="col-xs-2" style="min-width: 100px;">
         <div class="media user-card">
             <div class="media-left">
-                <?= Html::a(Html::img($value->user_avatar, ['class' => 'media-object']),
+                <?= Html::a(Html::img($value->userAvatar, ['class' => 'media-object']),
                     ['/ad-user/show', 'username' => $value['user_name']],
                     ['title' => $value['user_name']]
                 ); ?>

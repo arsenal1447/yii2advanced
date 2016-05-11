@@ -2,9 +2,6 @@
 return [
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'components' => [
-//         'cache' => [
-//             'class' => 'yii\caching\FileCache',
-//         ],
         'redis' => [
             'class' => 'yii\redis\Connection',
             'hostname' => 'localhost',
@@ -17,9 +14,7 @@ return [
             'clients' => [
                 'github' => [
                     'class' => 'yii\authclient\clients\GitHub',
-//                     'clientId' => '9c8d914b20682278aac5',
                     'clientId' => 'github_client_id',
-//                     'clientSecret' => '0237782d08299c40fcd31c4dd664147915f96a27',
                     'clientSecret' => 'github_client_secret',
                     'viewOptions' => [
                         'popupWidth' => 820,
@@ -35,20 +30,20 @@ return [
 //             'class'=>'yii\redis\Session'
 //         ],
         'session' => [
-                'class' => 'yii\web\DbSession',
-                // 'db' => 'mydb',  // 数据库连接的应用组件ID，默认为'db'.
-                'sessionTable' => 'ad_session', // session 数据表名，默认为'session'.
+            'class' => 'yii\web\DbSession',
+            // 'db' => 'mydb',  // 数据库连接的应用组件ID，默认为'db'.
+            'sessionTable' => 'ad_session', // session 数据表名，默认为'session'.
         ],
         'cache' => [
-                'class' => 'yii\caching\FileCache',
-                //'class' => 'yii\caching\ApcCache',
-                'cachePath' => '@backend/runtime/cache',
+            'class' => 'yii\caching\FileCache',
+            //'class' => 'yii\caching\ApcCache',
+            'cachePath' => '@backend/runtime/cache',
         ],
         'setting' => [
-                'class' => 'funson86\setting\Setting',
+            'class' => 'funson86\setting\Setting',
         ],
 
-//                 需要去除indx.php  打开此注释
+        //需要去除indx.php  打开此注释
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName'=>false
@@ -60,31 +55,31 @@ return [
         ],
 
         'i18n' => [
-                'translations' => [
-                        'frontend*' => [
-                                'class' => 'yii\i18n\PhpMessageSource',
-                                'basePath' => '@common/messages',
-                        ],
-                        'backend*' => [
-                                'class' => 'yii\i18n\PhpMessageSource',
-                                'basePath' => '@common/messages',
-                        ],
-                        'common*' => [
-                                'class' => 'yii\i18n\PhpMessageSource',
-                                'basePath' => '@common/messages',
-                        ],
+            'translations' => [
+                'frontend*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@common/messages',
                 ],
+                'backend*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@common/messages',
+                ],
+                'common*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@common/messages',
+                ],
+            ],
         ],
     ],
     'timeZone'=>'Asia/Chongqing',//设置时区
     'modules' => [
-            'merit' => [
-                'class' => 'yiier\merit\Module',
-            ],
+        'merit' => [
+            'class' => 'yiier\merit\Module',
+        ],
     ],
     'controllerMap' => [
-            'backup' => [
-                    'class' => 'yiier\backup\controllers\BackupController',
-            ]
+        'backup' => [
+            'class' => 'yiier\backup\controllers\BackupController',
+        ]
     ]
 ];

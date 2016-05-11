@@ -3,7 +3,7 @@ namespace frontend\models;
 
 
 use common\models\AdPost;
-// use common\models\PostTag;
+use common\models\PostTag;
 use common\models\Search;
 use common\services\TopicService;
 use frontend\models\UserMeta;
@@ -109,16 +109,16 @@ class Topic extends AdPost
     {
         if (parent::beforeSave($insert)) {
 
-            if ($this->tags) {
-                $this->addTags(explode(',', $this->tags));
+            if ($this->post_tags) {
+                $this->addTags(explode(',', $this->post_tags));
             }
-            $this->content = TopicService::replace($this->content)
+            $this->post_content = TopicService::replace($this->post_content)
                 . ($this->cc ? t('app', 'cc {username}', ['username' => Yii::$app->user->identity->username]) : '');
 
             if ($insert) {
-                $this->user_id = (($this->user_id) ?: Yii::$app->user->id);
-                $this->type = self::TYPE;
-                $this->last_comment_time = $this->created_at;
+                $this->post_user_id = (($this->post_user_id) ?: Yii::$app->user->id);
+                $this->post_type = self::TYPE;
+                $this->post_last_comment_time = $this->post_create;
             }
             return true;
         } else {
@@ -157,7 +157,7 @@ class Topic extends AdPost
     public function lastCommentToUpdate($username = '')
     {
         $this->setAttributes([
-            'post_last_comment_username' => $username,
+            'post_last_comment_user_name' => $username,
             'post_last_comment_time' => time()
         ]);
         return $this->save();

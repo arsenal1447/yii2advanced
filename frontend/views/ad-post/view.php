@@ -33,7 +33,7 @@ $this->title = $model->post_title;
                 </div>
             </div>
             <div class="avatar media-right">
-                <?= Html::a(Html::img($model->user->user_avatar, ['class' => 'media-object avatar-48']),
+                <?= Html::a(Html::img($model->user->userAvatar, ['class' => 'media-object avatar-48']),
                     ['/ad-user/show', 'username' => $model->user['user_name']]
                 ); ?>
             </div>

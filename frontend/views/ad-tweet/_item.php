@@ -7,7 +7,7 @@ use yii\helpers\Html;
 <div class="media">
 
     <div class="media-left">
-        <?= Html::a(Html::img($model->user->user_avatar, ['class' => 'media-object']),
+        <?= Html::a(Html::img($model->user->userAvatar, ['class' => 'media-object']),
             ['/ad-user/show', 'username' => $model->user['user_name']]
         ); ?>
     </div>

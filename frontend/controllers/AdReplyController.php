@@ -10,6 +10,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use frontend\models\Topic;
 use common\models\Reply;
+use common\models\UserInfo;
 use common\services\TopicService;
 use common\components\Controller;
 use frontend\models\UserMeta;
@@ -90,7 +91,7 @@ class AdReplyController extends Controller
                 // 评论计数器
 //                 Topic::updateAllCounters(['comment_count' => 1], ['id' => $post->id]);
                 // 更新个人总统计
-                UserInfo::updateAllCounters(['comment_count' => 1], ['info_user_id' => $model->reply_user_id]);
+                UserInfo::updateAllCounters(['info_comment_count' => 1], ['info_user_id' => $model->reply_user_id]);
 
                 $this->flash("评论成功", 'success');
             } else {
