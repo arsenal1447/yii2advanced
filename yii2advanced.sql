@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50624
 File Encoding         : 65001
 
-Date: 2016-05-11 11:30:28
+Date: 2016-05-11 17:56:08
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -337,7 +337,7 @@ CREATE TABLE `ad_post` (
   `post_last_comment_time` int(11) DEFAULT '0',
   `post_user_name` varchar(255) CHARACTER SET utf8 DEFAULT '0',
   PRIMARY KEY (`post_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=82 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=92 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of ad_post
@@ -423,6 +423,16 @@ INSERT INTO `ad_post` VALUES ('78', '0', 'topic', 'gggg', '3', '0', '0', '0', '0
 INSERT INTO `ad_post` VALUES ('79', '0', 'topic', 'yyyyyyyyyyy', '4', '0', '0', '0', '0', '14', 'yyyyyyyyyyy', '1462871624', '1462871624', '0', '0', '0', '0', '0', '0', '10', '0', '0', '0', '0', '0', '0', 'hhhh');
 INSERT INTO `ad_post` VALUES ('80', '0', 'topic', '拜仁慕尼黑', '4', '0', '0', '0', '0', '14', 'jjjjjjjjj', '1462874313', '1462874313', '0', '0', '0', '0', '0', '0', '10', '0', '0', '0', '0', '0', '0', 'hhhh');
 INSERT INTO `ad_post` VALUES ('81', '0', 'topic', 'ffffff', '3', '0', '0', '0', '0', '1', 'fffff', '1462932451', '1462932845', '0', '0', '0', '0', '0', '0', '10', '0', '0', '0', '1', 'zxx123', '1462932845', 'zxx123');
+INSERT INTO `ad_post` VALUES ('82', '0', 'topic', 'kkkkk', '3', '0', '0', '0', '0', '1', 'gggg', '1462944671', '1462944671', '0', '0', '0', '0', '0', '0', '10', '0', '0', '0', '0', '0', '0', 'zxx123');
+INSERT INTO `ad_post` VALUES ('83', '0', 'topic', '7777', '2', '0', '0', '0', '0', '1', 'dddddd', '1462945759', '1462945759', '0', '0', '0', '0', '0', '0', '10', '0', '0', '0', '0', '0', '0', 'zxx123');
+INSERT INTO `ad_post` VALUES ('84', '0', 'topic', 'ddd', '4', '0', '0', '0', '0', '1', 'ssss', '1462946277', '1462946277', '0', '0', '0', '0', '0', '0', '10', '0', '0', '0', '0', '0', '0', 'zxx123');
+INSERT INTO `ad_post` VALUES ('85', '0', 'topic', 'ffff', '5', '0', '0', '0', '0', '1', 'sss', '1462946393', '1462946393', '0', '0', '0', '0', '0', '0', '10', '0', '0', '0', '0', '0', '0', 'zxx123');
+INSERT INTO `ad_post` VALUES ('86', '0', 'topic', 'i am a title', '4', '0', '0', '0', '0', '1', 'i am the content', '1462953658', '1462953658', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1462953658', '0');
+INSERT INTO `ad_post` VALUES ('87', '0', 'topic', 'i am a title', '4', '0', '0', '0', '0', '1', 'i am the content', '1462953688', '1462953688', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1462953688', '0');
+INSERT INTO `ad_post` VALUES ('88', '0', 'topic', 'i am a title', '4', '0', '0', '0', '0', '1', 'i am the content', '1462953724', '1462953724', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1462953724', '0');
+INSERT INTO `ad_post` VALUES ('89', '0', 'topic', 'dddddssssss', '3', '0', '0', '0', '0', '1', 'dddddddd', '1462954076', '1462954076', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1462954076', '0');
+INSERT INTO `ad_post` VALUES ('90', '0', 'topic', 'eee', '3', '0', '0', '0', '0', '1', 'dddd', '1462955922', '1462955922', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '1462955922', '0');
+INSERT INTO `ad_post` VALUES ('91', '0', 'topic', 'dd', '3', '0', '0', '0', '0', '1', 'ddd', '1462956072', '1462956072', '0', '0', '0', '0', '0', '0', '0', '0', '0', '2', '0', '0', '1462956072', '0');
 
 -- ----------------------------
 -- Table structure for `ad_post_tag`
@@ -435,11 +445,19 @@ CREATE TABLE `ad_post_tag` (
   `tag_create` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
   `tag_update` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '修改时间',
   PRIMARY KEY (`tag_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of ad_post_tag
 -- ----------------------------
+INSERT INTO `ad_post_tag` VALUES ('1', 'mytag', '5', '1462953620', '1462953620');
+INSERT INTO `ad_post_tag` VALUES ('2', 'ac', '1', '1462954076', '1462954076');
+INSERT INTO `ad_post_tag` VALUES ('3', 'tr', '1', '1462954076', '1462954076');
+INSERT INTO `ad_post_tag` VALUES ('4', 'gb', '1', '1462954076', '1462954076');
+INSERT INTO `ad_post_tag` VALUES ('5', 'fg', '1', '1462955922', '1462955922');
+INSERT INTO `ad_post_tag` VALUES ('6', 'fhj', '1', '1462955922', '1462955922');
+INSERT INTO `ad_post_tag` VALUES ('7', 'dddddd', '1', '1462956072', '1462956072');
+INSERT INTO `ad_post_tag` VALUES ('8', 'hhhh', '1', '1462956072', '1462956072');
 
 -- ----------------------------
 -- Table structure for `ad_reply`
@@ -463,7 +481,7 @@ CREATE TABLE `ad_reply` (
   `reply_deld` tinyint(4) DEFAULT '0',
   `reply_status` tinyint(4) DEFAULT '1',
   PRIMARY KEY (`reply_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of ad_reply
@@ -495,6 +513,18 @@ INSERT INTO `ad_reply` VALUES ('24', '81', 'aaaaaaa', '1462932810', '1', '127.0.
 INSERT INTO `ad_reply` VALUES ('25', '81', 'aaaaaaa', '1462932834', '1', '127.0.0.1', 'zxx123', '0', '0', '0', '0', '0', '0', '0', '0', '1');
 INSERT INTO `ad_reply` VALUES ('26', '81', 'bbbb', '1462932839', '1', '127.0.0.1', 'zxx123', '0', '0', '0', '0', '0', '0', '0', '0', '1');
 INSERT INTO `ad_reply` VALUES ('27', '81', 'cccccc', '1462932845', '1', '127.0.0.1', 'zxx123', '0', '0', '0', '0', '0', '0', '0', '0', '1');
+INSERT INTO `ad_reply` VALUES ('28', '91', 'sdasdasdas', '1462958248', '1', '127.0.0.1', 'zxx123', '0', '0', '0', '0', '0', '0', '0', '0', '1');
+INSERT INTO `ad_reply` VALUES ('29', '91', 'dddddddd', '1462958513', '1', '127.0.0.1', 'zxx123', '0', '0', '0', '0', '0', '0', '0', '0', '1');
+INSERT INTO `ad_reply` VALUES ('30', '91', 'dddddddd', '1462958552', '1', '127.0.0.1', 'zxx123', '0', '0', '0', '0', '0', '0', '0', '0', '1');
+INSERT INTO `ad_reply` VALUES ('31', '91', 'dddddddd', '1462958643', '1', '127.0.0.1', 'zxx123', '0', '0', '0', '0', '0', '0', '0', '0', '1');
+INSERT INTO `ad_reply` VALUES ('32', '91', 'dddddddd', '1462958706', '1', '127.0.0.1', 'zxx123', '0', '0', '0', '0', '0', '0', '0', '0', '1');
+INSERT INTO `ad_reply` VALUES ('33', '91', 'dddddddd', '1462958784', '1', '127.0.0.1', 'zxx123', '0', '0', '0', '0', '0', '0', '0', '0', '1');
+INSERT INTO `ad_reply` VALUES ('34', '91', 'dddddddd', '1462958970', '1', '127.0.0.1', 'zxx123', '0', '0', '0', '0', '0', '0', '0', '0', '1');
+INSERT INTO `ad_reply` VALUES ('35', '91', 'dddddddd', '1462959104', '1', '127.0.0.1', 'zxx123', '0', '0', '0', '0', '0', '0', '0', '0', '1');
+INSERT INTO `ad_reply` VALUES ('36', '91', 'dddddddd', '1462959123', '1', '127.0.0.1', 'zxx123', '0', '0', '0', '0', '0', '0', '0', '0', '1');
+INSERT INTO `ad_reply` VALUES ('37', '91', 'dddddddd', '1462959139', '1', '127.0.0.1', 'zxx123', '0', '0', '0', '0', '0', '0', '0', '0', '1');
+INSERT INTO `ad_reply` VALUES ('38', '91', 'kkkkkk', '1462960425', '1', '127.0.0.1', 'zxx123', '0', '0', '0', '0', '0', '0', '0', '0', '1');
+INSERT INTO `ad_reply` VALUES ('39', '90', 'jjj', '1462960438', '1', '127.0.0.1', 'zxx123', '0', '0', '0', '0', '0', '0', '0', '0', '1');
 
 -- ----------------------------
 -- Table structure for `ad_right_link`
@@ -533,11 +563,8 @@ CREATE TABLE `ad_session` (
 -- ----------------------------
 -- Records of ad_session
 -- ----------------------------
-INSERT INTO `ad_session` VALUES ('7oe96ap9mne9rgkbv4sgfo0gc7', '1462852974', 0x5F5F666C6173687C613A303A7B7D71725F74696D655F62656E63687C613A313A7B733A31323A2261667465725F656E636F6465223B643A313436323835313530322E313735363534393B7D5F5F636170746368612F736974652F636170746368617C733A363A22636961796A61223B5F5F636170746368612F736974652F63617074636861636F756E747C693A313B5F5F69647C733A323A223130223B);
-INSERT INTO `ad_session` VALUES ('ac3i5mbq8sapbmv6sq8c2512n2', '1462933855', 0x5F5F666C6173687C613A303A7B7D5F5F69647C733A313A2236223B);
-INSERT INTO `ad_session` VALUES ('g3dq6llsf6scb3gpeih4pnaun1', '1462938187', 0x5F5F666C6173687C613A303A7B7D71725F74696D655F62656E63687C613A313A7B733A31323A2261667465725F656E636F6465223B643A313436323933363339352E3638303031323B7D5F5F69647C733A313A2231223B);
-INSERT INTO `ad_session` VALUES ('hg4qr9u7o4pd87heeb9s7ghnn2', '1462938860', 0x5F5F666C6173687C613A303A7B7D5F5F69647C733A313A2235223B71725F74696D655F62656E63687C613A313A7B733A31323A2261667465725F656E636F6465223B643A313436323933353236322E353232313938393B7D);
-INSERT INTO `ad_session` VALUES ('jo5r2thegglf8ktcrmigvu6893', '1462863564', 0x5F5F666C6173687C613A303A7B7D);
+INSERT INTO `ad_session` VALUES ('2sdjhmaodv8uf84r349ppacan1', '1462962006', 0x5F5F666C6173687C613A303A7B7D5F5F69647C733A313A2231223B71725F74696D655F62656E63687C613A313A7B733A31323A2261667465725F656E636F6465223B643A313436323936303434332E3738353438353B7D);
+INSERT INTO `ad_session` VALUES ('u0gqbc2bcb7ae86nnve15afak0', '1462959019', 0x5F5F666C6173687C613A303A7B7D71725F74696D655F62656E63687C613A313A7B733A31323A2261667465725F656E636F6465223B643A313436323935373537392E353639363630393B7D);
 
 -- ----------------------------
 -- Table structure for `ad_user`
@@ -634,7 +661,7 @@ CREATE TABLE `ad_user_info` (
 -- ----------------------------
 -- Records of ad_user_info
 -- ----------------------------
-INSERT INTO `ad_user_info` VALUES ('1', '1', null, null, null, null, null, '24', '4', '1', '1', '1', '1', '12', '1461550819', '127.0.0.1', '1462932433', '127.0.0.1', 'g3dq6llsf6scb3gpeih4pnaun1', '1461143981', '1462932433');
+INSERT INTO `ad_user_info` VALUES ('1', '1', null, null, null, null, null, '24', '8', '5', '1', '1', '1', '13', '1462932433', '127.0.0.1', '1462944634', '127.0.0.1', '2sdjhmaodv8uf84r349ppacan1', '1461143981', '1462944634');
 INSERT INTO `ad_user_info` VALUES ('2', '7', '哎呦不错哦', 'github.com/zxx1988328', 'www.baidu.com', '百度公司', '北京市海淀区', '1', '0', '0', '0', '0', '0', '1', '0', '0', '0', '0', null, '0', '1462435525');
 INSERT INTO `ad_user_info` VALUES ('3', '13', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '1462862149', '127.0.0.1', '1462862149', '127.0.0.1', null, '1462862149', '1462862149');
 INSERT INTO `ad_user_info` VALUES ('4', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '2', '0', '0', '1462869667', '127.0.0.1', 'rp0lbr9nr52682nk8c26jvko21', '0', '1462869667');
@@ -643,7 +670,7 @@ INSERT INTO `ad_user_info` VALUES ('6', '2', '0', '0', '0', '0', '0', '0', '0', 
 INSERT INTO `ad_user_info` VALUES ('7', '3', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '0', '0', null, '0', '0');
 INSERT INTO `ad_user_info` VALUES ('8', '4', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '0', '0', null, '0', '0');
 INSERT INTO `ad_user_info` VALUES ('9', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '0', '0', null, '0', '0');
-INSERT INTO `ad_user_info` VALUES ('10', '6', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '0', '0', null, '0', '0');
+INSERT INTO `ad_user_info` VALUES ('10', '6', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '2', '0', '0', '1462951716', '127.0.0.1', '8t99sq27hv0e0jklk0qsqck2e7', '0', '1462951716');
 INSERT INTO `ad_user_info` VALUES ('11', '8', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '0', '0', null, '0', '0');
 INSERT INTO `ad_user_info` VALUES ('12', '9', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '0', '0', null, '0', '0');
 INSERT INTO `ad_user_info` VALUES ('13', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '0', '0', null, '0', '0');
@@ -662,7 +689,7 @@ CREATE TABLE `ad_user_meta` (
   `meta_target_type` varchar(100) CHARACTER SET utf8 DEFAULT '0',
   `meta_create` int(11) NOT NULL,
   PRIMARY KEY (`meta_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of ad_user_meta
@@ -726,6 +753,16 @@ INSERT INTO `ad_user_meta` VALUES ('56', '14', 'follow', null, '78', 'topic', '1
 INSERT INTO `ad_user_meta` VALUES ('57', '14', 'follow', null, '79', 'topic', '1462871625');
 INSERT INTO `ad_user_meta` VALUES ('58', '14', 'follow', null, '80', 'topic', '1462874313');
 INSERT INTO `ad_user_meta` VALUES ('59', '1', 'follow', null, '81', 'topic', '1462932452');
+INSERT INTO `ad_user_meta` VALUES ('60', '1', 'follow', null, '82', 'topic', '1462944671');
+INSERT INTO `ad_user_meta` VALUES ('61', '1', 'follow', null, '83', 'topic', '1462945759');
+INSERT INTO `ad_user_meta` VALUES ('62', '1', 'follow', null, '84', 'topic', '1462946277');
+INSERT INTO `ad_user_meta` VALUES ('63', '1', 'follow', null, '85', 'topic', '1462946393');
+INSERT INTO `ad_user_meta` VALUES ('64', '1', 'follow', null, '86', 'topic', '1462953658');
+INSERT INTO `ad_user_meta` VALUES ('65', '1', 'follow', null, '87', 'topic', '1462953688');
+INSERT INTO `ad_user_meta` VALUES ('66', '1', 'follow', null, '88', 'topic', '1462953724');
+INSERT INTO `ad_user_meta` VALUES ('67', '1', 'follow', null, '89', 'topic', '1462954076');
+INSERT INTO `ad_user_meta` VALUES ('68', '1', 'follow', null, '90', 'topic', '1462955923');
+INSERT INTO `ad_user_meta` VALUES ('69', '1', 'follow', null, '91', 'topic', '1462956072');
 
 -- ----------------------------
 -- Table structure for `merit`
