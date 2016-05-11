@@ -4,6 +4,7 @@ namespace frontend\models;
 use common\models\Post;
 use frontend\models\UserMeta;
 use yii\web\NotFoundHttpException;
+use yii\behaviors\TimestampBehavior;
 use Yii;
 
 class Tweet extends Post
@@ -27,6 +28,21 @@ class Tweet extends Post
             [['post_content'], 'string', 'min' => 3, 'max' => 500],
             [['post_meta_id'], 'default', 'value' => 0],
             [['post_title'], 'default', 'value' => ''],
+        ];
+    }
+    
+    /**
+     * @inheritdoc
+     */
+    public function behaviors()
+    {
+        return [
+                [
+                    'class' => TimestampBehavior::className(),
+                    'createdAtAttribute' => 'post_create',
+                    'updatedAtAttribute' => 'post_update',
+                    //             'value' => new Expression('NOW()'),//如果是timestamp类型 ,需要这样操作
+                ],
         ];
     }
 
