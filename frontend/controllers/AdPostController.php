@@ -4,6 +4,7 @@ namespace frontend\controllers;
 
 use Yii;
 use common\models\Post;
+use common\models\User;
 use common\services\NoticeService;
 use common\services\TopicService;
 use frontend\models\AdNotice;
@@ -325,23 +326,22 @@ class AdPostController extends Controller
      */
     public function actionUpdate($id)
     {
-        //需要添加权限判断,判断是否是发表帖子的用户,发布者才可以编辑
-        if (Yii::$app->user->isGuest) {
-            return $this->redirect(['site/login']);
+        $model = AdPost::findTopic($id);
+        
+        if (!($model && (User::getThrones() || $model->isCurrent()))) {
+            throw new NotFoundHttpException;
         }
-
-//         if (\Yii::$app->user->can('updatePost', ['post' => $post])) {
-            $model = $this->findModel($id);
-            $catmodel = AdCat::getCate();
-            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            if ($model->save()) {
+                $this->flash('发表更新成功!', 'success');
                 return $this->redirect(['view', 'id' => $model->post_id]);
-            } else {
-                return $this->render('update', [
-                    'model' => $model,
-                    'catmodel' => $catmodel,
-                ]);
             }
-//         }
+        } else {
+            return $this->render('update', [
+                    'model' => $model,
+            ]);
+        }
     }
 
     /**

@@ -44,12 +44,14 @@ class Post extends MyActiveRecord
      */
     const STATUS_TOP = 3;
 
-
     /**
      * 删除
      */
     const STATUS_DELETED = 0;
-
+    /**
+     * @var boolean CC 协议
+     */
+    public $cc;
 
     /**
      * @inheritdoc
@@ -72,7 +74,7 @@ class Post extends MyActiveRecord
                 //[['user_name','last_user_name'],'string','max' => 32],
                 [['post_title'],'string','max' => 256],
                 //[['note1','note2'],'string','max' => 64]
-//                 [['cc'], 'safe']
+                 [['cc'], 'safe']
         ];
     }
 
@@ -99,7 +101,7 @@ class Post extends MyActiveRecord
                 'post_last_user_id' => 'Last User ID',
                 'post_last_comment_user_name' => 'Last User Name',
                 'post_last_comment_time' => 'Last Modify Time',
-//                 'cc' => '注明版权信息（原创文章欢迎使用）',
+                 'cc' => '注明版权信息（原创文章欢迎使用）',
         ];
     }
 
@@ -118,77 +120,57 @@ class Post extends MyActiveRecord
     {
         $this->_post_content = $value;
     }
-    
+
     public function getLike()
     {
         $model = new UserMeta();
         return $model->isUserAction(self::TYPE, 'like', $this->post_user_id);
     }
-    
+
     public function getFollow()
     {
         $model = new UserMeta();
         return $model->isUserAction(self::TYPE, 'follow', $this->post_user_id);
     }
-    
+
     public function getHate()
     {
         $model = new UserMeta();
         return $model->isUserAction(self::TYPE, 'hate', $this->post_user_id);
     }
-    
+
     public function getFavorite()
     {
         $model = new UserMeta();
         return $model->isUserAction(self::TYPE, 'favorite', $this->post_user_id);
     }
-    
+
     public function getThanks()
     {
         $model = new UserMeta();
         return $model->isUserAction(self::TYPE, 'thanks', $this->post_user_id);
     }
-    
-
-
 
     public function isCurrent()
     {
         return $this->post_user_id == Yii::$app->user->id;
     }
 
-//     public static function updateLastData($threadId)
+//     /**
+//      * @desc 获取帖子标题
+//      * @param string $id
+//      * @return mixed
+//      */
+//     public static function getTitleById($id)
 //     {
-//         $attributes = [];
+//         $model = Post::find()->select(['post_title'])->where(['post_id' => $id,'post_deld'=>0,'post_status'=>0])->asArray()->one();
 
-//         $attributes['post_reply_count'] = new Expression("[[post_reply_count]]+:bp0", [
-//                 ":bp0" => 1
-//         ]);
-
-//         $attributes['post_last_user_id'] = Ad::getIdentity()->id;
-//         $attributes['post_last_comment_user_name'] = Ad::getIdentity()->username;
-//         $attributes['post_last_comment_time'] = TTimeHelper::getCurrentTime();
-
-//         Thread::updateAll($attributes, [
-//                 'id' => intval($threadId)
-//         ]);
+//         if($model){
+//             return $model['post_title'];
+//         }else{
+//             return null;
+//         }
 //     }
-
-    /**
-     * @desc 获取帖子标题
-     * @param string $id
-     * @return mixed
-     */
-    public static function getTitleById($id)
-    {
-        $model = Post::find()->select(['post_title'])->where(['post_id' => $id,'post_deld'=>0,'post_status'=>0])->asArray()->one();
-
-        if($model){
-            return $model['post_title'];
-        }else{
-            return null;
-        }
-    }
 
     /**
      * @desc 更新每个帖子的阅读量,每次查看更新一次

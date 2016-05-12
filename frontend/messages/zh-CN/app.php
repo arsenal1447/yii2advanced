@@ -21,7 +21,7 @@ return [
     'Login Out' => '离开',
     'Post List' => '看帖',
     'Create Ad Post' => '发帖',
-	'Save' => '保存',
+    'Save' => '保存',
     'Edit' => '修改',
     'Add' => '添加',
     'Post ID' => '帖子id',
@@ -33,12 +33,12 @@ return [
     'Post Create' => '发帖时间',
     'Post Update' => '最后修改时间',
     'Post Viewcount' => '阅读量',
-	'Saved successfully' => '保存成功',
+    'Saved successfully' => '保存成功',
     'Username does not exist.' => '用户名不存在',
     'Incorrect password.' => '密码不正确',
     'Service Data Table' => '服务器数据',
-    
-    
+
+
 
     'User' => '用户',
     'User Role' => '用户角色/权限',
@@ -58,7 +58,9 @@ return [
     'Updated At' => '更新时间',
     'User Id' => '用户 ID',
     'User ID' => '用户 ID',
-
+        
+        
+    'Update Post: ' => '更新话题：',
     'Forum' => '论坛',
     'Forum ID' => '论坛 ID',
     'Forum Name' => '论坛名称',
@@ -66,22 +68,16 @@ return [
     'Forum Url' => '论坛网址',
     'Board Name' => '版块名称',
     'Board Description' => '版块描述',
-
     'Parent' => '父级',
-
     'Explore' => '探索',
     'Recommendation' => '推荐',
     'Create a post' => '发表新文章',
-
-	'Site Name' => '站点名称',
-	'Site Title' => '站点标题',
-	'Site Description' => '站点描述',
-	'Site Keyword' => '站点关键字',
-	'Statistics Code' => '统计代码',
-	'Name' => '名称',
-        
-        
-
+    'Site Name' => '站点名称',
+    'Site Title' => '站点标题',
+    'Site Description' => '站点描述',
+    'Site Keyword' => '站点关键字',
+    'Statistics Code' => '统计代码',
+    'Name' => '名称',
     'Recomended Resources' => '推荐资源',
     'Tips and Tricks' => '小贴士',
     'New Topic' => '发 布 新 帖',
@@ -106,6 +102,7 @@ return [
     'cc {username}' => '
 > 本文由 [{username}](http://www.getyii.com/member/{username}) 创作，采用 [知识共享署名 3.0 中国大陆许可协议](http://creativecommons.org/licenses/by/3.0/cn) 进行许可。
 可自由转载、引用，但需署名作者且注明文章出处。',
-        
-    
+
+
+
 ];

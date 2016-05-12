@@ -38,10 +38,6 @@ class NoticeService
 
         // 通知关注的用户
 //         print_r($users);die;
-// echo "<pre>";
-// print_R($fromUser);
-// echo "</pre>";
-// die('39');
         $this->batchNotify('new_comment', $fromUser, $this->removeDuplication($users), $topic, $comment);
     }
 
@@ -71,22 +67,22 @@ class NoticeService
      * @param PostComment $comment
      * @throws Exception
      */
-    public function newActionNotify($type, $fromUserId, $toUserId, Post $post, PostComment $comment = null)
+    public function newActionNotify($type, $fromUserId, $toUserId, Post $post, Reply $comment = null)
     {
 
         $model = new AdNotice();
 
         $model->setAttributes([
-            'from_user_id' => $fromUserId,
-            'user_id' => $toUserId,
-            'post_id' => $post->id,
-            'comment_id' => $comment ? $comment->id : 0,
-            'data' => $comment ? $comment->comment : $post->content,
-            'type' => $type,
+            'notice_from_user_id' => $fromUserId,
+            'notice_user_id' => $toUserId,
+            'notice_post_id' => $post->post_id,
+            'notice_comment_id' => $comment ? $comment->reply_id : 0,
+            'notice_data' => $comment ? $comment->reply_content : $post->post_content,
+            'notice_type' => $type,
         ]);
 
         if ($model->save()) {
-            User::updateAllCounters(['notification_count' => 1], ['id' => $toUserId]);
+            User::updateAllCounters(['user_notice_count' => 1], ['user_id' => $toUserId]);
         } else {
             throw new Exception(array_values($model->getFirstErrors())[0]);
         }
@@ -124,15 +120,12 @@ class NoticeService
                 'notice_type' => $type,
                 'notice_status' => 0,
                 'notice_create' => time(),
-//                 'notice_create' => time(),
             ]);
-//             die('119');
+            
             $this->notifiedUsers[] = $key;
             if ($model->save()) {
-//                 die('120');
                 User::updateAllCounters(['user_notice_count' => 1], ['user_id' => $key]);
             } else {
-//                 die('123');
                 throw new Exception(array_values($model->getFirstErrors())[0]);
             }
         }

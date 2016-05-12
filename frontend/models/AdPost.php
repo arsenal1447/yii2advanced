@@ -26,8 +26,12 @@ use yii\web\NotFoundHttpException;
 class AdPost extends Post
 {
     const TYPE = 'topic';
+
+    /**
+     * @var boolean CC 协议
+     */
+//     public $cc;
     
-    public $cc;
     /**
      * @inheritdoc
      */
@@ -49,7 +53,7 @@ class AdPost extends Post
         ];
     }
 
-   
+
     /**
      * @inheritdoc
      */
@@ -68,42 +72,42 @@ class AdPost extends Post
             'post_deld' => Yii::t('app', 'Post Deld'),
         ];
     }
-    
+
     public function getLike()
     {
         $model = new UserMeta();
         return $model->isUserAction(self::TYPE, 'like', $this->meta_id);
     }
-    
+
     public function getFollow()
     {
         $model = new UserMeta();
         return $model->isUserAction(self::TYPE, 'follow', $this->meta_id);
     }
-    
+
     public function getHate()
     {
         $model = new UserMeta();
         return $model->isUserAction(self::TYPE, 'hate', $this->meta_id);
     }
-    
+
     public function getFavorite()
     {
         $model = new UserMeta();
         return $model->isUserAction(self::TYPE, 'favorite', $this->meta_id);
     }
-    
+
     public function getThanks()
     {
         $model = new UserMeta();
         return $model->isUserAction(self::TYPE, 'thanks', $this->meta_id);
     }
-    
+
     public function isCurrent()
     {
         return $this->post_user_id == Yii::$app->user->id;
     }
-    
+
     /**
      * 获取关注者
      * @return static
@@ -113,7 +117,7 @@ class AdPost extends Post
         return $this->hasMany(UserMeta::className(), ['meta_target_id' => 'post_id'])
         ->where(['meta_target_type' => self::TYPE, 'meta_type' => 'follow']);
     }
-    
+
     /**
      * 通过ID获取指定话题
      * @param $id
@@ -135,9 +139,9 @@ class AdPost extends Post
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
-    
+
     }
-    
+
     /**
      * 通过ID获取指定话题
      * @param $id
@@ -148,7 +152,7 @@ class AdPost extends Post
     {
         return static::findModel($id, ['>=', 'post_status', self::STATUS_ACTIVE]);
     }
-    
+
     /**
      * 获取已经删除过的话题
      * @param $id
@@ -159,18 +163,18 @@ class AdPost extends Post
     {
         return static::findModel($id, ['>=', 'post_status', self::STATUS_DELETEDzxx]);//bug需要修改
     }
-    
-    
+
+
 
     public function beforeSave($insert){
         if (parent::beforeSave($insert)) {
-            $tag = yii::$app->request->post('AdPost')['post_tags'];
+            $tag = yii::$app->request->post('Post')['post_tags'];
 //             pr($tag);
             if ($tag) {
                 $this->addTags(explode(',', $tag));
             }
-            $this->post_content = TopicService::replace($this->post_content);
-//             . ($this->cc ? t('app', 'cc {username}', ['username' => Yii::$app->user->identity->user_name]) : '');
+            $this->post_content = TopicService::replace($this->post_content)
+             . ($this->cc ? t('app', 'cc {username}', ['username' => Yii::$app->user->identity->user_name]) : '');
 
             if ($insert) {
                 $this->post_user_id = (($this->post_user_id) ?: Yii::$app->user->id);
@@ -182,7 +186,7 @@ class AdPost extends Post
             return false;
         }
     }
-    
+
 //     public function afterSave($insert, $changedAttributes)
 //     {
 //         parent::afterSave($insert, $changedAttributes);
@@ -205,7 +209,7 @@ class AdPost extends Post
 //             $search->save();
 //         }
 //     }
-    
+
     /**
      * 最后回复更新
      * @param string $username
@@ -214,12 +218,12 @@ class AdPost extends Post
     public function lastCommentToUpdate($username = '')
     {
         $this->setAttributes([
-                'post_last_comment_username' => $username,
-                'post_last_comment_time' => time()
+            'post_last_comment_user_name' => $username,
+            'post_last_comment_time' => time()
         ]);
         return $this->save();
     }
-    
+
     /**
      * 添加标签
      * @param array $tags
@@ -234,10 +238,10 @@ class AdPost extends Post
             $tagRaw = $_tagItem::findOne(['tag_name' => $tag]);
             if (!$tagRaw) {
                 $_tagItem->setAttributes([
-                        'tag_name' => $tag,
-                        'tag_count' => 1,
-                        'tag_create' => time(),
-                        'tag_update' => time(),
+                    'tag_name' => $tag,
+                    'tag_count' => 1,
+                    'tag_create' => time(),
+                    'tag_update' => time(),
                 ]);
                 if ($_tagItem->save(false)) {
                     $return = true;
