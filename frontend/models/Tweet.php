@@ -10,6 +10,8 @@ use Yii;
 class Tweet extends Post
 {
     const TweetTYPE = 'tweet';
+    const TweetNormal = '0';
+    const TweetDeld = '1';
 
     public function getLike()
     {
@@ -79,7 +81,7 @@ class Tweet extends Post
         if (!$model = Yii::$app->cache->get('topic' . $id)) {
             $model = static::find()
                 ->where($condition)
-                ->andWhere(['id' => $id, 'type' => self::TYPE])
+                ->andWhere(['post_id' => $id, 'post_type' => self::TweetTYPE])
                 ->one();
         }
         if ($model) {
@@ -99,7 +101,7 @@ class Tweet extends Post
      */
     public static function findTweet($id)
     {
-        return static::findModel($id, ['>=', 'status', self::STATUS_ACTIVE]);
+        return static::findModel($id, ['>=', 'post_status', self::STATUS_ACTIVE]);
     }
 
     /**
@@ -110,7 +112,7 @@ class Tweet extends Post
      */
     public static function findDeletedTweet($id)
     {
-        return static::findModel($id, ['>=', 'status', self::STATUS_DELETED]);
+        return static::findModel($id, ['>=', 'post_status', self::STATUS_DELETED]);
     }
 
 }

@@ -23,6 +23,7 @@ use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use yii\web\Response;
 use dosamigos\qrcode\QrCode;
+use yii\helpers\Json;
 
 /**
  * Site controller
@@ -250,5 +251,11 @@ class SiteController extends Controller
             echo json_encode(\yii\widgets\ActiveForm::validate($model));
             Yii::$app->end();
         }
+    }
+    
+    public function actionAtUsers()
+    {
+        $model = UserService::findActiveUser(400);
+        return Json::encode(Arr::getColumn($model, 'user_name'));
     }
 }

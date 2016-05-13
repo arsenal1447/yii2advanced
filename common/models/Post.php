@@ -34,6 +34,11 @@ class Post extends MyActiveRecord
      * 发布
      */
     const STATUS_ACTIVE = 0;
+    
+    /**
+     * 被删除
+     */
+    const STATUS_DELD = 1;
 
     /**
      * 推荐

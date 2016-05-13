@@ -50,7 +50,8 @@ class AdTweetController extends Controller
         $dataProvider = $searchModel->search($params);
         $dataProvider->query->andWhere([
             Post::tableName() . '.post_type' => Tweet::TweetTYPE,
-            'post_status' => [Post::STATUS_ACTIVE, Post::STATUS_EXCELLENT]
+            'post_status' => [Post::STATUS_ACTIVE, Post::STATUS_EXCELLENT],
+            'post_deld'=>Tweet::TweetNormal,
         ]);
 
         $model = new Tweet();
@@ -82,7 +83,7 @@ class AdTweetController extends Controller
             $rawContent = $model->post_content;
 //             die($model->post_type);
             $model->post_content = TweetService::replaceTopic(TweetService::replace($rawContent));
-            if ($model->save(false)) {
+            if ($model->save()) {
                 (new UserMeta())->saveNewMeta($model->post_type, $model->post_id, 'follow');
                 (new NoticeService())->newPostNotify(Yii::$app->user->identity, $model, $rawContent);
 

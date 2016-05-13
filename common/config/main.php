@@ -46,7 +46,19 @@ return [
         //需要去除indx.php  打开此注释
         'urlManager' => [
             'enablePrettyUrl' => true,
-            'showScriptName'=>false
+            'showScriptName'=>false,
+            'rules' => [
+                    '<alias:login|logout|about|tags|getstart|signup|contact|users|markdown|at-users>' => 'site/<alias>',//涉及到at功能
+//                     '<alias:search>' => 'topic/default/<alias>',
+                    'member/<username:\w+>' => 'ad-user/show',
+                    'member/<username:\w+>/<alias:point|post|favorite>' => 'ad-user/<alias>',
+//                     '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
+//                     'member/<action>/<type:\w+>/<id:\d+>' => 'user/action/<action>',
+//                     'tag/<tag:\w+>' => 'topic/default/index/',
+//                     'node/<node:[0-9a-zA-Z\-]+>' => 'topic/default/index',
+//                     'topic/<id:[0-9a-zA-Z\-]+>' => 'topic/default/view',
+//                     '<module>/<controller:\w+>/<action:\w+>/<id:\d+>' => '<module>/<controller>/<action>',
+            ],
         ],
         'user' => [
             'identityClass' => 'common\models\User',

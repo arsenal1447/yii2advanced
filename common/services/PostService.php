@@ -17,9 +17,11 @@ class PostService
      */
     public static function delete(Post $post)
     {
-        $post->setAttributes(['post_status' => Post::STATUS_DELETED]);
+//         $post->setAttributes(['post_status' => Post::STATUS_DELETED,'post_deld'=>Post::STATUS_DELD]);
+        $post->post_status = Post::STATUS_DELETED;
+        $post->post_deld = Post::STATUS_DELD;
         $post->save();
-        Notification::updateAll(['post_status' => Post::STATUS_DELETED], ['post_id' => $post->id]);
+        AdNotice::updateAll(['notice_status' => Post::STATUS_DELETED], ['notice_post_id' => $post->post_id]);
     }
 
     /**
