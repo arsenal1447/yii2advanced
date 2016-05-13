@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50624
 File Encoding         : 65001
 
-Date: 2016-05-12 18:10:49
+Date: 2016-05-13 17:40:21
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -284,7 +284,7 @@ CREATE TABLE `ad_notice` (
   `notice_update` int(11) DEFAULT NULL,
   `notice_deld` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`notice_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of ad_notice
@@ -303,6 +303,7 @@ INSERT INTO `ad_notice` VALUES ('11', '1', '7', '56', '2', 'new_comment', 'uuuuu
 INSERT INTO `ad_notice` VALUES ('12', '7', '1', '57', '4', 'new_comment', '我是b1 我来回复了', '0', '1462352327', '1462785982', '1');
 INSERT INTO `ad_notice` VALUES ('13', '1', '7', '57', '5', 'new_comment', '哎呦  不错哦 ', '0', '1462352354', '1462416771', '1');
 INSERT INTO `ad_notice` VALUES ('14', '1', '5', '40', '6', 'new_comment', '订单', '0', '1462354822', '1462935261', '1');
+INSERT INTO `ad_notice` VALUES ('15', '1', '14', '119', '0', 'at_tweet', '[@hhhh](/member/hhhh) ddddddd', '0', '1463123000', null, '0');
 
 -- ----------------------------
 -- Table structure for `ad_post`
@@ -337,7 +338,7 @@ CREATE TABLE `ad_post` (
   `post_last_comment_time` int(11) DEFAULT '0',
   `post_user_name` varchar(255) CHARACTER SET utf8 DEFAULT '0',
   PRIMARY KEY (`post_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=129 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of ad_post
@@ -442,6 +443,34 @@ INSERT INTO `ad_post` VALUES ('97', '0', 'tweet', '', '0', '0', '0', '0', '0', '
 INSERT INTO `ad_post` VALUES ('98', '0', 'tweet', '', '0', '0', '0', '0', '0', '1', 'dddd', '1462961318', '1462961318', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
 INSERT INTO `ad_post` VALUES ('99', '0', 'tweet', '', '0', '0', '0', '0', '0', '1', 'sssss', '1463016984', '1463016984', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
 INSERT INTO `ad_post` VALUES ('100', '0', 'topic', '阿森纳 黑贝重伤九个月', '7', '0', '0', '0', '0', '1', '\r\n```php\r\necho 123\r\n```\r\ndasdasd', '1463017970', '1463017970', '0', '0', '0', '0', '0', '0', '0', '0', '0', '2', '0', '0', '1463017970', '0');
+INSERT INTO `ad_post` VALUES ('101', '0', 'tweet', '', '0', '0', '0', '0', '0', '1', '123456789', '1463111754', '1463111754', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_post` VALUES ('102', '0', 'tweet', '', '0', '0', '0', '0', '0', '1', '000000', '1463116655', '1463116655', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_post` VALUES ('103', '0', 'tweet', '', '0', '0', '0', '0', '0', '1', '6666yyyyy', '1463116796', '1463116796', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_post` VALUES ('104', '0', 'tweet', '', '0', '0', '0', '0', '0', '1', 'hhhh', '1463116956', '1463116956', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_post` VALUES ('105', '0', 'tweet', '', '0', '0', '0', '0', '0', '1', 'hhhh', '1463117017', '1463117017', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_post` VALUES ('106', '0', 'tweet', '', '0', '0', '0', '0', '0', '1', 'ddd', '1463117200', '1463117200', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_post` VALUES ('107', '0', 'tweet', '', '0', '0', '0', '0', '0', '1', 'uuuuu', '1463117211', '1463117211', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_post` VALUES ('108', '0', 'tweet', '', '0', '0', '0', '0', '0', '1', 'ggggg', '1463117431', '1463117431', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_post` VALUES ('109', '0', 'tweet', '', '0', '0', '0', '0', '0', '1', 'dddd', '1463117464', '1463117464', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_post` VALUES ('110', '0', 'topic', 'dddd', '3', '0', '0', '0', '0', '1', 'vvvvvvv', '1463117550', '1463117550', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1463117550', '0');
+INSERT INTO `ad_post` VALUES ('111', '0', 'tweet', '', '0', '0', '0', '0', '0', '1', 'fggggg', '1463117790', '1463117790', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_post` VALUES ('112', '0', 'tweet', '', '0', '0', '0', '0', '0', '1', 'fggggg', '1463117812', '1463117812', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_post` VALUES ('113', '0', 'tweet', '', '0', '0', '0', '0', '0', '1', '订单多的', '1463117861', '1463117861', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_post` VALUES ('114', '0', 'tweet', '', '0', '0', '0', '0', '0', '1', '快快快', '1463118171', '1463118171', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_post` VALUES ('115', '0', 'tweet', '', '0', '0', '0', '0', '0', '1', '反反复复 ', '1463118178', '1463118178', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_post` VALUES ('116', '0', 'tweet', '', '0', '0', '0', '0', '0', '1', '来了来了', '1463118184', '1463118184', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_post` VALUES ('117', '0', 'tweet', '', '0', '0', '0', '0', '0', '1', '通天塔通天塔替她替他', '1463118699', '1463120282', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '0', '0', '0');
+INSERT INTO `ad_post` VALUES ('118', '0', 'tweet', '', '0', '0', '0', '0', '0', '1', '卡卡卡卡', '1463118760', '1463120027', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_post` VALUES ('119', '0', 'tweet', '', '0', '0', '0', '0', '0', '1', '[@hhhh](/member/hhhh) ddddddd', '1463123000', '1463123000', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_post` VALUES ('120', '0', 'tweet', '', '0', '0', '0', '0', '0', '1', 'dddd', '1463123547', '1463123547', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_post` VALUES ('121', '0', 'tweet', '', '0', '0', '0', '0', '0', '1', 'ddddd', '1463123550', '1463123550', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_post` VALUES ('122', '0', 'tweet', '', '0', '0', '0', '0', '0', '1', 'gggg', '1463123555', '1463123555', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_post` VALUES ('123', '0', 'topic', 'ddddd', '5', '0', '0', '0', '0', '1', 'sdasdas', '1463126767', '1463126767', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1463126767', '0');
+INSERT INTO `ad_post` VALUES ('124', '0', 'topic', 'mmm', '3', '0', '0', '0', '0', '1', 'mmmmm', '1463128661', '1463128661', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1463128661', '0');
+INSERT INTO `ad_post` VALUES ('125', '0', 'tweet', '', '0', '0', '0', '0', '0', '1', 'fff', '1463130248', '1463130248', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_post` VALUES ('126', '0', 'tweet', '', '0', '0', '0', '0', '0', '1', 'ffffffdddd', '1463130253', '1463130253', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
+INSERT INTO `ad_post` VALUES ('127', '0', 'topic', 'ddd', '4', '0', '0', '0', '0', '1', 'vvvvv\n> 本文由 [zxx123](http://www.getyii.com/member/zxx123) 创作，采用 [知识共享署名 3.0 中国大陆许可协议](http://creativecommons.org/licenses/by/3.0/cn) 进行许可。\n可自由转载、引用，但需署名作者且注明文章出处。', '1463132091', '1463132091', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1463132091', '0');
+INSERT INTO `ad_post` VALUES ('128', '0', 'topic', 'ggg', '4', '0', '0', '0', '0', '1', 'dddd\n> 本文由 [zxx123](http://www.getyii.com/member/zxx123) 创作，采用 [知识共享署名 3.0 中国大陆许可协议](http://creativecommons.org/licenses/by/3.0/cn) 进行许可。\n可自由转载、引用，但需署名作者且注明文章出处。', '1463132119', '1463132119', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1463132119', '0');
 
 -- ----------------------------
 -- Table structure for `ad_post_tag`
@@ -454,7 +483,7 @@ CREATE TABLE `ad_post_tag` (
   `tag_create` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
   `tag_update` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '修改时间',
   PRIMARY KEY (`tag_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of ad_post_tag
@@ -468,6 +497,7 @@ INSERT INTO `ad_post_tag` VALUES ('6', 'fhj', '1', '1462955922', '1462955922');
 INSERT INTO `ad_post_tag` VALUES ('7', 'dddddd', '1', '1462956072', '1462956072');
 INSERT INTO `ad_post_tag` VALUES ('8', 'hhhh', '1', '1462956072', '1462956072');
 INSERT INTO `ad_post_tag` VALUES ('9', 'asdasdasd', '1', '1463017970', '1463017970');
+INSERT INTO `ad_post_tag` VALUES ('10', 'sss', '1', '1463117550', '1463117550');
 
 -- ----------------------------
 -- Table structure for `ad_reply`
@@ -575,7 +605,7 @@ CREATE TABLE `ad_session` (
 -- ----------------------------
 -- Records of ad_session
 -- ----------------------------
-INSERT INTO `ad_session` VALUES ('3gpr9cuasqnks48l6e7nki3j57', '1463043984', 0x5F5F666C6173687C613A303A7B7D5F5F69647C733A313A2231223B71725F74696D655F62656E63687C613A313A7B733A31323A2261667465725F656E636F6465223B643A313436333033313439312E323636353535313B7D);
+INSERT INTO `ad_session` VALUES ('9m3ihpogur1nc5j2ml0jt4gms1', '1463133850', 0x5F5F666C6173687C613A303A7B7D5F5F69647C733A313A2231223B71725F74696D655F62656E63687C613A313A7B733A31323A2261667465725F656E636F6465223B643A313436333133323130372E303836303735313B7D);
 
 -- ----------------------------
 -- Table structure for `ad_user`
@@ -618,7 +648,7 @@ INSERT INTO `ad_user` VALUES ('10', 'bbbb', '0', '$2y$13$rIqs7lA7GFq9sn1cTvfiq./
 INSERT INTO `ad_user` VALUES ('11', 'dddd', '0', '$2y$13$OhQa2h8MzxbxMbZxct8oCeHH3/.itYWFVcmVhylXZAO1O9PFLm6Ii', '0', 'dddd@qq.com', '1462851573', '1462851573', '0', '0', '10', '0', 'Qouu26y1nGXDcQeefrovy1ZZSXcndjII', '0', '10', '0', '0');
 INSERT INTO `ad_user` VALUES ('12', 'eeee', '0', '$2y$13$QUalxH2Ds1rwYME.ktdXTeGW.MSQl2i9TSaOkrXaIbPIhh1.hRxSy', '0', 'eeee@qq.com', '1462851914', '1462851914', '0', '0', '10', '0', 'LGZIHqoQKkrM8k0WqTch4qOsyiUQAOmP', '0', '10', '0', '0');
 INSERT INTO `ad_user` VALUES ('13', 'gggg', '0', '$2y$13$8LlZBCOvO3IiI6fTewRfMedn9NSmFMarv1YLkcgWho6OhvBOrYR5W', '0', 'gggg@qq.com', '1462862148', '1462862148', '0', '0', '10', '0', 'IjXiuuxbn3qXZgYNuIC9jdgMROmkA9GR', '0', '10', '0', '0');
-INSERT INTO `ad_user` VALUES ('14', 'hhhh', '0', '$2y$13$wMvbhU8uswW8eT6jMC04peOMV4U.btdKgkeMMK2JcQFAlbCTiE9iG', '0', 'hhhh@qq.com', '1462869795', '1462869795', '0', '0', '10', '0', 'e9dlAzxhj65afRWoDl6V52UO6OhCe2qt', '0', '10', '0', '0');
+INSERT INTO `ad_user` VALUES ('14', 'hhhh', '0', '$2y$13$wMvbhU8uswW8eT6jMC04peOMV4U.btdKgkeMMK2JcQFAlbCTiE9iG', '0', 'hhhh@qq.com', '1462869795', '1462869795', '0', '0', '10', '0', 'e9dlAzxhj65afRWoDl6V52UO6OhCe2qt', '0', '10', '1', '0');
 
 -- ----------------------------
 -- Table structure for `ad_user_account`
@@ -672,7 +702,7 @@ CREATE TABLE `ad_user_info` (
 -- ----------------------------
 -- Records of ad_user_info
 -- ----------------------------
-INSERT INTO `ad_user_info` VALUES ('1', '1', null, null, null, null, null, '24', '10', '6', '1', '1', '1', '14', '1462944634', '127.0.0.1', '1463014550', '127.0.0.1', '3gpr9cuasqnks48l6e7nki3j57', '1461143981', '1463014550');
+INSERT INTO `ad_user_info` VALUES ('1', '1', null, null, null, null, null, '24', '10', '11', '1', '1', '1', '15', '1463014550', '127.0.0.1', '1463101261', '127.0.0.1', '9m3ihpogur1nc5j2ml0jt4gms1', '1461143981', '1463101262');
 INSERT INTO `ad_user_info` VALUES ('2', '7', '哎呦不错哦', 'github.com/zxx1988328', 'www.baidu.com', '百度公司', '北京市海淀区', '1', '0', '0', '0', '0', '0', '1', '0', '0', '0', '0', null, '0', '1462435525');
 INSERT INTO `ad_user_info` VALUES ('3', '13', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '1462862149', '127.0.0.1', '1462862149', '127.0.0.1', null, '1462862149', '1462862149');
 INSERT INTO `ad_user_info` VALUES ('4', '12', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '2', '0', '0', '1462869667', '127.0.0.1', 'rp0lbr9nr52682nk8c26jvko21', '0', '1462869667');
@@ -700,7 +730,7 @@ CREATE TABLE `ad_user_meta` (
   `meta_target_type` varchar(100) CHARACTER SET utf8 DEFAULT '0',
   `meta_create` int(11) NOT NULL,
   PRIMARY KEY (`meta_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=79 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=107 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of ad_user_meta
@@ -783,6 +813,34 @@ INSERT INTO `ad_user_meta` VALUES ('75', '1', 'follow', null, '97', 'tweet', '14
 INSERT INTO `ad_user_meta` VALUES ('76', '1', 'follow', null, '98', 'tweet', '1462961318');
 INSERT INTO `ad_user_meta` VALUES ('77', '1', 'follow', null, '99', 'tweet', '1463016984');
 INSERT INTO `ad_user_meta` VALUES ('78', '1', 'follow', null, '100', 'topic', '1463017970');
+INSERT INTO `ad_user_meta` VALUES ('79', '1', 'follow', null, '101', 'tweet', '1463111754');
+INSERT INTO `ad_user_meta` VALUES ('80', '1', 'follow', null, '102', 'tweet', '1463116655');
+INSERT INTO `ad_user_meta` VALUES ('81', '1', 'follow', null, '103', 'tweet', '1463116796');
+INSERT INTO `ad_user_meta` VALUES ('82', '1', 'follow', null, '104', 'tweet', '1463116957');
+INSERT INTO `ad_user_meta` VALUES ('83', '1', 'follow', null, '105', 'tweet', '1463117017');
+INSERT INTO `ad_user_meta` VALUES ('84', '1', 'follow', null, '106', 'tweet', '1463117200');
+INSERT INTO `ad_user_meta` VALUES ('85', '1', 'follow', null, '107', 'tweet', '1463117211');
+INSERT INTO `ad_user_meta` VALUES ('86', '1', 'follow', null, '108', 'tweet', '1463117431');
+INSERT INTO `ad_user_meta` VALUES ('87', '1', 'follow', null, '109', 'tweet', '1463117464');
+INSERT INTO `ad_user_meta` VALUES ('88', '1', 'follow', null, '110', 'topic', '1463117550');
+INSERT INTO `ad_user_meta` VALUES ('89', '1', 'follow', null, '111', 'tweet', '1463117790');
+INSERT INTO `ad_user_meta` VALUES ('90', '1', 'follow', null, '112', 'tweet', '1463117812');
+INSERT INTO `ad_user_meta` VALUES ('91', '1', 'follow', null, '113', 'tweet', '1463117861');
+INSERT INTO `ad_user_meta` VALUES ('92', '1', 'follow', null, '114', 'tweet', '1463118171');
+INSERT INTO `ad_user_meta` VALUES ('93', '1', 'follow', null, '115', 'tweet', '1463118178');
+INSERT INTO `ad_user_meta` VALUES ('94', '1', 'follow', null, '116', 'tweet', '1463118184');
+INSERT INTO `ad_user_meta` VALUES ('95', '1', 'follow', null, '117', 'tweet', '1463118699');
+INSERT INTO `ad_user_meta` VALUES ('96', '1', 'follow', null, '118', 'tweet', '1463118760');
+INSERT INTO `ad_user_meta` VALUES ('97', '1', 'follow', null, '119', 'tweet', '1463123000');
+INSERT INTO `ad_user_meta` VALUES ('98', '1', 'follow', null, '120', 'tweet', '1463123547');
+INSERT INTO `ad_user_meta` VALUES ('99', '1', 'follow', null, '121', 'tweet', '1463123551');
+INSERT INTO `ad_user_meta` VALUES ('100', '1', 'follow', null, '122', 'tweet', '1463123555');
+INSERT INTO `ad_user_meta` VALUES ('101', '1', 'follow', null, '123', 'topic', '1463126767');
+INSERT INTO `ad_user_meta` VALUES ('102', '1', 'follow', null, '124', 'topic', '1463128661');
+INSERT INTO `ad_user_meta` VALUES ('103', '1', 'follow', null, '125', 'tweet', '1463130249');
+INSERT INTO `ad_user_meta` VALUES ('104', '1', 'follow', null, '126', 'tweet', '1463130253');
+INSERT INTO `ad_user_meta` VALUES ('105', '1', 'follow', null, '127', 'topic', '1463132092');
+INSERT INTO `ad_user_meta` VALUES ('106', '1', 'follow', null, '128', 'topic', '1463132119');
 
 -- ----------------------------
 -- Table structure for `merit`
