@@ -71,7 +71,7 @@ use kartik\select2\Select2;
     </div>
 
     <?= SelectizeTextInput::widget([
-        'name' => 'Post[post_tags]',
+        'name' => 'AdPost[post_tags]',
         'value' => $model->post_tags,
         'loadUrl' => ['/post-tag/index'],
         'clientOptions' => [

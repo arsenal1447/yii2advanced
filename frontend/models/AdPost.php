@@ -174,11 +174,6 @@ class AdPost extends Post
 
     public function beforeSave($insert){
         if (parent::beforeSave($insert)) {
-//             $tag = yii::$app->request->post('Post')['post_tags'];
-//             pr($this);
-//             if ($tag) {
-//                 $this->addTags(explode(',', $tag));
-//             }
             if ($this->post_tags) {
                 $this->addTags(explode(',', $this->post_tags));
             }
