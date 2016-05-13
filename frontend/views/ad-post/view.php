@@ -18,18 +18,14 @@ $this->title = $model->post_title;
             <div class="media-body">
                 <?= Html::tag('h1', Html::encode($model->post_title), ['class' => 'media-heading']); ?>
                 <div class="info">
-                    <?= Html::a(
-                        $model->category->cat_name,
-                        ['/ad-post/', 'node' => $model->category->cat_alias],
-                        ['class' => 'node']
-                    ) ?>
+                    <?= Html::a($model->category->cat_name,['/ad-post/', 'node' => $model->category->cat_alias],['class' => 'node']) ?>
                     ·
                     <?= Html::a($model->user['user_name'], ['/ad-user/show', 'username' => $model->user['user_name']]) ?>
                     ·
                     于 <?= Html::tag('abbr', Yii::$app->formatter->asRelativeTime($model->post_create), ['title' => Yii::$app->formatter->asDatetime($model->post_create)]) ?>发布
                     ·
                     <?php //echo $model->post_view_count ?> <!-- 次阅读 -->
-                    <?php //echo \common\models\Post::getViewCount($model->post_id); ?> 次阅读
+                    <?php echo \common\models\Post::getViewCount($model->post_id); ?> 次阅读
                 </div>
             </div>
             <div class="avatar media-right">

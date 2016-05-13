@@ -258,4 +258,10 @@ class SiteController extends Controller
         $model = UserService::findActiveUser(400);
         return Json::encode(Arr::getColumn($model, 'user_name'));
     }
+    
+    public function actionMarkdown()
+    {
+        return $this->render('markdown');
+    }
+    
 }

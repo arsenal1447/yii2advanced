@@ -62,7 +62,7 @@ class PostService
         $users = static::parse($content);
         foreach ($users as $key => $value) {
             $search = '@' . $value;
-            $url = Url::to(['/ad-user/show', 'username' => $value]);
+            $url = Url::to(['/ad-user/show', 'user_name' => $value]);
             $place = "[{$search}]({$url}) ";
             $content = str_replace($search . ' ', $place, $content);
         }

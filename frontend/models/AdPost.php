@@ -30,7 +30,7 @@ class AdPost extends Post
     /**
      * @var boolean CC 协议
      */
-//     public $cc;
+    public $cc;
     
     /**
      * @inheritdoc
@@ -49,7 +49,9 @@ class AdPost extends Post
             [['post_title', 'post_content'], 'required'],
             [['post_cate_id', 'post_user_id', 'post_create', 'post_update', 'post_view_count', 'post_status', 'post_deld'], 'integer'],
             [['post_content'], 'string'],
-            [['post_title'], 'string', 'max' => 100]
+            [['post_title'], 'string', 'max' => 100],
+            [['post_excerpt', 'post_image', 'post_tags'], 'string', 'max' => 255],
+            [['cc'], 'safe']
         ];
     }
 
@@ -65,11 +67,15 @@ class AdPost extends Post
             'post_cate_id' => Yii::t('app', 'Post Cateid'),
             'post_user_id' => Yii::t('app', 'Post User'),
             'post_content' => Yii::t('app', 'Post Content'),
+            'post_excerpt' => '摘要',
+            'post_image' => '封面图片',
+            'post_tags' => '标签',
             'post_create' => Yii::t('app', 'Post Create'),
             'post_update' => Yii::t('app', 'Post Update'),
             'post_view_count' => Yii::t('app', 'Post Viewcount'),
             'post_status' => Yii::t('app', 'Post Status'),
             'post_deld' => Yii::t('app', 'Post Deld'),
+            'cc' => '注明版权信息（原创文章欢迎使用）',
         ];
     }
 
@@ -168,14 +174,16 @@ class AdPost extends Post
 
     public function beforeSave($insert){
         if (parent::beforeSave($insert)) {
-            $tag = yii::$app->request->post('Post')['post_tags'];
-//             pr($tag);
-            if ($tag) {
-                $this->addTags(explode(',', $tag));
+//             $tag = yii::$app->request->post('Post')['post_tags'];
+//             pr($this);
+//             if ($tag) {
+//                 $this->addTags(explode(',', $tag));
+//             }
+            if ($this->post_tags) {
+                $this->addTags(explode(',', $this->post_tags));
             }
-            $this->post_content = TopicService::replace($this->post_content)
-             . ($this->cc ? t('app', 'cc {username}', ['username' => Yii::$app->user->identity->user_name]) : '');
-
+            $this->post_content = TopicService::replace($this->post_content).($this->cc ? Yii::t('app', 'cc {username}', ['username' => Yii::$app->user->identity->user_name]) : '');
+           
             if ($insert) {
                 $this->post_user_id = (($this->post_user_id) ?: Yii::$app->user->id);
                 $this->post_type = self::TYPE;
