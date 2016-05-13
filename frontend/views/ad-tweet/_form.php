@@ -8,7 +8,7 @@ use yii\widgets\ActiveForm;
 <div class="list-group-item">
 
     <?php $form = ActiveForm::begin([
-        'action' => 'ad-tweet/create',
+        'action' => 'create',
         'fieldConfig' => [
             'template' => "{input}\n{hint}\n{error}"
         ]

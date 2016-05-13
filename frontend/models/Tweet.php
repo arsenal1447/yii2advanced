@@ -46,26 +46,26 @@ class Tweet extends Post
         ];
     }
 
-    /**
-     * @desc  发帖的预处理
-     * @return boolean whether the record should be saved.
-     */
-    public function beforeSave($insert) {
-        $userid =  Yii::$app->user->identity->id;
-        if (parent::beforeSave($insert)) {
-//                 $this->post_user_id = $userid;
-//                 $this->post_user_name = Yii::$app->user->identity->user_name;
-//                 $this->post_create = time();
-//                 $this->post_update = time();
-//                 $this->post_status = 0;
-//                 $this->post_view_count = 10;
-//                 $this->post_deld = 0;
-                $this->post_type = Tweet::TweetTYPE;
-            return true;
-        } else {
-            return false;
-        }
-    }
+//     /**
+//      * @desc  发帖的预处理
+//      * @return boolean whether the record should be saved.
+//      */
+//     public function beforeSave($insert) {
+//         $userid =  Yii::$app->user->identity->id;
+//         if (parent::beforeSave($insert)) {
+// //                 $this->post_user_id = $userid;
+// //                 $this->post_user_name = Yii::$app->user->identity->user_name;
+// //                 $this->post_create = time();
+// //                 $this->post_update = time();
+// //                 $this->post_status = 0;
+// //                 $this->post_view_count = 10;
+// //                 $this->post_deld = 0;
+//                 $this->post_type = Tweet::TweetTYPE;
+//             return true;
+//         } else {
+//             return false;
+//         }
+//     }
 
     /**
      * 通过ID获取指定话题

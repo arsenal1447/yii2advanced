@@ -35,7 +35,7 @@ echo Nav::widget([
 //        ['label' =>  Icon::show('th-large')  . '首页', 'url' => ['/site/index'] ],
         ['label' => Icon::show('comment') . '社区', 'url' => ['/ad-post'], 'active' => $topicActive],
 //        ['label' => Icon::show('envelope') . '招聘', 'url' => ['/ad-post', 'node' => 'jobs'], 'active' => $jobsActive],
-        ['label' => Icon::show('commenting') . '动弹', 'url' => ['/ad-tweet'], 'active' => $tweetActive],
+        ['label' => Icon::show('commenting') . '动弹', 'url' => ['/ad-tweet/index'], 'active' => $tweetActive],
         ['label' => Icon::show('th') . '标签', 'url' => ['/site/tags'], 'active' => $topicTagsActive],
         ['label' => Icon::show('signal') . '新手入门', 'url' => ['/site/getstart']],
         ['label' => Icon::show('user') . '会员', 'url' => ['/site/users']],
