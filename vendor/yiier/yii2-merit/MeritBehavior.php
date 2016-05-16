@@ -122,7 +122,7 @@ class MeritBehavior extends Behavior
                 $userMerit->setAttributes([
                     'merit' => ($actionSub ? '-' : '') . $meritTemplate->increment,
                     'user_id' => $user->getId(),
-                    'username' => $user->username,
+                    'username' => $user->user_name,
                     'type' => $meritTemplate->type,
                 ]);
             }
@@ -137,7 +137,7 @@ class MeritBehavior extends Behavior
 
             $meritLog->setAttributes([
                 'user_id' => $user->getId(),
-                'username' => $user->username,
+                'username' => $user->user_name,
                 'merit_template_id' => $meritTemplate->id,
                 'type' => $meritTemplate->type,
                 'description' => $description,

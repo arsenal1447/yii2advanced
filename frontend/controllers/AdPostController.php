@@ -178,51 +178,9 @@ class AdPostController extends Controller
                 $this->flash('发表文章成功!', 'success');
                 return $this->redirect(['view', 'id' => $model->post_id]);
             }
-        
         } else {
-            return $this->render('create', [
-                    'model' => $model,
-            ]);
+            return $this->render('create', ['model' => $model,]);
         }
-//         if (\Yii::$app->user->can('createPost')) {
-//              $model = new AdPost();
-//             //获取分类列表
-//             $catmodel = AdCat::getCate();
-            
-//             if ($model->load(Yii::$app->request->post())) {
-// //                 $model->post_user_id = Yii::$app->user->identity->id;;
-// //                 $model->post_cate_id = Yii::$app->request->post('Post')['post_cate_id'];
-// //                 $model->post_create = time();
-// //                 $model->post_update = time();
-// //                 $model->post_type = Post::TYPE;
-
-
-// //                 pr($model->post_tags);
-// //                 if ($model->post_tags) {
-// //                     $model->addTags(explode(',', $model->post_tags));
-// //                 }
-// //                 die('no');
-// //                 $this->post_content = TopicService::replace($this->post_content)
-// //                 . ($this->cc ? t('app', 'cc {username}', ['username' => Yii::$app->user->identity->user_name]) : '');
-
-//                 if($model->save(false)){
-// //                     $this->saveReplyForPost($model);
-
-//                     (new UserMeta)->saveNewMeta('topic', $model->post_id, 'follow');
-//                     (new NoticeService())->newPostNotify(Yii::$app->user->identity, $model, $model->post_content);
-//                     // 更新个人总统计
-// //                     UserInfo::updateAllCounters(['post_count' => 1], ['user_id' => $model->user_id]);
-//                     $this->flash('发表文章成功!', 'success');
-//                     return $this->redirect(['view', 'id' => $model->post_id]);
-//                 }
-//             } else {
-//                 return $this->render('create', [
-//                     'model' => $model,
-//                     'catmodel' => $catmodel,
-//                 ]);
-//             }
-//         }
-
     }
 
 

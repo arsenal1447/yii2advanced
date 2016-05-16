@@ -30,35 +30,57 @@ use yii\helpers\Json;
  */
 class SiteController extends Controller
 {
+//     /**
+//      * @inheritdoc
+//      */
+//     public function behaviors()
+//     {
+//         return [
+//             'access' => [
+//                 'class' => AccessControl::className(),
+//                 'only' => ['logout', 'signup'],
+//                 'rules' => [
+//                     [
+//                         'actions' => ['signup', 'develop', 'help', 'captcha'],
+//                         'allow' => true,
+//                         'roles' => ['?'],
+//                     ],
+//                     [
+//                         'actions' => ['logout'],
+//                         'allow' => true,
+//                         'roles' => ['@'],
+//                     ],
+//                 ],
+//             ],
+//             'verbs' => [
+//                 'class' => VerbFilter::className(),
+//                 'actions' => [
+//                     'logout' => ['post'],
+//                 ],
+//             ],
+//         ];
+//     }
+    
+    
     /**
      * @inheritdoc
      */
     public function behaviors()
     {
-        return [
-            'access' => [
-                'class' => AccessControl::className(),
-                'only' => ['logout', 'signup'],
-                'rules' => [
-                    [
-                        'actions' => ['signup', 'develop', 'help', 'captcha'],
-                        'allow' => true,
-                        'roles' => ['?'],
-                    ],
-                    [
-                        'actions' => ['logout'],
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
+        return Arr::merge(parent::behaviors(), [
+                'access' => [
+                        'class' => AccessControl::className(),
+                        'only' => ['logout', 'signup', 'connect'],
+                        'rules' => [
+                                ['actions' => ['signup', 'connect'], 'allow' => true, 'roles' => ['?']],
+                                ['actions' => ['logout'], 'allow' => true, 'roles' => ['@']],
+                        ],
                 ],
-            ],
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'logout' => ['post'],
+                'verbs' => [
+                        'class' => VerbFilter::className(),
+                        'actions' => ['logout' => ['post']],
                 ],
-            ],
-        ];
+        ]);
     }
 
     /**

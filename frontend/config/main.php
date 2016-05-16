@@ -16,6 +16,7 @@ return [
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
+            'as afterLogin' => 'frontend\behaviors\AfterLoginBehavior',
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
