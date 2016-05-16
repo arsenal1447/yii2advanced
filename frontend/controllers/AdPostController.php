@@ -40,18 +40,30 @@ class AdPostController extends Controller
         'hotest' => '热门的',
         'uncommented' => '未回答的'
     ];
-
+    
     public function behaviors()
     {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['post'],
+        return ArrayHelper::merge(parent::behaviors(), [
+                'verbs' => [
+                        'class' => VerbFilter::className(),
+                        'actions' => [
+                                'delete' => ['post'],
+                        ],
                 ],
-            ],
-        ];
+                'access' => [
+                        'class' => AccessControl::className(),
+                        'rules' => [
+                                // 默认只能Get方式访问
+                                ['allow' => true, 'actions' => ['view', 'index', 'search'], 'verbs' => ['GET']],
+                                // 登录用户才能提交评论或其他内容
+                                ['allow' => true, 'actions' => ['api', 'view', 'delete'], 'verbs' => ['POST'], 'roles' => ['@']],
+                                // 登录用户才能使用API操作(赞,踩,收藏)
+                                ['allow' => true, 'actions' => ['create', 'update', 'revoke', 'excellent'], 'roles' => ['@']],
+                        ]
+                ],
+        ]);
     }
+    
 
     /**
      * Lists all Post models.
