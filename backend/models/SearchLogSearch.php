@@ -6,6 +6,7 @@ use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use common\models\SearchLog;
+use common\models\User;
 
 /**
  * SearchLogSearch represents the model behind the search form about `common\models\SearchLog`.
@@ -43,7 +44,6 @@ class SearchLogSearch extends SearchLog
     public function search($params)
     {
         $query = SearchLog::find()->joinWith('user');
-
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
@@ -60,16 +60,18 @@ class SearchLogSearch extends SearchLog
 //             $query->where('0=1');
             return $dataProvider;
         }
-
+        $usertable = User::tableName();
+//         pr($usertable);
         $query->andFilterWhere([
             'id' => $this->id,
-            'user_id' => $this->user_id,
+            $usertable.'.user_id' => $this->user_id,
             'created_at' => $this->created_at,
         ]);
 
         $query->andFilterWhere(['like', 'keyword', $this->keyword])
             ->andFilterWhere(['like', 'username', $this->username]);;
 
+//         pr($query);
         return $dataProvider;
     }
 }

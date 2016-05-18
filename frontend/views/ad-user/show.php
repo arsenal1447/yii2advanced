@@ -76,7 +76,10 @@ $username = Yii::$app->getRequest()->getQueryParam('username');
                 <?php if ($user->userInfo->info_github): ?>
                     <li class="list-group-item text-right">
                         <span class="pull-left"><strong class="">GitHub</strong></span>
-                        <?= Html::a(Html::encode($user->userInfo->info_github), Html::encode($user->userInfo->info_github)) ?>
+                        <?php if (\yii\helpers\Url::isRelative($user->userInfo->info_github)) {
+                            $user->userInfo->info_github ='http://' . $user->userInfo->info_github;
+                        }                        
+                        echo Html::a(Html::encode($user->userInfo->info_github), Html::encode($user->userInfo->info_github)) ?>
                     </li>
                 <?php endif ?>
                 <li class="list-group-item text-right">
