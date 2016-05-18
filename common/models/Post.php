@@ -91,14 +91,23 @@ class Post extends MyActiveRecord
         return [
                 //'id' => 'ID',
                 'post_id' => 'ID',
+                'post_meta_id' => '分类',
                 'post_user_id' => '用户ID',
                 //'user_name' => '用户名',
                 'post_title' => '标题',
+                'post_author' => '作者',
+                'post_excerpt' => '摘要',
+                'post_image' => '封面图片',
+                'post_tags' => '标签',
                 'post_content' => '内容',
                 'post_create' => '创建时间',
                 'post_update' => '修改时间',
                 'post_view_count' => '浏览数',
                 'post_reply_count' => '回帖数',
+                'post_favorite_count' => '收藏数',
+                'post_like_count' => '喜欢数',
+                'post_thanks_count' => '感谢数',
+                'post_hate_count' => '讨厌数',
                 'post_status' => '状态',
                 'category_name' => '分类',//用于点击排序和翻译
                 'username' => '用户',//用于点击排序和翻译
