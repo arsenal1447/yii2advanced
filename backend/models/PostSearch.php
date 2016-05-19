@@ -21,8 +21,8 @@ class PostSearch extends Post
     public function rules()
     {
         return [
-            [['post_id', 'post_meta_id', 'post_user_id', 'post_view_count', 'post_reply_count', 'post_favorite_count', 'post_like_count', 'post_thanks_count', 'post_hate_count', 'post_status', 'post_order', 'post_create', 'post_update'], 'integer'],
-            [['post_type', 'post_title', 'post_author', 'post_excerpt', 'post_image', 'post_content', 'post_tags', 'category_name', 'username'], 'safe'],//safe表示安全字段,不想被验证
+            [['post_id', 'post_meta_id', 'post_user_id', 'post_view_count', 'post_reply_count', 'post_favorite_count', 'post_like_count', 'post_thanks_count', 'post_hate_count', 'post_status', 'post_order', 'post_create', ], 'integer'],
+            [['post_type', 'post_title', 'post_author', 'post_excerpt', 'post_image', 'post_content', 'post_tags', 'category_name', 'username','post_update'], 'safe'],//safe表示安全字段,不想被验证
         ];
     }
 
