@@ -7,6 +7,9 @@ use frontend\assets\AppAsset;
 use frontend\widgets\Alert;
 use frontend\assets\BowerAsset;
 use frontend\assets\EmojifyAsset;
+// use frontend\assets\HighAsset;
+// use frontend\assets\MarkedAsset;
+// use frontend\assets\FrontAsset;
 use yii\helpers\Url;
 
 /* @var $this \yii\web\View */
@@ -14,6 +17,9 @@ use yii\helpers\Url;
 
 AppAsset::register($this);
 BowerAsset::register($this);
+// FrontAsset::register($this);
+// HighAsset::register($this);
+// MarkedAsset::register($this);
 
 \frontend\assets\EditorAsset::register($this);
 $emojify = EmojifyAsset::register($this);
