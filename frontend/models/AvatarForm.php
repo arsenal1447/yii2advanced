@@ -91,7 +91,7 @@ class AvatarForm extends Model
         // get the uploaded file instance. for multiple file uploads
         // the following data will return an array (you may need to use
         // getInstances method)
-        $image = UploadedFile::getInstance($this, 'avatar');
+        $image = UploadedFile::getInstance($this, 'user_avatar');
 
         // if no image was uploaded abort the upload
         if (empty($image)) {
