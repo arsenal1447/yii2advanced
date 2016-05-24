@@ -2,7 +2,7 @@
 
 namespace frontend\models;
 
-use common\components\db\ActiveRecord;
+use common\components\db\MyActiveRecord;
 use Yii;
 use yii\web\UploadedFile;
 
