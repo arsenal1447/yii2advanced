@@ -8,7 +8,6 @@ use common\models\User;
 use common\services\NoticeService;
 use common\services\TopicService;
 use frontend\models\AdNotice;
-use frontend\models\Topic;
 use frontend\models\UserMeta;
 use frontend\models\AdPost;
 use yii\data\ActiveDataProvider;
@@ -40,7 +39,7 @@ class AdPostController extends Controller
         'hotest' => '热门的',
         'uncommented' => '未回答的'
     ];
-    
+
     public function behaviors()
     {
         return ArrayHelper::merge(parent::behaviors(), [
@@ -63,7 +62,7 @@ class AdPostController extends Controller
                 ],
         ]);
     }
-    
+
 
     /**
      * Lists all Post models.
@@ -172,7 +171,7 @@ class AdPostController extends Controller
         if (Yii::$app->user->isGuest) {
             return $this->redirect(['site/login']);
         }
-        
+
         $model = new AdPost();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             $topService = new TopicService();
@@ -243,10 +242,9 @@ class AdPostController extends Controller
         Ad::checkIsGuest();
 
         $model = new Reply;
-//         $data = array();
 
         $postId = Yii::$app->request->get('id');
-        $post = Topic::findTopic($postId);
+        $post = AdPost::findTopic($postId);
         $data = Ad::getPostValue('Reply');
         if($data == null){
             $post = Post::findOne(['post_id' => $postId]);
@@ -261,10 +259,8 @@ class AdPostController extends Controller
 
         $postId = $data['post_id'];
         $postTitle = $data['post_title'];
-//         yii::myPrint($data);
         if ($model->load(Yii::$app->request->post())) {
             $model->reply_post_id = $postId;
-//             $model->reply_user_id = Ad::getIdentity()->id;
             $model->reply_user_id = Yii::$app->user->id;
             $model->reply_user_name = Yii::$app->user->getIdentity()->user_name;
             $model->reply_title = isset($data['post_title'])?$data['post_title']:'';
@@ -283,8 +279,6 @@ class AdPostController extends Controller
             }
         }
 
-//         return $model;
-
         return $this->redirect(['view', 'id' => $postId]);
     }
 
@@ -297,11 +291,11 @@ class AdPostController extends Controller
     public function actionUpdate($id)
     {
         $model = AdPost::findTopic($id);
-        
+
         if (!($model && (User::getThrones() || $model->isCurrent()))) {
             throw new NotFoundHttpException;
         }
-        
+
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->save()) {
                 $this->flash('发表更新成功!', 'success');

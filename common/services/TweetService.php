@@ -1,7 +1,7 @@
 <?php
 namespace common\services;
 
-use frontendmodels\Topic;
+use frontendmodels\AdPost;
 use frontend\models\Tweet;
 use yii\helpers\Url;
 
@@ -17,21 +17,21 @@ class TweetService extends PostService
 
     /**
      * 撤销帖子
-     * @param Topic $topic
+     * @param AdPost $topic
      */
-    public static function revoke(Topic $topic)
+    public static function revoke(AdPost $topic)
     {
-        $topic->setAttributes(['post_status' => Topic::STATUS_ACTIVE]);
+        $topic->setAttributes(['post_status' => AdPost::STATUS_ACTIVE]);
         $topic->save();
     }
 
     /**
      * 加精华
-     * @param Topic $topic
+     * @param AdPost $topic
      */
-    public static function excellent(Topic $topic)
+    public static function excellent(AdPost $topic)
     {
-        $action = ($topic->post_status == Topic::STATUS_ACTIVE) ? Topic::STATUS_EXCELLENT : Topic::STATUS_ACTIVE;
+        $action = ($topic->post_status == AdPost::STATUS_ACTIVE) ? AdPost::STATUS_EXCELLENT : AdPost::STATUS_ACTIVE;
         $topic->setAttributes(['post_status' => $action]);
         $topic->save();
     }

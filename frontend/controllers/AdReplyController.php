@@ -9,7 +9,6 @@ use yii\data\ActiveDataProvider;
 // use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use frontend\models\Topic;
 use common\models\Reply;
 use common\models\UserInfo;
 use common\services\TopicService;

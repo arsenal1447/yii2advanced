@@ -5,7 +5,6 @@ use common\models\Reply;
 use common\models\User;
 use frontend\models\AdNotice;
 use frontend\models\AdPost;
-use frontend\models\Topic;
 use common\models\Post;
 use frontend\models\UserMeta;
 use yii\base\Exception;
@@ -120,7 +119,7 @@ class NoticeService
                 'notice_status' => 0,
                 'notice_create' => time(),
             ]);
-            
+
             $this->notifiedUsers[] = $key;
             if ($model->save()) {
                 User::updateAllCounters(['user_notice_count' => 1], ['user_id' => $key]);

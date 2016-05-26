@@ -2,14 +2,14 @@
 namespace common\services;
 
 use frontend\models\AdNotice;
-use frontend\models\Topic;
+use frontend\models\AdPost;
 
 class TopicService extends PostService
 {
 
     public function userDoAction($id, $action)
     {
-        $topic = Topic::findTopic($id);
+        $topic = AdPost::findTopic($id);
         $user = \Yii::$app->user->getIdentity();
         if (in_array($action, ['like', 'hate'])) {
             return UserService::TopicActionA($user, $topic, $action);
@@ -20,21 +20,21 @@ class TopicService extends PostService
 
     /**
      * 撤销帖子
-     * @param Topic $topic
+     * @param AdPost $topic
      */
-    public static function revoke(Topic $topic)
+    public static function revoke(AdPost $topic)
     {
-        $topic->setAttributes(['post_status' => Topic::STATUS_ACTIVE]);
+        $topic->setAttributes(['post_status' => AdPost::STATUS_ACTIVE]);
         $topic->save();
     }
 
     /**
      * 加精华
-     * @param Topic $topic
+     * @param AdPost $topic
      */
-    public static function excellent(Topic $topic)
+    public static function excellent(AdPost $topic)
     {
-        $action = ($topic->post_status == Topic::STATUS_ACTIVE) ? Topic::STATUS_EXCELLENT : Topic::STATUS_ACTIVE;
+        $action = ($topic->post_status == AdPost::STATUS_ACTIVE) ? AdPost::STATUS_EXCELLENT : AdPost::STATUS_ACTIVE;
         $topic->setAttributes(['post_status' => $action]);
         $topic->save();
     }

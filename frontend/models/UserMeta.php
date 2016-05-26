@@ -4,7 +4,7 @@ namespace frontend\models;
 
 use common\models\Reply;
 use common\services\NoticeService;
-use frontend\models\Topic;
+use frontend\models\AdPost;
 // use frontend\models\Tweet;
 use Yii;
 use yii\db\ActiveRecord;
@@ -129,7 +129,7 @@ class UserMeta extends ActiveRecord
 
     public function getTopic()
     {
-        return $this->hasOne(Topic::className(), ['post_id' => 'meta_target_id']);
+        return $this->hasOne(AdPost::className(), ['post_id' => 'meta_target_id']);
     }
 
     public function getTweet()

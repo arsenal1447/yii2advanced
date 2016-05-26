@@ -6,7 +6,7 @@ use common\models\Reply;
 use common\models\User;
 use common\models\UserInfo;
 use DevGroup\TagDependencyHelper\NamingHelper;
-use frontend\models\Topic;
+use frontend\models\AdPost;
 use frontend\models\UserMeta;
 use yii\caching\TagDependency;
 
@@ -34,11 +34,11 @@ class UserService
     /**
      * 赞话题(如果已经赞,则取消赞)
      * @param User $user
-     * @param Topic $topic
+     * @param AdPost $topic
      * @param $action 动作
      * @return array
      */
-    public static function TopicActionA(User $user, Topic $topic, $action)
+    public static function TopicActionA(User $user, AdPost $topic, $action)
     {
         return self::toggleType($user, $topic, $action);
     }
@@ -68,7 +68,7 @@ class UserService
                     UserInfo::updateAllCounters(['info_'.$action . '_count' => 1], ['info_user_id' => $model->post_user_id]);
                 }
             }
-            
+
             return [$result, $userMeta];
         }
         $model->updateCounters(['post_'.$action . '_count' => -1]);
@@ -126,7 +126,7 @@ class UserService
             'meta_user_id' => $user->user_id,
             'meta_value' => '1',
         ];
-        
+
         if (!UserMeta::deleteOne($data + ['meta_type' => $action])) { // 删除数据有行数则代表有数据,无行数则添加数据
             $userMeta = new UserMeta();
             $userMeta->setAttributes($data + ['meta_type' => $action]);
@@ -140,12 +140,12 @@ class UserService
                 //更新版块统计
                 $model->updateCounters($attributes);
                 // 更新个人总统计
-                
+
                 $attributes2 = ['info_'.$action . '_count' => 1];
                 if (UserMeta::deleteOne($data + ['meta_type' => $attributeName])) { // 如果有删除hate数据, hate_count也要-1
                     $attributes2['info_'.$attributeName . '_count'] = -1;
                 }
-                
+
                 UserInfo::updateAllCounters($attributes2, ['info_user_id' => $model->post_user_id]);
             }
             return [$result, $userMeta];

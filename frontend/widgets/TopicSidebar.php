@@ -10,7 +10,7 @@ namespace frontend\widgets;
 use common\helpers\Arr;
 use common\models\PostMeta;
 use common\models\RightLink;
-use frontend\models\Topic;
+use frontend\models\AdPost;
 use frontend\models\Donate;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
@@ -46,8 +46,8 @@ class TopicSidebar extends \yii\bootstrap\Widget
         $sameTopics = [];
         if ($this->node) {
             $sameTopics = ArrayHelper::map(
-                Topic::find()
-                    ->where('post_status >= :status', [':status' => Topic::STATUS_ACTIVE])
+                AdPost::find()
+                    ->where('post_status >= :status', [':status' => AdPost::STATUS_ACTIVE])
                     ->andWhere(['post_meta_id' => $this->node->cat_id, 'post_type' => 'topic'])
                     ->limit(200)->all(),
                 'title',
@@ -60,7 +60,7 @@ class TopicSidebar extends \yii\bootstrap\Widget
             }
 
             if ($this->type == 'view' && (in_array($this->node->cat_alias, params('donateNode')) || array_intersect(explode(',', $this->tags), params('donateTag')))) {
-                $donate = Donate::findOne(['user_id' => Topic::findOne(['id' => request()->get('id')])->user_id, 'status' => Donate::STATUS_ACTIVE]);
+                $donate = Donate::findOne(['user_id' => AdPost::findOne(['id' => request()->get('id')])->user_id, 'status' => Donate::STATUS_ACTIVE]);
             }
         }
 
