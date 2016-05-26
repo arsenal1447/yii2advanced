@@ -129,17 +129,17 @@ class UserMeta extends ActiveRecord
 
     public function getTopic()
     {
-        return $this->hasOne(Topic::className(), ['meta_id' => 'meta_target_id']);
+        return $this->hasOne(Topic::className(), ['post_id' => 'meta_target_id']);
     }
 
     public function getTweet()
     {
-        return $this->hasOne(Tweet::className(), ['meta_id' => 'meta_target_id']);
+        return $this->hasOne(Tweet::className(), ['post_id' => 'meta_target_id']);
     }
 
     public function getComment()
     {
-        return $this->hasOne(PostComment::className(), ['meta_id' => 'meta_target_id']);
+        return $this->hasOne(PostComment::className(), ['reply_id' => 'meta_target_id']);
     }
 
     public function beforeSave($insert)
@@ -153,26 +153,26 @@ class UserMeta extends ActiveRecord
             if (in_array($this->meta_type, ['like', 'favorite', 'thanks'])) {
                 switch ($this->meta_target_type) {
                     case 'topic':
-                        (new NotificationService)->newActionNotify(
+                        (new NoticeService)->newActionNotify(
                             $this->meta_target_type . '_' . $this->meta_type,
                             Yii::$app->user->id,
-                            $this->topic->meta_user_id,
+                            $this->topic->post_user_id,
                             $this->topic
                         );
                         break;
                     case 'tweet':
-                        (new NotificationService)->newActionNotify(
+                        (new NoticeService)->newActionNotify(
                             $this->meta_target_type . '_' . $this->meta_type,
                             Yii::$app->user->id,
-                            $this->tweet->meta_user_id,
+                            $this->tweet->post_user_id,
                             $this->tweet
                         );
                         break;
                     case 'comment':
-                        (new NotificationService)->newActionNotify(
+                        (new NoticeService)->newActionNotify(
                             $this->meta_target_type . '_' . $this->meta_type,
                             Yii::$app->user->id,
-                            $this->comment->meta_user_id,
+                            $this->comment->reply_user_id,
                             $this->comment->topic,
                             $this->comment
                         );
@@ -191,7 +191,7 @@ class UserMeta extends ActiveRecord
         if (parent::beforeDelete()) {
             $userActionNotify = (new NoticeService)->findUserActionNotify($this);
             if ($userActionNotify) {
-                $userActionNotify->status = 0;
+                $userActionNotify->notice_status = 0;
                 $userActionNotify->save();
             }
             return true;

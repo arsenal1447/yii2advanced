@@ -58,21 +58,22 @@ class UserService
             'meta_user_id' => $user->user_id,
             'meta_value' => '1',
         ];
-        if (!UserMeta::deleteOne($data + ['post_type' => $action])) { // 删除数据有行数则代表有数据,无行数则添加数据
+        if (!UserMeta::deleteOne($data + ['meta_type' => $action])) { // 删除数据有行数则代表有数据,无行数则添加数据
             $userMeta = new UserMeta();
-            $userMeta->setAttributes($data + ['post_type' => $action]);
+            $userMeta->setAttributes($data + ['meta_type' => $action]);
             $result = $userMeta->save();
             if ($result) {
-                $model->updateCounters([$action . '_count' => 1]);
+                $model->updateCounters(['post_'.$action . '_count' => 1]);
                 if ($action == 'thanks') {
-                    UserInfo::updateAllCounters([$action . '_count' => 1], ['user_id' => $model->user_id]);
+                    UserInfo::updateAllCounters(['info_'.$action . '_count' => 1], ['info_user_id' => $model->post_user_id]);
                 }
             }
+            
             return [$result, $userMeta];
         }
-        $model->updateCounters([$action . '_count' => -1]);
+        $model->updateCounters(['post_'.$action . '_count' => -1]);
         if ($action == 'thanks') {
-            UserInfo::updateAllCounters([$action . '_count' => -1], ['user_id' => $model->user_id]);
+            UserInfo::updateAllCounters(['info_'.$action . '_count' => -1], ['info_user_id' => $model->post_user_id]);
         }
 
         return [true, null];
@@ -120,30 +121,37 @@ class UserService
     protected static function toggleType(User $user, Post $model, $action)
     {
         $data = [
-            'target_id' => $model->id,
-            'target_type' => $model->type,
-            'user_id' => $user->id,
-            'value' => '1',
+            'meta_target_id' => $model->post_id,
+            'meta_target_type' => $model->post_type,
+            'meta_user_id' => $user->user_id,
+            'meta_value' => '1',
         ];
-        if (!UserMeta::deleteOne($data + ['type' => $action])) { // 删除数据有行数则代表有数据,无行数则添加数据
+        
+        if (!UserMeta::deleteOne($data + ['meta_type' => $action])) { // 删除数据有行数则代表有数据,无行数则添加数据
             $userMeta = new UserMeta();
-            $userMeta->setAttributes($data + ['type' => $action]);
+            $userMeta->setAttributes($data + ['meta_type' => $action]);
             $result = $userMeta->save();
             if ($result) { // 如果是新增数据, 删除掉Hate的同类型数据
-                $attributeName = ($action == 'like' ? 'hate' : 'like');
-                $attributes = [$action . '_count' => 1];
-                if (UserMeta::deleteOne($data + ['type' => $attributeName])) { // 如果有删除hate数据, hate_count也要-1
-                    $attributes[$attributeName . '_count'] = -1;
+                $attributeName = ('post_'.$action == 'like' ? 'hate' : 'like');
+                $attributes = ['post_'.$action . '_count' => 1];
+                if (UserMeta::deleteOne($data + ['meta_type' => $attributeName])) { // 如果有删除hate数据, hate_count也要-1
+                    $attributes['post_'.$attributeName . '_count'] = -1;
                 }
                 //更新版块统计
                 $model->updateCounters($attributes);
                 // 更新个人总统计
-                UserInfo::updateAllCounters($attributes, ['user_id' => $model->user_id]);
+                
+                $attributes2 = ['info_'.$action . '_count' => 1];
+                if (UserMeta::deleteOne($data + ['meta_type' => $attributeName])) { // 如果有删除hate数据, hate_count也要-1
+                    $attributes2['info_'.$attributeName . '_count'] = -1;
+                }
+                
+                UserInfo::updateAllCounters($attributes2, ['info_user_id' => $model->post_user_id]);
             }
             return [$result, $userMeta];
         }
-        $model->updateCounters([$action . '_count' => -1]);
-        UserInfo::updateAllCounters([$action . '_count' => -1], ['user_id' => $model->user_id]);
+        $model->updateCounters(['post_'.$action . '_count' => -1]);
+        UserInfo::updateAllCounters(['info_'.$action . '_count' => -1], ['info_user_id' => $model->post_user_id]);
 
         return [true, null];
     }

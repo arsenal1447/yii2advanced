@@ -69,9 +69,7 @@ class NoticeService
      */
     public function newActionNotify($type, $fromUserId, $toUserId, Post $post, Reply $comment = null)
     {
-
         $model = new AdNotice();
-
         $model->setAttributes([
             'notice_from_user_id' => $fromUserId,
             'notice_user_id' => $toUserId,
@@ -79,8 +77,9 @@ class NoticeService
             'notice_comment_id' => $comment ? $comment->reply_id : 0,
             'notice_data' => $comment ? $comment->reply_content : $post->post_content,
             'notice_type' => $type,
+            'notice_status' => AdNotice::Notice_Normal,
+            'notice_create' =>time(),
         ]);
-
         if ($model->save()) {
             User::updateAllCounters(['user_notice_count' => 1], ['user_id' => $toUserId]);
         } else {
