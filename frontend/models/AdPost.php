@@ -79,36 +79,36 @@ class AdPost extends Post
         ];
     }
 
-    public function getLike()
-    {
-        $model = new UserMeta();
-        return $model->isUserAction(self::TYPE, 'like', $this->meta_id);
-    }
+//     public function getLike()
+//     {
+//         $model = new UserMeta();
+//         return $model->isUserAction(self::TYPE, 'like', $this->post_user_id);
+//     }
 
-    public function getFollow()
-    {
-        $model = new UserMeta();
-        return $model->isUserAction(self::TYPE, 'follow', $this->meta_id);
-    }
+//     public function getFollow()
+//     {
+//         $model = new UserMeta();
+//         return $model->isUserAction(self::TYPE, 'follow', $this->post_user_id);
+//     }
 
-    public function getHate()
-    {
-        $model = new UserMeta();
-        return $model->isUserAction(self::TYPE, 'hate', $this->meta_id);
-    }
+//     public function getHate()
+//     {
+//         $model = new UserMeta();
+//         return $model->isUserAction(self::TYPE, 'hate', $this->post_user_id);
+//     }
 
-    public function getFavorite()
-    {
-        $model = new UserMeta();
-        return $model->isUserAction(self::TYPE, 'favorite', $this->meta_id);
-    }
+//     public function getFavorite()
+//     {
+//         $model = new UserMeta();
+//         return $model->isUserAction(self::TYPE, 'favorite', $this->post_user_id);
+//     }
 
-    public function getThanks()
-    {
-        $model = new UserMeta();
-        return $model->isUserAction(self::TYPE, 'thanks', $this->meta_id);
-    }
-
+//     public function getThanks()
+//     {
+//         $model = new UserMeta();
+//         return $model->isUserAction(self::TYPE, 'thanks', $this->post_user_id);
+//     }
+    
     public function isCurrent()
     {
         return $this->post_user_id == Yii::$app->user->id;
