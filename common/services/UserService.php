@@ -136,6 +136,9 @@ class UserService
                 $attributes = ['post_'.$action . '_count' => 1];
                 if (UserMeta::deleteOne($data + ['meta_type' => $attributeName])) { // 如果有删除hate数据, hate_count也要-1
                     $attributes['post_'.$attributeName . '_count'] = -1;
+                    if($attributes['post_'.$attributeName . '_count']<0){
+                        $attributes['post_'.$attributeName . '_count'] = 0;
+                    }
                 }
                 //更新版块统计
                 $model->updateCounters($attributes);

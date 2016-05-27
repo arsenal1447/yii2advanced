@@ -97,17 +97,11 @@ class NoticeService
      */
     public function batchNotify($type, User $fromUser, $users, Post $post, Reply $comment = null)
     {
-        echo "<pre>";
-        print_R($users);
         foreach ($users as $key => $value) {
             if ($fromUser->user_id == $key) {
-//                 die('104');
-//                 echo "<br>fromUser->user_id=".$fromUser->user_id."<br>";
-//                 echo "<br>key=".$key."<br>";
-//                 die('107');
                 continue;
             }
-//             die('107');
+            
             $model = new AdNotice();
             $model->setAttributes([
                 'notice_from_user_id' => $fromUser->id,
