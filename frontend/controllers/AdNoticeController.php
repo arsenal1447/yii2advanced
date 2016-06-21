@@ -56,7 +56,7 @@ class AdNoticeController extends Controller
         
         $notifyCount = UserService::findNotifyCount();
         
-//         UserService::clearNotifyCount();
+        UserService::clearNotifyCount();
         
         $dataProvider = new ActiveDataProvider([
             'query' =>$query,

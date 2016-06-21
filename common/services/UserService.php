@@ -28,7 +28,7 @@ class UserService
      */
     public static function clearNotifyCount()
     {
-        return User::updateAll(['user_notice_count' => '0'], ['id' => \Yii::$app->user->id]);
+        return User::updateAll(['user_notice_count' => '0'], ['user_id' => \Yii::$app->user->id]);
     }
 
     /**
