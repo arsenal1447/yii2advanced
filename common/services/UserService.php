@@ -23,7 +23,7 @@ class UserService
     }
 
     /**
-     * 清除通知数
+     * 清除通知数 
      * @return mixed
      */
     public static function clearNotifyCount()
