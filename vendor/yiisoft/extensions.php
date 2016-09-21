@@ -193,15 +193,6 @@ return array (
       '@yii/redis' => $vendorDir . '/yiisoft/yii2-redis',
     ),
   ),
-  'kop/yii2-scroll-pager' => 
-  array (
-    'name' => 'kop/yii2-scroll-pager',
-    'version' => '9999999-dev',
-    'alias' => 
-    array (
-      '@kop/y2sp' => $vendorDir . '/kop/yii2-scroll-pager',
-    ),
-  ),
   'trntv/yii2-aceeditor' => 
   array (
     'name' => 'trntv/yii2-aceeditor',
@@ -236,6 +227,15 @@ return array (
     'alias' => 
     array (
       '@dmstr' => $vendorDir . '/dmstr/yii2-adminlte-asset',
+    ),
+  ),
+  'kop/yii2-scroll-pager' => 
+  array (
+    'name' => 'kop/yii2-scroll-pager',
+    'version' => '9999999-dev',
+    'alias' => 
+    array (
+      '@kop/y2sp' => $vendorDir . '/kop/yii2-scroll-pager',
     ),
   ),
 );
